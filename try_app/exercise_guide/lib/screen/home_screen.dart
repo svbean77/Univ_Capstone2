@@ -1,3 +1,4 @@
+import 'package:exercise_guide/screen/muscle.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,7 +11,16 @@ class HomeScreen extends StatelessWidget {
         title: Text('득근득근'),
       ),
       body: Center(
-        child: Text('가이드!'),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => Muscle(),
+              ),
+            );
+          },
+          child: Text('페이지 이동'),
+        ),
       ),
     );
   }
