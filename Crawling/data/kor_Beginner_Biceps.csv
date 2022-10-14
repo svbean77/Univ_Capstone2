@@ -1,50 +1,44 @@
-﻿exercise,equipment,difficulty,link,img_link,video_link,step
-Barbell Curl,Barbell,Beginner,https://musclewiki.com/Barbell/Male/Biceps/Barbell-Curl,https://www.musclewiki.com/media/uploads/male-barbell-curl-front_uKPCb8P.gif,https://youtu.be/0mylYdVWBf0,"1. 상단 팔을 고정시키는 동안 숨을 쉬면서 팔뚝을 수축하는 동안 무게를 앞으로 굽습니다.
+﻿exercise,equipment,difficulty,link,muscle,img_link,video_link,step
+Barbell Curl,Barbell,Beginner,https://musclewiki.com/Barbell/Male/Biceps/Barbell-Curl,Biceps,https://www.musclewiki.com/media/uploads/male-barbell-curl-front_uKPCb8P.gif,https://youtu.be/0mylYdVWBf0,"1. 상단 팔을 고정시키는 동안 숨을 쉬면서 팔뚝을 수축하는 동안 무게를 앞으로 굽습니다.
 2. 이두근이 완전히 수축되고 막대가 어깨 수준에있을 때까지 움직임을 계속하십시오.
 3. 계약 된 위치를 잠시 고정하고 이두근을 강하게 짜십시오.
 4. 체중을 천천히 시작 위치로 가져옵니다."
-Dumbbell Curl,Dumbbells,Beginner,https://musclewiki.com/Dumbbells/Male/Biceps/Dumbbell-Curl,https://www.musclewiki.com/media/uploads/male-dumbbell-curl-front.gif,https://youtu.be/EU4HlSIpj5Y,"1. 팔의 길이에 각 손에 아령으로 똑바로 서십시오.
+Dumbbell Curl,Dumbbells,Beginner,https://musclewiki.com/Dumbbells/Male/Biceps/Dumbbell-Curl,Biceps,https://www.musclewiki.com/media/uploads/male-dumbbell-curl-front.gif,https://youtu.be/EU4HlSIpj5Y,"1. 팔의 길이에 각 손에 아령으로 똑바로 서십시오.
 2. 아령 하나를 들어 올려 팔뚝이 수직이 될 때까지 팔뚝을 비틀고 손바닥이 어깨를 향합니다.
 3. 원래 위치로 낮추고 반대쪽 팔로 반복"
-Dumbbell Hammer Curl,Dumbbells,Beginner,https://musclewiki.com/Dumbbells/Male/Biceps/Dumbbell-Hammer-Curl,https://www.musclewiki.com/media/uploads/male-dumbbell-hammercurl-front.gif,https://youtu.be/Dh3_gou_3TE,"1. 중성 그립 (천장을 향한 엄지 손가락)으로 아령을 잡고 있습니다.
+Dumbbell Hammer Curl,Dumbbells,Beginner,https://musclewiki.com/Dumbbells/Male/Biceps/Dumbbell-Hammer-Curl,Biceps,https://www.musclewiki.com/media/uploads/male-dumbbell-hammer-curl-front_JbvhNLU.gif,https://youtu.be/Dh3_gou_3TE,"1. 중성 그립 (천장을 향한 엄지 손가락)으로 아령을 잡고 있습니다.
 2. 덤벨을 천천히 가슴 높이까지 들어 올리십시오
 3. 시작 위치로 돌아가서 반복합니다."
-Goblet Curl,Kettlebells,Beginner,https://musclewiki.com/Kettlebells/Male/Biceps/Goblet-Curl,https://www.musclewiki.com/media/uploads/male-kettlebell-goblet-curl-front.gif,https://youtu.be/oYmItLMNFg0,"1. 골반 앞에 양손에 케틀벨을 똑바로 세우십시오.
+Goblet Curl,Kettlebells,Beginner,https://musclewiki.com/Kettlebells/Male/Biceps/Goblet-Curl,Biceps,https://www.musclewiki.com/media/uploads/male-kettlebell-goblet-curl-front_BYaNghv.gif,https://youtu.be/oYmItLMNFg0,"1. 골반 앞에 양손에 케틀벨을 똑바로 세우십시오.
 2. 케틀벨이 가슴과 함께 수평이 될 때까지 팔꿈치에서 팔을 구부리십시오.
 3. 시작 위치로 낮추고 반복합니다."
-Single Arm Curl,Kettlebells,Beginner,https://musclewiki.com/Kettlebells/Male/Biceps/Single-Arm-Curl,https://www.musclewiki.com/media/uploads/male-kettlebell-single-arm-curl-side.gif,https://youtu.be/GSQYyO-6BIw,"1. 팔뚝을 마주보고 한 손으로 케틀벨을 한 손으로 똑바로 세우십시오.
+Single Arm Curl,Kettlebells,Beginner,https://musclewiki.com/Kettlebells/Male/Biceps/Single-Arm-Curl,Biceps,https://www.musclewiki.com/media/uploads/male-kettlebell-single-arm-curl-front.gif,https://youtu.be/jiheWHzzIJ4,"1. 팔뚝을 마주보고 한 손으로 케틀벨을 한 손으로 똑바로 세우십시오.
 2. 케틀벨을 들어 올리며 팔꿈치에 팔을 구부리고 손바닥이 어깨를 향할 때까지 팔뚝을 수직으로 유지하십시오.
 3. 시작 위치로 낮추고 반복합니다."
-Biceps Stretch Variation Five,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-Five,https://www.musclewiki.com/media/uploads/male-strech-8-front.gif,https://www.youtube.com/watch?v=7jXK9pNJdJg%7C,"1. 발을 어깨 너비로 똑바로 세우십시오.
+Biceps Stretch Variation Five,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-Five,Biceps,https://www.musclewiki.com/media/uploads/male-biceps-stretch-variation-5-front.gif,https://www.youtube.com/watch?v=7jXK9pNJdJg%7C,"1. 발을 어깨 너비로 똑바로 세우십시오.
 2. 팔을 옆으로 올려서 어깨 수준까지 올라갑니다.
 3. 손바닥을 회전하여 천장을 향하게합니다.
 4. 그런 다음 방향을 바꾸고 가능한 한 팔을 회전시킵니다."
-Biceps Stretch Variation Four,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-Four,https://www.musclewiki.com/media/uploads/male-strech-5-front.gif,https://www.youtube.com/watch?v=IRxy-WjmBRs%7C,"1. 벽에서 팔 너비를 서십시오.
+Biceps Stretch Variation Four,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-Four,Biceps,https://www.musclewiki.com/media/uploads/male-biceps-stretch-variation-4-front.gif,https://www.youtube.com/watch?v=IRxy-WjmBRs%7C,"1. 벽에서 팔 너비를 서십시오.
 2. 팔을 뒤로 내밀어 손가락을 향하게하여 벽에 놓으십시오.
 3. 손을 같은 위치에 두는 동안 무릎을 구부리십시오."
-Biceps Stretch Variation Three,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-Three,https://www.musclewiki.com/media/uploads/male-strech-17-front.gif,https://www.youtube.com/watch?v=koCz9-ZVjRg%7C,"1. 팔꿈치에 팔을 구부려 어깨로 손을 들어보십시오.
+Biceps Stretch Variation Three,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-Three,Biceps,https://www.musclewiki.com/media/uploads/male-biceps-stretch-variation-3-front.gif,https://www.youtube.com/watch?v=koCz9-ZVjRg%7C,"1. 팔꿈치에 팔을 구부려 어깨로 손을 들어보십시오.
 2. 다른 손을 사용하여 팔을 전체적으로 아래로 펴십시오."
-Biceps Stretch Variation Two,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-Two,https://www.musclewiki.com/media/uploads/male-strech-6-front.gif,https://www.youtube.com/watch?v=_qFHL-DoHG8%7C,"1. 팔의 너비가 벽면을 향하게하십시오.
+Biceps Stretch Variation Two,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-Two,Biceps,https://www.musclewiki.com/media/uploads/male-biceps-stretch-variation-2-front.gif,https://www.youtube.com/watch?v=_qFHL-DoHG8%7C,"1. 팔의 너비가 벽면을 향하게하십시오.
 2. 손가락을 가리키는 상태에서 손을 벽에 놓으십시오.
 3. 벽에 약간 기대어 이두근의 스트레치를 느낍니다."
-Biceps Stretch Variation One,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-One,https://www.musclewiki.com/media/uploads/male-strech-7-front_rzY58iA.gif,https://youtu.be/KPMttUk2xM8,"1. 벽을 오른쪽으로, 팔 너비가 멀리 떨어진 곳에서 다른 발 앞에 서십시오.
+Biceps Stretch Variation One,Stretches,Beginner,https://musclewiki.com/Stretches/Male/Biceps/Biceps-Stretch-Variation-One,Biceps,https://www.musclewiki.com/media/uploads/male-biceps-stretch-variation-1-front.gif,https://youtu.be/KPMttUk2xM8,"1. 벽을 오른쪽으로, 팔 너비가 멀리 떨어진 곳에서 다른 발 앞에 서십시오.
 2. 손을 벽에 놓고 손가락이 당신을 가리키십시오.
 3. 손을 고정 상태로 유지하면서 부드럽게 몸을 기울입니다.
 4. 다른 팔로 반복하십시오."
-Inverted Row,Bodyweight,Beginner,https://musclewiki.com/Bodyweight/Male/Biceps/Inverted-Row,https://www.musclewiki.com/media/uploads/bodyweight-male-reverse-row-front.gif,https://youtu.be/EuT4-4OFySE,"1. 고정 수평 막대 아래에 놓고 넓은 오버 핸드 그립으로 막대를 잡습니다.
-2. 몸을 바로 똑바로 당기십시오.
-3. 시작 위치로 돌아 가면 팔이 완전히 연장되었습니다.반복하다."
-Bayesian Curl,Cables,Beginner,https://musclewiki.com/Cables/Male/Biceps/Bayesian-Curl,https://www.musclewiki.com/media/uploads/male-cable-bayesian-curl-front.gif,https://youtu.be/wMOxt5_1Muc,"1. 핸들 첨부 파일을 사용하십시오.케이블은 기계의 바닥으로 끝까지 설정해야합니다.
+Bayesian Curl,Cables,Beginner,https://musclewiki.com/Cables/Male/Biceps/Bayesian-Curl,Biceps,https://www.musclewiki.com/media/uploads/male-cable-bayesian-curl-front.gif,https://youtu.be/wMOxt5_1Muc,"1. 핸들 첨부 파일을 사용하십시오.케이블은 기계의 바닥으로 끝까지 설정해야합니다.
 2. 케이블 머신에서 멀어지게됩니다.
 3. 당신이 더 나은 지원의 기반을 갖도록 당신의 자세를 비틀 거리십시오.손바닥을 앞으로 향하게하십시오.팔꿈치를 구부리고 확장하십시오."
-Cable Hammer Curl,Cables,Beginner,https://musclewiki.com/Cables/Male/Biceps/Cable-Hammer-Curl,https://www.musclewiki.com/media/uploads/male-cable-hammer-curl-side.gif,https://youtu.be/RrC6MojNnN0,"1. 핸들 첨부 파일을 사용하십시오.케이블은 기계의 바닥으로 끝까지 설정해야합니다.
+Cable Hammer Curl,Cables,Beginner,https://musclewiki.com/Cables/Male/Biceps/Cable-Hammer-Curl,Biceps,https://www.musclewiki.com/media/uploads/male-cable-hammer-curl-front.gif,https://youtu.be/tOxNeSx_P70,"1. 핸들 첨부 파일을 사용하십시오.케이블은 기계의 바닥으로 끝까지 설정해야합니다.
 2. 케이블 머신에서 멀어지게됩니다.당신이 더 나은 지원의 기반을 갖도록 당신의 입장을 비틀 거리십시오.
 3. 핑키를 향한 위로 향하는 중립 그립 엄지를 사용하십시오).팔꿈치를 구부리고 확장하십시오."
-Curl,Band,Beginner,https://musclewiki.com/Band/Male/Biceps/Curl,https://www.musclewiki.com/media/uploads/male-band-curl-side.gif,https://youtu.be/M0DeG7ptAes,"1. 밴드를 낮은 앵커 포인트에 부착하십시오.손바닥을 곧바로 가리 킵니다.
+Curl,Band,Beginner,https://musclewiki.com/Band/Male/Biceps/Curl,Biceps,https://www.musclewiki.com/media/uploads/male-band-curl-side_jCh7V4c.gif,https://youtu.be/M0DeG7ptAes,"1. 밴드를 낮은 앵커 포인트에 부착하십시오.손바닥을 곧바로 가리 킵니다.
 2. 이두근 계약을 느낄 때까지 팔꿈치를 구부리십시오.그런 다음 팔꿈치를 완전히 확장하십시오."
-Kneeling Single Arm Pulldown,Band,Beginner,https://musclewiki.com/Band/Male/Biceps/Kneeling-Single-Arm-Pulldown,https://www.musclewiki.com/media/uploads/male-band-kneeling-single-arm-pulldown-side.gif,https://youtu.be/hGXi-ztgU6g,"1. 밴드를 눈 수준 약으로 배치하십시오.무릎을 꿇는 위치에 빠지십시오.
+Kneeling Single Arm Pulldown,Band,Beginner,https://musclewiki.com/Band/Male/Biceps/Kneeling-Single-Arm-Pulldown,Biceps,https://www.musclewiki.com/media/uploads/male-band-kneeling-single-arm-pulldown-front.gif,https://youtu.be/2bA1aTxHm5U,"1. 밴드를 눈 수준 약으로 배치하십시오.무릎을 꿇는 위치에 빠지십시오.
 2. 땅에있는 무릎은 작업 팔과 같은 쪽이어야합니다.가슴을 내밀세요.
 3. 그런 다음 팔꿈치를 똑바로 당깁니다.LAT를 구부린 다음 시작 위치로 확장하십시오."
-Dumbbell Row Unilateral,Dumbbells,Beginner,https://musclewiki.com/Dumbbells/Male/Biceps/Dumbbell-Row-Unilateral,https://www.musclewiki.com/media/uploads/male-dumbbell-unilateral-row-side.gif,https://youtu.be/lOsU4wCPY2o,"1. 안정적인 물건에 대해 팔을 바르십시오 (벤치, 상자).작업 팔 옆의 다리가 돌아 오도록 자세를 비틀 거리십시오.
-2. 몸통을 땅과 평행하게하십시오.그것은 당신의 움직임 범위를 확장 할 것입니다.
-3. 팔을 자유롭게 매달린 다음 팔꿈치를 뒤로 당기십시오.겨드랑이에 테니스 공이 있다고 상상해보십시오."
