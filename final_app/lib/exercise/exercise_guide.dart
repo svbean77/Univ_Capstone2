@@ -5,9 +5,25 @@ import '../mypage/notice.dart';
 import '../mypage/sign_in.dart';
 import '../mypage/three_challenge.dart';
 import '../screen/home_screen.dart';
+import 'exercise_card.dart';
 
 class ExerciseGuide extends StatefulWidget {
-  const ExerciseGuide({Key? key}) : super(key: key);
+  final muscleName;
+  final exerciseName;
+  final equipment;
+  final difficulty;
+  final exerciseImage;
+  final exerciseStep;
+
+  const ExerciseGuide({
+    required this.exerciseStep,
+    required this.exerciseName,
+    required this.exerciseImage,
+    required this.equipment,
+    required this.muscleName,
+    required this.difficulty,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ExerciseGuide> createState() => _ExerciseGuideState();
@@ -121,14 +137,32 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          '운동 가이드 페이지',
-          style: TextStyle(
-            fontSize: 30.0,
-          ),
-        ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.filter_list),
+        onPressed: (){},
       ),
+
+      body: ListView.separated(
+          itemBuilder: (context, index) {
+            final muscleName = widget.muscleName;
+            final exerciseName = widget.exerciseName;
+            final equipment = widget.equipment;
+            final exerciseImage = widget.exerciseImage;
+            final exerciseStep = widget.exerciseStep;
+
+            return ExerciseCard(
+              grade: 1,
+              muscleName: muscleName,
+              exerciseName: exerciseName,
+              equipment: equipment,
+              exerciseImage: exerciseImage,
+              exerciseStep: exerciseStep,
+            );
+          },
+          separatorBuilder: (context, index) {
+            return SizedBox(height: 8.0);
+          },
+          itemCount: 3),
     );
   }
 }
