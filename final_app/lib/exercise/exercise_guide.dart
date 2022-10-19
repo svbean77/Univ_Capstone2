@@ -1,6 +1,8 @@
+import 'package:final_app/exercise/const/equipment_filter.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
+import '../screen/const/grade_colors.dart';
 import 'const/exercise_card.dart';
 
 class ExerciseGuide extends StatefulWidget {
@@ -39,7 +41,24 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
       appBar: MyAppBar(grade: widget.grade),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.filter_list),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (_) {
+              return EquipmentFilter(
+                  level: widget.level,
+                  exerciseImage2: widget.exerciseImage2,
+                  muscleName: widget.muscleName,
+                  exerciseStep: widget.exerciseStep,
+                  difficulty: widget.difficulty,
+                  equipment: widget.equipment,
+                  exerciseName: widget.exerciseName,
+                  exerciseImage1: widget.exerciseImage1);
+            },
+          );
+        },
+        backgroundColor: PRIMARY_COLOR[widget.grade],
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
