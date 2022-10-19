@@ -1,4 +1,4 @@
-import 'package:final_app/screen/grade_colors.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 

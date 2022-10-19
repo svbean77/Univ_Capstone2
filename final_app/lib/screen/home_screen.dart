@@ -1,14 +1,14 @@
 //https://github.com/pedromassango/bottom_navy_bar
 
 import 'package:final_app/community/community_main.dart';
-import 'package:final_app/exercise/exercise_main.dart';
+import 'package:final_app/exercise/const/exercise_main.dart';
 import 'package:final_app/friends/friends_main.dart';
-import 'package:final_app/ranking/ranking_main.dart';
-import 'package:final_app/screen/app_bar.dart';
-import 'package:final_app/screen/drawer.dart';
+import 'package:final_app/ranking/const/ranking_main.dart';
+import 'package:final_app/screen/const/app_bar.dart';
+import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 import '../report/exercise_report.dart';
-import 'bottom_navy_bar.dart';
+import 'const/bottom_navy_bar.dart';
 
 
 class HomeScreen extends StatefulWidget {

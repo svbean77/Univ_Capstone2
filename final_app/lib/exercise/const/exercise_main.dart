@@ -1,6 +1,6 @@
-import 'package:final_app/exercise/senior_main.dart';
+import 'package:final_app/exercise/master_main.dart';
 import 'package:flutter/material.dart';
-import 'beginner_main.dart';
+import '../beginner_main.dart';
 
 class ExerciseMain extends StatefulWidget {
   const ExerciseMain({Key? key}) : super(key: key);
@@ -50,7 +50,7 @@ class _ExerciseMainState extends State<ExerciseMain> with TickerProviderStateMix
             controller: _tabController,
             children: [
               BeginnerMain(),
-              SeniorMain(),
+              MasterMain(),
             ],
           ),
         ),

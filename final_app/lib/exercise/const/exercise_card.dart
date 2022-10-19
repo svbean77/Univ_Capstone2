@@ -5,7 +5,8 @@ class ExerciseCard extends StatelessWidget {
   final String muscleName;
   final String exerciseName;
   final String equipment;
-  final String exerciseImage;
+  final String exerciseImage1;
+  final String exerciseImage2;
   final String exerciseStep;
 
   const ExerciseCard({
@@ -13,7 +14,8 @@ class ExerciseCard extends StatelessWidget {
     required this.muscleName,
     required this.exerciseName,
     required this.equipment,
-    required this.exerciseImage,
+    required this.exerciseImage1,
+    required this.exerciseImage2,
     required this.exerciseStep,
     Key? key,
   }) : super(key: key);
@@ -25,11 +27,11 @@ class ExerciseCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.network(
-            exerciseImage,
+            exerciseImage1,
           ),
           SizedBox(height: 8.0),
           Image.network(
-            exerciseImage,
+            exerciseImage2,
           ),
           SizedBox(height: 8.0),
           Text(

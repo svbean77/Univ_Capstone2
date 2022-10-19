@@ -1,6 +1,6 @@
 //https://eunoia3jy.tistory.com/110
 
-import 'all_ranking.dart';
+import '../all_ranking.dart';
 import 'package:final_app/ranking/friends_ranking.dart';
 import 'package:flutter/material.dart';
 

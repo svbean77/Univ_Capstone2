@@ -3,8 +3,8 @@ import 'package:final_app/exercise/select_my_routine.dart';
 import 'package:final_app/exercise/select_routine.dart';
 import 'package:flutter/material.dart';
 
-class SeniorMain extends StatelessWidget {
-  const SeniorMain({Key? key}) : super(key: key);
+class MasterMain extends StatelessWidget {
+  const MasterMain({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
