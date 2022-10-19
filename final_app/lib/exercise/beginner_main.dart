@@ -33,7 +33,7 @@ class BeginnerMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext ccontext) => SelectRoutine(),
+                builder: (BuildContext context) => SelectRoutine(),
               ),
             );
           },

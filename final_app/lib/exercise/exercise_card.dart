@@ -21,10 +21,13 @@ class ExerciseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Image.network(
+            exerciseImage,
+          ),
+          SizedBox(height: 8.0),
           Image.network(
             exerciseImage,
           ),
@@ -39,6 +42,7 @@ class ExerciseCard extends StatelessWidget {
           Text(
             exerciseStep,
           ),
+          SizedBox(height: 16.0),
         ],
       ),
     );

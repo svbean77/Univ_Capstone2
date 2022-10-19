@@ -1,13 +1,10 @@
+import 'package:final_app/screen/app_bar.dart';
+import 'package:final_app/screen/drawer.dart';
 import 'package:flutter/material.dart';
-
-import '../mypage/my_page.dart';
-import '../mypage/notice.dart';
-import '../mypage/sign_in.dart';
-import '../mypage/three_challenge.dart';
-import '../screen/home_screen.dart';
 import 'exercise_card.dart';
 
 class ExerciseGuide extends StatefulWidget {
+  final int grade;
   final muscleName;
   final exerciseName;
   final equipment;
@@ -16,6 +13,7 @@ class ExerciseGuide extends StatefulWidget {
   final exerciseStep;
 
   const ExerciseGuide({
+    this.grade = 0,
     required this.exerciseStep,
     required this.exerciseName,
     required this.exerciseImage,
@@ -33,136 +31,49 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
+      drawer: MyDrawer(),
+      appBar: MyAppBar(grade: widget.grade),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.filter_list),
+        onPressed: () {},
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => SignIn(),
-                  ),
-                );
-              },
-              child: DrawerHeader(
-                child: Text('프로필사진 크게'),
+            Text(
+              '초보자 ${widget.muscleName} 운동 가이드',
+              style: TextStyle(
+                fontSize: 20.0,
               ),
             ),
-            Card(
-              elevation: 0,
-              child: ListTile(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('닉네임'),
-                    Text('등급'),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => MyPage(),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Card(
-              elevation: 0,
-              child: ListTile(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('수분섭취'),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(Icons.coffee),
-                        Text('nn컵 / mm컵'),
-                        TextButton(
-                          child: Text('+1컵'),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                title: Text('3대 챌린지'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => ThreeChallenge(),
-                    ),
-                  );
-                },
-              ),
-              elevation: 0,
-            ),
-            Card(
-              child: ListTile(
-                title: Text('공지사항'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => Notice(),
-                    ),
-                  );
-                },
-              ),
-              elevation: 0,
+            Expanded(
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    final muscleName = widget.muscleName;
+                    final exerciseName = widget.exerciseName;
+                    final equipment = widget.equipment;
+                    final exerciseImage = widget.exerciseImage;
+                    final exerciseStep = widget.exerciseStep;
+
+                    return ExerciseCard(
+                      grade: 1,
+                      muscleName: muscleName,
+                      exerciseName: exerciseName,
+                      equipment: equipment,
+                      exerciseImage: exerciseImage,
+                      exerciseStep: exerciseStep,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(height: 8.0);
+                  },
+                  itemCount: 3),
             ),
           ],
         ),
       ),
-      appBar: AppBar(
-        title: Text('득근득근'),
-//backgroundColor: Colors.green,
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => HomeScreen(),
-                ),
-              );
-            },
-            child: Icon(Icons.home),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.filter_list),
-        onPressed: (){},
-      ),
-
-      body: ListView.separated(
-          itemBuilder: (context, index) {
-            final muscleName = widget.muscleName;
-            final exerciseName = widget.exerciseName;
-            final equipment = widget.equipment;
-            final exerciseImage = widget.exerciseImage;
-            final exerciseStep = widget.exerciseStep;
-
-            return ExerciseCard(
-              grade: 1,
-              muscleName: muscleName,
-              exerciseName: exerciseName,
-              equipment: equipment,
-              exerciseImage: exerciseImage,
-              exerciseStep: exerciseStep,
-            );
-          },
-          separatorBuilder: (context, index) {
-            return SizedBox(height: 8.0);
-          },
-          itemCount: 3),
     );
   }
 }
