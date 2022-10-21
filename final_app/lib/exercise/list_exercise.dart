@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 class ListExercise extends StatefulWidget {
   final int grade;
+  final title;
   const ListExercise({
     this.grade = 0,
+    required this.title,
     Key? key,
   }) : super(key: key);
 

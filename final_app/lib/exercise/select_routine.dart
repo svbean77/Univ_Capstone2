@@ -1,3 +1,4 @@
+import 'package:final_app/exercise/const/select_routine_container.dart';
 import 'package:final_app/exercise/list_routine.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
@@ -17,50 +18,68 @@ class SelectRoutine extends StatefulWidget {
 class _SelectRoutineState extends State<SelectRoutine> {
   @override
   Widget build(BuildContext context) {
+    List<String> timeLst = ['15분', '30분', '60분', '90분', '120분'];
+    List<String> partLst = ['팔', '등', '상체', '하체'];
+    List<String> divisionLst = ['무분할', '2분할', '3분할', '4분할'];
+
     return Scaffold(
       drawer: MyDrawer(),
       appBar: MyAppBar(grade: widget.grade),
-      body: Column(
-        children: [
-          Text('시간으로 루틴 선택'),
-          Row(
-            children: [
-              Container(
-                //Container가 아닌 죄우 스크롤뷰로 만들기
-                height: 100, width: 100,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => ListRoutine(),
-                      ),
-                    );
-                  },
-                  child: Text('루틴들'),
-                ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            Text(
+              '루틴 선택',
+              style: TextStyle(fontSize: 25.0),
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              '시간별 루틴 선택',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            Container(
+              height: 120.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (int i = 0; i < timeLst.length; i++)
+                    SelectRoutineContainer(title: timeLst[i])
+                ],
               ),
-            ],
-          ),
-          Text('신체 부위로 루틴 선택'),
-          Row(
-            children: [
-              Container(
-                //Container가 아닌 죄우 스크롤뷰로 만들기
-                height: 100, width: 100,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => ListRoutine(),
-                      ),
-                    );
-                  },
-                  child: Text('루틴들'),
-                ),
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              '부위별 루틴 선택',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            Container(
+              height: 120.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (int i = 0; i < partLst.length; i++)
+                    SelectRoutineContainer(title: partLst[i])
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              '분할별 루틴 선택',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            Container(
+              height: 120.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (int i = 0; i < divisionLst.length; i++)
+                    SelectRoutineContainer(title: divisionLst[i])
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
