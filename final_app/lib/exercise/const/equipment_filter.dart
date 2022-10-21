@@ -7,7 +7,6 @@ class EquipmentFilter extends StatelessWidget {
   String muscleName;
   String exerciseName;
   String equipment;
-  String difficulty;
   String exerciseImage1;
   String exerciseImage2;
   String exerciseStep;
@@ -17,7 +16,6 @@ class EquipmentFilter extends StatelessWidget {
     required this.exerciseImage2,
     required this.muscleName,
     required this.exerciseStep,
-    required this.difficulty,
     required this.equipment,
     required this.exerciseName,
     required this.exerciseImage1,
@@ -61,31 +59,32 @@ class EquipmentFilter extends StatelessWidget {
                     exerciseStep = '밴드를 이용한 운동들';
                   } else if (equipmentLst[i] == 'barbell') {
                     exerciseStep = '바벨을 이용한 운동들';
-                  }else if (equipmentLst[i] == 'bodyweight') {
+                  } else if (equipmentLst[i] == 'bodyweight') {
                     exerciseStep = '맨몸 운동들';
-                  }else if (equipmentLst[i] == 'cables') {
+                  } else if (equipmentLst[i] == 'cables') {
                     exerciseStep = 'cables을 이용한 운동들';
-                  }else if (equipmentLst[i] == 'dumbbells') {
+                  } else if (equipmentLst[i] == 'dumbbells') {
                     exerciseStep = '덤벨을 이용한 운동들';
-                  }else if (equipmentLst[i] == 'kettlebells') {
+                  } else if (equipmentLst[i] == 'kettlebells') {
                     exerciseStep = '케틀벨을 이용한 운동들';
-                  }else if (equipmentLst[i] == 'machine') {
+                  } else if (equipmentLst[i] == 'machine') {
                     exerciseStep = '머신을 이용한 운동들';
-                  }else if (equipmentLst[i] == 'stretches') {
+                  } else if (equipmentLst[i] == 'stretches') {
                     exerciseStep = '스트레칭 운동들';
                   }
 
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                        builder: (BuildContext context) => ExerciseGuide(
-                            level: level,
-                            exerciseStep: exerciseStep,
-                            exerciseName: exerciseName,
-                            exerciseImage1: exerciseImage1,
-                            exerciseImage2: exerciseImage2,
-                            equipment: equipment,
-                            muscleName: muscleName,
-                            difficulty: difficulty)),
+                      builder: (BuildContext context) => ExerciseGuide(
+                        level: level,
+                        exerciseStep: exerciseStep,
+                        exerciseName: exerciseName,
+                        exerciseImage1: exerciseImage1,
+                        exerciseImage2: exerciseImage2,
+                        equipment: equipment,
+                        muscleName: muscleName,
+                      ),
+                    ),
                   );
                 },
               ),

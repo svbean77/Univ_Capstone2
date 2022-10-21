@@ -1,4 +1,6 @@
 import 'package:final_app/exercise/const/equipment_filter.dart';
+import 'package:final_app/exercise/select_body.dart';
+import 'package:final_app/exercise/select_muscle.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,6 @@ class ExerciseGuide extends StatefulWidget {
   final muscleName;
   final exerciseName;
   final equipment;
-  final difficulty;
   final exerciseImage1;
   final exerciseImage2;
   final exerciseStep;
@@ -25,7 +26,6 @@ class ExerciseGuide extends StatefulWidget {
     required this.exerciseImage2,
     required this.equipment,
     required this.muscleName,
-    required this.difficulty,
     Key? key,
   }) : super(key: key);
 
@@ -51,7 +51,6 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                   exerciseImage2: widget.exerciseImage2,
                   muscleName: widget.muscleName,
                   exerciseStep: widget.exerciseStep,
-                  difficulty: widget.difficulty,
                   equipment: widget.equipment,
                   exerciseName: widget.exerciseName,
                   exerciseImage1: widget.exerciseImage1);
@@ -70,6 +69,23 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
               style: TextStyle(
                 fontSize: 20.0,
               ),
+            ),
+            TextButton(
+              onPressed: () {
+                if (widget.level == '초보자')
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => SelectBody(),
+                    ),
+                  );
+                else
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => SelectMuscle(),
+                    ),
+                  );
+              },
+              child: Text('근육 선택'),
             ),
             SizedBox(height: 16.0),
             Expanded(
