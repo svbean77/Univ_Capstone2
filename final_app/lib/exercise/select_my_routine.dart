@@ -1,6 +1,8 @@
+import 'package:final_app/exercise/const/add_routine.dart';
 import 'package:final_app/exercise/list_my_exercise.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class SelectMyRoutine extends StatefulWidget {
@@ -17,40 +19,75 @@ class SelectMyRoutine extends StatefulWidget {
 class _SelectMyRoutineState extends State<SelectMyRoutine> {
   @override
   Widget build(BuildContext context) {
+    //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
+    int grade = 0;
+    List<String> routineName = ['루틴1', '루틴2', '루틴3', '루틴4'];
+
     return Scaffold(
       drawer: MyDrawer(),
       appBar: MyAppBar(grade: widget.grade),
-      body: Column(
-        children: [
-          Text('중상급자'),
-          TextButton(
-            onPressed: () {},
-            child: Text('루틴 만들기'),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext ccontext) => ListMyExercise(),
-                ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          showDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: AddRoutine(),
+                scrollable: true,
               );
             },
-            child: Row(
-              children: [
-                Container(
-                  height: 50.0,
-                  width: 100.0,
-                  child: Text('@@운동'),
-                ),
-                Container(
-                  height: 50.0,
-                  width: 150.0,
-                  child: Text('간단한 설명'),
-                ),
-              ],
+          );
+          //db에 루틴을 추가하는 코드
+          //ListView를 실시간으로 바꿀 수 있도록 코드 수정
+        },
+        backgroundColor: PRIMARY_COLOR[grade],
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            Text(
+              '나만의 루틴',
+              style: TextStyle(fontSize: 25.0),
             ),
-          ),
-        ],
+            SizedBox(height: 30.0),
+            for (int i = 0; i < routineName.length; i++)
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 70.0,
+                    padding: EdgeInsets.all(8.0),
+                    alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: PRIMARY_COLOR[grade],
+                      ),
+                    ),
+                    child: Text(
+                      routineName[i],
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  //여기서 구해야하나
+                  //String name = '루틴이름1';
+
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ListMyExercise(
+                        routineName: routineName[i],
+                      ),
+                    ),
+                  );
+                },
+              ),
+          ],
+        ),
       ),
     );
   }
