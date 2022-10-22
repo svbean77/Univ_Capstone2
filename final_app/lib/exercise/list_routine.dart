@@ -22,7 +22,7 @@ class _ListRoutineState extends State<ListRoutine> {
   Widget build(BuildContext context) {
     //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
     int grade = 0;
-    List<String> routineName = ['루틴1', '루틴2', '루틴2', '루틴4'];
+    List<String> routineName = ['루틴1', '루틴2', '루틴3', '루틴4'];
     List<int> routineTime = [15, 20, 25, 30];
 
     return Scaffold(
@@ -65,12 +65,12 @@ class _ListRoutineState extends State<ListRoutine> {
                 ),
                 onTap: () {
                   //여기서 구해야하나
-                  String name = '루틴이름1';
+                  //String name = '루틴이름1';
 
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          ListExercise(title: name),
+                          ListExercise(routineName: routineName[i]),
                     ),
                   );
                 },

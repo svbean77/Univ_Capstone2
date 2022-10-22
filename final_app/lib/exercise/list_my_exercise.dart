@@ -60,11 +60,14 @@ class _ListMyExerciseState extends State<ListMyExercise> {
           ),
           TextButton(
             onPressed: () {
+              /*
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) => RoutineGuide(),
                 ),
               );
+
+               */
             },
             child: Text('운동 시작'),
           ),
