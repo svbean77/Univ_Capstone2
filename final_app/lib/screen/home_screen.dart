@@ -1,15 +1,15 @@
 //https://github.com/pedromassango/bottom_navy_bar
 
-import 'package:final_app/community/community_main.dart';
+import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/exercise/const/exercise_main.dart';
 import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/ranking/const/ranking_main.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
-import '../report/exercise_report.dart';
+import '../record/exercise_record.dart';
 import 'const/bottom_navy_bar.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,10 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  int grade = 0;
+
   @override
   Widget build(BuildContext context) {
-    final int grade = 0;
-
     return Scaffold(
       drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
@@ -48,15 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() => _currentIndex = index);
           },
           children: [
-            ExerciseMain(),
-            ExerciseReport(),
-            RankingMain(),
+            ExerciseMain(grade: grade),
+            ExerciseRecord(),
+            RankingMain(grade: grade),
             FriendsMain(),
-            CommunityMain(),
+            CommunityMain(grade: grade),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
+        grade: grade,
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
           setState(() => _currentIndex = index);
@@ -64,24 +65,24 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.sports),
-            title: Text('운동하기'),
+            icon: Icon(Icons.sports, color: Colors.black.withOpacity(0.3)),
+            title: Text('운동하기', style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.analytics_outlined),
-            title: Text('운동기록'),
+            icon: Icon(Icons.analytics_outlined, color: Colors.black.withOpacity(0.3)),
+            title: Text('운동기록', style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.bar_chart_rounded),
-            title: Text('랭킹'),
+            icon: Icon(Icons.bar_chart_rounded, color: Colors.black.withOpacity(0.3)),
+            title: Text('랭킹', style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.people),
-            title: Text('친구'),
+            icon: Icon(Icons.people, color: Colors.black.withOpacity(0.3)),
+            title: Text('친구', style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.assignment_outlined),
-            title: Text('커뮤니티'),
+            icon: Icon(Icons.assignment_outlined, color: Colors.black.withOpacity(0.3)),
+            title: Text('커뮤니티', style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
         ],
       ),

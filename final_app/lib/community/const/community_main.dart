@@ -2,16 +2,22 @@
 
 import 'package:final_app/community/free_board.dart';
 import 'package:final_app/community/q_and_a_board.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class CommunityMain extends StatefulWidget {
-  const CommunityMain({Key? key}) : super(key: key);
+  final grade;
+  const CommunityMain({
+    required this.grade,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<CommunityMain> createState() => _CommunityMainState();
 }
 
-class _CommunityMainState extends State<CommunityMain> with TickerProviderStateMixin {
+class _CommunityMainState extends State<CommunityMain>
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -40,9 +46,9 @@ class _CommunityMainState extends State<CommunityMain> with TickerProviderStateM
               ),
             ],
             indicator: BoxDecoration(
-              color: Colors.blue[300],
+              color: PRIMARY_COLOR[widget.grade].withOpacity(0.3),
             ),
-            labelColor: Colors.white,
+            labelColor: Colors.black,
             unselectedLabelColor: Colors.black,
             controller: _tabController,
           ),

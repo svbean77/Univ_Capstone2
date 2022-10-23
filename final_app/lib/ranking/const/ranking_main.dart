@@ -1,18 +1,24 @@
 //https://eunoia3jy.tistory.com/110
 
+import 'package:final_app/screen/const/grade_colors.dart';
+
 import '../all_ranking.dart';
 import 'package:final_app/ranking/friends_ranking.dart';
 import 'package:flutter/material.dart';
 
-
 class RankingMain extends StatefulWidget {
-  const RankingMain({Key? key}) : super(key: key);
+  final grade;
+  const RankingMain({
+    required this.grade,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<RankingMain> createState() => _RankingMainState();
 }
 
-class _RankingMainState extends State<RankingMain> with TickerProviderStateMixin {
+class _RankingMainState extends State<RankingMain>
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -58,9 +64,9 @@ class _RankingMainState extends State<RankingMain> with TickerProviderStateMixin
               ),
             ],
             indicator: BoxDecoration(
-              color: Colors.blue[300],
+              color: PRIMARY_COLOR[widget.grade].withOpacity(0.2),
             ),
-            labelColor: Colors.white,
+            labelColor: Colors.black,
             unselectedLabelColor: Colors.black,
             controller: _tabController,
           ),

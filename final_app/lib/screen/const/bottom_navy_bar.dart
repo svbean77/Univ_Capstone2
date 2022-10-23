@@ -1,5 +1,6 @@
 //https://github.com/pedromassango/bottom_navy_bar
 
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -14,9 +15,11 @@ class BottomNavyBar extends StatelessWidget {
   final double itemCornerRadius;
   final double containerHeight;
   final Curve curve;
+  final int grade;
 
   const BottomNavyBar({
     Key? key,
+    required this.grade,
     this.selectedIndex = 0,
     this.showElevation = true,
     this.iconSize = 24,
@@ -53,6 +56,7 @@ class BottomNavyBar extends StatelessWidget {
                 return GestureDetector(
                   onTap: () => onItemSelected(index),
                   child: _ItemWidget(
+                    grade: grade,
                     item: item,
                     iconSize: iconSize,
                     isSelected: index == selectedIndex,
@@ -70,6 +74,7 @@ class BottomNavyBar extends StatelessWidget {
 }
 
 class _ItemWidget extends StatelessWidget {
+  final int grade;
   final double iconSize;
   final bool isSelected;
   final BottomNavyBarItem item;
@@ -79,6 +84,7 @@ class _ItemWidget extends StatelessWidget {
   final Curve curve;
 
   const _ItemWidget({
+    required this.grade,
     required this.iconSize,
     required this.isSelected,
     required this.item,
@@ -100,8 +106,8 @@ class _ItemWidget extends StatelessWidget {
         duration: animationDuration,
         curve: curve,
         decoration: BoxDecoration(
-          color:
-          isSelected ? item.activeColor.withOpacity(0.2) : backgroundColor,
+          color: isSelected ? PRIMARY_COLOR[grade].withOpacity(0.2) : backgroundColor,
+          //isSelected ? item.activeColor.withOpacity(0.2) : backgroundColor,
           borderRadius: BorderRadius.circular(itemCornerRadius),
         ),
         child: SingleChildScrollView(

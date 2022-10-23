@@ -6,4 +6,5 @@ const List<Color> PRIMARY_COLOR =[
   Colors.pink,
   Colors.purple,
   Colors.grey,
+  Colors.yellow,
 ];

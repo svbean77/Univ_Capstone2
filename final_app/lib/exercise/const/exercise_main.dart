@@ -1,15 +1,21 @@
 import 'package:final_app/exercise/master_main.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import '../beginner_main.dart';
 
 class ExerciseMain extends StatefulWidget {
-  const ExerciseMain({Key? key}) : super(key: key);
+  final grade;
+  const ExerciseMain({
+    required this.grade,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ExerciseMain> createState() => _ExerciseMainState();
 }
 
-class _ExerciseMainState extends State<ExerciseMain> with TickerProviderStateMixin {
+class _ExerciseMainState extends State<ExerciseMain>
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -38,9 +44,9 @@ class _ExerciseMainState extends State<ExerciseMain> with TickerProviderStateMix
               ),
             ],
             indicator: BoxDecoration(
-              color: Colors.blue[300],
+              color: PRIMARY_COLOR[widget.grade].withOpacity(0.2),
             ),
-            labelColor: Colors.white,
+            labelColor: Colors.black,
             unselectedLabelColor: Colors.black,
             controller: _tabController,
           ),
