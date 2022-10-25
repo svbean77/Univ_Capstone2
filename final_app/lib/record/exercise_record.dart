@@ -45,6 +45,7 @@ class _ExerciseRecordState extends State<ExerciseRecord> {
                 child: Container(
                   width: MediaQuery.of(context).size.width / 2 - 16,
                   height: 70.0,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                       border: Border.all(
                     color: PRIMARY_COLOR[grade],
@@ -85,6 +86,7 @@ class _ExerciseRecordState extends State<ExerciseRecord> {
                 child: Container(
                   width: MediaQuery.of(context).size.width / 2 - 16,
                   height: 70.0,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                       border: Border.all(
                     color: PRIMARY_COLOR[grade],

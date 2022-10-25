@@ -39,7 +39,7 @@ class _RecordListExerciseState extends State<RecordListExercise> {
         child: ListView(
           children: [
             Text(
-              '오늘의 운동: ${widget.exerciseNumber.length}종류',
+              '${widget.exerciseNumber.length}종류의 운동',
               style: TextStyle(fontSize: 25.0),
             ),
             SizedBox(height: 30.0),

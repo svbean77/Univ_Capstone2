@@ -89,29 +89,48 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             ),
             SizedBox(height: 16.0),
             Expanded(
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    final muscleName = widget.muscleName;
-                    final exerciseName = widget.exerciseName;
-                    final equipment = widget.equipment;
-                    final exerciseImage1 = widget.exerciseImage1;
-                    final exerciseImage2 = widget.exerciseImage2;
-                    final exerciseStep = widget.exerciseStep;
-
-                    return ExerciseCard(
-                      grade: 1,
-                      muscleName: muscleName,
-                      exerciseName: exerciseName,
-                      equipment: equipment,
-                      exerciseImage1: exerciseImage1,
-                      exerciseImage2: exerciseImage2,
-                      exerciseStep: exerciseStep,
+              child: StreamBuilder(
+                stream: null,
+                builder: (context, snapshot) {
+                  if(!snapshot.hasData){
+                    return Center(
+                      child: CircularProgressIndicator(),
                     );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 8.0);
-                  },
-                  itemCount: 3),
+                  }
+                  /*
+                  if(snapshot.hasData && snapshot.data!.isEmpty){
+                    return Center(
+                      child: Text('운동기록이 없습니다.'),
+                    );
+                  }
+                   */
+
+                  //Dismissible 위젯으로 감싸면 슬라이드 했을 때 삭제 가능!
+                  return ListView.separated(
+                      itemBuilder: (context, index) {
+                        final muscleName = widget.muscleName;
+                        final exerciseName = widget.exerciseName;
+                        final equipment = widget.equipment;
+                        final exerciseImage1 = widget.exerciseImage1;
+                        final exerciseImage2 = widget.exerciseImage2;
+                        final exerciseStep = widget.exerciseStep;
+
+                        return ExerciseCard(
+                          grade: 1,
+                          muscleName: muscleName,
+                          exerciseName: exerciseName,
+                          equipment: equipment,
+                          exerciseImage1: exerciseImage1,
+                          exerciseImage2: exerciseImage2,
+                          exerciseStep: exerciseStep,
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: 8.0);
+                      },
+                      itemCount: 3);
+                }
+              ),
             ),
           ],
         ),
