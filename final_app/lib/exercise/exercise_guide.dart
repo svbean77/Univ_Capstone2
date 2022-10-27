@@ -89,14 +89,40 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             ),
             SizedBox(height: 16.0),
             Expanded(
-              child: StreamBuilder(
+                child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      final muscleName = widget.muscleName;
+                      final exerciseName = widget.exerciseName;
+                      final equipment = widget.equipment;
+                      final exerciseImage1 = widget.exerciseImage1;
+                      final exerciseImage2 = widget.exerciseImage2;
+                      final exerciseStep = widget.exerciseStep;
+
+                      return ExerciseCard(
+                        grade: 1,
+                        muscleName: muscleName,
+                        exerciseName: exerciseName,
+                        equipment: equipment,
+                        exerciseImage1: exerciseImage1,
+                        exerciseImage2: exerciseImage2,
+                        exerciseStep: exerciseStep,
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(height: 8.0);
+                    },
+                    itemCount: 3)
+                /*
+              StreamBuilder(
                 stream: null,
                 builder: (context, snapshot) {
+                  /*
                   if(!snapshot.hasData){
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: Text('해당하는 운동이 없습니다.', style: TextStyle(fontSize: 30.0)),
                     );
                   }
+                   */
                   /*
                   if(snapshot.hasData && snapshot.data!.isEmpty){
                     return Center(
@@ -131,7 +157,8 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                       itemCount: 3);
                 }
               ),
-            ),
+              */
+                ),
           ],
         ),
       ),
