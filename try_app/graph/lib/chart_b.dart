@@ -1,20 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'dart:math';
 
 class ChartB extends StatelessWidget {
   const ChartB({Key? key}) : super(key: key);
-/*
+
   @override
   Widget build(BuildContext context) {
     List<int> input = [
       20220901,
       20220905,
       20220908,
+      20220909,
+      20220910,
+      20220911,
+      20220912,
+      20220913,
+      20220914,
       20220915,
-      20220929,
-      20221015
+      20220916,
+      20220917,
+      20220918,
+      20220919,
+      20221020
     ];
-    List<double> weight = [45.0, 50.0, 47.0, 55.0, 40.0];
+    List<double> weight = [
+      45.5,
+      50.7,
+      47.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0,
+      40.0
+    ];
     List<WeightData> data = [];
 
     for (int i = 0; i < weight.length; i++) {
@@ -26,21 +52,41 @@ class ChartB extends StatelessWidget {
       );
     }
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Container(
-        height: 300.0,
-        width: MediaQuery.of(context).size.width + data.length,
-        child: SfCartesianChart(
-          primaryXAxis: DateTimeAxis(),
-          series: <ChartSeries>[
-            LineSeries(
-                dataSource: data,
-                xValueMapper: (WeightData dates, _) => dates.date.day,
-                yValueMapper: (WeightData dates, _) => dates.weight)
-          ],
+    return ListView(
+      children: [
+        Container(
+          height: 300.0,
         ),
-      ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Container(
+            height: 250.0,
+            width: MediaQuery.of(context).size.width +
+                data.length * (MediaQuery.of(context).size.width / 20),
+            child: SfCartesianChart(
+              primaryXAxis: DateTimeAxis(),
+              primaryYAxis: NumericAxis(
+                minimum: weight.reduce(min) - 5,
+                maximum: weight.reduce(max) + 5,
+              ),
+              series: <ChartSeries>[
+                LineSeries<WeightData, DateTime>(
+                  markerSettings: MarkerSettings(
+                      isVisible: true,
+                      height: 8.0,
+                      width: 8.0,
+                      color: Colors.white,
+                      borderColor: Colors.blue,
+                      shape: DataMarkerType.circle),
+                  dataSource: data,
+                  xValueMapper: (WeightData info, _) => info.date,
+                  yValueMapper: (WeightData info, _) => info.weight,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -49,48 +95,4 @@ class WeightData {
   WeightData(this.date, this.weight);
   final DateTime date;
   final double weight;
-}
-
-
- */
-
-  @override
-  Widget build(BuildContext context) {
-    final List<SalesData> chartData = [
-      SalesData(DateTime(2010), 35),
-      SalesData(DateTime(2011), 28),
-      SalesData(DateTime(2012), 34),
-      SalesData(DateTime(2013), 32),
-      SalesData(DateTime(2014), 40),
-      SalesData(DateTime(2015), 40),
-      SalesData(DateTime(2016), 40),
-      SalesData(DateTime(2017), 40),
-      SalesData(DateTime(2018), 40),
-      SalesData(DateTime(2019), 40),
-    ];
-
-    return Center(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Container(
-            height: 200.0,
-              width: MediaQuery.of(context).size.width + chartData.length,
-              child: SfCartesianChart(
-                  primaryXAxis: DateTimeAxis(),
-                  series: <ChartSeries>[
-            // Renders line chart
-            LineSeries<SalesData, DateTime>(
-                dataSource: chartData,
-                xValueMapper: (SalesData sales, _) => sales.year,
-                yValueMapper: (SalesData sales, _) => sales.sales)
-          ])),
-        ));
-  }
-}
-
-class SalesData {
-  SalesData(this.year, this.sales);
-
-  final DateTime year;
-  final double sales;
 }
