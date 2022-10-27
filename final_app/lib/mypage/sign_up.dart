@@ -24,8 +24,13 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
+  final TextEditingController _nicknameController = TextEditingController();
+  final TextEditingController _userageController = TextEditingController();
+  final TextEditingController _kgController = TextEditingController();
 
   bool isPasswordVisible = false;
+  List<bool> sex = [true, false];
+  int grade = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -37,89 +42,220 @@ class _SignUpState extends State<SignUp> {
         width: double.infinity,
         alignment: Alignment.topCenter,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                  height: 40.0,
+                  height: 20.0,
                 ),
                 Text(
                   '회원가입',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: PRIMARY_COLOR[widget.grade],
-                  ),
+                  style: TextStyle(fontSize: 28),
                 ),
                 SizedBox(
                   height: 40.0,
                 ),
-                Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: PRIMARY_COLOR[widget.grade],
+                Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: 70.0,
+                      child: Text('아이디', style: TextStyle(fontSize: 16.0)),
                     ),
-                  ),
-                  child: TextField(
-                    controller: _idController,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                      hintText: '아이디를 입력해주세요',
-                      hintStyle: TextStyle(
-                        color: PRIMARY_COLOR[widget.grade],
+                    SizedBox(width: 16.0),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: PRIMARY_COLOR[widget.grade],
+                          ),
+                        ),
+                        child: TextField(
+                          controller: _idController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10.0),
+                            border: InputBorder.none,
+                          ),
+                        ),
                       ),
-                      icon: Icon(
-                        Icons.person,
-                        color: PRIMARY_COLOR[widget.grade],
-                      ),
-                      border: InputBorder.none,
                     ),
-                  ),
+                  ],
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
-                Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: PRIMARY_COLOR[widget.grade],
+                Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: 70.0,
+                      child: Text('비밀번호', style: TextStyle(fontSize: 16.0)),
                     ),
-                  ),
-                  child: TextField(
-                    controller: _pwController,
-                    //이거 그냥 true로 하면 비밀번호 안 보이는 것!!!!
-                    obscureText: isPasswordVisible ? false : true,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 10.0),
-                        hintText: '비밀번호를 입력해주세요',
-                        hintStyle: TextStyle(
-                          color: PRIMARY_COLOR[widget.grade],
-                        ),
-                        icon: Icon(
-                          Icons.lock,
-                          color: PRIMARY_COLOR[widget.grade],
-                        ),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isPasswordVisible = !isPasswordVisible;
-                            });
-                          },
-                          child: Icon(
-                            isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                    SizedBox(width: 16.0),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
                             color: PRIMARY_COLOR[widget.grade],
                           ),
                         ),
-                        border: InputBorder.none),
-                  ),
+                        child: TextField(
+                          controller: _pwController,
+                          //이거 그냥 true로 하면 비밀번호 안 보이는 것!!!!
+                          obscureText: isPasswordVisible ? false : true,
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 10.0),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isPasswordVisible = !isPasswordVisible;
+                                  });
+                                },
+                                child: Icon(
+                                  isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: PRIMARY_COLOR[widget.grade],
+                                ),
+                              ),
+                              border: InputBorder.none),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: 70.0,
+                      child: Text('닉네임', style: TextStyle(fontSize: 16.0)),
+                    ),
+                    SizedBox(width: 16.0),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: PRIMARY_COLOR[widget.grade],
+                          ),
+                        ),
+                        child: TextField(
+                          controller: _nicknameController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10.0),
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: 70.0,
+                      child: Text('나이', style: TextStyle(fontSize: 16.0)),
+                    ),
+                    SizedBox(width: 16.0),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: PRIMARY_COLOR[widget.grade],
+                          ),
+                        ),
+                        child: TextField(
+                          controller: _userageController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10.0),
+                            border: InputBorder.none,
+                          ),
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      width: 70.0,
+                      child: Text('체중', style: TextStyle(fontSize: 16.0)),
+                    ),
+                    SizedBox(width: 16.0),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: PRIMARY_COLOR[widget.grade],
+                          ),
+                        ),
+                        child: TextField(
+                          controller: _kgController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10.0),
+                            border: InputBorder.none,
+                          ),
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: 70.0,
+                      child: Text('성별', style: TextStyle(fontSize: 16.0)),
+                    ),
+                    SizedBox(width: 16.0),
+                    Expanded(
+                      child: ToggleButtons(
+                        children: [
+                          Text('남자'),
+                          Text('여자'),
+                        ],
+                        isSelected: sex,
+                        selectedColor: PRIMARY_COLOR[grade],
+                        onPressed: (value) {
+                          setState(() {
+                            if (value == 0) {
+                              sex[0] = true;
+                              sex[1] = false;
+                            } else {
+                              sex[0] = false;
+                              sex[1] = true;
+                            }
+                          });
+                        },
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 50.0,
@@ -182,13 +318,19 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
   Future register() async {
     var url = Uri.http(IP_ADDRESS, '/register.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
       "username": _idController.text.toString(),
       "password": _pwController.text.toString(),
+      "nickname": _nicknameController.text.toString(),
+      if (sex[0] == true) "sex": 'male' else "sex": 'female',
+      "userage": _userageController.text.toString(),
+      "kg": _kgController.text.toString(),
     });
     var data = json.decode(json.encode(response.body));
+
     if (data == "Error") {
       Fluttertoast.showToast(
         backgroundColor: Colors.orange,
