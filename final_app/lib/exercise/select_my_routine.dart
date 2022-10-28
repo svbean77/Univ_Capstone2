@@ -49,7 +49,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
         child: ListView(
           children: [
             Text(
-              '나만의 루틴',
+              '내 루틴 만들기',
               style: TextStyle(fontSize: 25.0),
             ),
             SizedBox(height: 30.0),

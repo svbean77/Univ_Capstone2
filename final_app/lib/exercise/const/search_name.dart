@@ -14,21 +14,21 @@ class SearchName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String, int> mapExNum = {
-      "Biceps": 1,
-      "Chest": 2,
-      'Quads': 3,
-      'Traps': 4,
-      'Triceps': 5,
-      'Shoulders': 6,
-      'Lats': 7,
-      'Hamstrings': 8,
-      'Glutes': 9,
-      'Forearms': 10,
-      'Calves': 11,
-      'Abdominals': 12,
-      'Lower back': 13,
-      'Traps (mid-back)': 14,
-      'Obliques': 15
+      "이두": 1,
+      "가슴": 2,
+      '대퇴 사두근': 3,
+      '승모근': 4,
+      '삼두': 5,
+      '어깨': 6,
+      '광배근': 7,
+      '대퇴 이두근': 8,
+      '둔근': 9,
+      '전완근': 10,
+      '종아리': 11,
+      '복근': 12,
+      '등 하부': 13,
+      '등 중앙부': 14,
+      '복사근': 15
     };
 
     return Card(

@@ -1,6 +1,7 @@
 import 'package:final_app/exercise/const/select_routine_container.dart';
 import 'package:final_app/exercise/list_routine.dart';
 import 'package:final_app/screen/const/app_bar.dart';
+import 'package:final_app/screen/const/const_exercise_info.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _SelectRoutineState extends State<SelectRoutine> {
   @override
   Widget build(BuildContext context) {
     List<String> timeLst = ['15분', '30분', '60분', '90분', '120분'];
-    List<String> partLst = ['팔', '등', '상체', '하체'];
+
     List<String> divisionLst = ['무분할', '2분할', '3분할', '4분할'];
 
     return Scaffold(
@@ -54,12 +55,18 @@ class _SelectRoutineState extends State<SelectRoutine> {
               style: TextStyle(fontSize: 20.0),
             ),
             Container(
-              height: 120.0,
+              height: 360.0,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  for (int i = 0; i < partLst.length; i++)
-                    SelectRoutineContainer(title: partLst[i])
+                  for (int i = 0; i < muscleLst.length ~/ 3; i++)
+                    Column(
+                      children: [
+                        SelectRoutineContainer(title: muscleLst[i * 3]),
+                        SelectRoutineContainer(title: muscleLst[i * 3 + 1]),
+                        SelectRoutineContainer(title: muscleLst[i * 3 + 2]),
+                      ],
+                    )
                 ],
               ),
             ),

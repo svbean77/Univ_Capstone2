@@ -36,7 +36,7 @@ class BeginnerMain extends StatelessWidget {
               ),
             ),
             child: Text(
-              '신체 부위별 운동',
+              '근육 부위별 운동',
               style: TextStyle(fontSize: 20.0),
             ),
           ),
@@ -60,7 +60,7 @@ class BeginnerMain extends StatelessWidget {
               ),
             ),
             child: Text(
-              '루틴 선택',
+              '루틴',
               style: TextStyle(fontSize: 20.0),
             ),
           ),

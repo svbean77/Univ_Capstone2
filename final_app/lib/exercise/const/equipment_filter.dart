@@ -1,4 +1,5 @@
 import 'package:final_app/exercise/exercise_guide.dart';
+import 'package:final_app/screen/const/const_exercise_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -24,17 +25,6 @@ class EquipmentFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final equipmentLst = [
-      '모든 운동',
-      'band',
-      'barbell',
-      'bodyweight',
-      'cables',
-      'dumbbells',
-      'kettlebells',
-      'machine',
-      'stretches'
-    ];
     return Container(
       height: MediaQuery.of(context).size.height / 2,
       child: ListView(
@@ -52,25 +42,22 @@ class EquipmentFilter extends StatelessWidget {
               child: ListTile(
                 title: Text(equipmentLst[i]),
                 onTap: () {
-                  if (equipmentLst[i] == '모든 운동') {
-                    //모든 운동을 선택한 php 파일 이용해 운동 정보 받음
-                    exerciseStep = '운동 방법';
-                  } else if (equipmentLst[i] == 'band') {
-                    exerciseStep = '밴드를 이용한 운동들';
-                  } else if (equipmentLst[i] == 'barbell') {
-                    exerciseStep = '바벨을 이용한 운동들';
-                  } else if (equipmentLst[i] == 'bodyweight') {
-                    exerciseStep = '맨몸 운동들';
-                  } else if (equipmentLst[i] == 'cables') {
-                    exerciseStep = 'cables을 이용한 운동들';
-                  } else if (equipmentLst[i] == 'dumbbells') {
-                    exerciseStep = '덤벨을 이용한 운동들';
-                  } else if (equipmentLst[i] == 'kettlebells') {
-                    exerciseStep = '케틀벨을 이용한 운동들';
-                  } else if (equipmentLst[i] == 'machine') {
-                    exerciseStep = '머신을 이용한 운동들';
-                  } else if (equipmentLst[i] == 'stretches') {
-                    exerciseStep = '스트레칭 운동들';
+                  if (equipmentLst[i] == '밴드') {
+                    equipment = '밴드';
+                  } else if (equipmentLst[i] == '바벨') {
+                    equipment = '바벨';
+                  } else if (equipmentLst[i] == '맨몸') {
+                    equipment = '맨몸';
+                  } else if (equipmentLst[i] == '케이블') {
+                    equipment = '케이블';
+                  } else if (equipmentLst[i] == '덤벨') {
+                    equipment = '덤벨';
+                  } else if (equipmentLst[i] == '케틀벨') {
+                    equipment = '케틀벨';
+                  } else if (equipmentLst[i] == '머신') {
+                    equipment = '머신';
+                  } else if (equipmentLst[i] == '스트레칭') {
+                    equipment = '스트레칭';
                   }
 
                   Navigator.of(context).pushReplacement(

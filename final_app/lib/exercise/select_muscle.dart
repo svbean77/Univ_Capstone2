@@ -2,6 +2,7 @@ import 'package:final_app/exercise/const/part_muscle_image.dart';
 import 'package:final_app/exercise/const/search_name.dart';
 import 'package:final_app/exercise/const/set_image.dart';
 import 'package:final_app/screen/const/app_bar.dart';
+import 'package:final_app/screen/const/const_exercise_info.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class SelectMuscle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String level = '중상급자';
+    String level = '숙련자';
 
     return Scaffold(
       drawer: MyDrawer(),
@@ -24,30 +25,14 @@ class SelectMuscle extends StatelessWidget {
         child: ListView(
           children: [
             Text(
-              '중상급자 근육 부위별 운동',
+              '숙련자 근육 부위별 운동',
               style: TextStyle(
                 fontSize: 25.0,
               ),
             ),
             TextButton(
               onPressed: () {
-                List<String> muscleLst = [
-                  'Biceps',
-                  'Chest',
-                  'Quads',
-                  'Traps',
-                  'Triceps',
-                  'Shoulders',
-                  'Lats',
-                  'Hamstrings',
-                  'Glutes',
-                  'Forearms',
-                  'Calves',
-                  'Abdominals',
-                  'Lower back',
-                  'Traps (mid-back)',
-                  'Obliques'
-                ];
+
                 showModalBottomSheet(
                   context: context,
                   builder: (_) {

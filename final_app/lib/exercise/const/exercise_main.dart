@@ -40,7 +40,7 @@ class _ExerciseMainState extends State<ExerciseMain>
               Container(
                 height: 50.0,
                 alignment: Alignment.center,
-                child: Text('중상급자'),
+                child: Text('숙련자'),
               ),
             ],
             indicator: BoxDecoration(

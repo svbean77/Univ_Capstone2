@@ -63,7 +63,7 @@ class MasterMain extends StatelessWidget {
               ),
             ),
             child: Text(
-              '루틴 선택',
+              '루틴',
               style: TextStyle(fontSize: 20.0),
             ),
           ),
@@ -87,7 +87,7 @@ class MasterMain extends StatelessWidget {
               ),
             ),
             child: Text(
-              '나만의 루틴',
+              '내 루틴 만들기',
               style: TextStyle(fontSize: 20.0),
             ),
           ),
