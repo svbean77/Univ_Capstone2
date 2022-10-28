@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       child: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.green[100],
+        //color: Colors.green[100],
         child: ChartB(),
       ),
     );
