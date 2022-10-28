@@ -40,7 +40,7 @@ dependencies:
   fluttertoast: ^8.1.1
   table_calendar: ^3.0.7
   intl: ^0.17.0
-  fl_chart: ^0.55.2
+  syncfusion_flutter_charts: ^20.3.52
 
 dev_dependencies:
   flutter_test:

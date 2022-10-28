@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:final_app/record/const/add_weight.dart';
 import 'package:final_app/record/const/record_list_exercise.dart';
 import 'package:final_app/record/record_calendar.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ExerciseRecord extends StatefulWidget {
   const ExerciseRecord({Key? key}) : super(key: key);
@@ -13,24 +15,28 @@ class ExerciseRecord extends StatefulWidget {
 }
 
 class _ExerciseRecordState extends State<ExerciseRecord> {
-  int grade = 0;
-  int exerciseNumber = 0;
-  int todayReportTime = 0;
-  final week = ['일', '월', '화', '수', '목', '금', '토'];
-
   @override
   Widget build(BuildContext context) {
     //운동 시간 구하는 코드
     List<int> exerciseTime = [0, 0, 20, 30, 10, 5, 0];
-    List<FlSpot> myWeight = [
-      //기록을 yymmdd로 날짜를 정하고 x축으로 하면 될까? y축은 체중
-      // 날짜 / 10000 = yy, tmp / 100 = mm, tmp % 100 = dd (전부 두 자리로 만들기)
-      FlSpot(20221001, 50),
-      FlSpot(20221004, 55.3),
-      FlSpot(20221009, 52.4),
-      FlSpot(20221018, 57.7),
-      FlSpot(20221022, 45.6),
-    ];
+    List<int> recordDate = [20220901, 20220905, 20220908, 20220909, 20220910];
+    List<double> weight = [45.5, 50.7, 47.3, 57.9, 55.5];
+    List<WeightData> data = [];
+    int grade = 0;
+    int exerciseNumber = 0;
+    //int todayReportTime = 0;
+    final week = ['일', '월', '화', '수', '목', '금', '토'];
+
+    for (int i = 0; i < recordDate.length; i++) {
+      int year = recordDate[i] ~/ 10000;
+      int month = (recordDate[i] % 10000) ~/ 100;
+      int day = recordDate[i] % 100;
+      data.add(
+        WeightData(DateTime(year, month, day), weight[i]),
+      );
+    }
+
+    int dif = data[data.length - 1].date.difference(data[0].date).inDays;
 
     return Padding(
       padding: EdgeInsets.all(16.0),
@@ -148,10 +154,56 @@ class _ExerciseRecordState extends State<ExerciseRecord> {
           SizedBox(height: 16.0),
           Text('체중', style: TextStyle(fontSize: 25.0)),
           SizedBox(height: 16.0),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 200.0,
-            color: Colors.green[300],
+          SingleChildScrollView(
+            reverse: true,
+            scrollDirection: Axis.horizontal,
+            child: Container(
+              height: 250.0,
+              width: dif * 40 < MediaQuery.of(context).size.width
+                  ? MediaQuery.of(context).size.width
+                  : MediaQuery.of(context).size.width + dif * 40,
+              color: PRIMARY_COLOR[grade].withOpacity(0.05),
+              child: SfCartesianChart(
+                primaryXAxis: DateTimeAxis(
+                  intervalType: DateTimeIntervalType.days,
+                  interval: 1,
+                  rangePadding: ChartRangePadding.additional,
+                ),
+                primaryYAxis: NumericAxis(
+                  minimum: weight.reduce(min) - 5,
+                  maximum: weight.reduce(max) + 5,
+                  //title: AxisTitle(text: '체중(kg)'),
+                  isVisible: false,
+                ),
+                series: <ChartSeries>[
+                  LineSeries<WeightData, DateTime>(
+                    markerSettings: MarkerSettings(
+                        isVisible: true,
+                        height: 8.0,
+                        width: 8.0,
+                        color: Colors.white,
+                        borderColor: PRIMARY_COLOR[grade] == Colors.white
+                            ? Colors.grey
+                            : PRIMARY_COLOR[grade] == Colors.yellow
+                                ? Colors.yellow[700]
+                                : PRIMARY_COLOR[grade],
+                        shape: DataMarkerType.circle),
+                    color: PRIMARY_COLOR[grade] == Colors.white
+                        ? Colors.grey
+                        : PRIMARY_COLOR[grade] == Colors.yellow
+                            ? Colors.yellow[700]
+                            : PRIMARY_COLOR[grade],
+                    dataSource: data,
+                    xValueMapper: (WeightData info, _) => info.date,
+                    yValueMapper: (WeightData info, _) => info.weight,
+                    dataLabelSettings: DataLabelSettings(
+                      isVisible: true,
+                      textStyle: TextStyle(color: Colors.grey[700]),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           Container(
             alignment: Alignment.centerRight,
@@ -168,11 +220,17 @@ class _ExerciseRecordState extends State<ExerciseRecord> {
                   },
                 );
               },
-              child: Text('체중입력'),
+              child: Text('체중입력', style: TextStyle(color: Colors.black)),
             ),
           )
         ],
       ),
     );
   }
+}
+
+class WeightData {
+  WeightData(this.date, this.weight);
+  final DateTime date;
+  final double weight;
 }
