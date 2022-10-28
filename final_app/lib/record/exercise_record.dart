@@ -43,7 +43,8 @@ class _ExerciseRecordState extends State<ExerciseRecord> {
             children: [
               GestureDetector(
                 child: Container(
-                  width: MediaQuery.of(context).size.width / 2 - 16,
+                  //width: MediaQuery.of(context).size.width / 2 - 16,
+                  width: MediaQuery.of(context).size.width - 32,
                   height: 70.0,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -82,6 +83,7 @@ class _ExerciseRecordState extends State<ExerciseRecord> {
                   );
                 },
               ),
+              /*
               GestureDetector(
                 child: Container(
                   width: MediaQuery.of(context).size.width / 2 - 16,
@@ -102,6 +104,7 @@ class _ExerciseRecordState extends State<ExerciseRecord> {
                   //db내 운동 시간을 수정할 수 있는 코드
                 },
               ),
+               */
             ],
           ),
           SizedBox(height: 16.0),

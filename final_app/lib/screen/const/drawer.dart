@@ -43,6 +43,7 @@ class MyDrawer extends StatelessWidget {
               },
             ),
           ),
+          /*
           Card(
             elevation: 0,
             child: ListTile(
@@ -65,6 +66,7 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
           ),
+          */
           Card(
             child: ListTile(
               title: Text('3대 챌린지'),
@@ -78,6 +80,7 @@ class MyDrawer extends StatelessWidget {
             ),
             elevation: 0,
           ),
+          /*
           Card(
             child: ListTile(
               title: Text('공지사항'),
@@ -91,6 +94,7 @@ class MyDrawer extends StatelessWidget {
             ),
             elevation: 0,
           ),
+           */
         ],
       ),
     );
