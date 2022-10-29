@@ -1,5 +1,6 @@
 //https://eunoia3jy.tistory.com/110
 
+import 'package:final_app/ranking/const/my_ranking.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 
 import '../all_ranking.dart';
@@ -29,23 +30,15 @@ class _RankingMainState extends State<RankingMain>
 
   @override
   Widget build(BuildContext context) {
+    String myNickname = '내닉네임';
+    List<int> myWeight = [50, 60, 70];
+
     return Column(
       children: [
         //나의 등급을 표시해줄 컨테이너
-        Container(
-          height: 200,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.lightBlueAccent,
-          ),
-          child: Center(
-            child: Text(
-              '나의 등급 표시',
-              style: TextStyle(
-                fontSize: 30.0,
-              ),
-            ),
-          ),
+        MyRanking(
+          nickname: myNickname,
+          weight: myWeight,
         ),
         //탭바 컨테이너
         Container(
