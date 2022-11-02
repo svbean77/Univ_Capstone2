@@ -1,14 +1,11 @@
-//https://github.com/pedromassango/bottom_navy_bar
-
 import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/exercise/const/exercise_main.dart';
 import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/ranking/const/ranking_main.dart';
+import 'package:final_app/record/const/record_main.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
-import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
-import '../record/exercise_record.dart';
 import 'const/bottom_navy_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           children: [
             ExerciseMain(grade: grade),
-            ExerciseRecord(),
+            RecordMain(grade: grade),
             RankingMain(grade: grade),
             FriendsMain(),
             CommunityMain(grade: grade),
