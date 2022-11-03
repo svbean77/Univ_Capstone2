@@ -5,6 +5,7 @@ class ExerciseCard extends StatelessWidget {
   final String muscleName;
   final String exerciseName;
   final String equipment;
+  final String difficulty;
   final String exerciseImage1;
   final String exerciseImage2;
   final String exerciseStep;
@@ -14,6 +15,7 @@ class ExerciseCard extends StatelessWidget {
     required this.muscleName,
     required this.exerciseName,
     required this.equipment,
+    required this.difficulty,
     required this.exerciseImage1,
     required this.exerciseImage2,
     required this.exerciseStep,
@@ -35,7 +37,7 @@ class ExerciseCard extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           Text(
-            exerciseName,
+            '$exerciseName ($difficulty)',
             style: TextStyle(
               fontSize: 20.0,
             ),

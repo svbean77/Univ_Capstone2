@@ -48,6 +48,7 @@ class SearchName extends StatelessWidget {
                 equipment: tmpLst[4],
                 level: tmpLst[5],
                 exerciseStep: tmpLst[6],
+                difficulty: tmpLst[7],
               ),
             ),
           );

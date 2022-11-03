@@ -8,6 +8,7 @@ class EquipmentFilter extends StatelessWidget {
   String muscleName;
   String exerciseName;
   String equipment;
+  String difficulty;
   String exerciseImage1;
   String exerciseImage2;
   String exerciseStep;
@@ -18,6 +19,7 @@ class EquipmentFilter extends StatelessWidget {
     required this.muscleName,
     required this.exerciseStep,
     required this.equipment,
+    required this.difficulty,
     required this.exerciseName,
     required this.exerciseImage1,
     Key? key,
@@ -70,6 +72,7 @@ class EquipmentFilter extends StatelessWidget {
                         exerciseImage2: exerciseImage2,
                         equipment: equipment,
                         muscleName: muscleName,
+                        difficulty: difficulty,
                       ),
                     ),
                   );

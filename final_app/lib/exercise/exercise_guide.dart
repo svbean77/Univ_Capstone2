@@ -13,6 +13,7 @@ class ExerciseGuide extends StatefulWidget {
   final muscleName;
   final exerciseName;
   final equipment;
+  final difficulty;
   final exerciseImage1;
   final exerciseImage2;
   final exerciseStep;
@@ -23,6 +24,7 @@ class ExerciseGuide extends StatefulWidget {
     required this.exerciseStep,
     required this.exerciseName,
     required this.exerciseImage1,
+    required this.difficulty,
     required this.exerciseImage2,
     required this.equipment,
     required this.muscleName,
@@ -52,6 +54,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                   muscleName: widget.muscleName,
                   exerciseStep: widget.exerciseStep,
                   equipment: widget.equipment,
+                  difficulty: widget.difficulty,
                   exerciseName: widget.exerciseName,
                   exerciseImage1: widget.exerciseImage1);
             },
@@ -106,6 +109,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                         exerciseImage1: exerciseImage1,
                         exerciseImage2: exerciseImage2,
                         exerciseStep: exerciseStep,
+                        difficulty: widget.difficulty,
                       );
                     },
                     separatorBuilder: (context, index) {

@@ -67,6 +67,7 @@ class SetImage extends StatelessWidget {
                         //이미지가 하나인 경우 어떻게 처리할 것인지 생각
                         equipment: exerciseLst[muscleLst[i - 1] - 1][4],
                         exerciseStep: exerciseLst[muscleLst[i - 1] - 1][6],
+                        difficulty: exerciseLst[muscleLst[i - 1] - 1][7],
                         level: level,
                       ),
                     ),
