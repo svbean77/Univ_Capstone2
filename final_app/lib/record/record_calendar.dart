@@ -80,6 +80,7 @@ class _CalendarState extends State<_Calendar> {
           border: Border.all(
             color: PRIMARY_COLOR[widget.grade],
           ),
+          color: PRIMARY_COLOR[widget.grade].withOpacity(0.2),
           borderRadius: BorderRadius.circular(100),
         ),
         outsideDecoration: BoxDecoration(
@@ -91,7 +92,7 @@ class _CalendarState extends State<_Calendar> {
         weekendDecoration: BoxDecoration(
           shape: BoxShape.rectangle,
         ),
-        selectedTextStyle: TextStyle(color: PRIMARY_COLOR[widget.grade]),
+        selectedTextStyle: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -109,17 +110,7 @@ class _RecordExercise extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String content = '''길
-게
-말
-하
-기
-내
-용
-엄
-청
-많
-음''';
+    String content = '길\n게\n말\n하\n기\n내\n용\n엄\n청\n많\n음';
 
     return Expanded(
       child: Padding(
@@ -130,7 +121,7 @@ class _RecordExercise extends StatelessWidget {
               context: context,
               isScrollControlled: true,
               builder: (_) {
-                return _BottomSheet(
+                return RecordBottomSheet(
                     selectedDay: selectedDay, grade: grade, content: content);
               },
             );
@@ -158,11 +149,11 @@ class _RecordExercise extends StatelessWidget {
   }
 }
 
-class _BottomSheet extends StatefulWidget {
+class RecordBottomSheet extends StatefulWidget {
   final DateTime selectedDay;
   final int grade;
   String content;
-  _BottomSheet({
+  RecordBottomSheet({
     required this.selectedDay,
     required this.content,
     required this.grade,
@@ -170,10 +161,10 @@ class _BottomSheet extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<_BottomSheet> createState() => _BottomSheetState();
+  State<RecordBottomSheet> createState() => _RecordBottomSheetState();
 }
 
-class _BottomSheetState extends State<_BottomSheet> {
+class _RecordBottomSheetState extends State<RecordBottomSheet> {
   final GlobalKey<FormState> formKey = GlobalKey();
   //String? content; //직접 db에서 가져오기 or 끌어오기?
 
@@ -189,16 +180,17 @@ class _BottomSheetState extends State<_BottomSheet> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text('운동 기록하기', style: TextStyle(fontSize: 20.0)),
             Form(
               key: formKey,
-              child: _Content(
+              child: RecordContent(
                 initialValue: widget.content ?? '',
                 onSaved: (String? val) {
                   widget.content = val!;
                 },
               ),
             ),
-            _SaveButton(onPressed: onSavePressed, grade: widget.grade)
+            RecordSaveButton(onPressed: onSavePressed, grade: widget.grade)
           ],
         ),
       ),
@@ -214,11 +206,11 @@ class _BottomSheetState extends State<_BottomSheet> {
   }
 }
 
-class _SaveButton extends StatelessWidget {
+class RecordSaveButton extends StatelessWidget {
   final VoidCallback onPressed;
   final grade;
 
-  const _SaveButton({
+  const RecordSaveButton({
     required this.onPressed,
     required this.grade,
     Key? key,
@@ -242,11 +234,11 @@ class _SaveButton extends StatelessWidget {
   }
 }
 
-class _Content extends StatelessWidget {
+class RecordContent extends StatelessWidget {
   final FormFieldSetter<String> onSaved;
   final String initialValue;
 
-  const _Content({
+  const RecordContent({
     required this.initialValue,
     required this.onSaved,
     Key? key,

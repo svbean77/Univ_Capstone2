@@ -1,6 +1,7 @@
 import 'package:final_app/exercise/const/equipment_filter.dart';
 import 'package:final_app/exercise/select_body.dart';
 import 'package:final_app/exercise/select_muscle.dart';
+import 'package:final_app/record/record_calendar.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
@@ -41,26 +42,50 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: MyAppBar(grade: widget.grade),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.filter_list),
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (_) {
-              return EquipmentFilter(
-                  level: widget.level,
-                  exerciseImage2: widget.exerciseImage2,
-                  muscleName: widget.muscleName,
-                  exerciseStep: widget.exerciseStep,
-                  equipment: widget.equipment,
-                  difficulty: widget.difficulty,
-                  exerciseName: widget.exerciseName,
-                  exerciseImage1: widget.exerciseImage1);
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'memo',
+            child: Icon(Icons.note_add_outlined),
+            onPressed: () {
+              String content = '''아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n''';
+
+              showModalBottomSheet(
+                context: context,
+                builder: (_) {
+                  return RecordBottomSheet(
+                      selectedDay: DateTime.now(),
+                      content: content,
+                      grade: widget.grade);
+                },
+              );
             },
-          );
-        },
-        backgroundColor: PRIMARY_COLOR[widget.grade],
+          ),
+          SizedBox(height: 8.0),
+          FloatingActionButton(
+            heroTag: 'filter',
+            child: Icon(Icons.filter_list),
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (_) {
+                  return EquipmentFilter(
+                      level: widget.level,
+                      exerciseImage2: widget.exerciseImage2,
+                      muscleName: widget.muscleName,
+                      exerciseStep: widget.exerciseStep,
+                      equipment: widget.equipment,
+                      difficulty: widget.difficulty,
+                      exerciseName: widget.exerciseName,
+                      exerciseImage1: widget.exerciseImage1);
+                },
+              );
+            },
+            backgroundColor: PRIMARY_COLOR[widget.grade],
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

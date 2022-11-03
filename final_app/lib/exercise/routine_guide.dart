@@ -1,4 +1,5 @@
 import 'package:final_app/exercise/const/routine_card.dart';
+import 'package:final_app/record/record_calendar.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/home_screen.dart';
@@ -36,6 +37,23 @@ class _RoutineGuideState extends State<RoutineGuide> {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: MyAppBar(grade: widget.grade),
+      floatingActionButton: FloatingActionButton(
+        heroTag: 'memo',
+        child: Icon(Icons.note_add_outlined),
+        onPressed: () {
+          String content = '''아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n''';
+
+          showModalBottomSheet(
+            context: context,
+            builder: (_) {
+              return RecordBottomSheet(
+                  selectedDay: DateTime.now(),
+                  content: content,
+                  grade: widget.grade);
+            },
+          );
+        },
+      ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -74,7 +92,6 @@ class _RoutineGuideState extends State<RoutineGuide> {
             ),
             TextButton(
               onPressed: () {
-                //운동 기록을 추가하는 코드 작성
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                     builder: (BuildContext context) => HomeScreen(),
