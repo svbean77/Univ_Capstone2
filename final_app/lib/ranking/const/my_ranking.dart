@@ -11,29 +11,35 @@ class MyRanking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String myRating = "실버";
+    int myRanking = 3;
+
     return Container(
       height: 200.0,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image.asset('asset/images/ranking/ranking1.png', height: 120.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(nickname, style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
-                SizedBox(height: 20.0),
-                Text('3대 총합: ${weight[0] + weight[1] + weight[2]}kg',
-                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-                Text('데드리프트: ${weight[0]}kg', style: TextStyle(fontSize: 15.0)),
-                Text('벤치프레스: ${weight[1]}kg', style: TextStyle(fontSize: 15.0)),
-                Text('스쿼트: ${weight[2]}kg', style: TextStyle(fontSize: 15.0)),
-              ],
-            )
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('asset/images/ranking/$myRating.png', height: 150.0),
+              Text('$myRating ($myRanking위)', style: TextStyle(fontSize: 20.0)),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(nickname, style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
+              SizedBox(height: 20.0),
+              Text('3대 총합: ${weight[0] + weight[1] + weight[2]}kg',
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+              Text('데드리프트: ${weight[0]}kg', style: TextStyle(fontSize: 15.0)),
+              Text('벤치프레스: ${weight[1]}kg', style: TextStyle(fontSize: 15.0)),
+              Text('스쿼트: ${weight[2]}kg', style: TextStyle(fontSize: 15.0)),
+            ],
+          )
+        ],
       ),
     );
   }
