@@ -1,3 +1,4 @@
+import 'package:final_app/ranking/const/ranking_card.dart';
 import 'package:flutter/material.dart';
 
 class FriendsRanking extends StatelessWidget {
@@ -5,14 +6,26 @@ class FriendsRanking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(
-          '친구의 랭킹',
-          style: TextStyle(
-            fontSize: 30.0,
-          ),
-        ),
+    List<String> nickname = ['친구1', '친구2', '친구3', '친구4','친구5'];
+    List<String> rating = ['챌린저', '다이아몬드', '골드', '브론즈', '아이언'];
+    List<int> total3th = [500, 380, 220, 190, 80];
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        child: ListView.separated(
+            itemBuilder: (context, index) {
+              return RankingCard(
+                nickname: nickname[index],
+                rating: rating[index],
+                ranking: index + 1,
+                total3th: total3th[index],
+              );
+            },
+            separatorBuilder: (context, index) {
+              return SizedBox(height: 8.0);
+            },
+            itemCount: nickname.length),
       ),
     );
   }
