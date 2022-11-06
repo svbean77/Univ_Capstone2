@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class MyRanking extends StatelessWidget {
   final nickname;
-  final weight;
   const MyRanking({
-    required this.weight,
     required this.nickname,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //nickname을 이용해 등수, 등급, 무게 구하기
     String myRating = "실버";
     int myRanking = 3;
+    List<int> weight = [50, 60, 70];
 
     return Container(
       height: 200.0,

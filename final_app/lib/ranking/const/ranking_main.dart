@@ -31,14 +31,12 @@ class _RankingMainState extends State<RankingMain>
   @override
   Widget build(BuildContext context) {
     String myNickname = '내닉네임';
-    List<int> myWeight = [50, 60, 70];
 
     return Column(
       children: [
         //나의 등급을 표시해줄 컨테이너
         MyRanking(
           nickname: myNickname,
-          weight: myWeight,
         ),
         //탭바 컨테이너
         Container(

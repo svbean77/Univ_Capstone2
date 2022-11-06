@@ -18,14 +18,14 @@ class _RecordCalendarState extends State<RecordCalendar> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _Calendar(
+        Calendar(
           selectedDay: selectedDay,
           grade: grade,
           focusedDay: focusedDay,
           onDaySelected: onDaySelected,
         ),
         SizedBox(height: 8.0),
-        _RecordExercise(selectedDay: selectedDay, grade: grade),
+        RecordExercise(selectedDay: selectedDay, grade: grade),
       ],
     );
   }
@@ -38,13 +38,13 @@ class _RecordCalendarState extends State<RecordCalendar> {
   }
 }
 
-class _Calendar extends StatefulWidget {
+class Calendar extends StatefulWidget {
   final DateTime? selectedDay;
   final DateTime focusedDay;
   final OnDaySelected? onDaySelected;
   final int grade;
 
-  const _Calendar({
+  const Calendar({
     required this.selectedDay,
     required this.grade,
     required this.focusedDay,
@@ -53,10 +53,10 @@ class _Calendar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<_Calendar> createState() => _CalendarState();
+  State<Calendar> createState() => CalendarState();
 }
 
-class _CalendarState extends State<_Calendar> {
+class CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
@@ -98,11 +98,11 @@ class _CalendarState extends State<_Calendar> {
   }
 }
 
-class _RecordExercise extends StatelessWidget {
+class RecordExercise extends StatelessWidget {
   final DateTime selectedDay;
   final int grade;
 
-  const _RecordExercise({
+  const RecordExercise({
     required this.selectedDay,
     required this.grade,
     Key? key,
