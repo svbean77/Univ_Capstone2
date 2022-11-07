@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
+      resizeToAvoidBottomInset: false,
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,
