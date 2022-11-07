@@ -257,7 +257,7 @@ class RecordContent extends StatelessWidget {
             filled: true,
             fillColor: Colors.grey[200],
           ),
-          maxLines: null,
+          maxLines: 12,
         ),
       ),
     );

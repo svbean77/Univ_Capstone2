@@ -53,10 +53,12 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
 
               showModalBottomSheet(
                 context: context,
+                isScrollControlled: true,
                 builder: (_) {
                   return RecordBottomSheet(
                       selectedDay: DateTime.now(),
                       content: content,
+
                       grade: widget.grade);
                 },
               );

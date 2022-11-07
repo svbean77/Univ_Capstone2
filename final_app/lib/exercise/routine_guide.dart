@@ -45,6 +45,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
 
           showModalBottomSheet(
             context: context,
+            isScrollControlled: true,
             builder: (_) {
               return RecordBottomSheet(
                   selectedDay: DateTime.now(),
