@@ -1,6 +1,8 @@
 import 'package:final_app/friends/const/friend_card.dart';
 import 'package:final_app/friends/const/request_card.dart';
+import 'package:final_app/ranking/const/user_info.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../screen/const/grade_colors.dart';
 
@@ -72,7 +74,64 @@ class _FriendsMainState extends State<FriendsMain> {
                   ),
                 ),
                 SizedBox(width: 8.0),
-                GestureDetector(child: Icon(Icons.search), onTap: () {}),
+                GestureDetector(
+                  child: Icon(Icons.search),
+                  onTap: () {
+                    String find = controller.text.toString();
+                    if (search[0] == true) {
+                      //닉네임을 이용해 검색
+                      //모든 사용자 불러옴 (랭킹처럼)
+                      List<String> allUser = [
+                        'user1',
+                        'user2',
+                        'user3',
+                        'friend3',
+                        'friend2',
+                        'friend1'
+                      ];
+                      if (allUser.contains(find)) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                UserInfo(nickname: find),
+                          ),
+                        );
+                      } else {
+                        Fluttertoast.showToast(
+                          msg: '존재하지 않는 닉네임입니다.',
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white,
+                          toastLength: Toast.LENGTH_SHORT,
+                        );
+                      }
+                    } else {
+                      //아이디를 이용해 검색
+                      List<String> allUser = [
+                        'id1',
+                        'id2',
+                        'id3',
+                        'id4',
+                        'id5',
+                        'id6'
+                      ];
+                      if (allUser.contains(find)) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                UserInfo(nickname: find),
+                          ),
+                        );
+                      } else {
+                        Fluttertoast.showToast(
+                          msg: '존재하지 않는 아이디입니다.',
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white,
+                          toastLength: Toast.LENGTH_SHORT,
+                        );
+                      }
+                    }
+                  },
+                ),
               ],
             ),
           ),
