@@ -28,6 +28,9 @@ class _CommunityMainState extends State<CommunityMain>
 
   @override
   Widget build(BuildContext context) {
+    List<int> freeboardLst = [1, 2, 3, 5, 7];
+    List<int> qnaboardLst = [4, 6, 8, 9, 10, 11, 12];
+
     return Column(
       children: [
         Container(
@@ -57,8 +60,8 @@ class _CommunityMainState extends State<CommunityMain>
           child: TabBarView(
             controller: _tabController,
             children: [
-              FreeBoard(),
-              QnABoard(),
+              FreeBoard(boardLst: freeboardLst),
+              QnABoard(boardLst: qnaboardLst),
             ],
           ),
         ),
