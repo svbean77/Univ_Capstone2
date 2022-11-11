@@ -1,10 +1,66 @@
+import 'package:final_app/screen/const/app_bar.dart';
+import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
 class Contents extends StatelessWidget {
-  const Contents({Key? key}) : super(key: key);
+  //board만 불러오고 나머지 내용들은 여기서 db 불러오기로 할까
+  final board;
+  final title;
+  final contents;
+  const Contents({
+    required this.board,
+    required this.title,
+    required this.contents,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    String writer = '작성자이름';
+    String date = '2022.11.11';
+
+    int grade = 0;
+    return Scaffold(
+      appBar: MyAppBar(grade: grade),
+      drawer: MyDrawer(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          List<int> boardLst = [];
+          if (board == '자유게시판') {
+            boardLst = [1, 2, 3, 5, 7];
+          } else {
+            boardLst = [4, 6, 8, 9, 10, 11, 12];
+          }
+          //어느 페이지로 이동시킬지 생각을 해봐야겠다..
+        },
+        child: Icon(Icons.menu),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            Text('제목', style: TextStyle(fontSize: 20.0)),
+            SizedBox(height: 8.0),
+            Text(title),
+            SizedBox(height: 8.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('작성자', style: TextStyle(fontSize: 15.0)),
+                Text(writer, style: TextStyle(fontSize: 10.0)),
+                Text('작성일자', style: TextStyle(fontSize: 15.0)),
+                Text(date, style: TextStyle(fontSize: 10.0)),
+              ],
+            ),
+            SizedBox(height: 8.0),
+            Text('내용', style: TextStyle(fontSize: 20.0)),
+            SizedBox(height: 8.0),
+            Text(contents),
+            SizedBox(height: 16.0),
+            Text('댓글', style: TextStyle(fontSize: 20.0)),
+          ],
+        ),
+      ),
+    );
   }
 }
