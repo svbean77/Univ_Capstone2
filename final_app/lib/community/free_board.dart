@@ -1,3 +1,4 @@
+import 'package:final_app/community/const/contents.dart';
 import 'package:final_app/community/const/contents_list.dart';
 import 'package:final_app/community/const/searchPage.dart';
 import 'package:final_app/community/write_board.dart';
@@ -127,8 +128,21 @@ class _FreeBoardState extends State<FreeBoard> {
                             GestureDetector(
                               child: ContentsList(
                                   boardnum: widget.boardLst[i], grade: grade),
-                              onTap: () {},
-                            )
+                              onTap: () {
+                                //게시판 번호를 이용해 게시글 정보를 불러오는 코드
+                                String title = '게시판 제목';
+                                String contents = '게시판 내용${i}';
+
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) => Contents(
+                                        board: '자유게시판',
+                                        title: title,
+                                        contents: contents),
+                                  ),
+                                );
+                              },
+                            ),
                         ],
                       ),
               ),

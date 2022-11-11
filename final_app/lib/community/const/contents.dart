@@ -25,13 +25,9 @@ class Contents extends StatelessWidget {
       drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          List<int> boardLst = [];
-          if (board == '자유게시판') {
-            boardLst = [1, 2, 3, 5, 7];
-          } else {
-            boardLst = [4, 6, 8, 9, 10, 11, 12];
-          }
           //어느 페이지로 이동시킬지 생각을 해봐야겠다..
+          //pop을 했을 때 변경사항이 반영이 되는지 확인! 일단 pop으로 구현
+          Navigator.of(context).pop();
         },
         child: Icon(Icons.menu),
       ),
