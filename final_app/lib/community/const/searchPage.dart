@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
   final boardLst;
-  final boardName;
+  final searchfor;
   const SearchPage({
-    required this.boardName,
+    required this.searchfor,
     required this.boardLst,
     Key? key,
   }) : super(key: key);
@@ -32,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('${widget.boardName} 검색 결과', style: TextStyle(fontSize: 25.0)),
+            Text('${widget.searchfor} 검색 결과', style: TextStyle(fontSize: 25.0)),
             SizedBox(height: 16.0),
             Container(
               height: MediaQuery.of(context).size.height / 15,
@@ -90,7 +90,7 @@ class _SearchPageState extends State<SearchPage> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) => SearchPage(
-                                boardLst: findLst, boardName: widget.boardName),
+                                boardLst: findLst, searchfor: widget.searchfor),
                           ),
                         );
                       } else {
@@ -100,7 +100,7 @@ class _SearchPageState extends State<SearchPage> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) => SearchPage(
-                                boardLst: findLst, boardName: widget.boardName),
+                                boardLst: findLst, searchfor: widget.searchfor),
                           ),
                         );
                       }

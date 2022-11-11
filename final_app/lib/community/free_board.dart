@@ -94,7 +94,7 @@ class _FreeBoardState extends State<FreeBoard> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) => SearchPage(
-                                boardLst: findLst, boardName: '자유게시판'),
+                                boardLst: findLst, searchfor: find),
                           ),
                         );
                       } else {
@@ -104,7 +104,7 @@ class _FreeBoardState extends State<FreeBoard> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) => SearchPage(
-                                boardLst: findLst, boardName: '자유게시판'),
+                                boardLst: findLst, searchfor: find),
                           ),
                         );
                       }

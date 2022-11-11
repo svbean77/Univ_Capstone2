@@ -94,7 +94,7 @@ class _QnABoardState extends State<QnABoard> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                SearchPage(boardLst: findLst, boardName: '질의응답'),
+                                SearchPage(boardLst: findLst, searchfor: find),
                           ),
                         );
                       } else {
@@ -104,7 +104,7 @@ class _QnABoardState extends State<QnABoard> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                SearchPage(boardLst: findLst, boardName: '질의응답'),
+                                SearchPage(boardLst: findLst, searchfor: find),
                           ),
                         );
                       }
