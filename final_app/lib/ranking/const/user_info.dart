@@ -18,6 +18,7 @@ class UserInfo extends StatelessWidget {
     //이 사람의 운동기록 불러오기 (db)
     List<int> tmp = [20220901, 20220904, 20221010, 20221111];
     List<DateTime> date = [];
+
     for (int i = 0; i < tmp.length; i++) {
       int year = tmp[i] ~/ 10000;
       int month = (tmp[i] % 10000) ~/ 100;
@@ -40,7 +41,6 @@ class UserInfo extends StatelessWidget {
             MyRanking(nickname: nickname),
             SizedBox(height: 8.0),
             Text('운동기록', style: TextStyle(fontSize: 20.0)),
-            SizedBox(height: 8.0),
             Expanded(
               child: tmp.length == 0
                   ? Container(
@@ -73,7 +73,9 @@ class UserInfo extends StatelessWidget {
                                           children: [
                                             Container(
                                               height: 200.0,
-                                              width: MediaQuery.of(context).size.width,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
                                               padding: EdgeInsets.all(8.0),
                                               color: Colors.grey[100],
                                               child: Text(memo[i]),
