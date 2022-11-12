@@ -24,7 +24,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(

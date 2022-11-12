@@ -6,9 +6,7 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class SelectMyRoutine extends StatefulWidget {
-  final int grade;
   const SelectMyRoutine({
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
@@ -24,8 +22,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
     List<String> routineName = ['루틴1', '루틴2', '루틴3', '루틴4'];
 
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {

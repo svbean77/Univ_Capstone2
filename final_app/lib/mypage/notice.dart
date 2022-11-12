@@ -3,9 +3,7 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
 class Notice extends StatefulWidget {
-  final int grade;
   const Notice({
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
@@ -14,11 +12,12 @@ class Notice extends StatefulWidget {
 }
 
 class _NoticeState extends State<Notice> {
+  int grade = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade: grade),
       body: Center(
         child: Text(
           '공지사항',

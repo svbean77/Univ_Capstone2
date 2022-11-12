@@ -5,11 +5,9 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ListRoutine extends StatefulWidget {
-  final int grade;
   final title;
   const ListRoutine({
     required this.title,
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
@@ -18,6 +16,7 @@ class ListRoutine extends StatefulWidget {
 }
 
 class _ListRoutineState extends State<ListRoutine> {
+  int grade = 0;
   @override
   Widget build(BuildContext context) {
     //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
@@ -26,8 +25,8 @@ class _ListRoutineState extends State<ListRoutine> {
     List<int> routineTime = [15, 20, 25, 30];
 
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(

@@ -6,7 +6,6 @@ import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class RoutineGuide extends StatefulWidget {
-  final int grade;
   final routineName;
   final exerciseName;
   final exerciseImage1;
@@ -16,7 +15,6 @@ class RoutineGuide extends StatefulWidget {
   final numberUnit;
 
   const RoutineGuide({
-    this.grade = 0,
     required this.routineName,
     required this.exerciseName,
     required this.exerciseStep,
@@ -32,11 +30,12 @@ class RoutineGuide extends StatefulWidget {
 }
 
 class _RoutineGuideState extends State<RoutineGuide> {
+  int grade = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
         heroTag: 'memo',
         child: Icon(Icons.note_add_outlined),
@@ -57,7 +56,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
                   selectedDay: DateTime.now(),
                   content: content,
                   mode: mode,
-                  grade: widget.grade);
+                  grade: grade);
             },
           );
         },

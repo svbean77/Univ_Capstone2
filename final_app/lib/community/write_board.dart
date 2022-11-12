@@ -25,7 +25,7 @@ class _WriteBoardState extends State<WriteBoard> {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(

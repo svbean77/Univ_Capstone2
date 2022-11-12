@@ -31,12 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  int grade = 0;
-
   @override
   Widget build(BuildContext context) {
+    int grade = 0;
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(grade: grade),
       appBar: MyAppBar(grade: grade),
       resizeToAvoidBottomInset: false,
       body: SizedBox.expand(
@@ -50,7 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
             RecordMain(grade: grade),
             RankingMain(grade: grade),
             FriendsMain(),
-            CommunityMain(grade: grade),
           ],
         ),
       ),
@@ -64,24 +62,27 @@ class _HomeScreenState extends State<HomeScreen> {
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
             icon: Icon(Icons.sports, color: Colors.black.withOpacity(0.3)),
-            title: Text('운동하기', style: TextStyle(color: Colors.black.withOpacity(0.3))),
+            title: Text('운동하기',
+                style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.analytics_outlined, color: Colors.black.withOpacity(0.3)),
-            title: Text('운동기록', style: TextStyle(color: Colors.black.withOpacity(0.3))),
+            icon: Icon(Icons.analytics_outlined,
+                color: Colors.black.withOpacity(0.3)),
+            title: Text('운동기록',
+                style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.bar_chart_rounded, color: Colors.black.withOpacity(0.3)),
-            title: Text('랭킹', style: TextStyle(color: Colors.black.withOpacity(0.3))),
+            icon: Icon(Icons.bar_chart_rounded,
+                color: Colors.black.withOpacity(0.3)),
+            title: Text('랭킹',
+                style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.people, color: Colors.black.withOpacity(0.3)),
-            title: Text('친구', style: TextStyle(color: Colors.black.withOpacity(0.3))),
+            title: Text('친구',
+                style: TextStyle(color: Colors.black.withOpacity(0.3))),
           ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.assignment_outlined, color: Colors.black.withOpacity(0.3)),
-            title: Text('커뮤니티', style: TextStyle(color: Colors.black.withOpacity(0.3))),
-          ),
+
         ],
       ),
     );

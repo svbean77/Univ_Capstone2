@@ -6,11 +6,9 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ListMyExercise extends StatefulWidget {
-  final int grade;
   final String routineName;
   const ListMyExercise({
     required this.routineName,
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
@@ -19,6 +17,8 @@ class ListMyExercise extends StatefulWidget {
 }
 
 class _ListMyExerciseState extends State<ListMyExercise> {
+  int grade = 0;
+
   @override
   Widget build(BuildContext context) {
     //운동 이름 등 db에서 select
@@ -36,8 +36,8 @@ class _ListMyExerciseState extends State<ListMyExercise> {
     }
 
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: (){

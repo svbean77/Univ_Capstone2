@@ -7,18 +7,17 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
 class SelectMuscle extends StatelessWidget {
-  final int grade;
   const SelectMuscle({
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int grade = 0;
     String level = '숙련자';
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(grade: grade),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(10.0),

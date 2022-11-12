@@ -32,7 +32,7 @@ class ChallengeMain extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(grade: grade),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushReplacement(

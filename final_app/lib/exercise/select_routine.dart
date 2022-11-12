@@ -6,9 +6,7 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
 class SelectRoutine extends StatefulWidget {
-  final int grade;
   const SelectRoutine({
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
@@ -17,6 +15,8 @@ class SelectRoutine extends StatefulWidget {
 }
 
 class _SelectRoutineState extends State<SelectRoutine> {
+  int grade = 0;
+
   @override
   Widget build(BuildContext context) {
     List<String> timeLst = ['15분', '30분', '60분', '90분', '120분'];
@@ -24,8 +24,8 @@ class _SelectRoutineState extends State<SelectRoutine> {
     List<String> divisionLst = ['무분할', '2분할', '3분할', '4분할'];
 
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(

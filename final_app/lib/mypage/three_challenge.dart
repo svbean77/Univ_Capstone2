@@ -6,9 +6,7 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ThreeChallenge extends StatefulWidget {
-  final int grade;
   const ThreeChallenge({
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
@@ -24,8 +22,8 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
     int grade = 0;
 
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

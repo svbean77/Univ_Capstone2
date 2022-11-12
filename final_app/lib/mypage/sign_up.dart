@@ -10,10 +10,8 @@ import '../screen/const/grade_colors.dart';
 import '../screen/const/ip_address.dart';
 
 class SignUp extends StatefulWidget {
-  final int grade;
 
   const SignUp({
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
@@ -34,9 +32,10 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    int grade = 0;
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade: grade),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -71,7 +70,7 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[widget.grade],
+                            color: Colors.black,
                           ),
                         ),
                         child: TextField(
@@ -103,7 +102,7 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[widget.grade],
+                            color: Colors.black,
                           ),
                         ),
                         child: TextField(
@@ -123,7 +122,7 @@ class _SignUpState extends State<SignUp> {
                                   isPasswordVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: PRIMARY_COLOR[widget.grade],
+                                  color: Colors.black,
                                 ),
                               ),
                               border: InputBorder.none),
@@ -149,7 +148,7 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[widget.grade],
+                            color: Colors.black,
                           ),
                         ),
                         child: TextField(
@@ -181,7 +180,7 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[widget.grade],
+                            color: Colors.black,
                           ),
                         ),
                         child: TextField(
@@ -207,7 +206,7 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[widget.grade],
+                            color: Colors.black,
                           ),
                         ),
                         child: TextField(
@@ -241,7 +240,8 @@ class _SignUpState extends State<SignUp> {
                           Text('여자'),
                         ],
                         isSelected: sex,
-                        selectedColor: PRIMARY_COLOR[grade],
+                        selectedColor: Colors.black,
+                        fillColor: Colors.black.withOpacity(0.2),
                         onPressed: (value) {
                           setState(() {
                             if (value == 0) {
@@ -268,14 +268,16 @@ class _SignUpState extends State<SignUp> {
                     height: 50.0,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: PRIMARY_COLOR[widget.grade],
+                      border: Border.all(
+                        color: Colors.black,
+                      ),
                     ),
                     child: Center(
                       child: Text(
                         '회원가입',
                         style: TextStyle(
                           fontSize: 16.0,
-                          color: Colors.white,
+                          color: Colors.black,
                           //fontWeight: FontWeight.bold
                         ),
                       ),
@@ -299,14 +301,14 @@ class _SignUpState extends State<SignUp> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: PRIMARY_COLOR[widget.grade],
+                        color: Colors.black,
                       ),
                     ),
                     child: Text(
                       '로그인 하러 가기',
                       style: TextStyle(
                         fontSize: 16.0,
-                        color: PRIMARY_COLOR[widget.grade],
+                        color: Colors.black,
                       ),
                     ),
                   ),

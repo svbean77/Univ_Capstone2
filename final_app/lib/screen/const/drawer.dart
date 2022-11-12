@@ -1,3 +1,4 @@
+import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/mypage/my_page.dart';
 import 'package:final_app/mypage/notice.dart';
 import 'package:final_app/mypage/sign_in.dart';
@@ -5,7 +6,11 @@ import 'package:final_app/mypage/three_challenge.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({Key? key}) : super(key: key);
+  final grade;
+  const MyDrawer({
+    required this.grade,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class MyDrawer extends StatelessWidget {
               );
             },
             child: DrawerHeader(
-              child: Text('프로필사진 크게'),
+              child: SizedBox(),
             ),
           ),
           Card(
@@ -67,6 +72,21 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           */
+
+          Card(
+            child: ListTile(
+              title: Text('커뮤니티'),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        CommunityMain(grade: grade),
+                  ),
+                );
+              },
+            ),
+            elevation: 0,
+          ),
           Card(
             child: ListTile(
               title: Text('3대 챌린지'),

@@ -29,7 +29,7 @@ class UserInfo extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(grade: grade),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,

@@ -10,10 +10,7 @@ import 'dart:convert';
 import '../screen/const/ip_address.dart';
 
 class SignIn extends StatefulWidget {
-  final int grade;
-
   const SignIn({
-    this.grade = 0,
     Key? key,
   }) : super(key: key);
 
@@ -28,9 +25,10 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    int grade = 0;
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(grade: grade),
+      appBar: MyAppBar(grade:grade),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -48,17 +46,17 @@ class _SignInState extends State<SignIn> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 28,
-                    color: PRIMARY_COLOR[widget.grade],
                   ),
                 ),
                 SizedBox(
                   height: 40.0,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: PRIMARY_COLOR[widget.grade],
+                      color: Colors.black,
                     ),
                   ),
                   child: TextField(
@@ -67,11 +65,11 @@ class _SignInState extends State<SignIn> {
                       contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
                       hintText: '아이디를 입력해주세요',
                       hintStyle: TextStyle(
-                        color: PRIMARY_COLOR[widget.grade],
+                        color: Colors.black,
                       ),
                       icon: Icon(
                         Icons.person,
-                        color: PRIMARY_COLOR[widget.grade],
+                        color: Colors.black,
                       ),
                       border: InputBorder.none,
                     ),
@@ -81,10 +79,11 @@ class _SignInState extends State<SignIn> {
                   height: 20.0,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: PRIMARY_COLOR[widget.grade],
+                      color: Colors.black,
                     ),
                   ),
                   child: TextField(
@@ -92,14 +91,15 @@ class _SignInState extends State<SignIn> {
                     //이거 그냥 true로 하면 비밀번호 안 보이는 것!!!!
                     obscureText: isPasswordVisible ? false : true,
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 10.0),
                         hintText: '비밀번호를 입력해주세요',
                         hintStyle: TextStyle(
-                          color: PRIMARY_COLOR[widget.grade],
+                          color: Colors.black,
                         ),
                         icon: Icon(
                           Icons.lock,
-                          color: PRIMARY_COLOR[widget.grade],
+                          color: Colors.black,
                         ),
                         suffixIcon: GestureDetector(
                           onTap: () {
@@ -111,7 +111,7 @@ class _SignInState extends State<SignIn> {
                             isPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: PRIMARY_COLOR[widget.grade],
+                            color: Colors.black,
                           ),
                         ),
                         border: InputBorder.none),
@@ -128,14 +128,16 @@ class _SignInState extends State<SignIn> {
                     height: 50.0,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: PRIMARY_COLOR[widget.grade],
+                      border: Border.all(
+                        color: Colors.black,
+                      ),
                     ),
                     child: Center(
                       child: Text(
                         '로그인',
                         style: TextStyle(
                           fontSize: 16.0,
-                          color: Colors.white,
+                          color: Colors.black,
                           //fontWeight: FontWeight.bold
                         ),
                       ),
@@ -159,14 +161,14 @@ class _SignInState extends State<SignIn> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: PRIMARY_COLOR[widget.grade],
+                        color: Colors.black,
                       ),
                     ),
                     child: Text(
                       '회원가입',
                       style: TextStyle(
                         fontSize: 16.0,
-                        color: PRIMARY_COLOR[widget.grade],
+                        color: Colors.black,
                       ),
                     ),
                   ),

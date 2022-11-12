@@ -27,7 +27,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(grade: grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
