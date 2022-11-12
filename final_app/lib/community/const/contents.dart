@@ -18,6 +18,8 @@ class Contents extends StatelessWidget {
   Widget build(BuildContext context) {
     String writer = '작성자이름';
     String date = '2022.11.11';
+    List<String> commentWriter = ['유저1', '유저6', '유저33'];
+    List<String> comment = ['이거는이렇게해야죠', '댓글내용입니다이건느', '하..\n댓글줄바꿈은뭐..'];
 
     int grade = 0;
     return Scaffold(
@@ -35,7 +37,7 @@ class Contents extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Text('제목', style: TextStyle(fontSize: 20.0)),
+            Text('제목', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
             SizedBox(height: 8.0),
             Text(title),
             SizedBox(height: 8.0),
@@ -49,11 +51,22 @@ class Contents extends StatelessWidget {
               ],
             ),
             SizedBox(height: 8.0),
-            Text('내용', style: TextStyle(fontSize: 20.0)),
+            Text('내용', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
             SizedBox(height: 8.0),
             Text(contents),
             SizedBox(height: 16.0),
-            Text('댓글', style: TextStyle(fontSize: 20.0)),
+            Text('댓글 (${commentWriter.length})', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+            SizedBox(height: 8.0),
+            for(int i = 0; i <commentWriter.length; i++)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(commentWriter[i]),
+                  SizedBox(height: 8.0),
+                  Text(comment[i]),
+                  SizedBox(height: 16.0),
+                ],
+              )
           ],
         ),
       ),
