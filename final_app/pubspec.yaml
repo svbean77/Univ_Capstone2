@@ -41,6 +41,7 @@ dependencies:
   table_calendar: ^3.0.7
   intl: ^0.17.0
   syncfusion_flutter_charts: ^20.3.52
+  video_player: ^2.4.7
 
 dev_dependencies:
   flutter_test:
