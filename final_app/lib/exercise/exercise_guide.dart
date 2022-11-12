@@ -49,8 +49,14 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             heroTag: 'memo',
             child: Icon(Icons.note_add_outlined),
             onPressed: () {
-              String content = '''아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n''';
-
+              String content =
+                  '''아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n''';
+              String mode;
+              if (content.length == 0) {
+                mode = 'insert';
+              } else {
+                mode = 'edit';
+              }
               showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,
@@ -58,7 +64,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                   return RecordBottomSheet(
                       selectedDay: DateTime.now(),
                       content: content,
-
+                      mode: mode,
                       grade: widget.grade);
                 },
               );

@@ -110,7 +110,15 @@ class RecordExercise extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String content = '길\n게\n말\n하\n기\n내\n용\n엄\n청\n많\n음';
+    //String content = '길\n게\n말\n하\n기\n내\n용\n엄\n청\n많\n음';
+    String content = '';
+    String mode;
+    if (content.length == 0){
+      mode = 'insert';
+    }
+    else{
+      mode = 'edit';
+    }
 
     return Expanded(
       child: Padding(
@@ -122,7 +130,7 @@ class RecordExercise extends StatelessWidget {
               isScrollControlled: true,
               builder: (_) {
                 return RecordBottomSheet(
-                    selectedDay: selectedDay, grade: grade, content: content);
+                    selectedDay: selectedDay, grade: grade, content: content, mode: mode);
               },
             );
           },
@@ -152,9 +160,11 @@ class RecordExercise extends StatelessWidget {
 class RecordBottomSheet extends StatefulWidget {
   final DateTime selectedDay;
   final int grade;
+  final mode;
   String content;
   RecordBottomSheet({
     required this.selectedDay,
+    required this.mode,
     required this.content,
     required this.grade,
     Key? key,
@@ -198,6 +208,12 @@ class _RecordBottomSheetState extends State<RecordBottomSheet> {
   }
 
   void onSavePressed() {
+    if (widget.mode == 'edit'){
+      //db의 내용을 수정하는 코드
+    }
+    else{
+      //db에 데이터를 추가하는 코드
+    }
     //async로 바꾸기
     //if (formKey.currentState == null) return;
     //if (formKey.currentState!.validate()) formKey.currentState!.save();
