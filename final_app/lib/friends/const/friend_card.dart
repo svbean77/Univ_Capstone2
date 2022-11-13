@@ -57,9 +57,48 @@ class FriendCard extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(width: 8.0),
+                  SizedBox(width: 16.0),
                   GestureDetector(
                     child: Icon(Icons.cancel_outlined),
+                    onTap: (){
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: Container(
+                              height: 100.0,
+                              child: Column(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('삭제하시겠습니까?'),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('취소'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          //db에서 글 삭제하는 코드
+                                          //정보를 build에서 가져오면 새로고침이 되나?
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('확인'),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
