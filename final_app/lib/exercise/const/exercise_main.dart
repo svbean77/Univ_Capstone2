@@ -44,7 +44,9 @@ class _ExerciseMainState extends State<ExerciseMain>
               ),
             ],
             indicator: BoxDecoration(
-              color: PRIMARY_COLOR[widget.grade].withOpacity(0.2),
+              color: (widget.grade == 0 || widget.grade == 7)
+                  ? Colors.black.withOpacity(0.1)
+                  : PRIMARY_COLOR[widget.grade].withOpacity(0.3),
             ),
             labelColor: Colors.black,
             unselectedLabelColor: Colors.black,

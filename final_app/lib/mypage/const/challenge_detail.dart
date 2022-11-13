@@ -22,7 +22,7 @@ class ChallengeDetail extends StatelessWidget {
     String contents =
         '이동영상으로말할것같으면제가열심히운동을한결과인데요아주열심히저무게를들었습니다진짜얼마나힘들었을지상상이나가십니까';
     int weight = 200;
-    int grade = 0;
+    int grade = 5;
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),

@@ -14,8 +14,6 @@ class AddExercise extends StatefulWidget {
 enum UnitItems { numbers, times }
 
 class _AddExerciseState extends State<AddExercise> {
-
-
   String? selectedMuscle;
   String? selectedExercise;
   UnitItems? selectedUnit = UnitItems.numbers;
@@ -24,7 +22,7 @@ class _AddExerciseState extends State<AddExercise> {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
+    int grade = 5;
     return Container(
       height: 400.0,
       child: Column(
@@ -111,17 +109,20 @@ class _AddExerciseState extends State<AddExercise> {
                 ),
                 ToggleButtons(
                   children: [
-                    Text('횟수'), Text('시간'),
+                    Text('횟수'),
+                    Text('시간'),
                   ],
                   isSelected: units,
-                  selectedColor: PRIMARY_COLOR[grade],
-                  onPressed: (value){
+                  selectedColor: Colors.black,
+                  fillColor: (grade == 0 || grade == 7)
+                      ? Colors.black.withOpacity(0.1)
+                      : PRIMARY_COLOR[grade].withOpacity(0.3),
+                  onPressed: (value) {
                     setState(() {
-                      if(value == 0){
+                      if (value == 0) {
                         units[0] = true;
                         units[1] = false;
-                      }
-                      else{
+                      } else {
                         units[0] = false;
                         units[1] = true;
                       }

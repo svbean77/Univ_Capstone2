@@ -8,7 +8,7 @@ class AddWeight extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController weightController = TextEditingController();
     TextEditingController dateController = TextEditingController();
-    int grade = 0;
+    int grade = 5;
 
     return Container(
       height: 180.0,
