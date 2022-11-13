@@ -7,4 +7,7 @@ const List<Color> PRIMARY_COLOR =[
   Colors.purple,
   Colors.grey,
   Colors.yellow,
+  Colors.yellow,
+  Colors.yellow,
+  Colors.yellow,
 ];
