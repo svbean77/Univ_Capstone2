@@ -19,12 +19,14 @@ class FreeBoard extends StatefulWidget {
 class _FreeBoardState extends State<FreeBoard> {
   final TextEditingController controller = TextEditingController();
   List<bool> search = [true, false];
-  int grade = 0;
+
 
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -33,7 +35,14 @@ class _FreeBoardState extends State<FreeBoard> {
             ),
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add,
+            color: (grade == 0 ||
+                    grade == 1 ||
+                    grade == 2 ||
+                    grade == 4 ||
+                    grade == 8)
+                ? Colors.black
+                : Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -49,7 +58,10 @@ class _FreeBoardState extends State<FreeBoard> {
                       Text('작성자'),
                     ],
                     isSelected: search,
-                    selectedColor: PRIMARY_COLOR[grade],
+                    selectedColor: Colors.black,
+                    fillColor: (grade == 0 || grade == 7)
+                        ? Colors.black.withOpacity(0.1)
+                        : PRIMARY_COLOR[grade].withOpacity(0.3),
                     onPressed: (value) {
                       setState(() {
                         if (value == 0) {
@@ -69,7 +81,9 @@ class _FreeBoardState extends State<FreeBoard> {
                           EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: PRIMARY_COLOR[grade],
+                          color: grade == 0
+                              ? Colors.black.withOpacity(0.2)
+                              : PRIMARY_COLOR[grade],
                         ),
                       ),
                       child: TextField(

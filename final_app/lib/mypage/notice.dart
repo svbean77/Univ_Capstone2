@@ -16,7 +16,7 @@ class _NoticeState extends State<Notice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Center(
         child: Text(

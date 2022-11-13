@@ -17,8 +17,6 @@ class ListMyExercise extends StatefulWidget {
 }
 
 class _ListMyExerciseState extends State<ListMyExercise> {
-  int grade = 0;
-
   @override
   Widget build(BuildContext context) {
     //운동 이름 등 db에서 select
@@ -27,20 +25,27 @@ class _ListMyExerciseState extends State<ListMyExercise> {
     //횟수랑 시간은 어떻게 구분할 것인가?
     //db 속성으로 횟수 t/f를 만들고 t이면 회, f이면 초로 단위를 추가
     List<String> isTime = ['f', 'f', 'f', 't'];
-    int grade = 0;
+    int grade = 5;
 
-    String numberUnit(String boolean){
+    String numberUnit(String boolean) {
       String unit = (boolean == 't') ? '초' : '회';
 
       return unit;
     }
 
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: (){
+        child: Icon(Icons.add,
+            color: (grade == 0 ||
+                    grade == 1 ||
+                    grade == 2 ||
+                    grade == 4 ||
+                    grade == 8)
+                ? Colors.black
+                : Colors.white),
+        onPressed: () {
           //db에 운동을 추가하는 코드
           showDialog(
             context: context,
@@ -68,7 +73,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0),
                 child: GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     //db 횟수를 변경하는 코드 작성
                     //ListView를 실시간으로 바꿀 수 있도록 코드 수정
                   },
@@ -116,7 +121,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                   ),
                 );
               },
-              child: Text('운동시작'),
+              child: Text('운동시작', style: TextStyle(color: Colors.black)),
             ),
           ],
         ),

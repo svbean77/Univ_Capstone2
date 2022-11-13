@@ -16,7 +16,6 @@ class ListExercise extends StatefulWidget {
 }
 
 class _ListExerciseState extends State<ListExercise> {
-  int grade = 0;
   @override
   Widget build(BuildContext context) {
     //운동 이름 등 db에서 select
@@ -25,16 +24,16 @@ class _ListExerciseState extends State<ListExercise> {
     //횟수랑 시간은 어떻게 구분할 것인가?
     //db 속성으로 횟수 t/f를 만들고 t이면 회, f이면 초로 단위를 추가
     List<String> isTime = ['f', 'f', 'f', 't'];
-    int grade = 0;
+    int grade = 5;
 
-    String numberUnit(String boolean){
+    String numberUnit(String boolean) {
       String unit = (boolean == 't') ? '초' : '회';
 
       return unit;
     }
 
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -91,7 +90,7 @@ class _ListExerciseState extends State<ListExercise> {
                   ),
                 );
               },
-              child: Text('운동시작'),
+              child: Text('운동시작', style: TextStyle(color: Colors.black)),
             ),
           ],
         ),

@@ -1,4 +1,3 @@
-import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/exercise/const/exercise_main.dart';
 import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/ranking/const/ranking_main.dart';
@@ -33,9 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
+    int grade = 5;
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       resizeToAvoidBottomInset: false,
       body: SizedBox.expand(
@@ -61,26 +60,26 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.sports, color: Colors.black.withOpacity(0.3)),
+            icon: Icon(Icons.sports, color: Colors.black.withOpacity(0.5)),
             title: Text('운동하기',
-                style: TextStyle(color: Colors.black.withOpacity(0.3))),
+                style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.analytics_outlined,
-                color: Colors.black.withOpacity(0.3)),
+                color: Colors.black.withOpacity(0.5)),
             title: Text('운동기록',
-                style: TextStyle(color: Colors.black.withOpacity(0.3))),
+                style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.bar_chart_rounded,
-                color: Colors.black.withOpacity(0.3)),
+                color: Colors.black.withOpacity(0.5)),
             title: Text('랭킹',
-                style: TextStyle(color: Colors.black.withOpacity(0.3))),
+                style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.people, color: Colors.black.withOpacity(0.3)),
+            icon: Icon(Icons.people, color: Colors.black.withOpacity(0.5)),
             title: Text('친구',
-                style: TextStyle(color: Colors.black.withOpacity(0.3))),
+                style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
 
         ],

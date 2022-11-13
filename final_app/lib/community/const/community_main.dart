@@ -1,5 +1,3 @@
-//https://eunoia3jy.tistory.com/110
-
 import 'package:final_app/community/free_board.dart';
 import 'package:final_app/community/q_and_a_board.dart';
 import 'package:final_app/screen/const/app_bar.dart';
@@ -8,9 +6,7 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class CommunityMain extends StatefulWidget {
-  final grade;
   const CommunityMain({
-    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -30,13 +26,13 @@ class _CommunityMainState extends State<CommunityMain>
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
+    int grade = 5;
     List<int> freeboardLst = [1, 2, 3, 5, 7];
     List<int> qnaboardLst = [4, 6, 8, 9, 10, 11, 12];
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       body: Column(
         children: [
           Container(
@@ -55,7 +51,9 @@ class _CommunityMainState extends State<CommunityMain>
                 ),
               ],
               indicator: BoxDecoration(
-                color: PRIMARY_COLOR[widget.grade].withOpacity(0.3),
+                color: (grade == 0 || grade == 7)
+                    ? Colors.black.withOpacity(0.1)
+                    : PRIMARY_COLOR[grade].withOpacity(0.3),
               ),
               labelColor: Colors.black,
               unselectedLabelColor: Colors.black,

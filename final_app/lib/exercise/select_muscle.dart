@@ -17,7 +17,7 @@ class SelectMuscle extends StatelessWidget {
     String level = '숙련자';
 
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(10.0),
@@ -54,7 +54,7 @@ class SelectMuscle extends StatelessWidget {
                   },
                 );
               },
-              child: Text('이름으로 검색'),
+              child: Text('이름으로 검색', style: TextStyle(color: Colors.black)),
             ),
             SizedBox(height: 20.0),
             Text(

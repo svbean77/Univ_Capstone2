@@ -22,7 +22,7 @@ class AddWeight extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '날짜입력: YYYYMMDD',
                 hintStyle: TextStyle(
-                  color: PRIMARY_COLOR[grade],
+                  color: Colors.black,
                 ),
                 border: InputBorder.none,
               ),
@@ -30,7 +30,9 @@ class AddWeight extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: PRIMARY_COLOR[grade],
+                color: grade == 0
+                    ? Colors.black.withOpacity(0.2)
+                    : PRIMARY_COLOR[grade],
               ),
             ),
           ),
@@ -41,7 +43,7 @@ class AddWeight extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '체중입력',
                 hintStyle: TextStyle(
-                  color: PRIMARY_COLOR[grade],
+                  color: Colors.black,
                 ),
                 border: InputBorder.none,
               ),
@@ -49,7 +51,9 @@ class AddWeight extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: PRIMARY_COLOR[grade],
+                color: grade == 0
+                    ? Colors.black.withOpacity(0.2)
+                    : PRIMARY_COLOR[grade],
               ),
             ),
           ),

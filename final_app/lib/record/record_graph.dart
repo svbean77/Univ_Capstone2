@@ -19,7 +19,7 @@ class _RecordGraphState extends State<RecordGraph> {
     List<int> recordDate = [20220901, 20220905, 20220908, 20220909, 20220910];
     List<double> weight = [45.5, 50.7, 47.3, 57.9, 55.5];
     List<WeightData> data = [];
-    int grade = 0;
+    int grade = 5;
 
     for (int i = 0; i < recordDate.length; i++) {
       int year = recordDate[i] ~/ 10000;
@@ -29,7 +29,6 @@ class _RecordGraphState extends State<RecordGraph> {
         WeightData(DateTime(year, month, day), weight[i]),
       );
     }
-
 
     int dif = data[data.length - 1].date.difference(data[0].date).inDays;
 
@@ -47,7 +46,7 @@ class _RecordGraphState extends State<RecordGraph> {
               width: dif * 40 < MediaQuery.of(context).size.width
                   ? MediaQuery.of(context).size.width
                   : MediaQuery.of(context).size.width + dif * 40,
-              color: PRIMARY_COLOR[grade].withOpacity(0.05),
+              color: PRIMARY_COLOR[grade].withOpacity(0.03),
               child: SfCartesianChart(
                 primaryXAxis: DateTimeAxis(
                   intervalType: DateTimeIntervalType.days,
@@ -57,7 +56,6 @@ class _RecordGraphState extends State<RecordGraph> {
                 primaryYAxis: NumericAxis(
                   minimum: weight.reduce(min) - 5,
                   maximum: weight.reduce(max) + 5,
-                  //title: AxisTitle(text: '체중(kg)'),
                   isVisible: false,
                 ),
                 series: <ChartSeries>[
@@ -67,17 +65,21 @@ class _RecordGraphState extends State<RecordGraph> {
                         height: 8.0,
                         width: 8.0,
                         color: Colors.white,
-                        borderColor: PRIMARY_COLOR[grade] == Colors.white
-                            ? Colors.grey
-                            : PRIMARY_COLOR[grade] == Colors.yellow
-                                ? Colors.yellow[700]
-                                : PRIMARY_COLOR[grade],
+                        borderColor: grade == 0
+                            ? Colors.grey.withOpacity(0.1)
+                            : grade == 2
+                                ? Colors.yellow[600]
+                                : grade == 8
+                                    ? Colors.lightGreen[200]
+                                    : PRIMARY_COLOR[grade],
                         shape: DataMarkerType.circle),
-                    color: PRIMARY_COLOR[grade] == Colors.white
-                        ? Colors.grey
-                        : PRIMARY_COLOR[grade] == Colors.yellow
-                            ? Colors.yellow[700]
-                            : PRIMARY_COLOR[grade],
+                    color: grade == 0
+                        ? Colors.black.withOpacity(0.1)
+                        : grade == 2
+                            ? Colors.yellow[600]
+                        : grade == 8
+                        ? Colors.lightGreen[200]
+                        : PRIMARY_COLOR[grade],
                     dataSource: data,
                     xValueMapper: (WeightData info, _) => info.date,
                     yValueMapper: (WeightData info, _) => info.weight,

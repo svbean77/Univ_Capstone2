@@ -1,13 +1,19 @@
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
-class AddRoutine extends StatelessWidget {
+class AddRoutine extends StatefulWidget {
   const AddRoutine({Key? key}) : super(key: key);
 
   @override
+  State<AddRoutine> createState() => _AddRoutineState();
+}
+
+class _AddRoutineState extends State<AddRoutine> {
+  TextEditingController _controller = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    TextEditingController _controller = TextEditingController();
-    int grade = 0;
+
+    int grade = 5;
 
     return Container(
       height: 120.0,
@@ -21,14 +27,16 @@ class AddRoutine extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '루틴 이름을 입력해주세요',
                 hintStyle: TextStyle(
-                  color: PRIMARY_COLOR[grade],
+                  color: Colors.black
                 ),
                 border: InputBorder.none,
               ),
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: PRIMARY_COLOR[grade],
+                color: grade == 0
+                    ? Colors.black.withOpacity(0.2)
+                    : PRIMARY_COLOR[grade],
               ),
             ),
           ),

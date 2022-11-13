@@ -7,8 +7,10 @@ class RankingCard extends StatelessWidget {
   final rating;
   final total3th;
   final ranking;
+  final grade;
 
   const RankingCard({
+    required this.grade,
     required this.nickname,
     required this.rating,
     required this.ranking,
@@ -18,7 +20,7 @@ class RankingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
+
 
     return GestureDetector(
       onTap: () {

@@ -25,11 +25,11 @@ class _WriteBoardState extends State<WriteBoard> {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
+    int grade = 5;
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(
@@ -47,7 +47,9 @@ class _WriteBoardState extends State<WriteBoard> {
                           EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: PRIMARY_COLOR[grade],
+                          color: grade == 0
+                              ? Colors.black.withOpacity(0.2)
+                              : PRIMARY_COLOR[grade],
                         ),
                       ),
                       child: Form(
@@ -78,7 +80,9 @@ class _WriteBoardState extends State<WriteBoard> {
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: PRIMARY_COLOR[grade],
+                    color: grade == 0
+                        ? Colors.black.withOpacity(0.2)
+                        : PRIMARY_COLOR[grade],
                   ),
                 ),
                 child: Form(
@@ -100,14 +104,34 @@ class _WriteBoardState extends State<WriteBoard> {
               children: [
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('갤러리'),
+                  child: Text(
+                    '갤러리',
+                    style: TextStyle(
+                        color: (grade == 0 ||
+                                grade == 1 ||
+                                grade == 2 ||
+                                grade == 4 ||
+                                grade == 8)
+                            ? Colors.black
+                            : Colors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
                       primary: PRIMARY_COLOR[grade], elevation: 0),
                 ),
                 SizedBox(width: 8.0),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('카메라'),
+                  child: Text(
+                    '카메라',
+                    style: TextStyle(
+                        color: (grade == 0 ||
+                                grade == 1 ||
+                                grade == 2 ||
+                                grade == 4 ||
+                                grade == 8)
+                            ? Colors.black
+                            : Colors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
                       primary: PRIMARY_COLOR[grade], elevation: 0),
                 ),
@@ -124,10 +148,9 @@ class _WriteBoardState extends State<WriteBoard> {
                 String saveContent =
                     '''완\n전\n긴\n내\n용\n의\n글\n을\n써\n보\n자\n이\n번\n엔\n몇\n줄\n이\n나\n될\n까\n알\n아\n맞\n춰\n봅\n시\n다''';
 
-                if(widget.mode == 'edit'){
+                if (widget.mode == 'edit') {
                   //db의 내용을 수정하는 코드
-                }
-                else{
+                } else {
                   //db에 내용을 추가하는 코드
                 }
                 Navigator.of(context).pushReplacement(
@@ -139,7 +162,17 @@ class _WriteBoardState extends State<WriteBoard> {
                   ),
                 );
               },
-              child: Text('저장'),
+              child: Text(
+                '저장',
+                style: TextStyle(
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white),
+              ),
               style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[grade], elevation: 0),
             ),

@@ -16,16 +16,16 @@ class ListRoutine extends StatefulWidget {
 }
 
 class _ListRoutineState extends State<ListRoutine> {
-  int grade = 0;
+
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
-    int grade = 0;
     List<String> routineName = ['루틴1', '루틴2', '루틴3', '루틴4'];
     List<int> routineTime = [15, 20, 25, 30];
 
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),

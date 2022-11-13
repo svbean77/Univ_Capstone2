@@ -21,13 +21,14 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController controller = TextEditingController();
   List<bool> search = [true, false];
-  int grade = 0;
+
 
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -45,7 +46,10 @@ class _SearchPageState extends State<SearchPage> {
                       Text('작성자'),
                     ],
                     isSelected: search,
-                    selectedColor: PRIMARY_COLOR[grade],
+                    selectedColor: Colors.black,
+                    fillColor: (grade == 0 || grade == 7)
+                        ? Colors.black.withOpacity(0.1)
+                        : PRIMARY_COLOR[grade].withOpacity(0.3),
                     onPressed: (value) {
                       setState(() {
                         if (value == 0) {
@@ -65,7 +69,9 @@ class _SearchPageState extends State<SearchPage> {
                           EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: PRIMARY_COLOR[grade],
+                          color: grade == 0
+                              ? Colors.black.withOpacity(0.2)
+                              : PRIMARY_COLOR[grade],
                         ),
                       ),
                       child: TextField(
@@ -125,7 +131,8 @@ class _SearchPageState extends State<SearchPage> {
                             GestureDetector(
                               child: ContentsList(
                                   boardnum: widget.boardLst[i], grade: grade),
-                              onTap: () {//게시판 번호를 이용해 게시글 정보를 불러오는 코드
+                              onTap: () {
+                                //게시판 번호를 이용해 게시글 정보를 불러오는 코드
                                 String title = '게시판 제목';
                                 String contents = '게시판 내용${i}';
 

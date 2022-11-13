@@ -20,12 +20,14 @@ class QnABoard extends StatefulWidget {
 class _QnABoardState extends State<QnABoard> {
   final TextEditingController controller = TextEditingController();
   List<bool> search = [true, false];
-  int grade = 0;
+
 
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -34,7 +36,14 @@ class _QnABoardState extends State<QnABoard> {
             ),
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add,
+            color: (grade == 0 ||
+                    grade == 1 ||
+                    grade == 2 ||
+                    grade == 4 ||
+                    grade == 8)
+                ? Colors.black
+                : Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -50,7 +59,10 @@ class _QnABoardState extends State<QnABoard> {
                       Text('작성자'),
                     ],
                     isSelected: search,
-                    selectedColor: PRIMARY_COLOR[grade],
+                    selectedColor: Colors.black,
+                    fillColor: (grade == 0 || grade == 7)
+                        ? Colors.black.withOpacity(0.1)
+                        : PRIMARY_COLOR[grade].withOpacity(0.3),
                     onPressed: (value) {
                       setState(() {
                         if (value == 0) {

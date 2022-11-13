@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 
 class SelectRoutineContainer extends StatelessWidget {
   final title;
+  final grade;
   const SelectRoutineContainer({
+    required this.grade,
     required this.title,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
 
     return Padding(
       padding: EdgeInsets.only(right: 8.0, top: 10.0, bottom: 10.0),

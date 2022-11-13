@@ -35,24 +35,32 @@ class ExerciseGuide extends StatefulWidget {
 }
 
 class _ExerciseGuideState extends State<ExerciseGuide> {
-  int grade = 0;
+
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
             heroTag: 'memo',
-            child: Icon(Icons.note_add_outlined),
+            child: Icon(Icons.note_add_outlined,
+                color: (grade == 0 ||
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
+                    ? Colors.black
+                    : Colors.white),
             onPressed: () {
               String content =
                   '''아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n''';
               String mode;
               if (content.length == 0) {
-                mode = 'insert';
+                mode = 'write';
               } else {
                 mode = 'edit';
               }
@@ -68,11 +76,19 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                 },
               );
             },
+            backgroundColor: PRIMARY_COLOR[grade],
           ),
           SizedBox(height: 8.0),
           FloatingActionButton(
             heroTag: 'filter',
-            child: Icon(Icons.filter_list),
+            child: Icon(Icons.filter_list,
+                color: (grade == 0 ||
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
+                    ? Colors.black
+                    : Colors.white),
             onPressed: () {
               showModalBottomSheet(
                 context: context,
@@ -120,7 +136,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                     ),
                   );
               },
-              child: Text('근육 선택'),
+              child: Text('근육 선택', style: TextStyle(color: Colors.black)),
             ),
             SizedBox(height: 16.0),
             Expanded(

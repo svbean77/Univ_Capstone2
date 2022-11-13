@@ -16,10 +16,10 @@ class FriendsMain extends StatefulWidget {
 class _FriendsMainState extends State<FriendsMain> {
   final TextEditingController controller = TextEditingController();
   List<bool> search = [true, false];
-  int grade = 0;
 
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     //친구 목록 불러오기
     List<String> friendN = ['친구1', '친구2', '친구3', '친구4', '친구5'];
     List<String> friendR = ['챌린저', '다이아몬드', '골드', '브론즈', '아이언'];
@@ -41,7 +41,10 @@ class _FriendsMainState extends State<FriendsMain> {
                     Text('아이디'),
                   ],
                   isSelected: search,
-                  selectedColor: PRIMARY_COLOR[grade],
+                  selectedColor: Colors.black,
+                  fillColor: (grade == 0 || grade == 7)
+                      ? Colors.black.withOpacity(0.1)
+                      : PRIMARY_COLOR[grade].withOpacity(0.3),
                   onPressed: (value) {
                     setState(() {
                       if (value == 0) {
@@ -61,7 +64,9 @@ class _FriendsMainState extends State<FriendsMain> {
                         EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: PRIMARY_COLOR[grade],
+                        color: grade == 0
+                            ? Colors.black.withOpacity(0.2)
+                            : PRIMARY_COLOR[grade],
                       ),
                     ),
                     child: TextField(
@@ -99,7 +104,7 @@ class _FriendsMainState extends State<FriendsMain> {
                       } else {
                         Fluttertoast.showToast(
                           msg: '존재하지 않는 닉네임입니다.',
-                          backgroundColor: Colors.green,
+                          backgroundColor: Colors.grey,
                           textColor: Colors.white,
                           toastLength: Toast.LENGTH_SHORT,
                         );
@@ -124,7 +129,7 @@ class _FriendsMainState extends State<FriendsMain> {
                       } else {
                         Fluttertoast.showToast(
                           msg: '존재하지 않는 아이디입니다.',
-                          backgroundColor: Colors.green,
+                          backgroundColor: Colors.grey,
                           textColor: Colors.white,
                           toastLength: Toast.LENGTH_SHORT,
                         );
@@ -164,7 +169,8 @@ class _FriendsMainState extends State<FriendsMain> {
                                   FriendCard(
                                       nickname: friendN[i],
                                       rating: friendR[i],
-                                      isActive: isActive[i])
+                                      isActive: isActive[i],
+                                      grade: grade)
                               ],
                             ),
                     ),
@@ -189,7 +195,9 @@ class _FriendsMainState extends State<FriendsMain> {
                             children: [
                               for (int i = 0; i < requestN.length; i++)
                                 RequestCard(
-                                    nickname: requestN[i], rating: requestR[i])
+                                    nickname: requestN[i],
+                                    rating: requestR[i],
+                                    grade: grade)
                             ],
                           ),
                   ),

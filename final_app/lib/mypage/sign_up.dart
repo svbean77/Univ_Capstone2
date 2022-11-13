@@ -34,7 +34,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     int grade = 0;
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Container(
         height: double.infinity,

@@ -1,5 +1,3 @@
-//https://github.com/pedromassango/bottom_navy_bar
-
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -106,8 +104,11 @@ class _ItemWidget extends StatelessWidget {
         duration: animationDuration,
         curve: curve,
         decoration: BoxDecoration(
-          color: isSelected ? PRIMARY_COLOR[grade].withOpacity(0.2) : backgroundColor,
-          //isSelected ? item.activeColor.withOpacity(0.2) : backgroundColor,
+          color: !isSelected
+              ? backgroundColor
+              : (grade == 0 || grade == 7)
+                  ? Colors.black.withOpacity(0.1)
+                  : PRIMARY_COLOR[grade].withOpacity(0.3),
           borderRadius: BorderRadius.circular(itemCornerRadius),
         ),
         child: SingleChildScrollView(
@@ -127,8 +128,8 @@ class _ItemWidget extends StatelessWidget {
                     color: isSelected
                         ? item.activeColor.withOpacity(1)
                         : item.inactiveColor == null
-                        ? item.activeColor
-                        : item.inactiveColor,
+                            ? item.activeColor
+                            : item.inactiveColor,
                   ),
                   child: item.icon,
                 ),

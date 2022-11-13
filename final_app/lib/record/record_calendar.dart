@@ -12,10 +12,10 @@ class RecordCalendar extends StatefulWidget {
 class _RecordCalendarState extends State<RecordCalendar> {
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
-  int grade = 0;
 
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     return Column(
       children: [
         Calendar(
@@ -78,9 +78,13 @@ class CalendarState extends State<Calendar> {
         isTodayHighlighted: false,
         selectedDecoration: BoxDecoration(
           border: Border.all(
-            color: PRIMARY_COLOR[widget.grade],
+            color: widget.grade == 0
+                ? Colors.black.withOpacity(0.2)
+                : PRIMARY_COLOR[widget.grade],
           ),
-          color: PRIMARY_COLOR[widget.grade].withOpacity(0.2),
+          color: widget.grade == 0
+              ? Colors.black.withOpacity(0.2)
+              : PRIMARY_COLOR[widget.grade].withOpacity(0.2),
           borderRadius: BorderRadius.circular(100),
         ),
         outsideDecoration: BoxDecoration(
@@ -113,10 +117,9 @@ class RecordExercise extends StatelessWidget {
     //String content = '길\n게\n말\n하\n기\n내\n용\n엄\n청\n많\n음';
     String content = '';
     String mode;
-    if (content.length == 0){
+    if (content.length == 0) {
       mode = 'write';
-    }
-    else{
+    } else {
       mode = 'edit';
     }
 
@@ -130,7 +133,10 @@ class RecordExercise extends StatelessWidget {
               isScrollControlled: true,
               builder: (_) {
                 return RecordBottomSheet(
-                    selectedDay: selectedDay, grade: grade, content: content, mode: mode);
+                    selectedDay: selectedDay,
+                    grade: grade,
+                    content: content,
+                    mode: mode);
               },
             );
           },
@@ -145,8 +151,7 @@ class RecordExercise extends StatelessWidget {
               children: [
                 Text(
                     '${selectedDay.year}.${selectedDay.month}.${selectedDay.day} 운동 기록\n',
-                    style:
-                        TextStyle(color: PRIMARY_COLOR[grade], fontSize: 20.0)),
+                    style: TextStyle(fontSize: 20.0)),
                 content.length != 0 ? Text(content) : Text('운동기록이 없습니다'),
               ],
             ),
@@ -208,10 +213,9 @@ class _RecordBottomSheetState extends State<RecordBottomSheet> {
   }
 
   void onSavePressed() {
-    if (widget.mode == 'edit'){
+    if (widget.mode == 'edit') {
       //db의 내용을 수정하는 코드
-    }
-    else{
+    } else {
       //db에 데이터를 추가하는 코드
     }
     //async로 바꾸기
@@ -240,9 +244,18 @@ class RecordSaveButton extends StatelessWidget {
           child: ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              primary: PRIMARY_COLOR[grade],
+                primary: PRIMARY_COLOR[grade], elevation: 0),
+            child: Text(
+              '저장',
+              style: TextStyle(
+                  color: (grade == 0 ||
+                          grade == 1 ||
+                          grade == 2 ||
+                          grade == 4 ||
+                          grade == 8)
+                      ? Colors.black
+                      : Colors.white),
             ),
-            child: Text('저장'),
           ),
         ),
       ],

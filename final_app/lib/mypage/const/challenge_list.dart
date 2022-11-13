@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../screen/const/grade_colors.dart';
 
 class ChallengeList extends StatelessWidget {
+  final grade;
   final date;
   final weight;
   const ChallengeList({
+    required this.grade,
     required this.weight,
     required this.date,
     Key? key,
@@ -13,7 +15,6 @@ class ChallengeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
 
     return Container(
       height: 70.0,

@@ -15,7 +15,7 @@ enum UnitItems { numbers, times }
 
 class _AddExerciseState extends State<AddExercise> {
 
-  int grade = 0;
+
   String? selectedMuscle;
   String? selectedExercise;
   UnitItems? selectedUnit = UnitItems.numbers;
@@ -24,6 +24,7 @@ class _AddExerciseState extends State<AddExercise> {
 
   @override
   Widget build(BuildContext context) {
+    int grade = 0;
     return Container(
       height: 400.0,
       child: Column(

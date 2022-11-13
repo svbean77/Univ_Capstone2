@@ -6,6 +6,7 @@ class FriendsRanking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     List<String> nickname = ['친구1', '친구2', '친구3', '친구4','친구5'];
     List<String> rating = ['챌린저', '다이아몬드', '골드', '브론즈', '아이언'];
     List<int> total3th = [500, 380, 220, 190, 80];
@@ -16,6 +17,7 @@ class FriendsRanking extends StatelessWidget {
         child: ListView.separated(
             itemBuilder: (context, index) {
               return RankingCard(
+                grade: grade,
                 nickname: nickname[index],
                 rating: rating[index],
                 ranking: index + 1,

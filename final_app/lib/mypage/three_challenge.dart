@@ -19,10 +19,10 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
   Widget build(BuildContext context) {
     String nickname = '내닉네임';
     List<String> three = ['데드리프트', '벤치프레스', '스쿼트'];
-    int grade = 0;
+    int grade = 5;
 
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

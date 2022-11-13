@@ -2,6 +2,7 @@ import 'package:final_app/exercise/const/routine_card.dart';
 import 'package:final_app/record/record_calendar.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -30,15 +31,23 @@ class RoutineGuide extends StatefulWidget {
 }
 
 class _RoutineGuideState extends State<RoutineGuide> {
-  int grade = 0;
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: PRIMARY_COLOR[grade],
         heroTag: 'memo',
-        child: Icon(Icons.note_add_outlined),
+        child: Icon(Icons.note_add_outlined,
+            color: (grade == 0 ||
+                    grade == 1 ||
+                    grade == 2 ||
+                    grade == 4 ||
+                    grade == 8)
+                ? Colors.black
+                : Colors.white),
         onPressed: () {
           String content =
               '''아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n''';
@@ -97,18 +106,20 @@ class _RoutineGuideState extends State<RoutineGuide> {
                   },
                   itemCount: 3),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => HomeScreen(),
-                  ),
-                  (route) => false,
-                );
-              },
-              child: Text(
-                '운동종료',
-                style: TextStyle(fontSize: 20.0),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => HomeScreen(),
+                    ),
+                    (route) => false,
+                  );
+                },
+                child: Text(
+                  '운동종료',
+                  style: TextStyle(fontSize: 20.0, color: Colors.black),
+                ),
               ),
             ),
           ],

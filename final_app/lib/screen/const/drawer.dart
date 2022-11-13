@@ -5,10 +5,10 @@ import 'package:final_app/mypage/sign_in.dart';
 import 'package:final_app/mypage/three_challenge.dart';
 import 'package:flutter/material.dart';
 
+import 'grade_colors.dart';
+
 class MyDrawer extends StatelessWidget {
-  final grade;
   const MyDrawer({
-    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -80,7 +80,7 @@ class MyDrawer extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        CommunityMain(grade: grade),
+                        CommunityMain(),
                   ),
                 );
               },

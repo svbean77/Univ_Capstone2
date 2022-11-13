@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 class RequestCard extends StatelessWidget {
   final nickname;
   final rating;
+  final grade;
 
   const RequestCard({
+    required this.grade,
     required this.nickname,
     required this.rating,
     Key? key,
@@ -15,7 +17,6 @@ class RequestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
@@ -57,7 +58,7 @@ class RequestCard extends StatelessWidget {
                   SizedBox(width: 16.0),
                   GestureDetector(
                     child: Icon(Icons.add_circle_outline),
-                    onTap: (){
+                    onTap: () {
                       //db에 친구 추가하는 코드
                       showDialog(
                         context: context,
@@ -67,18 +68,20 @@ class RequestCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('친구추가 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       TextButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('취소'),
+                                        child: Text('취소',
+                                            style:
+                                                TextStyle(color: Colors.black)),
                                       ),
                                       TextButton(
                                         onPressed: () {
@@ -86,7 +89,9 @@ class RequestCard extends StatelessWidget {
                                           //정보를 build에서 가져오면 새로고침이 되나?
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('확인'),
+                                        child: Text('확인',
+                                            style:
+                                                TextStyle(color: Colors.black)),
                                       ),
                                     ],
                                   )
@@ -101,7 +106,7 @@ class RequestCard extends StatelessWidget {
                   SizedBox(width: 16.0),
                   GestureDetector(
                     child: Icon(Icons.cancel_outlined),
-                    onTap: (){
+                    onTap: () {
                       //친구 요청 목록에서 삭제하는 코드
                       showDialog(
                         context: context,
@@ -111,18 +116,20 @@ class RequestCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('삭제하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       TextButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('취소'),
+                                        child: Text('취소',
+                                            style:
+                                                TextStyle(color: Colors.black)),
                                       ),
                                       TextButton(
                                         onPressed: () {
@@ -130,7 +137,9 @@ class RequestCard extends StatelessWidget {
                                           //정보를 build에서 가져오면 새로고침이 되나?
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('확인'),
+                                        child: Text('확인',
+                                            style:
+                                                TextStyle(color: Colors.black)),
                                       ),
                                     ],
                                   )

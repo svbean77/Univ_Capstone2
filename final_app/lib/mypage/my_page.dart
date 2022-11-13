@@ -12,8 +12,7 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-  int grade = 0;
-
+  int grade = 5;
   Map<String, int> THEME_SELECT_RANGE = {
     '아이언': 1,
     '브론즈': 2,
@@ -34,7 +33,7 @@ class _MyPageState extends State<MyPage> {
     int? selectRange = THEME_SELECT_RANGE[rating];
 
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

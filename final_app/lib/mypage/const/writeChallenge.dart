@@ -20,11 +20,11 @@ class _WriteChallengeState extends State<WriteChallenge> {
   final TextEditingController contentsController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
+    int grade = 5;
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(
@@ -38,7 +38,9 @@ class _WriteChallengeState extends State<WriteChallenge> {
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: PRIMARY_COLOR[grade],
+                    color: grade == 0
+                        ? Colors.black.withOpacity(0.2)
+                        : PRIMARY_COLOR[grade],
                   ),
                 ),
                 child: TextField(
@@ -66,7 +68,9 @@ class _WriteChallengeState extends State<WriteChallenge> {
                         EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: PRIMARY_COLOR[grade],
+                        color: grade == 0
+                            ? Colors.black.withOpacity(0.2)
+                            : PRIMARY_COLOR[grade],
                       ),
                     ),
                     child: TextField(
@@ -84,7 +88,17 @@ class _WriteChallengeState extends State<WriteChallenge> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {},
-              child: Text('갤러리'),
+              child: Text(
+                '갤러리',
+                style: TextStyle(
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white),
+              ),
               style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[grade], elevation: 0),
             ),
@@ -101,7 +115,17 @@ class _WriteChallengeState extends State<WriteChallenge> {
                   ),
                 );
               },
-              child: Text('저장'),
+              child: Text(
+                '저장',
+                style: TextStyle(
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white),
+              ),
               style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[grade], elevation: 0),
             ),

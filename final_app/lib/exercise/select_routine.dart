@@ -15,16 +15,17 @@ class SelectRoutine extends StatefulWidget {
 }
 
 class _SelectRoutineState extends State<SelectRoutine> {
-  int grade = 0;
 
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
+
     List<String> timeLst = ['15분', '30분', '60분', '90분', '120분'];
 
     List<String> divisionLst = ['무분할', '2분할', '3분할', '4분할'];
 
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -45,7 +46,7 @@ class _SelectRoutineState extends State<SelectRoutine> {
                 scrollDirection: Axis.horizontal,
                 children: [
                   for (int i = 0; i < timeLst.length; i++)
-                    SelectRoutineContainer(title: timeLst[i])
+                    SelectRoutineContainer(title: timeLst[i], grade: grade)
                 ],
               ),
             ),
@@ -62,9 +63,9 @@ class _SelectRoutineState extends State<SelectRoutine> {
                   for (int i = 0; i < muscleLst.length ~/ 3; i++)
                     Column(
                       children: [
-                        SelectRoutineContainer(title: muscleLst[i * 3]),
-                        SelectRoutineContainer(title: muscleLst[i * 3 + 1]),
-                        SelectRoutineContainer(title: muscleLst[i * 3 + 2]),
+                        SelectRoutineContainer(title: muscleLst[i * 3], grade: grade),
+                        SelectRoutineContainer(title: muscleLst[i * 3 + 1], grade: grade),
+                        SelectRoutineContainer(title: muscleLst[i * 3 + 2], grade: grade),
                       ],
                     )
                 ],
@@ -81,7 +82,7 @@ class _SelectRoutineState extends State<SelectRoutine> {
                 scrollDirection: Axis.horizontal,
                 children: [
                   for (int i = 0; i < divisionLst.length; i++)
-                    SelectRoutineContainer(title: divisionLst[i])
+                    SelectRoutineContainer(title: divisionLst[i], grade: grade)
                 ],
               ),
             ),

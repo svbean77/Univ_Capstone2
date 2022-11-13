@@ -1,3 +1,4 @@
+import 'package:final_app/mypage/my_page.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +24,12 @@ class _EditMyInfoState extends State<EditMyInfo> {
 
   bool isPasswordVisible = false;
   List<bool> sex = [true, false];
-  int grade = 0;
 
   @override
   Widget build(BuildContext context) {
+    int grade = 5;
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       body: Container(
         height: double.infinity,
@@ -78,7 +79,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[grade],
+                            color: grade == 0
+                                ? Colors.black.withOpacity(0.2)
+                                : PRIMARY_COLOR[grade],
                           ),
                         ),
                         child: TextField(
@@ -124,7 +127,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[grade],
+                            color: grade == 0
+                                ? Colors.black.withOpacity(0.2)
+                                : PRIMARY_COLOR[grade],
                           ),
                         ),
                         child: TextField(
@@ -156,7 +161,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[grade],
+                            color: grade == 0
+                                ? Colors.black.withOpacity(0.2)
+                                : PRIMARY_COLOR[grade],
                           ),
                         ),
                         child: TextField(
@@ -182,7 +189,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                             horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[grade],
+                            color: grade == 0
+                                ? Colors.black.withOpacity(0.2)
+                                : PRIMARY_COLOR[grade],
                           ),
                         ),
                         child: TextField(
@@ -217,7 +226,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                         ],
                         isSelected: sex,
                         selectedColor: Colors.black,
-                        fillColor: PRIMARY_COLOR[grade].withOpacity(0.2),
+                        fillColor: (grade == 0 || grade == 7)
+                            ? Colors.black.withOpacity(0.1)
+                            : PRIMARY_COLOR[grade].withOpacity(0.3),
                         onPressed: (value) {
                           setState(() {
                             if (value == 0) {
@@ -239,7 +250,11 @@ class _EditMyInfoState extends State<EditMyInfo> {
                 GestureDetector(
                   onTap: () {
                     //db에서 내용을 수정하는 코드
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => MyPage(),
+                      ),
+                    );
                   },
                   child: Container(
                     height: 50.0,

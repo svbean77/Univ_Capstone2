@@ -12,8 +12,15 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text('득근득근'),
-//backgroundColor: Colors.green,
+      title: Text('득근득근',
+          style: TextStyle(
+              color: (grade == 0 ||
+                      grade == 1 ||
+                      grade == 2 ||
+                      grade == 4 ||
+                      grade == 8)
+                  ? Colors.black
+                  : Colors.white)),
       actions: [
         GestureDetector(
           onTap: () {
@@ -30,6 +37,15 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ],
       backgroundColor: PRIMARY_COLOR[grade],
+      elevation: 0,
+      iconTheme: IconThemeData(
+          color: (grade == 0 ||
+                  grade == 1 ||
+                  grade == 2 ||
+                  grade == 4 ||
+                  grade == 8)
+              ? Colors.black
+              : Colors.white),
     );
   }
 

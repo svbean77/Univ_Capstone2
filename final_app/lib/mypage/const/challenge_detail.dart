@@ -26,7 +26,7 @@ class ChallengeDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(

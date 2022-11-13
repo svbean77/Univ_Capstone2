@@ -6,9 +6,11 @@ class FriendCard extends StatelessWidget {
   final nickname;
   final rating;
   final isActive;
+  final grade;
 
   const FriendCard({
     required this.nickname,
+    required this.grade,
     required this.rating,
     required this.isActive,
     Key? key,
@@ -16,8 +18,6 @@ class FriendCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
@@ -37,7 +37,8 @@ class FriendCard extends StatelessWidget {
               children: [
                 Image.asset('asset/images/ranking/$rating.png'),
                 SizedBox(width: 8.0),
-                Icon(Icons.circle, color: isActive ? Colors.green : Colors.red, size: 15.0),
+                Icon(Icons.circle,
+                    color: isActive ? Colors.green : Colors.red, size: 15.0),
                 Text(' $nickname', style: TextStyle(fontSize: 20.0)),
               ],
             ),
@@ -60,7 +61,7 @@ class FriendCard extends StatelessWidget {
                   SizedBox(width: 16.0),
                   GestureDetector(
                     child: Icon(Icons.cancel_outlined),
-                    onTap: (){
+                    onTap: () {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -69,18 +70,20 @@ class FriendCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('삭제하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       TextButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('취소'),
+                                        child: Text('취소',
+                                            style:
+                                                TextStyle(color: Colors.black)),
                                       ),
                                       TextButton(
                                         onPressed: () {
@@ -88,7 +91,9 @@ class FriendCard extends StatelessWidget {
                                           //정보를 build에서 가져오면 새로고침이 되나?
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('확인'),
+                                        child: Text('확인',
+                                            style:
+                                                TextStyle(color: Colors.black)),
                                       ),
                                     ],
                                   )

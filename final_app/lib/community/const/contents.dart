@@ -31,10 +31,10 @@ class _ContentsState extends State<Contents> {
     List<String> commentWriter = ['유저1', '유저6', '유저33'];
     List<String> comment = ['이거는이렇게해야죠', '댓글내용입니다이건느', '하..\n댓글줄바꿈은뭐..'];
 
-    int grade = 0;
+    int grade = 5;
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -65,11 +65,21 @@ class _ContentsState extends State<Contents> {
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              CommunityMain(grade: grade)),
+                        builder: (BuildContext context) => CommunityMain(),
+                      ),
                     );
                   },
-                  child: Text('목록'),
+                  child: Text(
+                    '목록',
+                    style: TextStyle(
+                        color: (grade == 0 ||
+                                grade == 1 ||
+                                grade == 2 ||
+                                grade == 4 ||
+                                grade == 8)
+                            ? Colors.black
+                            : Colors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
                     primary: PRIMARY_COLOR[grade],
                     elevation: 0,
@@ -90,7 +100,17 @@ class _ContentsState extends State<Contents> {
                             ),
                           );
                         },
-                        child: Text('수정'),
+                        child: Text(
+                          '수정',
+                          style: TextStyle(
+                              color: (grade == 0 ||
+                                      grade == 1 ||
+                                      grade == 2 ||
+                                      grade == 4 ||
+                                      grade == 8)
+                                  ? Colors.black
+                                  : Colors.white),
+                        ),
                         style: ElevatedButton.styleFrom(
                           primary: PRIMARY_COLOR[grade],
                           elevation: 0,
@@ -119,7 +139,9 @@ class _ContentsState extends State<Contents> {
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text('취소'),
+                                            child: Text('취소',
+                                                style: TextStyle(
+                                                    color: Colors.black)),
                                           ),
                                           TextButton(
                                             onPressed: () {
@@ -129,12 +151,13 @@ class _ContentsState extends State<Contents> {
                                                 MaterialPageRoute(
                                                   builder:
                                                       (BuildContext context) =>
-                                                          CommunityMain(
-                                                              grade: grade),
+                                                          CommunityMain(),
                                                 ),
                                               );
                                             },
-                                            child: Text('확인'),
+                                            child: Text('확인',
+                                                style: TextStyle(
+                                                    color: Colors.black)),
                                           ),
                                         ],
                                       )
@@ -145,7 +168,17 @@ class _ContentsState extends State<Contents> {
                             },
                           );
                         },
-                        child: Text('삭제'),
+                        child: Text(
+                          '삭제',
+                          style: TextStyle(
+                              color: (grade == 0 ||
+                                      grade == 1 ||
+                                      grade == 2 ||
+                                      grade == 4 ||
+                                      grade == 8)
+                                  ? Colors.black
+                                  : Colors.white),
+                        ),
                         style: ElevatedButton.styleFrom(
                           primary: PRIMARY_COLOR[grade],
                           elevation: 0,
@@ -181,7 +214,9 @@ class _ContentsState extends State<Contents> {
                           EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: PRIMARY_COLOR[grade],
+                          color: grade == 0
+                              ? Colors.black.withOpacity(0.2)
+                              : PRIMARY_COLOR[grade],
                         ),
                       ),
                       child: TextField(
@@ -195,8 +230,15 @@ class _ContentsState extends State<Contents> {
                     ),
                   ),
                   SizedBox(width: 8.0),
-                  SizedBox(
+                  Container(
                     height: 100.0,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: grade == 0
+                            ? Colors.black.withOpacity(0.2)
+                            : PRIMARY_COLOR[grade],
+                      ),
+                    ),
                     child: TextButton(
                       onPressed: () {
                         //댓글 db에 추가하는 코드
@@ -209,7 +251,10 @@ class _ContentsState extends State<Contents> {
                           ),
                         );
                       },
-                      child: Text('댓글쓰기'),
+                      child: Text(
+                        '댓글쓰기',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ),
                 ],

@@ -18,14 +18,20 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
   @override
   Widget build(BuildContext context) {
     //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
-    int grade = 0;
+    int grade = 5;
     List<String> routineName = ['루틴1', '루틴2', '루틴3', '루틴4'];
 
     return Scaffold(
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: (grade == 0 ||
+            grade == 1 ||
+            grade == 2 ||
+            grade == 4 ||
+            grade == 8)
+            ? Colors.black
+            : Colors.white),
         onPressed: () {
           showDialog(
             context: context,

@@ -14,7 +14,7 @@ class UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
+    int grade = 5;
     //이 사람의 운동기록 불러오기 (db)
     List<int> tmp = [20220901, 20220904, 20221010, 20221111];
     List<DateTime> date = [];
@@ -29,7 +29,7 @@ class UserInfo extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -41,6 +41,7 @@ class UserInfo extends StatelessWidget {
             MyRanking(nickname: nickname),
             SizedBox(height: 8.0),
             Text('운동기록', style: TextStyle(fontSize: 20.0)),
+            SizedBox(height: 8.0),
             Expanded(
               child: tmp.length == 0
                   ? Container(
@@ -82,10 +83,24 @@ class UserInfo extends StatelessWidget {
                                             ),
                                             SizedBox(height: 8.0),
                                             ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                primary: PRIMARY_COLOR[grade],
+                                                elevation: 0,
+                                              ),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text('확인'),
+                                              child: Text(
+                                                '확인',
+                                                style: TextStyle(
+                                                    color: (grade == 0 ||
+                                                            grade == 1 ||
+                                                            grade == 2 ||
+                                                            grade == 4 ||
+                                                            grade == 8)
+                                                        ? Colors.black
+                                                        : Colors.white),
+                                              ),
                                             ),
                                           ],
                                         ),

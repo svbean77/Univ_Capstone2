@@ -3,10 +3,12 @@ import 'package:final_app/mypage/const/challenge_list.dart';
 import 'package:final_app/mypage/const/writeChallenge.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ChallengeMain extends StatelessWidget {
   final exercise;
+
   const ChallengeMain({
     required this.exercise,
     Key? key,
@@ -14,7 +16,7 @@ class ChallengeMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
+    int grade = 5;
     //db에서 exercise의 기록을 가져옴, 내림차순 (최근 기록이 위에)
 
     List<int> num = [1, 4, 5]; //게시판 번호
@@ -32,8 +34,9 @@ class ChallengeMain extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(grade: grade),
+      drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
@@ -42,7 +45,14 @@ class ChallengeMain extends StatelessWidget {
             ),
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add,
+            color: (grade == 0 ||
+                    grade == 1 ||
+                    grade == 2 ||
+                    grade == 4 ||
+                    grade == 8)
+                ? Colors.black
+                : Colors.white),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -66,6 +76,7 @@ class ChallengeMain extends StatelessWidget {
                     );
                   },
                   child: ChallengeList(
+                    grade: grade,
                     weight: weight[i],
                     date: date[i],
                   ),
