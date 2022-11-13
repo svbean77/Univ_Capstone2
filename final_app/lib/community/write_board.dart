@@ -5,9 +5,13 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class WriteBoard extends StatefulWidget {
+  String content;
   final board;
-  const WriteBoard({
+  final mode;
+  WriteBoard({
     required this.board,
+    required this.mode,
+    required this.content,
     Key? key,
   }) : super(key: key);
 
@@ -16,8 +20,8 @@ class WriteBoard extends StatefulWidget {
 }
 
 class _WriteBoardState extends State<WriteBoard> {
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController contentsController = TextEditingController();
+  final GlobalKey<FormState> titleFormKey = GlobalKey();
+  final GlobalKey<FormState> contentFormKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +50,17 @@ class _WriteBoardState extends State<WriteBoard> {
                           color: PRIMARY_COLOR[grade],
                         ),
                       ),
-                      child: TextField(
-                        controller: titleController,
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 10.0),
-                          border: InputBorder.none,
+                      child: Form(
+                        key: titleFormKey,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                          maxLines: 15,
+                          initialValue: widget.content ?? '',
+                          onSaved: (String? val) {
+                            widget.content = val!;
+                          },
                         ),
                       ),
                     ),
@@ -72,13 +81,18 @@ class _WriteBoardState extends State<WriteBoard> {
                     color: PRIMARY_COLOR[grade],
                   ),
                 ),
-                child: TextField(
-                  controller: contentsController,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                    border: InputBorder.none,
+                child: Form(
+                  key: contentFormKey,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                    maxLines: 15,
+                    initialValue: widget.content ?? '',
+                    onSaved: (String? val) {
+                      widget.content = val!;
+                    },
                   ),
-                  maxLines: 15,
                 ),
               ),
             ),
@@ -109,10 +123,19 @@ class _WriteBoardState extends State<WriteBoard> {
                     '완전길게글제목을지어보자어떻게까지나오나한번해보는거야이거는그냥텍스ㅡㅌ로해서길게나오도록해엑ㅆ구ㅏㅁ';
                 String saveContent =
                     '''완\n전\n긴\n내\n용\n의\n글\n을\n써\n보\n자\n이\n번\n엔\n몇\n줄\n이\n나\n될\n까\n알\n아\n맞\n춰\n봅\n시\n다''';
+
+                if(widget.mode == 'edit'){
+                  //db의 내용을 수정하는 코드
+                }
+                else{
+                  //db에 내용을 추가하는 코드
+                }
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        Contents(title: saveTitle, contents: saveContent, board: widget.board),
+                    builder: (BuildContext context) => Contents(
+                        title: saveTitle,
+                        contents: saveContent,
+                        board: widget.board),
                   ),
                 );
               },

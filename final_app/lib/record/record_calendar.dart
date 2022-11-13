@@ -114,7 +114,7 @@ class RecordExercise extends StatelessWidget {
     String content = '';
     String mode;
     if (content.length == 0){
-      mode = 'insert';
+      mode = 'write';
     }
     else{
       mode = 'edit';

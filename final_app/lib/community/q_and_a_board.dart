@@ -29,7 +29,8 @@ class _QnABoardState extends State<QnABoard> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => WriteBoard(board: '질의응답'),
+              builder: (BuildContext context) =>
+                  WriteBoard(board: '질의응답', mode: 'write', content: ""),
             ),
           );
         },
@@ -75,7 +76,8 @@ class _QnABoardState extends State<QnABoard> {
                       child: TextField(
                         controller: controller,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 10.0),
                           border: InputBorder.none,
                         ),
                       ),

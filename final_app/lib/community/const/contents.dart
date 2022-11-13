@@ -1,4 +1,5 @@
 import 'package:final_app/community/const/community_main.dart';
+import 'package:final_app/community/write_board.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
@@ -24,6 +25,7 @@ class _ContentsState extends State<Contents> {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    String myName = '작성자이름';
     String writer = '작성자이름';
     String date = '2022.11.11';
     List<String> commentWriter = ['유저1', '유저6', '유저33'];
@@ -33,17 +35,6 @@ class _ContentsState extends State<Contents> {
     return Scaffold(
       appBar: MyAppBar(grade: grade),
       drawer: MyDrawer(grade: grade),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //어느 페이지로 이동시킬지 생각을 해봐야겠다..
-          //pop을 했을 때 변경사항이 반영이 되는지 확인! 일단 pop으로 구현
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-                builder: (BuildContext context) => CommunityMain(grade: grade)),
-          );
-        },
-        child: Icon(Icons.menu),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -67,6 +58,103 @@ class _ContentsState extends State<Contents> {
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
             SizedBox(height: 8.0),
             Text(widget.contents),
+            SizedBox(height: 16.0),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              CommunityMain(grade: grade)),
+                    );
+                  },
+                  child: Text('목록'),
+                  style: ElevatedButton.styleFrom(
+                    primary: PRIMARY_COLOR[grade],
+                    elevation: 0,
+                  ),
+                ),
+                SizedBox(width: 8.0),
+                if (myName == writer)
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => WriteBoard(
+                                  board: widget.board,
+                                  mode: 'edit',
+                                  content: widget.contents),
+                            ),
+                          );
+                        },
+                        child: Text('수정'),
+                        style: ElevatedButton.styleFrom(
+                          primary: PRIMARY_COLOR[grade],
+                          elevation: 0,
+                        ),
+                      ),
+                      SizedBox(width: 8.0),
+                      ElevatedButton(
+                        onPressed: () {
+                          //db에서 삭제하는 코드
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                content: Container(
+                                  height: 100.0,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('삭제하시겠습니까?'),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('취소'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              //db에서 글 삭제하는 코드
+                                              Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          CommunityMain(
+                                                              grade: grade),
+                                                ),
+                                              );
+                                            },
+                                            child: Text('확인'),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Text('삭제'),
+                        style: ElevatedButton.styleFrom(
+                          primary: PRIMARY_COLOR[grade],
+                          elevation: 0,
+                        ),
+                      ),
+                    ],
+                  ),
+              ],
+            ),
             SizedBox(height: 16.0),
             Text('댓글 (${commentWriter.length})',
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
@@ -108,15 +196,26 @@ class _ContentsState extends State<Contents> {
                   ),
                   SizedBox(width: 8.0),
                   SizedBox(
-                      height: 100.0,
-                      child: TextButton(
-                          onPressed: () {
-                            //댓글 db에 추가하는 코드
-                          },
-                          child: Text('댓글쓰기'))),
+                    height: 100.0,
+                    child: TextButton(
+                      onPressed: () {
+                        //댓글 db에 추가하는 코드
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => Contents(
+                                board: widget.board,
+                                title: widget.title,
+                                contents: widget.contents),
+                          ),
+                        );
+                      },
+                      child: Text('댓글쓰기'),
+                    ),
+                  ),
                 ],
               ),
             ),
+            SizedBox(height: 40.0),
           ],
         ),
       ),

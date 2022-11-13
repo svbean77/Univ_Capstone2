@@ -28,7 +28,8 @@ class _FreeBoardState extends State<FreeBoard> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => WriteBoard(board: '자유게시판'),
+              builder: (BuildContext context) =>
+                  WriteBoard(board: '자유게시판', mode: 'write', content: ""),
             ),
           );
         },
@@ -93,8 +94,8 @@ class _FreeBoardState extends State<FreeBoard> {
                         findLst = [1, 4, 5];
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) => SearchPage(
-                                boardLst: findLst, searchfor: find),
+                            builder: (BuildContext context) =>
+                                SearchPage(boardLst: findLst, searchfor: find),
                           ),
                         );
                       } else {
@@ -103,8 +104,8 @@ class _FreeBoardState extends State<FreeBoard> {
                         findLst = [2, 6, 7, 8];
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) => SearchPage(
-                                boardLst: findLst, searchfor: find),
+                            builder: (BuildContext context) =>
+                                SearchPage(boardLst: findLst, searchfor: find),
                           ),
                         );
                       }
