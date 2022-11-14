@@ -2,6 +2,7 @@ import 'package:final_app/mypage/edit_my_info.dart';
 import 'package:final_app/ranking/const/my_ranking.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../screen/const/grade_colors.dart';
@@ -88,6 +89,32 @@ class _MyPageState extends State<MyPage> {
                     color: PRIMARY_COLOR[grade],
                   ),
                 ),
+              ),
+            ),
+            SizedBox(height: 8.0),
+            ElevatedButton(
+              onPressed: () {
+                //로그아웃 코드
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => HomeScreen(),
+                    ),
+                    (route) => false);
+              },
+              child: Text(
+                '로그아웃',
+                style: TextStyle(
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: PRIMARY_COLOR[grade],
+                elevation: 0,
               ),
             ),
           ],
