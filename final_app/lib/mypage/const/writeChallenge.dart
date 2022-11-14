@@ -3,6 +3,8 @@ import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class WriteChallenge extends StatefulWidget {
   final exercise;
@@ -16,6 +18,7 @@ class WriteChallenge extends StatefulWidget {
 }
 
 class _WriteChallengeState extends State<WriteChallenge> {
+  List<File> files = [];
   final TextEditingController weightController = TextEditingController();
   final TextEditingController contentsController = TextEditingController();
   @override
@@ -87,7 +90,13 @@ class _WriteChallengeState extends State<WriteChallenge> {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                PickedFile? pickedFile =
+                    await ImagePicker().getVideo(source: ImageSource.gallery);
+                setState(() {
+                  files.add(File(pickedFile!.path));
+                });
+              },
               child: Text(
                 '갤러리',
                 style: TextStyle(
@@ -101,6 +110,16 @@ class _WriteChallengeState extends State<WriteChallenge> {
               ),
               style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[grade], elevation: 0),
+            ),
+            Container(
+              height: 80.0,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: [
+                  for (int i = 0; i < files.length; i++)
+                    Text(files[i].toString()),
+                ],
+              ),
             ),
             ElevatedButton(
               onPressed: () {

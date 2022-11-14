@@ -3,6 +3,8 @@ import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class WriteBoard extends StatefulWidget {
   String content;
@@ -20,6 +22,7 @@ class WriteBoard extends StatefulWidget {
 }
 
 class _WriteBoardState extends State<WriteBoard> {
+  List<File> files = [];
   final GlobalKey<FormState> titleFormKey = GlobalKey();
   final GlobalKey<FormState> contentFormKey = GlobalKey();
 
@@ -100,10 +103,18 @@ class _WriteBoardState extends State<WriteBoard> {
                 ),
               ),
             ),
+            SizedBox(height: 8.0),
             Row(
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    PickedFile? pickedFile = await ImagePicker()
+                        .getImage(source: ImageSource.gallery);
+                    setState(() {
+                      files.add(File(pickedFile!.path));
+                    });
+                    print(files[0]);
+                  },
                   child: Text(
                     '갤러리',
                     style: TextStyle(
@@ -120,7 +131,13 @@ class _WriteBoardState extends State<WriteBoard> {
                 ),
                 SizedBox(width: 8.0),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    PickedFile? pickedFile = await ImagePicker()
+                        .getImage(source: ImageSource.camera);
+                    setState(() {
+                      files.add(File(pickedFile!.path));
+                    });
+                  },
                   child: Text(
                     '카메라',
                     style: TextStyle(
@@ -137,6 +154,29 @@ class _WriteBoardState extends State<WriteBoard> {
                 ),
               ],
             ),
+            SizedBox(height: 8.0),
+            Container(
+              height: 100.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (int i = 0; i < files.length; i++)
+                    Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: Container(
+                        height: 100.0,
+                        width: 100.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: FileImage(files[i]), //File Image를 삽입
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            SizedBox(height: 8.0),
             ElevatedButton(
               onPressed: () {
                 //db에 게시글 저장하는 코드
