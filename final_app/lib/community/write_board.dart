@@ -22,7 +22,13 @@ class WriteBoard extends StatefulWidget {
 }
 
 class _WriteBoardState extends State<WriteBoard> {
-  List<File> files = [];
+  //방법1: 파일로 리스트 부름
+  List<File> files = [
+    File(
+        '/data/user/0/com.example.final_app/cache/image_picker1876085097879164403.jpg'),
+    File(
+        '/data/user/0/com.example.final_app/cache/57fa1790-5966-45fd-9a5b-4dbb5ffc9f731107488760160167711.jpg'),
+  ];
   final GlobalKey<FormState> titleFormKey = GlobalKey();
   final GlobalKey<FormState> contentFormKey = GlobalKey();
 

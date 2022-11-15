@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/community/write_board.dart';
 import 'package:final_app/screen/const/app_bar.dart';
@@ -30,6 +32,25 @@ class _ContentsState extends State<Contents> {
     String date = '2022.11.11';
     List<String> commentWriter = ['유저1', '유저6', '유저33'];
     List<String> comment = ['이거는이렇게해야죠', '댓글내용입니다이건느', '하..\n댓글줄바꿈은뭐..'];
+    //일단 세 가지 방법으로 했다가 mysql 저장되는거 보고 선택하자
+    //방법1: 파일로 부름
+    List<File> images = [
+      //갤러리
+      File(
+          '/data/user/0/com.example.final_app/cache/image_picker1876085097879164403.jpg'),
+      //카메라
+      File(
+          '/data/user/0/com.example.final_app/cache/57fa1790-5966-45fd-9a5b-4dbb5ffc9f731107488760160167711.jpg'),
+    ];
+    //방법2: 문자열로 불러 파일로 만듦
+    List<String> files = [
+      //갤러리
+      '/data/user/0/com.example.final_app/cache/image_picker1876085097879164403.jpg'
+    ];
+    String imagepath =
+        //갤러리@카메라
+        '/data/user/0/com.example.final_app/cache/image_picker1876085097879164403.jpg@/data/user/0/com.example.final_app/cache/57fa1790-5966-45fd-9a5b-4dbb5ffc9f731107488760160167711.jpg';
+    List<String> imagefiles = imagepath.split("@");
 
     int grade = 5;
     return Scaffold(
@@ -58,7 +79,23 @@ class _ContentsState extends State<Contents> {
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
             SizedBox(height: 8.0),
             Text(widget.contents),
-            SizedBox(height: 16.0),
+            SizedBox(height: 8.0),
+            for (int i = 0; i < images.length; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Image.file(images[i]),
+              ),
+            for (int i = 0; i < files.length; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Image.file(File(files[i])),
+              ),
+            for (int i = 0; i < imagefiles.length; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Image.file(File(imagefiles[i])),
+              ),
+            SizedBox(height: 8.0),
             Row(
               children: [
                 ElevatedButton(

@@ -96,6 +96,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
                 setState(() {
                   files.add(File(pickedFile!.path));
                 });
+                print(files[0]);
               },
               child: Text(
                 '갤러리',
