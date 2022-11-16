@@ -70,7 +70,7 @@ class _SearchPageState extends State<SearchPage> {
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: grade == 0
-                              ? Colors.black.withOpacity(0.2)
+                              ? Colors.grey.withOpacity(0.2)
                               : PRIMARY_COLOR[grade],
                         ),
                       ),

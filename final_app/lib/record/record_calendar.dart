@@ -79,11 +79,11 @@ class CalendarState extends State<Calendar> {
         selectedDecoration: BoxDecoration(
           border: Border.all(
             color: widget.grade == 0
-                ? Colors.black.withOpacity(0.2)
+                ? Colors.grey.withOpacity(0.2)
                 : PRIMARY_COLOR[widget.grade],
           ),
           color: widget.grade == 0
-              ? Colors.black.withOpacity(0.2)
+              ? Colors.grey.withOpacity(0.2)
               : PRIMARY_COLOR[widget.grade].withOpacity(0.2),
           borderRadius: BorderRadius.circular(100),
         ),

@@ -12,7 +12,6 @@ class _AddRoutineState extends State<AddRoutine> {
   TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-
     int grade = 5;
 
     return Container(
@@ -26,17 +25,13 @@ class _AddRoutineState extends State<AddRoutine> {
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '루틴 이름을 입력해주세요',
-                hintStyle: TextStyle(
-                  color: Colors.black
-                ),
+                hintStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
               ),
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: grade == 0
-                    ? Colors.black.withOpacity(0.2)
-                    : PRIMARY_COLOR[grade],
+                color: PRIMARY_COLOR[grade],
               ),
             ),
           ),

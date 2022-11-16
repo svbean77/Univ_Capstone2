@@ -60,12 +60,10 @@ class _FriendsMainState extends State<FriendsMain> {
                 SizedBox(width: 8.0),
                 Expanded(
                   child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: grade == 0
-                            ? Colors.black.withOpacity(0.2)
+                            ? Colors.grey.withOpacity(0.2)
                             : PRIMARY_COLOR[grade],
                       ),
                     ),
@@ -104,8 +102,14 @@ class _FriendsMainState extends State<FriendsMain> {
                       } else {
                         Fluttertoast.showToast(
                           msg: '존재하지 않는 닉네임입니다.',
-                          backgroundColor: Colors.grey,
-                          textColor: Colors.white,
+                          backgroundColor: PRIMARY_COLOR[grade],
+                          textColor: (grade == 0 ||
+                                  grade == 1 ||
+                                  grade == 2 ||
+                                  grade == 4 ||
+                                  grade == 8)
+                              ? Colors.black
+                              : Colors.white,
                           toastLength: Toast.LENGTH_SHORT,
                         );
                       }

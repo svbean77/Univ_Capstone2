@@ -30,13 +30,12 @@ class AddWeight extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: grade == 0
-                    ? Colors.black.withOpacity(0.2)
-                    : PRIMARY_COLOR[grade],
+                color: PRIMARY_COLOR[grade],
               ),
             ),
           ),
-          SizedBox(height: 16.0),Container(
+          SizedBox(height: 16.0),
+          Container(
             child: TextField(
               controller: weightController,
               decoration: InputDecoration(
@@ -51,9 +50,7 @@ class AddWeight extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: grade == 0
-                    ? Colors.black.withOpacity(0.2)
-                    : PRIMARY_COLOR[grade],
+                color: PRIMARY_COLOR[grade],
               ),
             ),
           ),
@@ -78,7 +75,8 @@ class AddWeight extends StatelessWidget {
                   int month = (inputDate % 10000) ~/ 100;
                   int day = inputDate % 100;
                   DateTime date = DateTime(year, month, day);
-                  double weight = double.parse(weightController.text.toString());
+                  double weight =
+                      double.parse(weightController.text.toString());
 
                   //date에 weight 입력하는 코드 작성
                   Navigator.of(context).pop();

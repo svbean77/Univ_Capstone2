@@ -6,11 +6,9 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import '../screen/const/grade_colors.dart';
 import '../screen/const/ip_address.dart';
 
 class SignUp extends StatefulWidget {
-
   const SignUp({
     Key? key,
   }) : super(key: key);
@@ -28,14 +26,12 @@ class _SignUpState extends State<SignUp> {
 
   bool isPasswordVisible = false;
   List<bool> sex = [true, false];
-  int grade = 0;
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
     return Scaffold(
       drawer: MyDrawer(),
-      appBar: MyAppBar(grade: grade),
+      appBar: MyAppBar(grade: 0),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -68,17 +64,11 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.0, vertical: 5.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                          ),
-                        ),
                         child: TextField(
                           controller: _idController,
                           decoration: InputDecoration(
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10.0),
-                            border: InputBorder.none,
                           ),
                         ),
                       ),
@@ -100,32 +90,27 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.0, vertical: 5.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                          ),
-                        ),
                         child: TextField(
                           controller: _pwController,
                           //이거 그냥 true로 하면 비밀번호 안 보이는 것!!!!
                           obscureText: isPasswordVisible ? false : true,
                           decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 10.0),
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isPasswordVisible = !isPasswordVisible;
-                                  });
-                                },
-                                child: Icon(
-                                  isPasswordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: Colors.black,
-                                ),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 10.0),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isPasswordVisible = !isPasswordVisible;
+                                });
+                              },
+                              child: Icon(
+                                isPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black,
                               ),
-                              border: InputBorder.none),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -146,17 +131,11 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.0, vertical: 5.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                          ),
-                        ),
                         child: TextField(
                           controller: _nicknameController,
                           decoration: InputDecoration(
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10.0),
-                            border: InputBorder.none,
                           ),
                         ),
                       ),
@@ -178,17 +157,11 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.0, vertical: 5.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                          ),
-                        ),
                         child: TextField(
                           controller: _userageController,
                           decoration: InputDecoration(
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10.0),
-                            border: InputBorder.none,
                           ),
                           keyboardType: TextInputType.number,
                         ),
@@ -204,17 +177,11 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.0, vertical: 5.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                          ),
-                        ),
                         child: TextField(
                           controller: _kgController,
                           decoration: InputDecoration(
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10.0),
-                            border: InputBorder.none,
                           ),
                           keyboardType: TextInputType.number,
                         ),
@@ -269,7 +236,7 @@ class _SignUpState extends State<SignUp> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                     child: Center(
@@ -301,7 +268,7 @@ class _SignUpState extends State<SignUp> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                     child: Text(
@@ -335,16 +302,16 @@ class _SignUpState extends State<SignUp> {
 
     if (data == "Error") {
       Fluttertoast.showToast(
-        backgroundColor: Colors.orange,
-        textColor: Colors.white,
-        msg: '에러가 발생했습니다!',
+        backgroundColor: Colors.grey,
+        textColor: Colors.black,
+        msg: '아이디 또는 닉네임이 중복됩니다.',
         toastLength: Toast.LENGTH_SHORT,
       );
     } else {
       Fluttertoast.showToast(
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        msg: '회원가입이 완료되었습니다',
+        backgroundColor: Colors.grey,
+        textColor: Colors.black,
+        msg: '회원가입이 완료되었습니다.',
         toastLength: Toast.LENGTH_SHORT,
       );
       Navigator.push(

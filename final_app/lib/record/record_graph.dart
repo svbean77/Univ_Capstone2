@@ -74,7 +74,7 @@ class _RecordGraphState extends State<RecordGraph> {
                                     : PRIMARY_COLOR[grade],
                         shape: DataMarkerType.circle),
                     color: grade == 0
-                        ? Colors.black.withOpacity(0.1)
+                        ? Colors.grey.withOpacity(0.1)
                         : grade == 2
                             ? Colors.yellow[600]
                         : grade == 8

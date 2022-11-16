@@ -4,7 +4,6 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import '../screen/const/grade_colors.dart';
 import '../screen/home_screen.dart';
 import 'dart:convert';
 import '../screen/const/ip_address.dart';
@@ -25,10 +24,9 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
     return Scaffold(
       drawer: MyDrawer(),
-      appBar: MyAppBar(grade:grade),
+      appBar: MyAppBar(grade: 0),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -56,7 +54,7 @@ class _SignInState extends State<SignIn> {
                       EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                   child: TextField(
@@ -83,7 +81,7 @@ class _SignInState extends State<SignIn> {
                       EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                   child: TextField(
@@ -129,7 +127,7 @@ class _SignInState extends State<SignIn> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                     child: Center(
@@ -161,7 +159,7 @@ class _SignInState extends State<SignIn> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                     child: Text(
@@ -191,8 +189,8 @@ class _SignInState extends State<SignIn> {
     if (data.toString() == "Success") {
       Fluttertoast.showToast(
         msg: '로그인 성공',
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
+        backgroundColor: Colors.grey,
+        textColor: Colors.black,
         toastLength: Toast.LENGTH_SHORT,
       );
 
@@ -205,8 +203,8 @@ class _SignInState extends State<SignIn> {
     } else {
       print(data.toString());
       Fluttertoast.showToast(
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
+        backgroundColor: Colors.grey,
+        textColor: Colors.black,
         msg: '비밀번호 또는 아이디가 잘못되었습니다.',
         toastLength: Toast.LENGTH_SHORT,
       );

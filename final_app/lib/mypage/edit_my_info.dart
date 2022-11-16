@@ -75,12 +75,10 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     SizedBox(width: 16.0),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: grade == 0
-                                ? Colors.black.withOpacity(0.2)
+                                ? Colors.grey.withOpacity(0.2)
                                 : PRIMARY_COLOR[grade],
                           ),
                         ),
@@ -89,8 +87,6 @@ class _EditMyInfoState extends State<EditMyInfo> {
                           //이거 그냥 true로 하면 비밀번호 안 보이는 것!!!!
                           obscureText: isPasswordVisible ? false : true,
                           decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 10.0),
                               suffixIcon: GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -123,12 +119,10 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     SizedBox(width: 16.0),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: grade == 0
-                                ? Colors.black.withOpacity(0.2)
+                                ? Colors.grey.withOpacity(0.2)
                                 : PRIMARY_COLOR[grade],
                           ),
                         ),
@@ -157,12 +151,10 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     SizedBox(width: 16.0),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: grade == 0
-                                ? Colors.black.withOpacity(0.2)
+                                ? Colors.grey.withOpacity(0.2)
                                 : PRIMARY_COLOR[grade],
                           ),
                         ),
@@ -185,12 +177,10 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     SizedBox(width: 16.0),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 5.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: grade == 0
-                                ? Colors.black.withOpacity(0.2)
+                                ? Colors.grey.withOpacity(0.2)
                                 : PRIMARY_COLOR[grade],
                           ),
                         ),

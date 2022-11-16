@@ -18,11 +18,12 @@ class ChallengeDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     //게시글 번호를 통해 이미지와 내용을 구함
     String image1 = 'https://www.youtube.com/watch?v=3ZUh-GiRDjM';
-    String image2 = 'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4';
-    String video1 = '/data/user/0/com.example.final_app/cache/image_picker3641971445983601714.mp4';
+    String image2 =
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4';
+    String video1 =
+        '/data/user/0/com.example.final_app/cache/image_picker3641971445983601714.mp4';
     String contents =
         '이동영상으로말할것같으면제가열심히운동을한결과인데요아주열심히저무게를들었습니다진짜얼마나힘들었을지상상이나가십니까';
-    int weight = 200;
     int grade = 5;
 
     return Scaffold(
@@ -35,13 +36,9 @@ class ChallengeDetail extends StatelessWidget {
             Text('${exercise} ${date.year}.${date.month}.${date.day} 기록',
                 style: TextStyle(fontSize: 20.0)),
             SizedBox(height: 16.0),
-            //동영상 재생 열심히 노력해봐
-            //Video(images: image2),
-            myVideo(file: video1),
-            SizedBox(height: 8.0),
-            Text('${weight.toString()}Kg', style: TextStyle(fontSize: 20.0)),
-            SizedBox(height: 8.0),
             Text(contents),
+            SizedBox(height: 8.0),
+            myVideo(file: video1),
           ],
         ),
       ),

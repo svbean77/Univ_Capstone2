@@ -1,13 +1,18 @@
 import 'package:final_app/ranking/const/user_info.dart';
 import 'package:flutter/material.dart';
 
-class MyRanking extends StatelessWidget {
+class MyRanking extends StatefulWidget {
   final nickname;
   const MyRanking({
     required this.nickname,
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<MyRanking> createState() => _MyRankingState();
+}
+
+class _MyRankingState extends State<MyRanking> {
   @override
   Widget build(BuildContext context) {
     //nickname을 이용해 등수, 등급, 무게 구하기
@@ -17,21 +22,28 @@ class MyRanking extends StatelessWidget {
     //조건문 사용해 요청받았니 -> 요청했니 -> 친구가 아니니 -> 나머지
     String myNickname = '내닉네임';
     List<String> myFriends = ['친구1', '친구2', '친구3'];
-    List<String> myRequests = ['유저1', '유저2'];
-    List<String> myRequested = ['요청1', '요청2'];
+    List<String> myRequests = ['유저1', '유저2']; //내가 요청함
+    List<String> myRequested = ['요청1', '요청2']; //나한테 요청함
+
     String friends = '';
-    if (nickname == myNickname){
+    if (widget.nickname == myNickname){
       friends = 'me';
     }
-    else if (myRequested.contains(nickname)){
+    else if (myRequested.contains(widget.nickname)){
+      //나한테 요청함
       friends = 'requested';
     }
-    else if(myRequests.contains(nickname)){
+    else if(myRequests.contains(widget.nickname)){
+      //내가 요청함
       friends = 'request';
     }
-    else if (!myFriends.contains(nickname)){
+    else if (!myFriends.contains(widget.nickname)){
       friends = 'no';
     }
+    else{
+      friends = 'friend';
+    }
+
 
     List<int> weight = [50, 60, 70];
 
@@ -53,7 +65,7 @@ class MyRanking extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text(nickname,
+                  Text(widget.nickname,
                       style: TextStyle(
                           fontSize: 25.0, fontWeight: FontWeight.bold)),
                   SizedBox(width: 16.0),
@@ -63,12 +75,9 @@ class MyRanking extends StatelessWidget {
                           onTap: () {
                             //friends를 request로 바꿔서 db에 업데이트 하는 코드
                             //친구 요청 테이블에 삽입하거나 등등
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    UserInfo(nickname: nickname),
-                              ),
-                            );
+                            setState(() {
+                              friends = 'request';
+                            });
                           },
                           child: Icon(Icons.person_add, size: 25.0),
                         )
@@ -85,18 +94,15 @@ class MyRanking extends StatelessWidget {
                               ? GestureDetector(
                                   onTap: () {
                                     //friends를 친구로 바꿔서 db에 업데이트 하는 코드
-                                    Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            UserInfo(nickname: nickname),
-                                      ),
-                                    );
+                                    setState(() {
+                                      friends = 'friend';
+                                    });
                                   },
                                   child: Icon(Icons.check_circle_outline,
                                       size: 25.0),
                                 )
                               //이미 친구이거나 내 정보
-                              : SizedBox()
+                              : Container(width: 0.0)
                 ],
               ),
               SizedBox(height: 20.0),

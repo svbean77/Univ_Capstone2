@@ -21,7 +21,6 @@ class _QnABoardState extends State<QnABoard> {
   final TextEditingController controller = TextEditingController();
   List<bool> search = [true, false];
 
-
   @override
   Widget build(BuildContext context) {
     int grade = 5;
@@ -32,7 +31,7 @@ class _QnABoardState extends State<QnABoard> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) =>
-                  WriteBoard(board: '질의응답', mode: 'write', content: ""),
+                  WriteBoard(board: 'QnA', mode: 'write', content: ""),
             ),
           );
         },
@@ -78,11 +77,11 @@ class _QnABoardState extends State<QnABoard> {
                   SizedBox(width: 8.0),
                   Expanded(
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: PRIMARY_COLOR[grade],
+                          color: grade == 0
+                              ? Colors.grey.withOpacity(0.2)
+                              : PRIMARY_COLOR[grade],
                         ),
                       ),
                       child: TextField(
@@ -150,7 +149,7 @@ class _QnABoardState extends State<QnABoard> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) => Contents(
-                                        board: '질의응답',
+                                        board: 'QnA',
                                         title: title,
                                         contents: contents),
                                   ),

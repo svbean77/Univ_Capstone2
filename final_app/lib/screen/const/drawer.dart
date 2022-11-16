@@ -1,11 +1,8 @@
 import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/mypage/my_page.dart';
-import 'package:final_app/mypage/notice.dart';
 import 'package:final_app/mypage/sign_in.dart';
 import 'package:final_app/mypage/three_challenge.dart';
 import 'package:flutter/material.dart';
-
-import 'grade_colors.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({

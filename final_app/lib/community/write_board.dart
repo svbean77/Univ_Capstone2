@@ -52,12 +52,10 @@ class _WriteBoardState extends State<WriteBoard> {
                   SizedBox(width: 16.0),
                   Expanded(
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: grade == 0
-                              ? Colors.black.withOpacity(0.2)
+                              ? Colors.grey.withOpacity(0.2)
                               : PRIMARY_COLOR[grade],
                         ),
                       ),
@@ -90,7 +88,7 @@ class _WriteBoardState extends State<WriteBoard> {
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: grade == 0
-                        ? Colors.black.withOpacity(0.2)
+                        ? Colors.grey.withOpacity(0.2)
                         : PRIMARY_COLOR[grade],
                   ),
                 ),

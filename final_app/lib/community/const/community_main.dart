@@ -47,7 +47,7 @@ class _CommunityMainState extends State<CommunityMain>
                 Container(
                   height: 50.0,
                   alignment: Alignment.center,
-                  child: Text('질의응답'),
+                  child: Text('QnA'),
                 ),
               ],
               indicator: BoxDecoration(
