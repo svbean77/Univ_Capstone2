@@ -1,3 +1,5 @@
+import 'package:final_app/record/const/add_record.dart';
+import 'package:final_app/record/const/record_card.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -16,17 +18,82 @@ class _RecordCalendarState extends State<RecordCalendar> {
   @override
   Widget build(BuildContext context) {
     int grade = 5;
-    return Column(
-      children: [
-        Calendar(
-          selectedDay: selectedDay,
-          grade: grade,
-          focusedDay: focusedDay,
-          onDaySelected: onDaySelected,
-        ),
-        SizedBox(height: 8.0),
-        RecordExercise(selectedDay: selectedDay, grade: grade),
-      ],
+    //실제로 불러오는 데이터는 내용, 작성일자 -> 작성일자별로 구분하는 코드가 필요
+    List<String> contents = ['내용1\n엄ㅊ청\n\n\n\n길어\n짱', '내용2', '내용3'];
+
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: PRIMARY_COLOR[grade],
+        onPressed: () {
+          showDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: AddRecord(grade: grade),
+                scrollable: true,
+              );
+            },
+          );
+        },
+        child: Icon(Icons.add,
+            color: (grade == 0 ||
+                    grade == 1 ||
+                    grade == 2 ||
+                    grade == 4 ||
+                    grade == 8)
+                ? Colors.black
+                : Colors.white),
+      ),
+      body: ListView(
+        children: [
+          Calendar(
+            selectedDay: selectedDay,
+            grade: grade,
+            focusedDay: focusedDay,
+            onDaySelected: onDaySelected,
+          ),
+          SizedBox(height: 8.0),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            height: 30.0,
+            color: PRIMARY_COLOR[grade],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
+                  style: TextStyle(
+                      color: (grade == 0 ||
+                              grade == 1 ||
+                              grade == 2 ||
+                              grade == 4 ||
+                              grade == 8)
+                          ? Colors.black
+                          : Colors.white),
+                ),
+                Text(
+                  '${contents.length}개',
+                  style: TextStyle(
+                      color: (grade == 0 ||
+                              grade == 1 ||
+                              grade == 2 ||
+                              grade == 4 ||
+                              grade == 8)
+                          ? Colors.black
+                          : Colors.white),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 8.0),
+          for (int i = 0; i < contents.length; i++)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: RecordCard(grade: grade, content: contents[i]),
+            )
+        ],
+      ),
     );
   }
 
@@ -97,197 +164,6 @@ class CalendarState extends State<Calendar> {
           shape: BoxShape.rectangle,
         ),
         selectedTextStyle: TextStyle(color: Colors.black),
-      ),
-    );
-  }
-}
-
-class RecordExercise extends StatelessWidget {
-  final DateTime selectedDay;
-  final int grade;
-
-  const RecordExercise({
-    required this.selectedDay,
-    required this.grade,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    //String content = '길\n게\n말\n하\n기\n내\n용\n엄\n청\n많\n음';
-    String content = '';
-    String mode;
-    if (content.length == 0) {
-      mode = 'write';
-    } else {
-      mode = 'edit';
-    }
-
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: GestureDetector(
-          onTap: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) {
-                return RecordBottomSheet(
-                    selectedDay: selectedDay,
-                    grade: grade,
-                    content: content,
-                    mode: mode);
-              },
-            );
-          },
-          child: Container(
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: PRIMARY_COLOR[grade],
-              ),
-            ),
-            child: ListView(
-              children: [
-                Text(
-                    '${selectedDay.year}.${selectedDay.month}.${selectedDay.day} 운동 기록\n',
-                    style: TextStyle(fontSize: 20.0)),
-                content.length != 0 ? Text(content) : Text('운동기록이 없습니다'),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class RecordBottomSheet extends StatefulWidget {
-  final DateTime selectedDay;
-  final int grade;
-  final mode;
-  String content;
-  RecordBottomSheet({
-    required this.selectedDay,
-    required this.mode,
-    required this.content,
-    required this.grade,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<RecordBottomSheet> createState() => _RecordBottomSheetState();
-}
-
-class _RecordBottomSheetState extends State<RecordBottomSheet> {
-  final GlobalKey<FormState> formKey = GlobalKey();
-  //String? content; //직접 db에서 가져오기 or 끌어오기?
-
-  @override
-  Widget build(BuildContext context) {
-    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-
-    return Container(
-      height: MediaQuery.of(context).size.height / 2 + bottomInset,
-      color: Colors.white,
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('운동 기록하기', style: TextStyle(fontSize: 20.0)),
-            Form(
-              key: formKey,
-              child: RecordContent(
-                initialValue: widget.content ?? '',
-                onSaved: (String? val) {
-                  widget.content = val!;
-                },
-              ),
-            ),
-            RecordSaveButton(onPressed: onSavePressed, grade: widget.grade)
-          ],
-        ),
-      ),
-    );
-  }
-
-  void onSavePressed() {
-    if (widget.mode == 'edit') {
-      //db의 내용을 수정하는 코드
-    } else {
-      //db에 데이터를 추가하는 코드
-    }
-    //async로 바꾸기
-    //if (formKey.currentState == null) return;
-    //if (formKey.currentState!.validate()) formKey.currentState!.save();
-    //db에 저장하는 코드
-    Navigator.of(context).pop();
-  }
-}
-
-class RecordSaveButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final grade;
-
-  const RecordSaveButton({
-    required this.onPressed,
-    required this.grade,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ElevatedButton(
-            onPressed: onPressed,
-            style: ElevatedButton.styleFrom(
-                primary: PRIMARY_COLOR[grade], elevation: 0),
-            child: Text(
-              '저장',
-              style: TextStyle(
-                  color: (grade == 0 ||
-                          grade == 1 ||
-                          grade == 2 ||
-                          grade == 4 ||
-                          grade == 8)
-                      ? Colors.black
-                      : Colors.white),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class RecordContent extends StatelessWidget {
-  final FormFieldSetter<String> onSaved;
-  final String initialValue;
-
-  const RecordContent({
-    required this.initialValue,
-    required this.onSaved,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: TextFormField(
-          onSaved: onSaved,
-          initialValue: initialValue,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            filled: true,
-            fillColor: Colors.grey[200],
-          ),
-          maxLines: 12,
-        ),
       ),
     );
   }

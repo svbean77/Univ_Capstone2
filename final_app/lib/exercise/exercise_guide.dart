@@ -1,6 +1,7 @@
 import 'package:final_app/exercise/const/equipment_filter.dart';
 import 'package:final_app/exercise/select_body.dart';
 import 'package:final_app/exercise/select_muscle.dart';
+import 'package:final_app/record/const/add_record.dart';
 import 'package:final_app/record/record_calendar.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
@@ -35,7 +36,6 @@ class ExerciseGuide extends StatefulWidget {
 }
 
 class _ExerciseGuideState extends State<ExerciseGuide> {
-
   @override
   Widget build(BuildContext context) {
     int grade = 5;
@@ -56,23 +56,14 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                     ? Colors.black
                     : Colors.white),
             onPressed: () {
-              String content =
-                  '''아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n아\n주\n긴\n내\n용\n''';
-              String mode;
-              if (content.length == 0) {
-                mode = 'write';
-              } else {
-                mode = 'edit';
-              }
-              showModalBottomSheet(
+              showDialog(
                 context: context,
-                isScrollControlled: true,
-                builder: (_) {
-                  return RecordBottomSheet(
-                      selectedDay: DateTime.now(),
-                      content: content,
-                      mode: mode,
-                      grade: grade);
+                barrierDismissible: true,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    content: AddRecord(grade: grade),
+                    scrollable: true,
+                  );
                 },
               );
             },
