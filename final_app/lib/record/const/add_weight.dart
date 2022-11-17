@@ -21,9 +21,6 @@ class AddWeight extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '날짜입력: YYYYMMDD',
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
                 border: InputBorder.none,
               ),
               keyboardType: TextInputType.number,
@@ -41,9 +38,6 @@ class AddWeight extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '체중입력',
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                ),
                 border: InputBorder.none,
               ),
               keyboardType: TextInputType.number,

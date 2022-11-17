@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 
 class AddRecord extends StatelessWidget {
   final grade;
+  final selectedDate;
   const AddRecord({
     required this.grade,
+    required this.selectedDate,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
-    String year = DateTime.now().year.toString();
-    String month = DateTime.now().month.toString();
-    String day = DateTime.now().day.toString();
+    String year = selectedDate.year.toString();
+    String month = selectedDate.month.toString();
+    String day = selectedDate.day.toString();
 
     return Container(
       height: 250,

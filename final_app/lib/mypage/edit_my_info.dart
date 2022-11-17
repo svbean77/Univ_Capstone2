@@ -20,7 +20,6 @@ class _EditMyInfoState extends State<EditMyInfo> {
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _userageController = TextEditingController();
-  final TextEditingController _kgController = TextEditingController();
 
   bool isPasswordVisible = false;
   List<bool> sex = [true, false];
@@ -75,6 +74,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     SizedBox(width: 16.0),
                     Expanded(
                       child: Container(
+                        padding: EdgeInsets.only(left: 8.0),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: grade == 0
@@ -97,7 +97,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                                   isPasswordVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: PRIMARY_COLOR[grade],
+                                  color: grade == 0
+                                      ? Colors.grey
+                                      : PRIMARY_COLOR[grade],
                                 ),
                               ),
                               border: InputBorder.none),
@@ -169,39 +171,6 @@ class _EditMyInfoState extends State<EditMyInfo> {
                         ),
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: 70.0,
-                      child: Text('체중', style: TextStyle(fontSize: 16.0)),
-                    ),
-                    SizedBox(width: 16.0),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: grade == 0
-                                ? Colors.grey.withOpacity(0.2)
-                                : PRIMARY_COLOR[grade],
-                          ),
-                        ),
-                        child: TextField(
-                          controller: _kgController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
-                            border: InputBorder.none,
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
-                  children: [
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,

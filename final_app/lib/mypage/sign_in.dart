@@ -62,12 +62,9 @@ class _SignInState extends State<SignIn> {
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
                       hintText: '아이디를 입력해주세요',
-                      hintStyle: TextStyle(
-                        color: Colors.black,
-                      ),
                       icon: Icon(
                         Icons.person,
-                        color: Colors.black,
+                        color: Colors.grey,
                       ),
                       border: InputBorder.none,
                     ),
@@ -92,12 +89,9 @@ class _SignInState extends State<SignIn> {
                         contentPadding: EdgeInsets.symmetric(
                             horizontal: 10.0, vertical: 10.0),
                         hintText: '비밀번호를 입력해주세요',
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                        ),
                         icon: Icon(
                           Icons.lock,
-                          color: Colors.black,
+                          color: Colors.grey,
                         ),
                         suffixIcon: GestureDetector(
                           onTap: () {
@@ -109,7 +103,7 @@ class _SignInState extends State<SignIn> {
                             isPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.black,
+                            color: Colors.grey,
                           ),
                         ),
                         border: InputBorder.none),

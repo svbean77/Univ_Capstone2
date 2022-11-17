@@ -78,7 +78,11 @@ class UserInfo extends StatelessWidget {
                                                   .size
                                                   .width,
                                               padding: EdgeInsets.all(8.0),
-                                              color: Colors.grey[100],
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: PRIMARY_COLOR[grade],
+                                                ),
+                                              ),
                                               child: Text(memo[i]),
                                             ),
                                             SizedBox(height: 8.0),

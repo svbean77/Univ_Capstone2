@@ -30,7 +30,7 @@ class _RecordCalendarState extends State<RecordCalendar> {
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddRecord(grade: grade),
+                content: AddRecord(grade: grade, selectedDate: selectedDay),
                 scrollable: true,
               );
             },

@@ -20,7 +20,6 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController controller = TextEditingController();
-  List<bool> search = [true, false];
 
 
   @override
@@ -40,33 +39,8 @@ class _SearchPageState extends State<SearchPage> {
               height: MediaQuery.of(context).size.height / 15,
               child: Row(
                 children: [
-                  ToggleButtons(
-                    children: [
-                      Text('제목'),
-                      Text('작성자'),
-                    ],
-                    isSelected: search,
-                    selectedColor: Colors.black,
-                    fillColor: (grade == 0 || grade == 7)
-                        ? Colors.black.withOpacity(0.1)
-                        : PRIMARY_COLOR[grade].withOpacity(0.3),
-                    onPressed: (value) {
-                      setState(() {
-                        if (value == 0) {
-                          search[0] = true;
-                          search[1] = false;
-                        } else {
-                          search[0] = false;
-                          search[1] = true;
-                        }
-                      });
-                    },
-                  ),
-                  SizedBox(width: 8.0),
                   Expanded(
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: grade == 0
@@ -78,7 +52,8 @@ class _SearchPageState extends State<SearchPage> {
                         controller: controller,
                         decoration: InputDecoration(
                           contentPadding:
-                              EdgeInsets.symmetric(horizontal: 10.0),
+                          EdgeInsets.symmetric(horizontal: 10.0),
+                          hintText: '제목으로 검색',
                           border: InputBorder.none,
                         ),
                       ),
@@ -90,27 +65,14 @@ class _SearchPageState extends State<SearchPage> {
                     onTap: () {
                       List<int> findLst = [];
                       String find = controller.text.toString();
-                      if (search[0] == true) {
-                        //제목으로 게시글 검색
-                        //php로 제목에 find가 포함된 게시글 번호 가져옴
-                        findLst = [1, 4, 5];
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => SearchPage(
-                                boardLst: findLst, searchfor: widget.searchfor),
-                          ),
-                        );
-                      } else {
-                        //작성자로 게시글 검색
-                        //php로 작성자가 find인 게시글 번호 가져옴
-                        findLst = [2, 6, 7, 8];
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => SearchPage(
-                                boardLst: findLst, searchfor: widget.searchfor),
-                          ),
-                        );
-                      }
+
+                      findLst = [1, 4, 5];
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              SearchPage(boardLst: findLst, searchfor: find),
+                        ),
+                      );
                     },
                   ),
                 ],

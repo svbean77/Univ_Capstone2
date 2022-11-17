@@ -19,7 +19,6 @@ class QnABoard extends StatefulWidget {
 
 class _QnABoardState extends State<QnABoard> {
   final TextEditingController controller = TextEditingController();
-  List<bool> search = [true, false];
 
   @override
   Widget build(BuildContext context) {
@@ -52,29 +51,6 @@ class _QnABoardState extends State<QnABoard> {
               height: MediaQuery.of(context).size.height / 15,
               child: Row(
                 children: [
-                  ToggleButtons(
-                    children: [
-                      Text('제목'),
-                      Text('작성자'),
-                    ],
-                    isSelected: search,
-                    selectedColor: Colors.black,
-                    fillColor: (grade == 0 || grade == 7)
-                        ? Colors.black.withOpacity(0.1)
-                        : PRIMARY_COLOR[grade].withOpacity(0.3),
-                    onPressed: (value) {
-                      setState(() {
-                        if (value == 0) {
-                          search[0] = true;
-                          search[1] = false;
-                        } else {
-                          search[0] = false;
-                          search[1] = true;
-                        }
-                      });
-                    },
-                  ),
-                  SizedBox(width: 8.0),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -88,7 +64,8 @@ class _QnABoardState extends State<QnABoard> {
                         controller: controller,
                         decoration: InputDecoration(
                           contentPadding:
-                              EdgeInsets.symmetric(horizontal: 10.0),
+                          EdgeInsets.symmetric(horizontal: 10.0),
+                          hintText: '제목으로 검색',
                           border: InputBorder.none,
                         ),
                       ),
@@ -100,27 +77,14 @@ class _QnABoardState extends State<QnABoard> {
                     onTap: () {
                       List<int> findLst = [];
                       String find = controller.text.toString();
-                      if (search[0] == true) {
-                        //제목으로 게시글 검색
-                        //php로 제목에 find가 포함된 게시글 번호 가져옴
-                        findLst = [1, 4, 5];
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                SearchPage(boardLst: findLst, searchfor: find),
-                          ),
-                        );
-                      } else {
-                        //작성자로 게시글 검색
-                        //php로 작성자가 find인 게시글 번호 가져옴
-                        findLst = [2, 6, 7, 8];
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                SearchPage(boardLst: findLst, searchfor: find),
-                          ),
-                        );
-                      }
+
+                      findLst = [1, 4, 5];
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              SearchPage(boardLst: findLst, searchfor: find),
+                        ),
+                      );
                     },
                   ),
                 ],

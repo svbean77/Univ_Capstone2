@@ -52,6 +52,7 @@ class _WriteBoardState extends State<WriteBoard> {
                   SizedBox(width: 16.0),
                   Expanded(
                     child: Container(
+                      padding: EdgeInsets.only(left: 8.0),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: grade == 0

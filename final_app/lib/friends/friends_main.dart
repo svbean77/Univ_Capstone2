@@ -15,7 +15,6 @@ class FriendsMain extends StatefulWidget {
 
 class _FriendsMainState extends State<FriendsMain> {
   final TextEditingController controller = TextEditingController();
-  List<bool> search = [true, false];
 
   @override
   Widget build(BuildContext context) {
@@ -35,29 +34,6 @@ class _FriendsMainState extends State<FriendsMain> {
             height: MediaQuery.of(context).size.height / 15,
             child: Row(
               children: [
-                ToggleButtons(
-                  children: [
-                    Text('닉네임'),
-                    Text('아이디'),
-                  ],
-                  isSelected: search,
-                  selectedColor: Colors.black,
-                  fillColor: (grade == 0 || grade == 7)
-                      ? Colors.black.withOpacity(0.1)
-                      : PRIMARY_COLOR[grade].withOpacity(0.3),
-                  onPressed: (value) {
-                    setState(() {
-                      if (value == 0) {
-                        search[0] = true;
-                        search[1] = false;
-                      } else {
-                        search[0] = false;
-                        search[1] = true;
-                      }
-                    });
-                  },
-                ),
-                SizedBox(width: 8.0),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -71,6 +47,7 @@ class _FriendsMainState extends State<FriendsMain> {
                       controller: controller,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                        hintText: '닉네임으로 사용자 검색',
                         border: InputBorder.none,
                       ),
                     ),
@@ -81,63 +58,34 @@ class _FriendsMainState extends State<FriendsMain> {
                   child: Icon(Icons.search),
                   onTap: () {
                     String find = controller.text.toString();
-                    if (search[0] == true) {
-                      //닉네임을 이용해 검색
-                      //모든 사용자 불러옴 (랭킹처럼)
-                      List<String> allUser = [
-                        'user1',
-                        'user2',
-                        'user3',
-                        'friend3',
-                        'friend2',
-                        'friend1'
-                      ];
-                      if (allUser.contains(find)) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                UserInfo(nickname: find),
-                          ),
-                        );
-                      } else {
-                        Fluttertoast.showToast(
-                          msg: '존재하지 않는 닉네임입니다.',
-                          backgroundColor: PRIMARY_COLOR[grade],
-                          textColor: (grade == 0 ||
-                                  grade == 1 ||
-                                  grade == 2 ||
-                                  grade == 4 ||
-                                  grade == 8)
-                              ? Colors.black
-                              : Colors.white,
-                          toastLength: Toast.LENGTH_SHORT,
-                        );
-                      }
+                    List<String> allUser = [
+                      'user1',
+                      'user2',
+                      'user3',
+                      'friend3',
+                      'friend2',
+                      'friend1'
+                    ];
+                    if (allUser.contains(find)) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              UserInfo(nickname: find),
+                        ),
+                      );
                     } else {
-                      //아이디를 이용해 검색
-                      List<String> allUser = [
-                        'id1',
-                        'id2',
-                        'id3',
-                        'id4',
-                        'id5',
-                        'id6'
-                      ];
-                      if (allUser.contains(find)) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                UserInfo(nickname: find),
-                          ),
-                        );
-                      } else {
-                        Fluttertoast.showToast(
-                          msg: '존재하지 않는 아이디입니다.',
-                          backgroundColor: Colors.grey,
-                          textColor: Colors.white,
-                          toastLength: Toast.LENGTH_SHORT,
-                        );
-                      }
+                      Fluttertoast.showToast(
+                        msg: '존재하지 않는 닉네임입니다.',
+                        backgroundColor: PRIMARY_COLOR[grade],
+                        textColor: (grade == 0 ||
+                                grade == 1 ||
+                                grade == 2 ||
+                                grade == 4 ||
+                                grade == 8)
+                            ? Colors.black
+                            : Colors.white,
+                        toastLength: Toast.LENGTH_SHORT,
+                      );
                     }
                   },
                 ),

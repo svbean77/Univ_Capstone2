@@ -55,7 +55,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddRecord(grade: grade),
+                content: AddRecord(grade: grade, selectedDate: DateTime.now()),
                 scrollable: true,
               );
             },

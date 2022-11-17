@@ -22,7 +22,6 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _userageController = TextEditingController();
-  final TextEditingController _kgController = TextEditingController();
 
   bool isPasswordVisible = false;
   List<bool> sex = [true, false];
@@ -107,7 +106,7 @@ class _SignUpState extends State<SignUp> {
                                 isPasswordVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: Colors.black,
+                                color: Colors.grey,
                               ),
                             ),
                           ),
@@ -167,33 +166,6 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: 70.0,
-                      child: Text('체중', style: TextStyle(fontSize: 16.0)),
-                    ),
-                    SizedBox(width: 16.0),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 5.0),
-                        child: TextField(
-                          controller: _kgController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
-                  children: [
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
@@ -296,7 +268,6 @@ class _SignUpState extends State<SignUp> {
       "nickname": _nicknameController.text.toString(),
       if (sex[0] == true) "sex": 'male' else "sex": 'female',
       "userage": _userageController.text.toString(),
-      "kg": _kgController.text.toString(),
     });
     var data = json.decode(json.encode(response.body));
 

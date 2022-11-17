@@ -77,9 +77,9 @@ class _RecordGraphState extends State<RecordGraph> {
                         ? Colors.grey.withOpacity(0.1)
                         : grade == 2
                             ? Colors.yellow[600]
-                        : grade == 8
-                        ? Colors.lightGreen[200]
-                        : PRIMARY_COLOR[grade],
+                            : grade == 8
+                                ? Colors.lightGreen[200]
+                                : PRIMARY_COLOR[grade],
                     dataSource: data,
                     xValueMapper: (WeightData info, _) => info.date,
                     yValueMapper: (WeightData info, _) => info.weight,

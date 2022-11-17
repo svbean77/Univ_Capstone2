@@ -25,7 +25,6 @@ class _AddRoutineState extends State<AddRoutine> {
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '루틴 이름을 입력해주세요',
-                hintStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
               ),
             ),
