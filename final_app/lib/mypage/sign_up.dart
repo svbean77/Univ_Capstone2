@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: ""),
       appBar: MyAppBar(grade: 0),
       body: Container(
         height: double.infinity,

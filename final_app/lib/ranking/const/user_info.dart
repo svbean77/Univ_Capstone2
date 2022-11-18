@@ -5,9 +5,11 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class UserInfo extends StatelessWidget {
+  final loginID;
   final nickname;
 
   const UserInfo({
+    required this.loginID,
     required this.nickname,
     Key? key,
   }) : super(key: key);
@@ -29,7 +31,7 @@ class UserInfo extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: loginID),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -38,7 +40,7 @@ class UserInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MyRanking(nickname: nickname),
+            MyRanking(nickname: nickname, loginID: loginID),
             SizedBox(height: 8.0),
             Text('운동기록', style: TextStyle(fontSize: 20.0)),
             SizedBox(height: 8.0),

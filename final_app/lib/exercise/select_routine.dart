@@ -6,7 +6,9 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
 class SelectRoutine extends StatefulWidget {
+  final loginID;
   const SelectRoutine({
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -15,7 +17,6 @@ class SelectRoutine extends StatefulWidget {
 }
 
 class _SelectRoutineState extends State<SelectRoutine> {
-
   @override
   Widget build(BuildContext context) {
     int grade = 5;
@@ -25,7 +26,7 @@ class _SelectRoutineState extends State<SelectRoutine> {
     List<String> divisionLst = ['무분할', '2분할', '3분할', '4분할'];
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -46,7 +47,10 @@ class _SelectRoutineState extends State<SelectRoutine> {
                 scrollDirection: Axis.horizontal,
                 children: [
                   for (int i = 0; i < timeLst.length; i++)
-                    SelectRoutineContainer(title: timeLst[i], grade: grade)
+                    SelectRoutineContainer(
+                        title: timeLst[i],
+                        grade: grade,
+                        loginID: widget.loginID)
                 ],
               ),
             ),
@@ -63,9 +67,18 @@ class _SelectRoutineState extends State<SelectRoutine> {
                   for (int i = 0; i < muscleLst.length ~/ 3; i++)
                     Column(
                       children: [
-                        SelectRoutineContainer(title: muscleLst[i * 3], grade: grade),
-                        SelectRoutineContainer(title: muscleLst[i * 3 + 1], grade: grade),
-                        SelectRoutineContainer(title: muscleLst[i * 3 + 2], grade: grade),
+                        SelectRoutineContainer(
+                            title: muscleLst[i * 3],
+                            grade: grade,
+                            loginID: widget.loginID),
+                        SelectRoutineContainer(
+                            title: muscleLst[i * 3 + 1],
+                            grade: grade,
+                            loginID: widget.loginID),
+                        SelectRoutineContainer(
+                            title: muscleLst[i * 3 + 2],
+                            grade: grade,
+                            loginID: widget.loginID),
                       ],
                     )
                 ],
@@ -82,7 +95,10 @@ class _SelectRoutineState extends State<SelectRoutine> {
                 scrollDirection: Axis.horizontal,
                 children: [
                   for (int i = 0; i < divisionLst.length; i++)
-                    SelectRoutineContainer(title: divisionLst[i], grade: grade)
+                    SelectRoutineContainer(
+                        title: divisionLst[i],
+                        grade: grade,
+                        loginID: widget.loginID)
                 ],
               ),
             ),

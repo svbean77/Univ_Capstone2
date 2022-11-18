@@ -7,12 +7,14 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 class WriteBoard extends StatefulWidget {
+  final loginID;
   String content;
   final board;
   final mode;
   WriteBoard({
     required this.board,
     required this.mode,
+    required this.loginID,
     required this.content,
     Key? key,
   }) : super(key: key);
@@ -38,7 +40,7 @@ class _WriteBoardState extends State<WriteBoard> {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(
@@ -201,6 +203,7 @@ class _WriteBoardState extends State<WriteBoard> {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (BuildContext context) => Contents(
+                        loginID: widget.loginID,
                         title: saveTitle,
                         contents: saveContent,
                         board: widget.board),

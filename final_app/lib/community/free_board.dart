@@ -6,9 +6,11 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class FreeBoard extends StatefulWidget {
+  final loginID;
   final boardLst;
   const FreeBoard({
     required this.boardLst,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -28,8 +30,11 @@ class _FreeBoardState extends State<FreeBoard> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  WriteBoard(board: '자유게시판', mode: 'write', content: ""),
+              builder: (BuildContext context) => WriteBoard(
+                  board: '자유게시판',
+                  mode: 'write',
+                  content: "",
+                  loginID: widget.loginID),
             ),
           );
         },
@@ -80,8 +85,10 @@ class _FreeBoardState extends State<FreeBoard> {
                       findLst = [1, 4, 5];
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              SearchPage(boardLst: findLst, searchfor: find),
+                          builder: (BuildContext context) => SearchPage(
+                              boardLst: findLst,
+                              searchfor: find,
+                              loginID: widget.loginID),
                         ),
                       );
                     },
@@ -112,6 +119,7 @@ class _FreeBoardState extends State<FreeBoard> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) => Contents(
+                                        loginID: widget.loginID,
                                         board: '자유게시판',
                                         title: title,
                                         contents: contents),

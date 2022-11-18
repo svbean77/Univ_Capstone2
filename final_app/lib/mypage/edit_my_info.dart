@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import '../screen/const/grade_colors.dart';
 
 class EditMyInfo extends StatefulWidget {
-  final id;
+  final loginID;
   const EditMyInfo({
-    required this.id,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -28,7 +28,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
   Widget build(BuildContext context) {
     int grade = 5;
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       body: Container(
         height: double.infinity,
@@ -58,7 +58,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                       child: Text('아이디', style: TextStyle(fontSize: 16.0)),
                     ),
                     SizedBox(width: 16.0),
-                    Text(widget.id),
+                    Text(widget.loginID),
                   ],
                 ),
                 SizedBox(
@@ -211,7 +211,8 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     //db에서 내용을 수정하는 코드
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (BuildContext context) => MyPage(),
+                        builder: (BuildContext context) =>
+                            MyPage(loginID: widget.loginID),
                       ),
                     );
                   },

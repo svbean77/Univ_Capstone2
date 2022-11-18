@@ -5,8 +5,10 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ListExercise extends StatefulWidget {
+  final loginID;
   final routineName;
   const ListExercise({
+    required this.loginID,
     required this.routineName,
     Key? key,
   }) : super(key: key);
@@ -33,7 +35,7 @@ class _ListExerciseState extends State<ListExercise> {
     }
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -80,13 +82,15 @@ class _ListExerciseState extends State<ListExercise> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) => RoutineGuide(
-                        routineName: widget.routineName,
-                        exerciseName: exerciseName[0],
-                        exerciseStep: exerciseStep,
-                        exerciseImage1: exerciseImage1,
-                        exerciseImage2: exerciseImage2,
-                        numberUnit: numberUnit(isTime[0]),
-                        number: number[0]),
+                      routineName: widget.routineName,
+                      exerciseName: exerciseName[0],
+                      exerciseStep: exerciseStep,
+                      exerciseImage1: exerciseImage1,
+                      exerciseImage2: exerciseImage2,
+                      numberUnit: numberUnit(isTime[0]),
+                      number: number[0],
+                      loginID: widget.loginID,
+                    ),
                   ),
                 );
               },

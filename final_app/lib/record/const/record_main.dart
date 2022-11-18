@@ -1,13 +1,13 @@
-import 'package:final_app/community/free_board.dart';
-import 'package:final_app/community/q_and_a_board.dart';
 import 'package:final_app/record/record_calendar.dart';
 import 'package:final_app/record/record_graph.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class RecordMain extends StatefulWidget {
+  final loginID;
   final grade;
   const RecordMain({
+    required this.loginID,
     required this.grade,
     Key? key,
   }) : super(key: key);
@@ -16,8 +16,7 @@ class RecordMain extends StatefulWidget {
   State<RecordMain> createState() => _RecordMainState();
 }
 
-class _RecordMainState extends State<RecordMain>
-    with TickerProviderStateMixin {
+class _RecordMainState extends State<RecordMain> with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -57,8 +56,8 @@ class _RecordMainState extends State<RecordMain>
           child: TabBarView(
             controller: _tabController,
             children: [
-              RecordCalendar(),
-              RecordGraph(),
+              RecordCalendar(loginID: widget.loginID),
+              RecordGraph(loginID: widget.loginID),
             ],
           ),
         ),

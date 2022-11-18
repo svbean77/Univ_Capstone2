@@ -7,17 +7,21 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
 class SelectBody extends StatelessWidget {
+  final loginID;
   const SelectBody({
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int grade = 5;
+    int grade = 0;
+    if (loginID != "")
+      grade = 5;
     String level = '초보자';
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: loginID),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(10.0),
@@ -46,7 +50,10 @@ class SelectBody extends StatelessWidget {
                             ),
                           ),
                           for (int i = 0; i < muscleLst.length; i++)
-                            SearchName(name: muscleLst[i], level: level)
+                            SearchName(
+                                name: muscleLst[i],
+                                level: level,
+                                loginID: loginID)
                         ],
                       ),
                     );
@@ -69,47 +76,56 @@ class SelectBody extends StatelessWidget {
                     dir: 'muscle_front',
                     col: 1,
                     muscleLst: getLst('f', 1),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_front',
                     col: 2,
                     muscleLst: getLst('f', 2),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_front',
                     col: 3,
                     muscleLst: getLst('f', 3),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_front',
                     col: 4,
                     muscleLst: getLst('f', 4),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_front',
                     col: 5,
                     muscleLst: getLst('f', 5),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_front',
                     col: 6,
                     muscleLst: getLst('f', 6),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_front',
                     col: 7,
                     muscleLst: getLst('f', 7),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_front',
                     col: 8,
                     muscleLst: getLst('f', 8),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_front',
                     col: 9,
                     muscleLst: getLst('f', 9),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
               ],
             ),
             SizedBox(height: 50.0),
@@ -125,47 +141,56 @@ class SelectBody extends StatelessWidget {
                     dir: 'muscle_back',
                     col: 1,
                     muscleLst: getLst('b', 1),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_back',
                     col: 2,
                     muscleLst: getLst('b', 2),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_back',
                     col: 3,
                     muscleLst: getLst('b', 3),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_back',
                     col: 4,
                     muscleLst: getLst('b', 4),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_back',
                     col: 5,
                     muscleLst: getLst('b', 5),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_back',
                     col: 6,
                     muscleLst: getLst('b', 6),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_back',
                     col: 7,
                     muscleLst: getLst('b', 7),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_back',
                     col: 8,
                     muscleLst: getLst('b', 8),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
                 SetImage(
                     dir: 'muscle_back',
                     col: 9,
                     muscleLst: getLst('b', 9),
-                    level: level),
+                    level: level,
+                    loginID: loginID),
               ],
             ),
           ],

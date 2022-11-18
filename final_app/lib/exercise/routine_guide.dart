@@ -8,6 +8,7 @@ import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class RoutineGuide extends StatefulWidget {
+  final loginID;
   final routineName;
   final exerciseName;
   final exerciseImage1;
@@ -17,6 +18,7 @@ class RoutineGuide extends StatefulWidget {
   final numberUnit;
 
   const RoutineGuide({
+    required this.loginID,
     required this.routineName,
     required this.exerciseName,
     required this.exerciseStep,
@@ -36,7 +38,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
   Widget build(BuildContext context) {
     int grade = 5;
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
         backgroundColor: PRIMARY_COLOR[grade],
@@ -55,7 +57,10 @@ class _RoutineGuideState extends State<RoutineGuide> {
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddRecord(grade: grade, selectedDate: DateTime.now()),
+                content: AddRecord(
+                    grade: grade,
+                    selectedDate: DateTime.now(),
+                    loginID: widget.loginID),
                 scrollable: true,
               );
             },

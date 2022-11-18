@@ -4,6 +4,7 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class EquipmentFilter extends StatelessWidget {
+  final loginID;
   String level;
   String muscleName;
   String exerciseName;
@@ -15,6 +16,7 @@ class EquipmentFilter extends StatelessWidget {
 
   EquipmentFilter({
     required this.level,
+    required this.loginID,
     required this.exerciseImage2,
     required this.muscleName,
     required this.exerciseStep,
@@ -73,6 +75,7 @@ class EquipmentFilter extends StatelessWidget {
                         equipment: equipment,
                         muscleName: muscleName,
                         difficulty: difficulty,
+                        loginID: loginID,
                       ),
                     ),
                   );

@@ -4,6 +4,7 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import '../screen/const/storage_box.dart';
 import '../screen/home_screen.dart';
 import 'dart:convert';
 import '../screen/const/ip_address.dart';
@@ -25,7 +26,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: ""),
       appBar: MyAppBar(grade: 0),
       body: Container(
         height: double.infinity,
@@ -188,12 +189,12 @@ class _SignInState extends State<SignIn> {
         toastLength: Toast.LENGTH_SHORT,
       );
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(),
-        ),
-      );
+      LOGIN_BOX.write('id', _idController.text.toString());
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+          (route) => false);
     } else {
       print(data.toString());
       Fluttertoast.showToast(

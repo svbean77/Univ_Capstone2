@@ -3,12 +3,14 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class FriendCard extends StatelessWidget {
+  final loginID;
   final nickname;
   final rating;
   final isActive;
   final grade;
 
   const FriendCard({
+    required this.loginID,
     required this.nickname,
     required this.grade,
     required this.rating,
@@ -52,6 +54,7 @@ class FriendCard extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => UserInfo(
+                            loginID: loginID,
                             nickname: nickname,
                           ),
                         ),

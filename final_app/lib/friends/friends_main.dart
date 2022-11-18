@@ -7,7 +7,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../screen/const/grade_colors.dart';
 
 class FriendsMain extends StatefulWidget {
-  const FriendsMain({Key? key}) : super(key: key);
+  final loginID;
+  const FriendsMain({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<FriendsMain> createState() => _FriendsMainState();
@@ -58,6 +62,7 @@ class _FriendsMainState extends State<FriendsMain> {
                   child: Icon(Icons.search),
                   onTap: () {
                     String find = controller.text.toString();
+                    //allUser는 닉네임임
                     List<String> allUser = [
                       'user1',
                       'user2',
@@ -70,7 +75,7 @@ class _FriendsMainState extends State<FriendsMain> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              UserInfo(nickname: find),
+                              UserInfo(nickname: find, loginID: widget.loginID),
                         ),
                       );
                     } else {
@@ -122,7 +127,8 @@ class _FriendsMainState extends State<FriendsMain> {
                                       nickname: friendN[i],
                                       rating: friendR[i],
                                       isActive: isActive[i],
-                                      grade: grade)
+                                      grade: grade,
+                                      loginID: widget.loginID)
                               ],
                             ),
                     ),
@@ -149,7 +155,8 @@ class _FriendsMainState extends State<FriendsMain> {
                                 RequestCard(
                                     nickname: requestN[i],
                                     rating: requestR[i],
-                                    grade: grade)
+                                    grade: grade,
+                                    loginID: widget.loginID)
                             ],
                           ),
                   ),

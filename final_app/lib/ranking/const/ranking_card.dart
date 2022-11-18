@@ -3,6 +3,7 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class RankingCard extends StatelessWidget {
+  final loginID;
   final nickname;
   final rating;
   final total3th;
@@ -11,6 +12,7 @@ class RankingCard extends StatelessWidget {
 
   const RankingCard({
     required this.grade,
+    required this.loginID,
     required this.nickname,
     required this.rating,
     required this.ranking,
@@ -20,15 +22,13 @@ class RankingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return GestureDetector(
       onTap: () {
-
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) => UserInfo(
               nickname: nickname,
+              loginID: loginID,
             ),
           ),
         );

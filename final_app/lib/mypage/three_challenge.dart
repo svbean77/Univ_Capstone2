@@ -6,7 +6,9 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ThreeChallenge extends StatefulWidget {
+  final loginID;
   const ThreeChallenge({
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -22,13 +24,13 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
     int grade = 5;
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            MyRanking(nickname: nickname),
+            MyRanking(nickname: nickname, loginID: widget.loginID),
             SizedBox(height: 8.0),
             Expanded(
               child: Column(
@@ -42,7 +44,9 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    ChallengeMain(exercise: three[i]),
+                                    ChallengeMain(
+                                        exercise: three[i],
+                                        loginID: widget.loginID),
                               ),
                             );
                           },

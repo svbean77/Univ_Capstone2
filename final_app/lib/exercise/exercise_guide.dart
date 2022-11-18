@@ -10,6 +10,7 @@ import '../screen/const/grade_colors.dart';
 import 'const/exercise_card.dart';
 
 class ExerciseGuide extends StatefulWidget {
+  final loginID;
   final String level;
   final muscleName;
   final exerciseName;
@@ -20,6 +21,7 @@ class ExerciseGuide extends StatefulWidget {
   final exerciseStep;
 
   const ExerciseGuide({
+    required this.loginID,
     required this.level,
     required this.exerciseStep,
     required this.exerciseName,
@@ -38,9 +40,11 @@ class ExerciseGuide extends StatefulWidget {
 class _ExerciseGuideState extends State<ExerciseGuide> {
   @override
   Widget build(BuildContext context) {
-    int grade = 5;
+    int grade = 0;
+    if (widget.loginID != "") grade = 5;
+
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -56,16 +60,48 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                     ? Colors.black
                     : Colors.white),
             onPressed: () {
-              showDialog(
-                context: context,
-                barrierDismissible: true,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    content: AddRecord(grade: grade, selectedDate: DateTime.now()),
-                    scrollable: true,
-                  );
-                },
-              );
+              if (widget.loginID == '')
+                showDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Container(
+                        height: 100.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('로그인 후 사용 가능합니다'),
+                            SizedBox(height: 8.0),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('확인',
+                                  style: TextStyle(color: Colors.black)),
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey[200], elevation: 0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              else
+                showDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: AddRecord(
+                          grade: grade,
+                          selectedDate: DateTime.now(),
+                          loginID: widget.loginID),
+                      scrollable: true,
+                    );
+                  },
+                );
             },
             backgroundColor: PRIMARY_COLOR[grade],
           ),
@@ -86,14 +122,16 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                 isScrollControlled: true,
                 builder: (_) {
                   return EquipmentFilter(
-                      level: widget.level,
-                      exerciseImage2: widget.exerciseImage2,
-                      muscleName: widget.muscleName,
-                      exerciseStep: widget.exerciseStep,
-                      equipment: widget.equipment,
-                      difficulty: widget.difficulty,
-                      exerciseName: widget.exerciseName,
-                      exerciseImage1: widget.exerciseImage1);
+                    level: widget.level,
+                    exerciseImage2: widget.exerciseImage2,
+                    muscleName: widget.muscleName,
+                    exerciseStep: widget.exerciseStep,
+                    equipment: widget.equipment,
+                    difficulty: widget.difficulty,
+                    exerciseName: widget.exerciseName,
+                    exerciseImage1: widget.exerciseImage1,
+                    loginID: widget.loginID,
+                  );
                 },
               );
             },
@@ -117,13 +155,15 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                 if (widget.level == '초보자')
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => SelectBody(),
+                      builder: (BuildContext context) =>
+                          SelectBody(loginID: widget.loginID),
                     ),
                   );
                 else
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => SelectMuscle(),
+                      builder: (BuildContext context) =>
+                          SelectMuscle(loginID: widget.loginID),
                     ),
                   );
               },

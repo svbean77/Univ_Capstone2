@@ -2,7 +2,11 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class AddRoutine extends StatefulWidget {
-  const AddRoutine({Key? key}) : super(key: key);
+  final loginID;
+  const AddRoutine({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AddRoutine> createState() => _AddRoutineState();

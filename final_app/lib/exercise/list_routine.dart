@@ -5,9 +5,11 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ListRoutine extends StatefulWidget {
+  final loginID;
   final title;
   const ListRoutine({
     required this.title,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -16,7 +18,6 @@ class ListRoutine extends StatefulWidget {
 }
 
 class _ListRoutineState extends State<ListRoutine> {
-
   @override
   Widget build(BuildContext context) {
     int grade = 5;
@@ -25,7 +26,7 @@ class _ListRoutineState extends State<ListRoutine> {
     List<int> routineTime = [15, 20, 25, 30];
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -68,8 +69,8 @@ class _ListRoutineState extends State<ListRoutine> {
 
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          ListExercise(routineName: routineName[i]),
+                      builder: (BuildContext context) => ListExercise(
+                          routineName: routineName[i], loginID: widget.loginID),
                     ),
                   );
                 },

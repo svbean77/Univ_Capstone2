@@ -6,8 +6,10 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ListMyExercise extends StatefulWidget {
+  final loginID;
   final String routineName;
   const ListMyExercise({
+    required this.loginID,
     required this.routineName,
     Key? key,
   }) : super(key: key);
@@ -34,7 +36,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
     }
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add,
@@ -52,7 +54,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddExercise(),
+                content: AddExercise(loginID: widget.loginID),
                 scrollable: true,
               );
             },
@@ -117,7 +119,8 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                         exerciseImage1: exerciseImage1,
                         exerciseImage2: exerciseImage2,
                         numberUnit: numberUnit(isTime[0]),
-                        number: number[0]),
+                        number: number[0],
+                        loginID: widget.loginID),
                   ),
                 );
               },

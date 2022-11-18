@@ -2,7 +2,11 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class AddWeight extends StatelessWidget {
-  const AddWeight({Key? key}) : super(key: key);
+  final loginID;
+  const AddWeight({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

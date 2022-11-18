@@ -6,8 +6,16 @@ import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../screen/const/grade_colors.dart';
+import '../screen/const/storage_box.dart';
 
 class MyPage extends StatefulWidget {
+  final loginID;
+
+  const MyPage({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
+
   @override
   State<MyPage> createState() => _MyPageState();
 }
@@ -29,18 +37,17 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     String nickname = '내닉네임';
-    String id = 'myID';
     String rating = "챌린저";
     int? selectRange = THEME_SELECT_RANGE[rating];
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            MyRanking(nickname: nickname),
+            MyRanking(nickname: nickname, loginID: widget.loginID),
             SizedBox(height: 16.0),
             Text('앱 테마 선택', style: TextStyle(fontSize: 20.0)),
             Container(
@@ -74,7 +81,8 @@ class _MyPageState extends State<MyPage> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) => EditMyInfo(id: id),
+                    builder: (BuildContext context) =>
+                        EditMyInfo(loginID: widget.loginID),
                   ),
                 );
               },
@@ -94,12 +102,69 @@ class _MyPageState extends State<MyPage> {
             SizedBox(height: 8.0),
             ElevatedButton(
               onPressed: () {
-                //로그아웃 코드
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => HomeScreen(),
-                    ),
-                    (route) => false);
+                showDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Container(
+                        height: 100.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('로그아웃 하시겠습니까?'),
+                            SizedBox(height: 8.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('취소',
+                                      style: TextStyle(
+                                          color: (grade == 0 ||
+                                                  grade == 1 ||
+                                                  grade == 2 ||
+                                                  grade == 4 ||
+                                                  grade == 8)
+                                              ? Colors.black
+                                              : Colors.white)),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: PRIMARY_COLOR[grade],
+                                      elevation: 0),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    LOGIN_BOX.remove('id');
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              HomeScreen(),
+                                        ),
+                                        (route) => false);
+                                  },
+                                  child: Text('확인',
+                                      style: TextStyle(
+                                          color: (grade == 0 ||
+                                                  grade == 1 ||
+                                                  grade == 2 ||
+                                                  grade == 4 ||
+                                                  grade == 8)
+                                              ? Colors.black
+                                              : Colors.white)),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: PRIMARY_COLOR[grade],
+                                      elevation: 0),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
               },
               child: Text(
                 '로그아웃',

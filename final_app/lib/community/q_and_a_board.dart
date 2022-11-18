@@ -7,9 +7,11 @@ import '../screen/const/grade_colors.dart';
 import 'const/contents.dart';
 
 class QnABoard extends StatefulWidget {
+  final loginID;
   final boardLst;
   const QnABoard({
     required this.boardLst,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -29,8 +31,11 @@ class _QnABoardState extends State<QnABoard> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  WriteBoard(board: 'QnA', mode: 'write', content: ""),
+              builder: (BuildContext context) => WriteBoard(
+                  board: 'QnA',
+                  mode: 'write',
+                  content: "",
+                  loginID: widget.loginID),
             ),
           );
         },
@@ -64,7 +69,7 @@ class _QnABoardState extends State<QnABoard> {
                         controller: controller,
                         decoration: InputDecoration(
                           contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10.0),
+                              EdgeInsets.symmetric(horizontal: 10.0),
                           hintText: '제목으로 검색',
                           border: InputBorder.none,
                         ),
@@ -81,8 +86,10 @@ class _QnABoardState extends State<QnABoard> {
                       findLst = [1, 4, 5];
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              SearchPage(boardLst: findLst, searchfor: find),
+                          builder: (BuildContext context) => SearchPage(
+                              boardLst: findLst,
+                              searchfor: find,
+                              loginID: widget.loginID),
                         ),
                       );
                     },
@@ -113,6 +120,7 @@ class _QnABoardState extends State<QnABoard> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) => Contents(
+                                        loginID: widget.loginID,
                                         board: 'QnA',
                                         title: title,
                                         contents: contents),

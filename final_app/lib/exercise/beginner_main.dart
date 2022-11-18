@@ -4,11 +4,17 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class BeginnerMain extends StatelessWidget {
-  const BeginnerMain({Key? key}) : super(key: key);
+  final loginID;
+  const BeginnerMain({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int grade = 5;
+    int grade = 0;
+    if (loginID != "")
+      grade = 5;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,7 +28,7 @@ class BeginnerMain extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => SelectBody(),
+              builder: (BuildContext context) => SelectBody(loginID: loginID),
             ));
           },
           child: Container(
@@ -45,7 +51,8 @@ class BeginnerMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => SelectRoutine(),
+                builder: (BuildContext context) =>
+                    SelectRoutine(loginID: loginID),
               ),
             );
           },

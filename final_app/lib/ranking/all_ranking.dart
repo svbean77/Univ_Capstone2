@@ -2,7 +2,11 @@ import 'package:final_app/ranking/const/ranking_card.dart';
 import 'package:flutter/material.dart';
 
 class AllRanking extends StatelessWidget {
-  const AllRanking({Key? key}) : super(key: key);
+  final loginID;
+  const AllRanking({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +46,7 @@ class AllRanking extends StatelessWidget {
                 rating: rating[index],
                 ranking: index + 1,
                 total3th: total3th[index],
+                loginID: loginID,
               );
             },
             separatorBuilder: (context, index) {

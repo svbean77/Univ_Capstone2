@@ -2,9 +2,11 @@ import 'package:final_app/ranking/const/user_info.dart';
 import 'package:flutter/material.dart';
 
 class MyRanking extends StatefulWidget {
+  final loginID;
   final nickname;
   const MyRanking({
     required this.nickname,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -15,18 +17,19 @@ class MyRanking extends StatefulWidget {
 class _MyRankingState extends State<MyRanking> {
   @override
   Widget build(BuildContext context) {
+    //loginID를 통해 내 닉네임 구하기
+    String myNickName = "안녕";
     //nickname을 이용해 등수, 등급, 무게 구하기
     String myRating = "실버";
     int myRanking = 3;
     //db에서 친구 목록을 불러와 닉네임이 그 안에 속하는지 알아보기
     //조건문 사용해 요청받았니 -> 요청했니 -> 친구가 아니니 -> 나머지
-    String myNickname = '내닉네임';
     List<String> myFriends = ['친구1', '친구2', '친구3'];
     List<String> myRequests = ['유저1', '유저2']; //내가 요청함
     List<String> myRequested = ['요청1', '요청2']; //나한테 요청함
 
     String friends = '';
-    if (widget.nickname == myNickname){
+    if (widget.nickname == myNickName){
       friends = 'me';
     }
     else if (myRequested.contains(widget.nickname)){

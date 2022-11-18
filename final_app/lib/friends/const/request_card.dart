@@ -4,11 +4,13 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class RequestCard extends StatelessWidget {
+  final loginID;
   final nickname;
   final rating;
   final grade;
 
   const RequestCard({
+    required this.loginID,
     required this.grade,
     required this.nickname,
     required this.rating,
@@ -17,7 +19,6 @@ class RequestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
@@ -49,6 +50,7 @@ class RequestCard extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => UserInfo(
+                            loginID: loginID,
                             nickname: nickname,
                           ),
                         ),

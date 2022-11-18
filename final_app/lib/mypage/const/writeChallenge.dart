@@ -7,9 +7,11 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 class WriteChallenge extends StatefulWidget {
+  final loginID;
   final exercise;
   const WriteChallenge({
     required this.exercise,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -26,7 +28,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(
@@ -95,8 +97,8 @@ class _WriteChallengeState extends State<WriteChallenge> {
 
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        ChallengeMain(exercise: widget.exercise),
+                    builder: (BuildContext context) => ChallengeMain(
+                        exercise: widget.exercise, loginID: widget.loginID),
                   ),
                 );
               },

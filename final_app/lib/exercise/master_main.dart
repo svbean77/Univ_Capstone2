@@ -5,7 +5,11 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class MasterMain extends StatelessWidget {
-  const MasterMain({Key? key}) : super(key: key);
+  final loginID;
+  const MasterMain({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,8 @@ class MasterMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) => SelectMuscle(),
+                builder: (BuildContext context) =>
+                    SelectMuscle(loginID: loginID),
               ),
             );
           },
@@ -48,7 +53,8 @@ class MasterMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext ccontext) => SelectRoutine(),
+                builder: (BuildContext ccontext) =>
+                    SelectRoutine(loginID: loginID),
               ),
             );
           },
@@ -72,7 +78,8 @@ class MasterMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext ccontext) => SelectMyRoutine(),
+                builder: (BuildContext ccontext) =>
+                    SelectMyRoutine(loginID: loginID),
               ),
             );
           },

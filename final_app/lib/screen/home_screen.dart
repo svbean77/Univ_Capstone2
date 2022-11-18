@@ -2,10 +2,12 @@ import 'package:final_app/exercise/const/exercise_main.dart';
 import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/ranking/const/ranking_main.dart';
 import 'package:final_app/record/const/record_main.dart';
+import 'package:final_app/screen/const/after_login.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 import 'const/bottom_navy_bar.dart';
+import 'const/storage_box.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -32,9 +34,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 5;
+    String loginID = '';
+    int grade = 0;
+    if (LOGIN_BOX.read('id') != null) {
+      loginID = LOGIN_BOX.read('id');
+      grade = 5;
+    }
+
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: loginID),
       appBar: MyAppBar(grade: grade),
       resizeToAvoidBottomInset: false,
       body: SizedBox.expand(
@@ -44,10 +52,16 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() => _currentIndex = index);
           },
           children: [
-            ExerciseMain(grade: grade),
-            RecordMain(grade: grade),
-            RankingMain(grade: grade),
-            FriendsMain(),
+            ExerciseMain(grade: grade, loginID: loginID),
+            if (loginID == '')
+              AfterLogin()
+            else
+              RecordMain(grade: grade, loginID: loginID),
+            if (loginID == '')
+              AfterLogin()
+            else
+              RankingMain(grade: grade, loginID: loginID),
+            if (loginID == '') AfterLogin() else FriendsMain(loginID: loginID),
           ],
         ),
       ),
@@ -81,7 +95,6 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('친구',
                 style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
-
         ],
       ),
     );

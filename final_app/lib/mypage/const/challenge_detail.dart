@@ -4,10 +4,12 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
 class ChallengeDetail extends StatelessWidget {
+  final loginID;
   final exercise;
   final num;
   final date;
   const ChallengeDetail({
+    required this.loginID,
     required this.date,
     required this.exercise,
     required this.num,
@@ -28,7 +30,7 @@ class ChallengeDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: loginID),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(

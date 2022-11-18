@@ -7,10 +7,12 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ChallengeMain extends StatelessWidget {
+  final loginID;
   final exercise;
 
   const ChallengeMain({
     required this.exercise,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -34,14 +36,14 @@ class ChallengeMain extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: loginID),
       floatingActionButton: FloatingActionButton(
         backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (BuildContext context) =>
-                  WriteChallenge(exercise: exercise),
+                  WriteChallenge(exercise: exercise, loginID: loginID),
             ),
           );
         },
@@ -68,10 +70,10 @@ class ChallengeMain extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => ChallengeDetail(
-                          date: date[i],
-                          exercise: exercise,
-                          num: num[i],
-                        ),
+                            date: date[i],
+                            exercise: exercise,
+                            num: num[i],
+                            loginID: loginID),
                       ),
                     );
                   },

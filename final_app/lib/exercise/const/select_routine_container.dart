@@ -3,9 +3,11 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class SelectRoutineContainer extends StatelessWidget {
+  final loginID;
   final title;
   final grade;
   const SelectRoutineContainer({
+    required this.loginID,
     required this.grade,
     required this.title,
     Key? key,
@@ -13,7 +15,6 @@ class SelectRoutineContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: EdgeInsets.only(right: 8.0, top: 10.0, bottom: 10.0),
       child: GestureDetector(
@@ -35,7 +36,8 @@ class SelectRoutineContainer extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => ListRoutine(title: title),
+              builder: (BuildContext context) =>
+                  ListRoutine(title: title, loginID: loginID),
             ),
           );
         },

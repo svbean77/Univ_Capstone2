@@ -43,6 +43,7 @@ dependencies:
   syncfusion_flutter_charts: ^20.3.52
   video_player: ^2.4.7
   image_picker: ^0.8.6
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
     - asset/images/muscle_front/
     - asset/images/muscle_back/
     - asset/images/ranking/
+    - asset/images/etc/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

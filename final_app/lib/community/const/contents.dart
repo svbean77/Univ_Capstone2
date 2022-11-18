@@ -8,11 +8,13 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class Contents extends StatefulWidget {
+  final loginID;
   //board만 불러오고 나머지 내용들은 여기서 db 불러오기로 할까
   final board;
   final title;
   final contents;
   const Contents({
+    required this.loginID,
     required this.board,
     required this.title,
     required this.contents,
@@ -55,7 +57,7 @@ class _ContentsState extends State<Contents> {
     int grade = 5;
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -102,7 +104,8 @@ class _ContentsState extends State<Contents> {
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (BuildContext context) => CommunityMain(),
+                        builder: (BuildContext context) =>
+                            CommunityMain(loginID: widget.loginID),
                       ),
                     );
                   },
@@ -131,6 +134,7 @@ class _ContentsState extends State<Contents> {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: (BuildContext context) => WriteBoard(
+                                  loginID: widget.loginID,
                                   board: widget.board,
                                   mode: 'edit',
                                   content: widget.contents),
@@ -189,7 +193,9 @@ class _ContentsState extends State<Contents> {
                                                 MaterialPageRoute(
                                                   builder:
                                                       (BuildContext context) =>
-                                                          CommunityMain(),
+                                                          CommunityMain(
+                                                              loginID: widget
+                                                                  .loginID),
                                                 ),
                                               );
                                             },
@@ -281,6 +287,7 @@ class _ContentsState extends State<Contents> {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (BuildContext context) => Contents(
+                                loginID: widget.loginID,
                                 board: widget.board,
                                 title: widget.title,
                                 contents: widget.contents),

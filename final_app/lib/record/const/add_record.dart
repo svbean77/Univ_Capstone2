@@ -2,9 +2,11 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class AddRecord extends StatelessWidget {
+  final loginID;
   final grade;
   final selectedDate;
   const AddRecord({
+    required this.loginID,
     required this.grade,
     required this.selectedDate,
     Key? key,

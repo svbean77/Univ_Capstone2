@@ -3,7 +3,9 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class AddExercise extends StatefulWidget {
+  final loginID;
   const AddExercise({
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 

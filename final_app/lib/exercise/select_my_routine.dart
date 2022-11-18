@@ -6,7 +6,9 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class SelectMyRoutine extends StatefulWidget {
+  final loginID;
   const SelectMyRoutine({
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -22,23 +24,24 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
     List<String> routineName = ['루틴1', '루틴2', '루틴3', '루틴4'];
 
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add, color: (grade == 0 ||
-            grade == 1 ||
-            grade == 2 ||
-            grade == 4 ||
-            grade == 8)
-            ? Colors.black
-            : Colors.white),
+        child: Icon(Icons.add,
+            color: (grade == 0 ||
+                    grade == 1 ||
+                    grade == 2 ||
+                    grade == 4 ||
+                    grade == 8)
+                ? Colors.black
+                : Colors.white),
         onPressed: () {
           showDialog(
             context: context,
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddRoutine(),
+                content: AddRoutine(loginID: widget.loginID),
                 scrollable: true,
               );
             },
@@ -85,6 +88,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                     MaterialPageRoute(
                       builder: (BuildContext context) => ListMyExercise(
                         routineName: routineName[i],
+                        loginID: widget.loginID,
                       ),
                     ),
                   );

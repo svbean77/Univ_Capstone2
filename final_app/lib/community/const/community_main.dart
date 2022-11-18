@@ -6,7 +6,9 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class CommunityMain extends StatefulWidget {
+  final loginID;
   const CommunityMain({
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -32,7 +34,7 @@ class _CommunityMainState extends State<CommunityMain>
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       body: Column(
         children: [
           Container(
@@ -64,8 +66,8 @@ class _CommunityMainState extends State<CommunityMain>
             child: TabBarView(
               controller: _tabController,
               children: [
-                FreeBoard(boardLst: freeboardLst),
-                QnABoard(boardLst: qnaboardLst),
+                FreeBoard(boardLst: freeboardLst, loginID: widget.loginID),
+                QnABoard(boardLst: qnaboardLst, loginID: widget.loginID),
               ],
             ),
           ),

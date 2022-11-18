@@ -6,11 +6,13 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
+  final loginID;
   final boardLst;
   final searchfor;
   const SearchPage({
     required this.searchfor,
     required this.boardLst,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -21,13 +23,12 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController controller = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     int grade = 5;
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(loginID: widget.loginID),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -52,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
                         controller: controller,
                         decoration: InputDecoration(
                           contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10.0),
+                              EdgeInsets.symmetric(horizontal: 10.0),
                           hintText: '제목으로 검색',
                           border: InputBorder.none,
                         ),
@@ -69,8 +70,10 @@ class _SearchPageState extends State<SearchPage> {
                       findLst = [1, 4, 5];
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              SearchPage(boardLst: findLst, searchfor: find),
+                          builder: (BuildContext context) => SearchPage(
+                              boardLst: findLst,
+                              searchfor: find,
+                              loginID: widget.loginID),
                         ),
                       );
                     },
@@ -101,6 +104,7 @@ class _SearchPageState extends State<SearchPage> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) => Contents(
+                                        loginID: widget.loginID,
                                         board: '자유게시판',
                                         title: title,
                                         contents: contents),

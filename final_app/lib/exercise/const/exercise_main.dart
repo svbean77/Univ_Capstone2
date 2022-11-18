@@ -1,12 +1,15 @@
 import 'package:final_app/exercise/master_main.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import '../../screen/const/after_login.dart';
 import '../beginner_main.dart';
 
 class ExerciseMain extends StatefulWidget {
+  final loginID;
   final grade;
   const ExerciseMain({
     required this.grade,
+    required this.loginID,
     Key? key,
   }) : super(key: key);
 
@@ -57,8 +60,11 @@ class _ExerciseMainState extends State<ExerciseMain>
           child: TabBarView(
             controller: _tabController,
             children: [
-              BeginnerMain(),
-              MasterMain(),
+              BeginnerMain(loginID: widget.loginID),
+              if (widget.loginID == '')
+                AfterLogin()
+              else
+                MasterMain(loginID: widget.loginID),
             ],
           ),
         ),

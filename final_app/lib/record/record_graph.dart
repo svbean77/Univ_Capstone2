@@ -6,7 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class RecordGraph extends StatefulWidget {
-  const RecordGraph({Key? key}) : super(key: key);
+  final loginID;
+  const RecordGraph({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<RecordGraph> createState() => _RecordGraphState();
@@ -101,7 +105,7 @@ class _RecordGraphState extends State<RecordGraph> {
                   barrierDismissible: true,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      content: AddWeight(),
+                      content: AddWeight(loginID: widget.loginID),
                       scrollable: true,
                     );
                   },

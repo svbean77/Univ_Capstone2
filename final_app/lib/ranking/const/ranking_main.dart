@@ -8,8 +8,10 @@ import 'package:final_app/ranking/friends_ranking.dart';
 import 'package:flutter/material.dart';
 
 class RankingMain extends StatefulWidget {
+  final loginID;
   final grade;
   const RankingMain({
+    required this.loginID,
     required this.grade,
     Key? key,
   }) : super(key: key);
@@ -30,13 +32,15 @@ class _RankingMainState extends State<RankingMain>
 
   @override
   Widget build(BuildContext context) {
-    String myNickname = '내닉네임';
+    //loginID를 통해 닉네임 구하기
+    String myNickName = '안녕';
 
     return Column(
       children: [
         //나의 등급을 표시해줄 컨테이너
         MyRanking(
-          nickname: myNickname,
+          nickname: myNickName,
+          loginID: widget.loginID,
         ),
         //탭바 컨테이너
         Container(
@@ -69,8 +73,8 @@ class _RankingMainState extends State<RankingMain>
           child: TabBarView(
             controller: _tabController,
             children: [
-              AllRanking(),
-              FriendsRanking(),
+              AllRanking(loginID: widget.loginID),
+              FriendsRanking(loginID: widget.loginID),
             ],
           ),
         ),

@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class RecordCalendar extends StatefulWidget {
-  const RecordCalendar({Key? key}) : super(key: key);
+  final loginID;
+  const RecordCalendar({
+    required this.loginID,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<RecordCalendar> createState() => _RecordCalendarState();
@@ -30,7 +34,10 @@ class _RecordCalendarState extends State<RecordCalendar> {
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddRecord(grade: grade, selectedDate: selectedDay),
+                content: AddRecord(
+                    grade: grade,
+                    selectedDate: selectedDay,
+                    loginID: widget.loginID),
                 scrollable: true,
               );
             },

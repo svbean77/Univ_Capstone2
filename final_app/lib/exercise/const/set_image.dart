@@ -3,6 +3,7 @@ import 'package:final_app/exercise/exercise_guide.dart';
 import 'package:flutter/material.dart';
 
 class LoadImage extends StatelessWidget {
+  final loginID;
   final dir;
   final row;
   final col;
@@ -10,6 +11,7 @@ class LoadImage extends StatelessWidget {
 
   const LoadImage({
     required this.onTap,
+    required this.loginID,
     required this.dir,
     required this.col,
     required this.row,
@@ -29,12 +31,14 @@ class LoadImage extends StatelessWidget {
 }
 
 class SetImage extends StatelessWidget {
+  final loginID;
   final dir;
   final col;
   final muscleLst;
   final level;
 
   SetImage({
+    required this.loginID,
     required this.dir,
     required this.col,
     required this.muscleLst,
@@ -69,16 +73,16 @@ class SetImage extends StatelessWidget {
                         exerciseStep: exerciseLst[muscleLst[i - 1] - 1][6],
                         difficulty: exerciseLst[muscleLst[i - 1] - 1][7],
                         level: level,
+                        loginID: loginID,
                       ),
                     ),
                   );
               },
               dir: dir,
               col: col,
-              row: i),
+              row: i,
+              loginID: loginID),
       ],
     );
   }
-
-
 }

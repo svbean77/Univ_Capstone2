@@ -3,9 +3,11 @@ import 'package:final_app/exercise/exercise_guide.dart';
 import 'package:flutter/material.dart';
 
 class SearchName extends StatelessWidget {
+  final loginID;
   final name;
   final level;
   const SearchName({
+    required this.loginID,
     required this.name,
     required this.level,
     Key? key,
@@ -41,15 +43,15 @@ class SearchName extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => ExerciseGuide(
-                muscleName: tmpLst[0],
-                exerciseName: tmpLst[1],
-                exerciseImage1: tmpLst[2],
-                exerciseImage2: tmpLst[3],
-                equipment: tmpLst[4],
-                level: tmpLst[5],
-                exerciseStep: tmpLst[6],
-                difficulty: tmpLst[7],
-              ),
+                  muscleName: tmpLst[0],
+                  exerciseName: tmpLst[1],
+                  exerciseImage1: tmpLst[2],
+                  exerciseImage2: tmpLst[3],
+                  equipment: tmpLst[4],
+                  level: tmpLst[5],
+                  exerciseStep: tmpLst[6],
+                  difficulty: tmpLst[7],
+                  loginID: loginID),
             ),
           );
         },
