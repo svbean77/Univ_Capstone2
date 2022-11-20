@@ -1,4 +1,7 @@
 List<String> setExercise(int num, String level) {
+  //이 모든 것을 각각 리스트로 만들어 넣으면 될 것 같아! List<String> 어쩌구 (return에서 마저 설명)
+  //나중에 equipment도 파라미터 사용해야 할 수 있음 일단 이렇게 해두기
+
   String muscleName = "";
   String exerciseName = "";
   String exerciseImage1 = "";
@@ -174,6 +177,7 @@ List<String> setExercise(int num, String level) {
       exerciseStep = '''운동 방법 3''';
       break;
   }
+  //return 형태는 List<List<String>>이 됨!
   return [
     muscleName,
     exerciseName,

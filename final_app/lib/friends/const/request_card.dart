@@ -77,23 +77,47 @@ class RequestCard extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      TextButton(
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: PRIMARY_COLOR[grade],
+                                        ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('취소',
-                                            style:
-                                                TextStyle(color: Colors.black)),
+                                        child: Text(
+                                          '취소',
+                                          style: TextStyle(
+                                            color: (grade == 0 ||
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
+                                                ? Colors.black
+                                                : Colors.white,
+                                          ),
+                                        ),
                                       ),
-                                      TextButton(
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: PRIMARY_COLOR[grade],
+                                        ),
                                         onPressed: () {
                                           //db에서 글 삭제하는 코드
                                           //정보를 build에서 가져오면 새로고침이 되나?
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('확인',
-                                            style:
-                                                TextStyle(color: Colors.black)),
+                                        child: Text(
+                                          '확인',
+                                          style: TextStyle(
+                                            color: (grade == 0 ||
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
+                                                ? Colors.black
+                                                : Colors.white,
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   )
@@ -125,23 +149,47 @@ class RequestCard extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      TextButton(
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: PRIMARY_COLOR[grade],
+                                        ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('취소',
-                                            style:
-                                                TextStyle(color: Colors.black)),
+                                        child: Text(
+                                          '취소',
+                                          style: TextStyle(
+                                            color: (grade == 0 ||
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
+                                                ? Colors.black
+                                                : Colors.white,
+                                          ),
+                                        ),
                                       ),
-                                      TextButton(
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: PRIMARY_COLOR[grade],
+                                        ),
                                         onPressed: () {
                                           //db에서 글 삭제하는 코드
                                           //정보를 build에서 가져오면 새로고침이 되나?
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('확인',
-                                            style:
-                                                TextStyle(color: Colors.black)),
+                                        child: Text(
+                                          '확인',
+                                          style: TextStyle(
+                                            color: (grade == 0 ||
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
+                                                ? Colors.black
+                                                : Colors.white,
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   )

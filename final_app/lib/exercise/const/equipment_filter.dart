@@ -30,6 +30,7 @@ class EquipmentFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(8.0),
       height: MediaQuery.of(context).size.height / 2,
       child: ListView(
         children: [
@@ -63,6 +64,8 @@ class EquipmentFilter extends StatelessWidget {
                   } else if (equipmentLst[i] == '스트레칭') {
                     equipment = '스트레칭';
                   }
+
+                  //muscleName과 equipment를 이용해 db에서 select
 
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(

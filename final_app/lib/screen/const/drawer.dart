@@ -6,6 +6,8 @@ import 'package:final_app/screen/const/after_login.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:flutter/material.dart';
 
+import 'grade_colors.dart';
+
 class MyDrawer extends StatelessWidget {
   final loginID;
   const MyDrawer({
@@ -16,20 +18,36 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //로그인 id에 따른 닉네임 구하기
+    int grade = 5;
 
     return Drawer(
+      backgroundColor: PRIMARY_COLOR[grade],
       child: ListView(
         children: [
           DrawerHeader(
             child: Image.asset('asset/images/etc/drawer.png', width: 100.0),
           ),
           Card(
+            color: PRIMARY_COLOR[grade],
             elevation: 0,
             child: ListTile(
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (loginID == "") Text('로그인') else Text('마이페이지'),
+                  if (loginID == "")
+                    Text('로그인')
+                  else
+                    Text(
+                      '마이페이지',
+                      style: TextStyle(
+                          color: (grade == 0 ||
+                                  grade == 1 ||
+                                  grade == 2 ||
+                                  grade == 4 ||
+                                  grade == 8)
+                              ? Colors.black
+                              : Colors.white),
+                    ),
                 ],
               ),
               onTap: () {
@@ -75,8 +93,19 @@ class MyDrawer extends StatelessWidget {
           */
 
           Card(
+            color: PRIMARY_COLOR[grade],
             child: ListTile(
-              title: Text('커뮤니티'),
+              title: Text(
+                '커뮤니티',
+                style: TextStyle(
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white),
+              ),
               onTap: () {
                 if (loginID == '')
                   Navigator.of(context).push(
@@ -100,8 +129,19 @@ class MyDrawer extends StatelessWidget {
             elevation: 0,
           ),
           Card(
+            color: PRIMARY_COLOR[grade],
             child: ListTile(
-              title: Text('3대 챌린지'),
+              title: Text(
+                '3대 챌린지',
+                style: TextStyle(
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white),
+              ),
               onTap: () {
                 if (loginID == '')
                   Navigator.of(context).push(

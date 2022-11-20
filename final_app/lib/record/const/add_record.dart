@@ -45,25 +45,49 @@ class AddRecord extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: PRIMARY_COLOR[grade],
+                ),
                 onPressed: () {
                   //db에 기록 추가하는 코드
                   Navigator.of(context).pop();
                 },
                 child: Text(
                   '취소',
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white,
+                  ),
                 ),
               ),
               SizedBox(width: 30.0),
-              TextButton(
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: PRIMARY_COLOR[grade],
+                ),
                 onPressed: () {
                   //date에 weight 입력하는 코드 작성
                   Navigator.of(context).pop();
                 },
                 child: Text(
                   '확인',
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white,
+                  ),
                 ),
               ),
             ],

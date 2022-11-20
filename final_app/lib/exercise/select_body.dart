@@ -6,6 +6,8 @@ import 'package:final_app/screen/const/const_exercise_info.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
+import '../screen/const/grade_colors.dart';
+
 class SelectBody extends StatelessWidget {
   final loginID;
   const SelectBody({
@@ -16,13 +18,49 @@ class SelectBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int grade = 0;
-    if (loginID != "")
-      grade = 5;
+    if (loginID != "") grade = 5;
     String level = '초보자';
 
     return Scaffold(
       drawer: MyDrawer(loginID: loginID),
       appBar: MyAppBar(grade: grade),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: PRIMARY_COLOR[grade],
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (_) {
+              return Container(
+                height: MediaQuery.of(context).size.height / 2,
+                child: ListView(
+                  children: [
+                    Card(
+                      elevation: 0,
+                      child: Text(
+                        '근육 이름으로 검색',
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                    ),
+                    for (int i = 0; i < muscleLst.length; i++)
+                      SearchName(
+                          name: muscleLst[i], level: level, loginID: loginID)
+                  ],
+                ),
+              );
+            },
+          );
+        },
+        child: Icon(
+          Icons.search,
+          color: (grade == 0 ||
+                  grade == 1 ||
+                  grade == 2 ||
+                  grade == 4 ||
+                  grade == 8)
+              ? Colors.black
+              : Colors.white,
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.all(10.0),
         child: ListView(
@@ -32,35 +70,6 @@ class SelectBody extends StatelessWidget {
               style: TextStyle(
                 fontSize: 25.0,
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (_) {
-                    return Container(
-                      height: MediaQuery.of(context).size.height / 2,
-                      child: ListView(
-                        children: [
-                          Card(
-                            elevation: 0,
-                            child: Text(
-                              '근육 이름으로 검색',
-                              style: TextStyle(fontSize: 20.0),
-                            ),
-                          ),
-                          for (int i = 0; i < muscleLst.length; i++)
-                            SearchName(
-                                name: muscleLst[i],
-                                level: level,
-                                loginID: loginID)
-                        ],
-                      ),
-                    );
-                  },
-                );
-              },
-              child: Text('이름으로 검색', style: TextStyle(color: Colors.black)),
             ),
             SizedBox(height: 20.0),
             Text(

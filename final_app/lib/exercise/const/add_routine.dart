@@ -42,17 +42,32 @@ class _AddRoutineState extends State<AddRoutine> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton(
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: PRIMARY_COLOR[grade],
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
                 child: Text(
                   '취소',
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white,
+                  ),
                 ),
               ),
               SizedBox(width: 30.0),
-              TextButton(
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: PRIMARY_COLOR[grade],
+                ),
                 onPressed: () {
                   //db에 루틴 추가하는 코드 작성
                   //추가됨에 따라 실시간으로 화면에 추가
@@ -60,7 +75,16 @@ class _AddRoutineState extends State<AddRoutine> {
                 },
                 child: Text(
                   '확인',
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white,
+                  ),
                 ),
               ),
             ],

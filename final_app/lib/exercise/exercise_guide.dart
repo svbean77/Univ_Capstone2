@@ -43,6 +43,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
     int grade = 0;
     if (widget.loginID != "") grade = 5;
 
+
     return Scaffold(
       drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
@@ -150,7 +151,10 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                 fontSize: 20.0,
               ),
             ),
-            TextButton(
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: PRIMARY_COLOR[grade],
+              ),
               onPressed: () {
                 if (widget.level == '초보자')
                   Navigator.of(context).push(
@@ -167,7 +171,18 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                     ),
                   );
               },
-              child: Text('근육 선택', style: TextStyle(color: Colors.black)),
+              child: Text(
+                '근육 선택',
+                style: TextStyle(
+                  color: (grade == 0 ||
+                          grade == 1 ||
+                          grade == 2 ||
+                          grade == 4 ||
+                          grade == 8)
+                      ? Colors.black
+                      : Colors.white,
+                ),
+              ),
             ),
             SizedBox(height: 16.0),
             Expanded(

@@ -80,6 +80,8 @@ class _RoutineGuideState extends State<RoutineGuide> {
             ),
             SizedBox(height: 16.0),
             Expanded(
+              //ListView 안에서 for문으로 RoutineCard 불러오기, 루틴 이름을 ListView의 최상단으로 옮김
+              //ListView를 Expanded로 사용
               child: ListView.separated(
                   itemBuilder: (context, index) {
                     //widget.은 리스트로 오고 내부변수는 각각으로 해야하나
@@ -104,7 +106,10 @@ class _RoutineGuideState extends State<RoutineGuide> {
                   itemCount: 3),
             ),
             Center(
-              child: TextButton(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: PRIMARY_COLOR[grade],
+                ),
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
@@ -115,7 +120,16 @@ class _RoutineGuideState extends State<RoutineGuide> {
                 },
                 child: Text(
                   '운동종료',
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white,
+                  ),
                 ),
               ),
             ),

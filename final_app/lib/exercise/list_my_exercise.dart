@@ -64,45 +64,55 @@ class _ListMyExerciseState extends State<ListMyExercise> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView(
+        child: Column(
           children: [
-            Text(
-              widget.routineName,
-              style: TextStyle(fontSize: 25.0),
-            ),
-            SizedBox(height: 30.0),
-            for (int i = 0; i < exerciseName.length; i++)
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    //db 횟수를 변경하는 코드 작성
-                    //ListView를 실시간으로 바꿀 수 있도록 코드 수정
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 70.0,
-                    padding: EdgeInsets.all(8.0),
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: PRIMARY_COLOR[grade],
+            Expanded(
+              child: ListView(
+                children: [
+                  Text(
+                    widget.routineName,
+                    style: TextStyle(fontSize: 25.0),
+                  ),
+                  SizedBox(height: 30.0),
+                  for (int i = 0; i < exerciseName.length; i++)
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          //db 횟수를 변경하는 코드 작성
+                          //ListView를 실시간으로 바꿀 수 있도록 코드 수정
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 70.0,
+                          padding: EdgeInsets.all(8.0),
+                          alignment: Alignment.centerLeft,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: PRIMARY_COLOR[grade],
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                exerciseName[i],
+                                style: TextStyle(fontSize: 20.0),
+                              ),
+                              Text(
+                                  '${number[i].toString()}${numberUnit(isTime[i])}'),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          exerciseName[i],
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        Text('${number[i].toString()}${numberUnit(isTime[i])}'),
-                      ],
-                    ),
-                  ),
-                ),
+                ],
               ),
-            TextButton(
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: PRIMARY_COLOR[grade],
+              ),
               onPressed: () {
                 String exerciseStep = '운동방법';
                 String exerciseImage1 =
@@ -124,7 +134,18 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                   ),
                 );
               },
-              child: Text('운동시작', style: TextStyle(color: Colors.black)),
+              child: Text(
+                '운동시작',
+                style: TextStyle(
+                  color: (grade == 0 ||
+                          grade == 1 ||
+                          grade == 2 ||
+                          grade == 4 ||
+                          grade == 8)
+                      ? Colors.black
+                      : Colors.white,
+                ),
+              ),
             ),
           ],
         ),

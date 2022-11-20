@@ -271,11 +271,19 @@ class _SignUpState extends State<SignUp> {
     });
     var data = json.decode(json.encode(response.body));
 
-    if (data == "Error") {
+    if (data == "Error1") {
       Fluttertoast.showToast(
         backgroundColor: Colors.grey,
         textColor: Colors.black,
-        msg: '아이디 또는 닉네임이 중복됩니다.',
+        msg: '아이디가 중복됩니다.',
+        toastLength: Toast.LENGTH_SHORT,
+      );
+    }
+    else if (data == "Error2") {
+      Fluttertoast.showToast(
+        backgroundColor: Colors.grey,
+        textColor: Colors.black,
+        msg: '닉네임이 중복됩니다.',
         toastLength: Toast.LENGTH_SHORT,
       );
     } else {

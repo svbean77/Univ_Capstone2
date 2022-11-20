@@ -29,6 +29,7 @@ class _ContentsState extends State<Contents> {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    //loginID로부터 본인의 정보도 불러옴 (작성자인지 확인하기 위해)
     String myName = '작성자이름';
     String writer = '작성자이름';
     String date = '2022.11.11';
@@ -176,16 +177,31 @@ class _ContentsState extends State<Contents> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          TextButton(
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              primary: PRIMARY_COLOR[grade],
+                                            ),
                                             onPressed: () {
                                               //pop으로? pushReplacement로?
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text('취소',
-                                                style: TextStyle(
-                                                    color: Colors.black)),
+                                            child: Text(
+                                              '취소',
+                                              style: TextStyle(
+                                                color: (grade == 0 ||
+                                                        grade == 1 ||
+                                                        grade == 2 ||
+                                                        grade == 4 ||
+                                                        grade == 8)
+                                                    ? Colors.black
+                                                    : Colors.white,
+                                              ),
+                                            ),
                                           ),
-                                          TextButton(
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              primary: PRIMARY_COLOR[grade],
+                                            ),
                                             onPressed: () {
                                               //db에서 글 삭제하는 코드
                                               Navigator.of(context)
@@ -199,9 +215,18 @@ class _ContentsState extends State<Contents> {
                                                 ),
                                               );
                                             },
-                                            child: Text('확인',
-                                                style: TextStyle(
-                                                    color: Colors.black)),
+                                            child: Text(
+                                              '확인',
+                                              style: TextStyle(
+                                                color: (grade == 0 ||
+                                                        grade == 1 ||
+                                                        grade == 2 ||
+                                                        grade == 4 ||
+                                                        grade == 8)
+                                                    ? Colors.black
+                                                    : Colors.white,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       )
