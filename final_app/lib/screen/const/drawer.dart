@@ -18,7 +18,10 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //로그인 id에 따른 닉네임 구하기
-    int grade = 5;
+    int grade = 0;
+    if (loginID != ""){
+      grade = 5;
+    }
 
     return Drawer(
       backgroundColor: PRIMARY_COLOR[grade],
@@ -35,7 +38,17 @@ class MyDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (loginID == "")
-                    Text('로그인')
+                    Text(
+                      '로그인',
+                      style: TextStyle(
+                          color: (grade == 0 ||
+                                  grade == 1 ||
+                                  grade == 2 ||
+                                  grade == 4 ||
+                                  grade == 8)
+                              ? Colors.black
+                              : Colors.white),
+                    )
                   else
                     Text(
                       '마이페이지',
