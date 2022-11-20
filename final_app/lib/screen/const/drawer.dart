@@ -25,7 +25,7 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset('asset/images/etc/drawer.png', width: 100.0),
+            child: Image.asset('asset/images/etc/mainImage.png', width: 100.0),
           ),
           Card(
             color: PRIMARY_COLOR[grade],

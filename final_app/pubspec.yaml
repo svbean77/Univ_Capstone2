@@ -44,6 +44,7 @@ dependencies:
   video_player: ^2.4.7
   image_picker: ^0.8.6
   get_storage: ^2.0.3
+  flutter_native_splash: ^2.2.14
 
 dev_dependencies:
   flutter_test:
