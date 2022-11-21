@@ -49,7 +49,7 @@ class _MyPageState extends State<MyPage> {
           children: [
             MyRanking(nickname: nickname, loginID: widget.loginID),
             SizedBox(height: 16.0),
-            Text('앱 테마 선택', style: TextStyle(fontSize: 20.0)),
+            Text('앱 테마 선택', style: TextStyle(fontSize: 25.0)),
             Container(
               height: 70.0,
               child: ListView(

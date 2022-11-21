@@ -103,7 +103,7 @@ class _FriendsMainState extends State<FriendsMain> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('친구목록', style: TextStyle(fontSize: 20.0)),
+                  Text('친구목록', style: TextStyle(fontSize: 25.0)),
                   Expanded(
                     child: Container(
                       height: MediaQuery.of(context).size.height / 2.5,
@@ -133,7 +133,7 @@ class _FriendsMainState extends State<FriendsMain> {
                             ),
                     ),
                   ),
-                  Text('친구요청', style: TextStyle(fontSize: 20.0)),
+                  Text('친구요청', style: TextStyle(fontSize: 25.0)),
                   Container(
                     height: MediaQuery.of(context).size.height / 5,
                     padding: EdgeInsets.symmetric(vertical: 8.0),

@@ -60,7 +60,7 @@ class ChallengeMain extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Text('${exercise} 챌린지 기록', style: TextStyle(fontSize: 20.0)),
+            Text('${exercise} 챌린지 기록', style: TextStyle(fontSize: 25.0)),
             SizedBox(height: 16.0),
             for (int i = 0; i < date.length; i++)
               Padding(

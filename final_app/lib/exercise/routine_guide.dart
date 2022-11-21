@@ -43,7 +43,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: PRIMARY_COLOR[grade],
         heroTag: 'memo',
-        child: Icon(Icons.note_add_outlined,
+        child: Icon(Icons.edit_calendar,
             color: (grade == 0 ||
                     grade == 1 ||
                     grade == 2 ||
@@ -104,34 +104,6 @@ class _RoutineGuideState extends State<RoutineGuide> {
                     return SizedBox(height: 8.0);
                   },
                   itemCount: 3),
-            ),
-            Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: PRIMARY_COLOR[grade],
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => HomeScreen(),
-                    ),
-                    (route) => false,
-                  );
-                },
-                child: Text(
-                  '운동종료',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
-                        ? Colors.black
-                        : Colors.white,
-                  ),
-                ),
-              ),
             ),
           ],
         ),

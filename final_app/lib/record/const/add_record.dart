@@ -56,7 +56,6 @@ class AddRecord extends StatelessWidget {
                 child: Text(
                   '취소',
                   style: TextStyle(
-                    fontSize: 20.0,
                     color: (grade == 0 ||
                             grade == 1 ||
                             grade == 2 ||
@@ -79,7 +78,6 @@ class AddRecord extends StatelessWidget {
                 child: Text(
                   '확인',
                   style: TextStyle(
-                    fontSize: 20.0,
                     color: (grade == 0 ||
                             grade == 1 ||
                             grade == 2 ||

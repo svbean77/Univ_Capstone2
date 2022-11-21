@@ -45,7 +45,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                 Text(
                   '내 정보 수정',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 28),
+                  style: TextStyle(fontSize: 25),
                 ),
                 SizedBox(
                   height: 40.0,
@@ -228,7 +228,6 @@ class _EditMyInfoState extends State<EditMyInfo> {
                       child: Text(
                         '저장',
                         style: TextStyle(
-                          fontSize: 16.0,
                           color: Colors.black,
                           //fontWeight: FontWeight.bold
                         ),

@@ -109,6 +109,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                 ],
               ),
             ),
+            SizedBox(height: 8.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: PRIMARY_COLOR[grade],

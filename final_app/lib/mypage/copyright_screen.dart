@@ -29,7 +29,7 @@ class CopyrightScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Text('저작권 출처', style: TextStyle(fontSize: 20.0)),
+            Text('저작권 출처', style: TextStyle(fontSize: 25.0)),
             SizedBox(height: 8.0),
             Container(
               height: 50.0,

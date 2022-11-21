@@ -42,7 +42,7 @@ class UserInfo extends StatelessWidget {
           children: [
             MyRanking(nickname: nickname, loginID: loginID),
             SizedBox(height: 8.0),
-            Text('운동기록', style: TextStyle(fontSize: 20.0)),
+            Text('운동기록', style: TextStyle(fontSize: 25.0)),
             SizedBox(height: 8.0),
             Expanded(
               child: tmp.length == 0

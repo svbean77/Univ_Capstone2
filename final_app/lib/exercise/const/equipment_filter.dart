@@ -36,9 +36,11 @@ class EquipmentFilter extends StatelessWidget {
         children: [
           Card(
             elevation: 0,
-            child: Text(
-              '운동 도구로 고르기',
-              style: TextStyle(fontSize: 20.0),
+            child: ListTile(
+              title: Text(
+                '운동 도구로 고르기',
+                style: TextStyle(fontSize: 20.0),
+              ),
             ),
           ),
           for (int i = 0; i < equipmentLst.length; i++)

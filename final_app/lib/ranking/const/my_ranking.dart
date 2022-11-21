@@ -29,24 +29,19 @@ class _MyRankingState extends State<MyRanking> {
     List<String> myRequested = ['요청1', '요청2']; //나한테 요청함
 
     String friends = '';
-    if (widget.nickname == myNickName){
+    if (widget.nickname == myNickName) {
       friends = 'me';
-    }
-    else if (myRequested.contains(widget.nickname)){
+    } else if (myRequested.contains(widget.nickname)) {
       //나한테 요청함
       friends = 'requested';
-    }
-    else if(myRequests.contains(widget.nickname)){
+    } else if (myRequests.contains(widget.nickname)) {
       //내가 요청함
       friends = 'request';
-    }
-    else if (!myFriends.contains(widget.nickname)){
+    } else if (!myFriends.contains(widget.nickname)) {
       friends = 'no';
-    }
-    else{
+    } else {
       friends = 'friend';
     }
-
 
     List<int> weight = [50, 60, 70];
 
@@ -59,7 +54,7 @@ class _MyRankingState extends State<MyRanking> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('asset/images/ranking/$myRating.png', height: 150.0),
-              Text('$myRating ($myRanking위)', style: TextStyle(fontSize: 20.0)),
+              Text('$myRating ($myRanking위)'),
             ],
           ),
           Column(
@@ -88,8 +83,7 @@ class _MyRankingState extends State<MyRanking> {
                       //아이콘 다시 찾기..
                       : friends == 'request'
                           ? GestureDetector(
-                              child:
-                                  Icon(Icons.schedule_send, size: 25.0),
+                              child: Icon(Icons.schedule_send, size: 25.0),
                             )
                           //친구 요청을 받음
                           //아이콘 다시 찾기
@@ -108,13 +102,13 @@ class _MyRankingState extends State<MyRanking> {
                               : Container(width: 0.0)
                 ],
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 8.0),
               Text('3대 총합: ${weight[0] + weight[1] + weight[2]}kg',
                   style:
                       TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-              Text('데드리프트: ${weight[0]}kg', style: TextStyle(fontSize: 15.0)),
-              Text('벤치프레스: ${weight[1]}kg', style: TextStyle(fontSize: 15.0)),
-              Text('스쿼트: ${weight[2]}kg', style: TextStyle(fontSize: 15.0)),
+              Text('데드리프트: ${weight[0]}kg'),
+              Text('벤치프레스: ${weight[1]}kg'),
+              Text('스쿼트: ${weight[2]}kg'),
             ],
           )
         ],

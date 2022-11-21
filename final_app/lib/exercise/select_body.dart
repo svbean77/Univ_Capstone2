@@ -36,9 +36,11 @@ class SelectBody extends StatelessWidget {
                   children: [
                     Card(
                       elevation: 0,
-                      child: Text(
-                        '근육 이름으로 검색',
-                        style: TextStyle(fontSize: 20.0),
+                      child: ListTile(
+                        title: Text(
+                          '근육 이름으로 검색',
+                          style: TextStyle(fontSize: 20.0),
+                        ),
                       ),
                     ),
                     for (int i = 0; i < muscleLst.length; i++)
@@ -138,10 +140,12 @@ class SelectBody extends StatelessWidget {
               ],
             ),
             SizedBox(height: 50.0),
-            Text('뒷모습',
-                style: TextStyle(
-                  fontSize: 20.0,
-                )),
+            Text(
+              '뒷모습',
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
             SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

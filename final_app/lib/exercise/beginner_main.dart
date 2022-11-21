@@ -13,8 +13,7 @@ class BeginnerMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int grade = 0;
-    if (loginID != "")
-      grade = 5;
+    if (loginID != "") grade = 5;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,

@@ -71,13 +71,13 @@ class _ContentsState extends State<Contents> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('작성자', style: TextStyle(fontSize: 15.0)),
-                Text(writer, style: TextStyle(fontSize: 10.0)),
-                Text('작성일자', style: TextStyle(fontSize: 15.0)),
-                Text(date, style: TextStyle(fontSize: 10.0)),
+                Text('작성자', style: TextStyle(fontWeight: FontWeight.w600)),
+                Text(writer),
+                Text('작성일자', style: TextStyle(fontWeight: FontWeight.w600)),
+                Text(date),
               ],
             ),
-            SizedBox(height: 8.0),
+            SizedBox(height: 16.0),
             Text('내용',
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
             SizedBox(height: 8.0),
