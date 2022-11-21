@@ -6,6 +6,7 @@ import 'package:final_app/screen/const/after_login.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../../mypage/copyright_screen.dart';
 import 'grade_colors.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -19,7 +20,7 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     //로그인 id에 따른 닉네임 구하기
     int grade = 0;
-    if (loginID != ""){
+    if (loginID != "") {
       grade = 5;
     }
 
@@ -80,31 +81,6 @@ class MyDrawer extends StatelessWidget {
               },
             ),
           ),
-          /*
-          Card(
-            elevation: 0,
-            child: ListTile(
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('수분섭취'),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.coffee),
-                      Text('nn컵 / mm컵'),
-                      TextButton(
-                        child: Text('+1컵'),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          */
-
           Card(
             color: PRIMARY_COLOR[grade],
             child: ListTile(
@@ -177,21 +153,31 @@ class MyDrawer extends StatelessWidget {
             ),
             elevation: 0,
           ),
-          /*
           Card(
+            color: PRIMARY_COLOR[grade],
             child: ListTile(
-              title: Text('공지사항'),
+              title: Text(
+                '저작권출처',
+                style: TextStyle(
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white),
+              ),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) => Notice(),
+                    builder: (BuildContext context) =>
+                        CopyrightScreen(grade: grade),
                   ),
                 );
               },
             ),
             elevation: 0,
           ),
-           */
         ],
       ),
     );
