@@ -75,11 +75,12 @@ class RequestCard extends StatelessWidget {
                                   Text('친구추가 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           primary: PRIMARY_COLOR[grade],
+                                          elevation: 0,
                                         ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
@@ -100,6 +101,7 @@ class RequestCard extends StatelessWidget {
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           primary: PRIMARY_COLOR[grade],
+                                          elevation: 0,
                                         ),
                                         onPressed: () {
                                           //db에서 글 삭제하는 코드
@@ -144,14 +146,15 @@ class RequestCard extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('삭제하시겠습니까?'),
+                                  Text('친구삭제 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           primary: PRIMARY_COLOR[grade],
+                                          elevation: 0,
                                         ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
@@ -172,6 +175,7 @@ class RequestCard extends StatelessWidget {
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           primary: PRIMARY_COLOR[grade],
+                                          elevation: 0,
                                         ),
                                         onPressed: () {
                                           //db에서 글 삭제하는 코드

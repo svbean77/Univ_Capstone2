@@ -26,6 +26,7 @@ class _FreeBoardState extends State<FreeBoard> {
     int grade = 5;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           Navigator.of(context).push(

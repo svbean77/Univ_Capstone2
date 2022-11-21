@@ -175,11 +175,12 @@ class _ContentsState extends State<Contents> {
                                       Text('삭제하시겠습니까?'),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                            MainAxisAlignment.spaceAround,
                                         children: [
                                           ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               primary: PRIMARY_COLOR[grade],
+                                              elevation: 0,
                                             ),
                                             onPressed: () {
                                               //pop으로? pushReplacement로?
@@ -201,6 +202,7 @@ class _ContentsState extends State<Contents> {
                                           ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               primary: PRIMARY_COLOR[grade],
+                                              elevation: 0,
                                             ),
                                             onPressed: () {
                                               //db에서 글 삭제하는 코드
@@ -265,7 +267,7 @@ class _ContentsState extends State<Contents> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(commentWriter[i]),
+                  Text(commentWriter[i], style: TextStyle(fontSize: 20.0)),
                   SizedBox(height: 8.0),
                   Text(comment[i]),
                   SizedBox(height: 16.0),
@@ -293,6 +295,7 @@ class _ContentsState extends State<Contents> {
                               EdgeInsets.symmetric(horizontal: 10.0),
                           border: InputBorder.none,
                         ),
+                        maxLines: 5,
                       ),
                     ),
                   ),

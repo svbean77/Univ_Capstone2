@@ -115,7 +115,7 @@ class _MyPageState extends State<MyPage> {
                             Text('로그아웃 하시겠습니까?'),
                             SizedBox(height: 8.0),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 ElevatedButton(
                                   onPressed: () {

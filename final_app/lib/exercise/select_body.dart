@@ -26,6 +26,7 @@ class SelectBody extends StatelessWidget {
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
         backgroundColor: PRIMARY_COLOR[grade],
+        elevation: 0,
         onPressed: () {
           showModalBottomSheet(
             context: context,
@@ -64,7 +65,7 @@ class SelectBody extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(16.0),
         child: ListView(
           children: [
             Text(
@@ -73,13 +74,14 @@ class SelectBody extends StatelessWidget {
                 fontSize: 25.0,
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 16.0),
             Text(
               '앞모습',
               style: TextStyle(
                 fontSize: 20.0,
               ),
             ),
+            SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -146,7 +148,7 @@ class SelectBody extends StatelessWidget {
                 fontSize: 20.0,
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

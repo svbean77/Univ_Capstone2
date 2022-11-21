@@ -39,6 +39,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
       drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         child: Icon(Icons.add,
             color: (grade == 0 ||
                     grade == 1 ||
@@ -73,10 +74,10 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                     widget.routineName,
                     style: TextStyle(fontSize: 25.0),
                   ),
-                  SizedBox(height: 30.0),
+                  SizedBox(height: 16.0),
                   for (int i = 0; i < exerciseName.length; i++)
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      padding: EdgeInsets.only(bottom: 8.0),
                       child: GestureDetector(
                         onTap: () {
                           //db 횟수를 변경하는 코드 작성
@@ -113,6 +114,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: PRIMARY_COLOR[grade],
+                elevation: 0,
               ),
               onPressed: () {
                 String exerciseStep = '운동방법';

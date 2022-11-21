@@ -73,9 +73,9 @@ class FriendCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text('삭제하시겠습니까?'),
+                                  Text('친구삭제 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -83,6 +83,7 @@ class FriendCard extends StatelessWidget {
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           primary: PRIMARY_COLOR[grade],
+                                          elevation: 0,
                                         ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
@@ -103,6 +104,7 @@ class FriendCard extends StatelessWidget {
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           primary: PRIMARY_COLOR[grade],
+                                          elevation: 0,
                                         ),
                                         onPressed: () {
                                           //db에서 글 삭제하는 코드

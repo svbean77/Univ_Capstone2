@@ -24,6 +24,7 @@ class SelectMuscle extends StatelessWidget {
       drawer: MyDrawer(loginID: loginID),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           showModalBottomSheet(
@@ -61,7 +62,7 @@ class SelectMuscle extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(16.0),
         child: ListView(
           children: [
             Text(
@@ -70,13 +71,14 @@ class SelectMuscle extends StatelessWidget {
                 fontSize: 25.0,
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 16.0),
             Text(
               '앞모습',
               style: TextStyle(
                 fontSize: 20.0,
               ),
             ),
+            SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -141,7 +143,7 @@ class SelectMuscle extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20.0,
                 )),
-            SizedBox(height: 20.0),
+            SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

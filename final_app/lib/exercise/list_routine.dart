@@ -36,11 +36,11 @@ class _ListRoutineState extends State<ListRoutine> {
               '${widget.title} 루틴 선택',
               style: TextStyle(fontSize: 25.0),
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 16.0),
             for (int i = 0; i < routineName.length; i++)
               GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
                     width: double.infinity,
                     height: 70.0,

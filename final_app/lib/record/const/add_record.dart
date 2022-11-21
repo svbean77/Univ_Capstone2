@@ -41,13 +41,14 @@ class AddRecord extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 16.0),
+          SizedBox(height: 8.0),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[grade],
+                  elevation: 0,
                 ),
                 onPressed: () {
                   //db에 기록 추가하는 코드
@@ -66,10 +67,10 @@ class AddRecord extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 30.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[grade],
+                  elevation: 0,
                 ),
                 onPressed: () {
                   //date에 weight 입력하는 코드 작성

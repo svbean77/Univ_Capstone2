@@ -38,6 +38,7 @@ class ChallengeMain extends StatelessWidget {
       appBar: MyAppBar(grade: grade),
       drawer: MyDrawer(loginID: loginID),
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           Navigator.of(context).pushReplacement(

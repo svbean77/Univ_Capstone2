@@ -38,13 +38,14 @@ class _AddRoutineState extends State<AddRoutine> {
               ),
             ),
           ),
-          SizedBox(height: 16.0),
+          SizedBox(height: 8.0),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[grade],
+                  elevation: 0,
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -52,7 +53,6 @@ class _AddRoutineState extends State<AddRoutine> {
                 child: Text(
                   '취소',
                   style: TextStyle(
-                    fontSize: 20.0,
                     color: (grade == 0 ||
                             grade == 1 ||
                             grade == 2 ||
@@ -63,10 +63,10 @@ class _AddRoutineState extends State<AddRoutine> {
                   ),
                 ),
               ),
-              SizedBox(width: 30.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[grade],
+                  elevation: 0,
                 ),
                 onPressed: () {
                   //db에 루틴 추가하는 코드 작성
@@ -76,7 +76,6 @@ class _AddRoutineState extends State<AddRoutine> {
                 child: Text(
                   '확인',
                   style: TextStyle(
-                    fontSize: 20.0,
                     color: (grade == 0 ||
                             grade == 1 ||
                             grade == 2 ||

@@ -51,6 +51,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            elevation: 0,
             heroTag: 'memo',
             child: Icon(Icons.edit_calendar,
                 color: (grade == 0 ||
@@ -108,6 +109,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
           ),
           SizedBox(height: 8.0),
           FloatingActionButton(
+            elevation: 0,
             heroTag: 'filter',
             child: Icon(Icons.filter_list_alt,
                 color: (grade == 0 ||
@@ -154,6 +156,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: PRIMARY_COLOR[grade],
+                elevation: 0,
               ),
               onPressed: () {
                 if (widget.level == '초보자')

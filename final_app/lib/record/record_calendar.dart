@@ -27,6 +27,7 @@ class _RecordCalendarState extends State<RecordCalendar> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           showDialog(

@@ -27,6 +27,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
       drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         child: Icon(Icons.add,
             color: (grade == 0 ||
                     grade == 1 ||
@@ -59,11 +60,11 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
               '내 루틴 만들기',
               style: TextStyle(fontSize: 25.0),
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 16.0),
             for (int i = 0; i < routineName.length; i++)
               GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
                     width: double.infinity,
                     height: 70.0,

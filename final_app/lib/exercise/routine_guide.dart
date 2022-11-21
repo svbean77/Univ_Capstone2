@@ -41,6 +41,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
       drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         backgroundColor: PRIMARY_COLOR[grade],
         heroTag: 'memo',
         child: Icon(Icons.edit_calendar,

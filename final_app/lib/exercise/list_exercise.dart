@@ -48,10 +48,10 @@ class _ListExerciseState extends State<ListExercise> {
                     widget.routineName,
                     style: TextStyle(fontSize: 25.0),
                   ),
-                  SizedBox(height: 30.0),
+                  SizedBox(height: 16.0),
                   for (int i = 0; i < exerciseName.length; i++)
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      padding: EdgeInsets.only(bottom: 8.0),
                       child: Container(
                         width: double.infinity,
                         height: 70.0,
@@ -81,6 +81,7 @@ class _ListExerciseState extends State<ListExercise> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: PRIMARY_COLOR[grade],
+                elevation: 0,
               ),
               onPressed: () {
                 //해당 운동의 데이터를 불러와 넘겨줌 List<Exercise>가 될 것 같아
