@@ -52,7 +52,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
         children: [
           FloatingActionButton(
             heroTag: 'memo',
-            child: Icon(Icons.note_add_outlined,
+            child: Icon(Icons.edit_calendar,
                 color: (grade == 0 ||
                         grade == 1 ||
                         grade == 2 ||
@@ -109,7 +109,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
           SizedBox(height: 8.0),
           FloatingActionButton(
             heroTag: 'filter',
-            child: Icon(Icons.filter_list,
+            child: Icon(Icons.filter_list_alt,
                 color: (grade == 0 ||
                         grade == 1 ||
                         grade == 2 ||

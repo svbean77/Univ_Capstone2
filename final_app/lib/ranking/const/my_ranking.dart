@@ -89,7 +89,7 @@ class _MyRankingState extends State<MyRanking> {
                       : friends == 'request'
                           ? GestureDetector(
                               child:
-                                  Icon(Icons.request_page_outlined, size: 25.0),
+                                  Icon(Icons.schedule_send, size: 25.0),
                             )
                           //친구 요청을 받음
                           //아이콘 다시 찾기

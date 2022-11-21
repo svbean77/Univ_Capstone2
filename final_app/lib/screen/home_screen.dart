@@ -74,18 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.sports, color: Colors.black.withOpacity(0.5)),
+            icon: Icon(Icons.fitness_center, color: Colors.black.withOpacity(0.5)),
             title: Text('운동하기',
                 style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.analytics_outlined,
+            icon: Icon(Icons.calendar_month,
                 color: Colors.black.withOpacity(0.5)),
             title: Text('운동기록',
                 style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.bar_chart_rounded,
+            icon: Icon(Icons.emoji_events,
                 color: Colors.black.withOpacity(0.5)),
             title: Text('랭킹',
                 style: TextStyle(color: Colors.black.withOpacity(0.5))),

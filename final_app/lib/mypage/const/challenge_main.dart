@@ -47,7 +47,7 @@ class ChallengeMain extends StatelessWidget {
             ),
           );
         },
-        child: Icon(Icons.add,
+        child: Icon(Icons.create,
             color: (grade == 0 ||
                     grade == 1 ||
                     grade == 2 ||

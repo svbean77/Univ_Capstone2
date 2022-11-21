@@ -41,7 +41,7 @@ class CopyrightScreen extends StatelessWidget {
                     onTap: () {
                       launchBrowser(muscleUrl);
                     },
-                    child: Icon(Icons.image_outlined),
+                    child: Icon(Icons.link),
                   ),
                   SizedBox(width: 8.0),
                   Text('운동 이미지'),
@@ -56,9 +56,26 @@ class CopyrightScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      launchBrowser(ratingUrl);
+                    },
+                    child: Icon(Icons.link),
+                  ),
+                  SizedBox(width: 8.0),
+                  Text('등급 이미지'),
+                ],
+              ),
+            ),
+            Container(
+              height: 50.0,
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
                       launchBrowser(armUrl);
                     },
-                    child: Icon(Icons.image_outlined),
+                    child: Icon(Icons.link),
                   ),
                   SizedBox(width: 8.0),
                   Text('팔 근육 아이콘'),
@@ -75,27 +92,10 @@ class CopyrightScreen extends StatelessWidget {
                     onTap: () {
                       launchBrowser(appleUrl);
                     },
-                    child: Icon(Icons.image_outlined),
+                    child: Icon(Icons.link),
                   ),
                   SizedBox(width: 8.0),
                   Text('사과 아이콘'),
-                ],
-              ),
-            ),
-            Container(
-              height: 50.0,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      launchBrowser(ratingUrl);
-                    },
-                    child: Icon(Icons.image_outlined),
-                  ),
-                  SizedBox(width: 8.0),
-                  Text('등급 이미지'),
                 ],
               ),
             ),
