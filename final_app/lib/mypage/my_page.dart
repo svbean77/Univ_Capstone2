@@ -182,6 +182,79 @@ class _MyPageState extends State<MyPage> {
                 elevation: 0,
               ),
             ),
+            SizedBox(height: 8.0),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Container(
+                        height: 100.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('탈퇴 하시겠습니까?'),
+                            SizedBox(height: 8.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('취소',
+                                      style: TextStyle(
+                                          color: (grade == 0 ||
+                                                  grade == 1 ||
+                                                  grade == 2 ||
+                                                  grade == 4 ||
+                                                  grade == 8)
+                                              ? Colors.black
+                                              : Colors.white)),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: PRIMARY_COLOR[grade],
+                                      elevation: 0),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    LOGIN_BOX.remove('id');
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              HomeScreen(),
+                                        ),
+                                        (route) => false);
+                                  },
+                                  child: Text('확인',
+                                      style: TextStyle(
+                                          color: (grade == 0 ||
+                                                  grade == 1 ||
+                                                  grade == 2 ||
+                                                  grade == 4 ||
+                                                  grade == 8)
+                                              ? Colors.black
+                                              : Colors.white)),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: PRIMARY_COLOR[grade],
+                                      elevation: 0),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Text(
+                '회원탈퇴',
+                style: TextStyle(
+                    color: Colors.black),
+              ),
+            ),
           ],
         ),
       ),

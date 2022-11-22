@@ -146,7 +146,7 @@ class RequestCard extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('친구삭제 하시겠습니까?'),
+                                  Text('요청삭제 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
