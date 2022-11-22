@@ -61,10 +61,7 @@ class _ExerciseMainState extends State<ExerciseMain>
             controller: _tabController,
             children: [
               BeginnerMain(loginID: widget.loginID),
-              if (widget.loginID == '')
-                AfterLogin()
-              else
-                MasterMain(loginID: widget.loginID),
+              MasterMain(loginID: widget.loginID),
             ],
           ),
         ),

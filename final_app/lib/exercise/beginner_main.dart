@@ -1,5 +1,8 @@
 import 'package:final_app/exercise/select_body.dart';
 import 'package:final_app/exercise/select_routine.dart';
+import 'package:final_app/screen/const/after_login.dart';
+import 'package:final_app/screen/const/app_bar.dart';
+import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -50,8 +53,13 @@ class BeginnerMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    SelectRoutine(loginID: loginID),
+                builder: (BuildContext context) => loginID == ""
+                    ? Scaffold(
+                        appBar: MyAppBar(grade: grade),
+                        drawer: MyDrawer(loginID: loginID),
+                        body: AfterLogin(),
+                      )
+                    : SelectRoutine(loginID: loginID),
               ),
             );
           },

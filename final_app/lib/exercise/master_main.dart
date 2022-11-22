@@ -4,6 +4,10 @@ import 'package:final_app/exercise/select_routine.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../screen/const/after_login.dart';
+import '../screen/const/app_bar.dart';
+import '../screen/const/drawer.dart';
+
 class MasterMain extends StatelessWidget {
   final loginID;
   const MasterMain({
@@ -13,7 +17,8 @@ class MasterMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 5;
+    int grade = 0;
+    if (loginID != "") grade = 5;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,8 +58,13 @@ class MasterMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext ccontext) =>
-                    SelectRoutine(loginID: loginID),
+                builder: (BuildContext ccontext) => loginID == ""
+                    ? Scaffold(
+                        appBar: MyAppBar(grade: grade),
+                        drawer: MyDrawer(loginID: loginID),
+                        body: AfterLogin(),
+                      )
+                    : SelectRoutine(loginID: loginID),
               ),
             );
           },
@@ -78,8 +88,13 @@ class MasterMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext ccontext) =>
-                    SelectMyRoutine(loginID: loginID),
+                builder: (BuildContext ccontext) => loginID == ""
+                    ? Scaffold(
+                        appBar: MyAppBar(grade: grade),
+                        drawer: MyDrawer(loginID: loginID),
+                        body: AfterLogin(),
+                      )
+                    : SelectMyRoutine(loginID: loginID),
               ),
             );
           },

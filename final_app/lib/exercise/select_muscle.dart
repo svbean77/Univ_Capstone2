@@ -17,7 +17,8 @@ class SelectMuscle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 5;
+    int grade = 0;
+    if (loginID != "") grade = 5;
     String level = '숙련자';
 
     return Scaffold(
