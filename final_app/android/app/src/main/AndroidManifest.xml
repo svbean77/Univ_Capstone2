@@ -2,7 +2,7 @@
     package="com.example.final_app">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="final_app"
+        android:label="득근득근"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
