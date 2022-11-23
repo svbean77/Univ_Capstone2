@@ -23,6 +23,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
   Widget build(BuildContext context) {
     //운동 이름 등 db에서 select
     List<String> exerciseName = ['운동1', '운동2', '운동3', '운동4'];
+    List<int> exerciseNum = [1, 2, 3, 4];
     List<int> number = [15, 10, 12, 20];
     //횟수랑 시간은 어떻게 구분할 것인가?
     //db 속성으로 횟수 t/f를 만들고 t이면 회, f이면 초로 단위를 추가
@@ -70,39 +71,94 @@ class _ListMyExerciseState extends State<ListMyExercise> {
             Expanded(
               child: ListView(
                 children: [
-                  Text(
-                    widget.routineName,
-                    style: TextStyle(fontSize: 25.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        widget.routineName,
+                        style: TextStyle(fontSize: 25.0),
+                      ),
+                      GestureDetector(
+                        child: Icon(Icons.question_mark),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                content: Container(
+                                  height: 120.0,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!', textAlign: TextAlign.center),
+                                      SizedBox(height: 8.0),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text(
+                                          '확인',
+                                          style: TextStyle(
+                                              color: (grade == 0 ||
+                                                      grade == 1 ||
+                                                      grade == 2 ||
+                                                      grade == 4 ||
+                                                      grade == 8)
+                                                  ? Colors.black
+                                                  : Colors.white),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: PRIMARY_COLOR[grade],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                scrollable: true,
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
                   ),
                   SizedBox(height: 16.0),
                   for (int i = 0; i < exerciseName.length; i++)
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          //db 횟수를 변경하는 코드 작성
-                          //ListView를 실시간으로 바꿀 수 있도록 코드 수정
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: 70.0,
-                          padding: EdgeInsets.all(8.0),
-                          alignment: Alignment.centerLeft,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: PRIMARY_COLOR[grade],
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                exerciseName[i],
-                                style: TextStyle(fontSize: 20.0),
+                    Dismissible(
+                      key: ObjectKey(exerciseNum),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (DismissDirection direction) {
+                        //db에서 삭제하는 php 코드
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            //db 횟수를 변경하는 코드 작성
+                            //ListView를 실시간으로 바꿀 수 있도록 코드 수정
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 70.0,
+                            padding: EdgeInsets.all(8.0),
+                            alignment: Alignment.centerLeft,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: PRIMARY_COLOR[grade],
                               ),
-                              Text(
-                                  '${number[i].toString()}${numberUnit(isTime[i])}'),
-                            ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  exerciseName[i],
+                                  style: TextStyle(fontSize: 20.0),
+                                ),
+                                Text(
+                                    '${number[i].toString()}${numberUnit(isTime[i])}'),
+                              ],
+                            ),
                           ),
                         ),
                       ),
