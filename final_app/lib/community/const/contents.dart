@@ -33,7 +33,7 @@ class _ContentsState extends State<Contents> {
     String myName = '작성자이름';
     String writer = '작성자이름';
     String date = '2022.11.11';
-    List<String> commentWriter = ['유저1', '유저6', '유저33'];
+    List<String> commentWriter = ['유저1', widget.loginID, '유저33'];
     List<String> comment = ['이거는이렇게해야죠', '댓글내용입니다이건느', '하..\n댓글줄바꿈은뭐..'];
     //일단 세 가지 방법으로 했다가 mysql 저장되는거 보고 선택하자
     //방법1: 파일로 부름
@@ -267,7 +267,91 @@ class _ContentsState extends State<Contents> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(commentWriter[i], style: TextStyle(fontSize: 20.0)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(commentWriter[i], style: TextStyle(fontSize: 20.0)),
+                      commentWriter[i] == widget.loginID
+                          ? GestureDetector(
+                              child: Icon(Icons.cancel_outlined),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: Container(
+                                        height: 100.0,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('삭제하시겠습니까?'),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        PRIMARY_COLOR[grade],
+                                                    elevation: 0,
+                                                  ),
+                                                  onPressed: () {
+                                                    //pop으로? pushReplacement로?
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text(
+                                                    '취소',
+                                                    style: TextStyle(
+                                                      color: (grade == 0 ||
+                                                              grade == 1 ||
+                                                              grade == 2 ||
+                                                              grade == 4 ||
+                                                              grade == 8)
+                                                          ? Colors.black
+                                                          : Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                                ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        PRIMARY_COLOR[grade],
+                                                    elevation: 0,
+                                                  ),
+                                                  onPressed: () {
+                                                    //db에서 글 삭제하는 코드
+                                                    //일단 pop으로 해보고 안되면 push로 변경
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text(
+                                                    '확인',
+                                                    style: TextStyle(
+                                                      color: (grade == 0 ||
+                                                              grade == 1 ||
+                                                              grade == 2 ||
+                                                              grade == 4 ||
+                                                              grade == 8)
+                                                          ? Colors.black
+                                                          : Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            )
+                          : SizedBox()
+                    ],
+                  ),
                   SizedBox(height: 8.0),
                   Text(comment[i]),
                   SizedBox(height: 16.0),
