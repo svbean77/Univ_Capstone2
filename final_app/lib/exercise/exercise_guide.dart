@@ -1,8 +1,6 @@
 import 'package:final_app/exercise/const/equipment_filter.dart';
-import 'package:final_app/exercise/select_body.dart';
 import 'package:final_app/exercise/select_muscle.dart';
 import 'package:final_app/record/const/add_record.dart';
-import 'package:final_app/record/record_calendar.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +9,7 @@ import 'const/exercise_card.dart';
 
 class ExerciseGuide extends StatefulWidget {
   final loginID;
-  final String level;
+  final level;
   final muscleName;
   final exerciseName;
   final equipment;
@@ -42,7 +40,6 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
   Widget build(BuildContext context) {
     int grade = 0;
     if (widget.loginID != "") grade = 5;
-
 
     return Scaffold(
       drawer: MyDrawer(loginID: widget.loginID),
@@ -159,20 +156,12 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                 elevation: 0,
               ),
               onPressed: () {
-                if (widget.level == '초보자')
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          SelectBody(loginID: widget.loginID),
-                    ),
-                  );
-                else
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          SelectMuscle(loginID: widget.loginID),
-                    ),
-                  );
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => SelectMuscle(
+                        loginID: widget.loginID, level: widget.level),
+                  ),
+                );
               },
               child: Text(
                 '근육 선택',

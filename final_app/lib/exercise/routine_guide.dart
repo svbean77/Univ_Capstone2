@@ -1,10 +1,8 @@
 import 'package:final_app/exercise/const/routine_card.dart';
 import 'package:final_app/record/const/add_record.dart';
-import 'package:final_app/record/record_calendar.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
-import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class RoutineGuide extends StatefulWidget {
@@ -70,8 +68,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             Text(
               '${widget.routineName}',
@@ -80,32 +77,15 @@ class _RoutineGuideState extends State<RoutineGuide> {
               ),
             ),
             SizedBox(height: 16.0),
-            Expanded(
-              //ListView 안에서 for문으로 RoutineCard 불러오기, 루틴 이름을 ListView의 최상단으로 옮김
-              //ListView를 Expanded로 사용
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    //widget.은 리스트로 오고 내부변수는 각각으로 해야하나
-                    final exerciseName = widget.exerciseName;
-                    final exerciseImage1 = widget.exerciseImage1;
-                    final exerciseImage2 = widget.exerciseImage2;
-                    final exerciseStep = widget.exerciseStep;
-                    final number = widget.number;
-
-                    return RoutineCard(
-                      exerciseName: exerciseName,
-                      number: number,
-                      exerciseImage1: exerciseImage1,
-                      exerciseImage2: exerciseImage2,
-                      exerciseStep: exerciseStep,
-                      numberUnit: widget.numberUnit,
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 8.0);
-                  },
-                  itemCount: 3),
-            ),
+            for (int i = 0; i < 3; i++)
+              RoutineCard(
+                exerciseName: widget.exerciseName,
+                number: widget.number,
+                exerciseImage1: widget.exerciseImage1,
+                exerciseImage2: widget.exerciseImage2,
+                exerciseStep: widget.exerciseStep,
+                numberUnit: widget.numberUnit,
+              ),
           ],
         ),
       ),

@@ -34,7 +34,7 @@ class MasterMain extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (BuildContext context) =>
-                    SelectMuscle(loginID: loginID),
+                    SelectMuscle(loginID: loginID, level: '숙련자'),
               ),
             );
           },

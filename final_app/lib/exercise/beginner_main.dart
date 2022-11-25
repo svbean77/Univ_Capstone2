@@ -1,4 +1,4 @@
-import 'package:final_app/exercise/select_body.dart';
+import 'package:final_app/exercise/select_muscle.dart';
 import 'package:final_app/exercise/select_routine.dart';
 import 'package:final_app/screen/const/after_login.dart';
 import 'package:final_app/screen/const/app_bar.dart';
@@ -30,7 +30,7 @@ class BeginnerMain extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => SelectBody(loginID: loginID),
+              builder: (BuildContext context) => SelectMuscle(loginID: loginID, level: '초보자'),
             ));
           },
           child: Container(

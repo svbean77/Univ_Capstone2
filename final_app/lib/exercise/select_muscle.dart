@@ -10,8 +10,10 @@ import '../screen/const/grade_colors.dart';
 
 class SelectMuscle extends StatelessWidget {
   final loginID;
+  final level;
   const SelectMuscle({
     required this.loginID,
+    required this.level,
     Key? key,
   }) : super(key: key);
 
@@ -19,7 +21,6 @@ class SelectMuscle extends StatelessWidget {
   Widget build(BuildContext context) {
     int grade = 0;
     if (loginID != "") grade = 5;
-    String level = '숙련자';
 
     return Scaffold(
       drawer: MyDrawer(loginID: loginID),
@@ -67,7 +68,7 @@ class SelectMuscle extends StatelessWidget {
         child: ListView(
           children: [
             Text(
-              '숙련자 근육 부위별 운동',
+              '$level 근육 부위별 운동',
               style: TextStyle(
                 fontSize: 25.0,
               ),

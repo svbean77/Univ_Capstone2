@@ -1,5 +1,4 @@
 import 'package:final_app/exercise/const/select_routine_container.dart';
-import 'package:final_app/exercise/list_routine.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/const_exercise_info.dart';
 import 'package:final_app/screen/const/drawer.dart';
@@ -22,7 +21,6 @@ class _SelectRoutineState extends State<SelectRoutine> {
     int grade = 5;
 
     List<String> timeLst = ['15분', '30분', '60분', '90분', '120분'];
-
     List<String> divisionLst = ['무분할', '2분할', '3분할', '4분할'];
 
     return Scaffold(
