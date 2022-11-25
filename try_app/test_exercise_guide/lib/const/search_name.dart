@@ -53,7 +53,7 @@ class SearchName extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) =>
-                  ExerciseGuide(level: level, jsondata: jsondata, muscle: name),
+                  ExerciseGuide(level: level, jsondata: jsondata, muscle: name, equipment: '맨몸'),
             ),
           );
         },

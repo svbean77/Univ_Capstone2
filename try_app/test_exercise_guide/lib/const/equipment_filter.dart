@@ -1,28 +1,18 @@
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import '../screen/exercise_guide.dart';
 import 'const_exercise_info.dart';
+import 'ip_address.dart';
 
 class EquipmentFilter extends StatelessWidget {
-  String level;
-  String muscleName;
-  String exerciseName;
-  String equipment;
-  String difficulty;
-  String exerciseImage1;
-  String exerciseImage2;
-  String exerciseStep;
+  final level;
+  final muscle;
 
   EquipmentFilter({
     required this.level,
-    required this.exerciseImage2,
-    required this.muscleName,
-    required this.exerciseStep,
-    required this.equipment,
-    required this.difficulty,
-    required this.exerciseName,
-    required this.exerciseImage1,
+    required this.muscle,
     Key? key,
   }) : super(key: key);
 
@@ -47,7 +37,9 @@ class EquipmentFilter extends StatelessWidget {
               elevation: 0,
               child: ListTile(
                 title: Text(equipmentLst[i]),
-                onTap: () {
+                onTap: () async {
+                  String equipment;
+
                   if (equipmentLst[i] == '밴드') {
                     equipment = '밴드';
                   } else if (equipmentLst[i] == '바벨') {
@@ -62,27 +54,23 @@ class EquipmentFilter extends StatelessWidget {
                     equipment = '케틀벨';
                   } else if (equipmentLst[i] == '머신') {
                     equipment = '머신';
-                  } else if (equipmentLst[i] == '스트레칭') {
+                  } else {
                     equipment = '스트레칭';
                   }
+                  var url = Uri.http(IP_ADDRESS, '/test_select.php', {'q': '{http}'});
+                  var response = await http.post(url, body: <String, String>{
+                    "muscle": muscle.toString(),
+                    "equipment": equipment.toString(),
+                    "difficulty": level.toString(),
+                  });
+                  var jsondata = jsonDecode(json.decode(json.encode(response.body)));
 
-                  //muscleName과 equipment를 이용해 db에서 select
-                  /*
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => ExerciseGuide(
-                        level: level,
-                        exerciseStep: exerciseStep,
-                        exerciseName: exerciseName,
-                        exerciseImage1: exerciseImage1,
-                        exerciseImage2: exerciseImage2,
-                        equipment: equipment,
-                        muscleName: muscleName,
-                        difficulty: difficulty,
-                      ),
+                      builder: (BuildContext context) =>
+                          ExerciseGuide(level: level, jsondata: jsondata, muscle: muscle, equipment: equipment),
                     ),
                   );
-                  */
                 },
               ),
             ),
