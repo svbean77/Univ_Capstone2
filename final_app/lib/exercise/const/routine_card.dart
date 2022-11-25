@@ -7,6 +7,7 @@ class RoutineCard extends StatelessWidget {
   final String exerciseStep;
   final int number;
   final String numberUnit;
+  final idx;
 
   const RoutineCard({
     required this.exerciseName,
@@ -15,6 +16,7 @@ class RoutineCard extends StatelessWidget {
     required this.exerciseImage2,
     required this.exerciseStep,
     required this.numberUnit,
+    required this.idx,
     Key? key,
   }) : super(key: key);
 
@@ -33,7 +35,7 @@ class RoutineCard extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           Text(
-            '$exerciseName X$number$numberUnit',
+            '$idx. $exerciseName X$number$numberUnit',
             style: TextStyle(
               fontSize: 20.0,
             ),

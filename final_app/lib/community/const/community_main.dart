@@ -29,8 +29,6 @@ class _CommunityMainState extends State<CommunityMain>
   @override
   Widget build(BuildContext context) {
     int grade = 5;
-    List<int> freeboardLst = [1, 2, 3, 5, 7];
-    List<int> qnaboardLst = [4, 6, 8, 9, 10, 11, 12];
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
@@ -66,8 +64,8 @@ class _CommunityMainState extends State<CommunityMain>
             child: TabBarView(
               controller: _tabController,
               children: [
-                FreeBoard(boardLst: freeboardLst, loginID: widget.loginID),
-                QnABoard(boardLst: qnaboardLst, loginID: widget.loginID),
+                FreeBoard(loginID: widget.loginID),
+                QnABoard(loginID: widget.loginID),
               ],
             ),
           ),

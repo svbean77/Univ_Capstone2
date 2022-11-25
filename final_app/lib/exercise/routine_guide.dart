@@ -85,6 +85,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
                 exerciseImage2: widget.exerciseImage2,
                 exerciseStep: widget.exerciseStep,
                 numberUnit: widget.numberUnit,
+                idx: i+1,
               ),
           ],
         ),

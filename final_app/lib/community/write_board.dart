@@ -197,6 +197,7 @@ class _WriteBoardState extends State<WriteBoard> {
 
                 if (widget.mode == 'edit') {
                   //db의 내용을 수정하는 코드
+                  //board == 'free'면 자유게시판, 'QnA'면 Qna게시판
                 } else {
                   //db에 내용을 추가하는 코드
                 }

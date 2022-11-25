@@ -6,7 +6,7 @@ class FriendCard extends StatelessWidget {
   final loginID;
   final nickname;
   final rating;
-  final isActive;
+  //final isActive;
   final grade;
 
   const FriendCard({
@@ -14,7 +14,7 @@ class FriendCard extends StatelessWidget {
     required this.nickname,
     required this.grade,
     required this.rating,
-    required this.isActive,
+    //required this.isActive,
     Key? key,
   }) : super(key: key);
 
@@ -39,8 +39,11 @@ class FriendCard extends StatelessWidget {
               children: [
                 Image.asset('asset/images/ranking/$rating.png'),
                 SizedBox(width: 8.0),
+                /*
                 Icon(Icons.circle,
                     color: isActive ? Colors.green : Colors.red, size: 15.0),
+
+                 */
                 Text(' $nickname', style: TextStyle(fontSize: 20.0)),
               ],
             ),

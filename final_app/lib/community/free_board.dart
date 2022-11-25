@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 
 class FreeBoard extends StatefulWidget {
   final loginID;
-  final boardLst;
   const FreeBoard({
-    required this.boardLst,
     required this.loginID,
     Key? key,
   }) : super(key: key);
@@ -23,6 +21,7 @@ class _FreeBoardState extends State<FreeBoard> {
 
   @override
   Widget build(BuildContext context) {
+    List<int> boardLst = [1, 3, 4, 5, 6];
     int grade = 5;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -32,7 +31,7 @@ class _FreeBoardState extends State<FreeBoard> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => WriteBoard(
-                  board: '자유게시판',
+                  board: 'free',
                   mode: 'write',
                   content: "",
                   loginID: widget.loginID),
@@ -100,7 +99,7 @@ class _FreeBoardState extends State<FreeBoard> {
             SizedBox(height: 16.0),
             Expanded(
               child: Container(
-                child: widget.boardLst.length == 0
+                child: boardLst.length == 0
                     ? Container(
                         child: Center(
                           child: Text('게시글이 없습니다.'),
@@ -108,10 +107,10 @@ class _FreeBoardState extends State<FreeBoard> {
                       )
                     : ListView(
                         children: [
-                          for (int i = 0; i < widget.boardLst.length; i++)
+                          for (int i = 0; i < boardLst.length; i++)
                             GestureDetector(
                               child: ContentsList(
-                                  boardnum: widget.boardLst[i], grade: grade),
+                                  boardnum: boardLst[i], grade: grade),
                               onTap: () {
                                 //게시판 번호를 이용해 게시글 정보를 불러오는 코드
                                 String title = '게시판 제목';
@@ -121,7 +120,7 @@ class _FreeBoardState extends State<FreeBoard> {
                                   MaterialPageRoute(
                                     builder: (BuildContext context) => Contents(
                                         loginID: widget.loginID,
-                                        board: '자유게시판',
+                                        board: 'free',
                                         title: title,
                                         contents: contents),
                                   ),

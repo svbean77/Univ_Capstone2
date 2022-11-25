@@ -26,7 +26,7 @@ class _FriendsMainState extends State<FriendsMain> {
     //친구 목록 불러오기
     List<String> friendN = ['친구1', '친구2', '친구3', '친구4', '친구5'];
     List<String> friendR = ['챌린저', '다이아몬드', '골드', '브론즈', '아이언'];
-    List<bool> isActive = [false, false, true, true, false];
+//    List<bool> isActive = [false, false, true, true, false];
     List<String> requestN = ['요청1', '요청2', '요청3'];
     List<String> requestR = ['실버', '플래티넘', '그랜드마스터'];
 
@@ -126,7 +126,7 @@ class _FriendsMainState extends State<FriendsMain> {
                                   FriendCard(
                                       nickname: friendN[i],
                                       rating: friendR[i],
-                                      isActive: isActive[i],
+                                      //isActive: isActive[i],
                                       grade: grade,
                                       loginID: widget.loginID)
                               ],
