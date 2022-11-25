@@ -5,14 +5,14 @@ import 'package:http/http.dart' as http;
 
 import 'ip_address.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class TestInsert extends StatefulWidget {
+  const TestInsert({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TestInsert> createState() => _TestInsertState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TestInsertState extends State<TestInsert> {
   TextEditingController cont1 = TextEditingController();
   TextEditingController cont2 = TextEditingController();
 

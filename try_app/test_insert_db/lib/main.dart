@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:test_insert_db/screen/home_screen.dart';
+import 'package:test_insert_db/screen/test_delete.dart';
+import 'package:test_insert_db/screen/test_insert.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      home: HomeScreen(),
+      home: TestDelete(col1: 'test', col2: 77),
     ),
   );
 }
