@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:test_exercise_guide/const/set_exercise.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../screen/exercise_guide.dart';
+import 'ip_address.dart';
 
 class LoadImage extends StatelessWidget {
   final dir;
@@ -45,7 +47,6 @@ class SetImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<List<String>> exerciseLst = [];
     Map<int, String> mapExNum = {
       1: "이두",
       2: "가슴",
@@ -63,35 +64,36 @@ class SetImage extends StatelessWidget {
       14: '등 중앙부',
       15: '복사근'
     };
-    for (int i = 1; i <= 15; i++) {
-      exerciseLst.add(setExercise(i, level, '맨몸'));
-    }
-
     return Column(
       children: [
         for (int i = 1; i <= 16; i++)
           LoadImage(
-            onTap: () {
-              /*
-                if (muscleLst[i - 1] == 0)
-                  Navigator.of(context).noSuchMethod;
-                else
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => ExerciseGuide(
-                        muscleName: exerciseLst[muscleLst[i - 1] - 1][0],
-                        exerciseName: exerciseLst[muscleLst[i - 1] - 1][1],
-                        exerciseImage1: exerciseLst[muscleLst[i - 1] - 1][2],
-                        exerciseImage2: exerciseLst[muscleLst[i - 1] - 1][3],
-                        equipment: exerciseLst[muscleLst[i - 1] - 1][4],
-                        exerciseStep: exerciseLst[muscleLst[i - 1] - 1][6],
-                        difficulty: exerciseLst[muscleLst[i - 1] - 1][7],
-                        level: level,
-                      ),
-                    ),
-                  );
+            onTap: () async {
+              if (muscleLst[i - 1] == 0)
+                return print('여기는 아니야!');
+              else {
+                String muscle = mapExNum[muscleLst[i - 1]]!;
+                var url =
+                    Uri.http(IP_ADDRESS, '/test_select.php', {'q': '{http}'});
+                var response = await http.post(url, body: <String, String>{
+                  "muscle": muscle.toString(),
+                  "equipment": '맨몸'.toString(),
+                  "difficulty": level.toString(),
+                });
+                var jsondata =
+                    jsonDecode(json.decode(json.encode(response.body)));
+                print('$i: ${muscle}');
 
-                 */
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => ExerciseGuide(
+                        level: level,
+                        jsondata: jsondata,
+                        muscle: muscle,
+                        equipment: '맨몸'),
+                  ),
+                );
+              }
             },
             dir: dir,
             col: col,

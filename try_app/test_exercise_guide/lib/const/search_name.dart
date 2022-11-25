@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:test_exercise_guide/const/set_exercise.dart';
 import 'package:http/http.dart' as http;
-import 'package:test_exercise_guide/screen/test_screen2.dart';
 
 import '../screen/exercise_guide.dart';
 import 'ip_address.dart';
