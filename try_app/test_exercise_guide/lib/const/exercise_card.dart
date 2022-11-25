@@ -22,6 +22,7 @@ class ExerciseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //exerciseStep =  exerciseStep.replaceAll('@', '\n');
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +43,7 @@ class ExerciseCard extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           Text(
-            exerciseStep,
+            exerciseStep.replaceAll('@', '\n'),
           ),
           SizedBox(height: 16.0),
         ],

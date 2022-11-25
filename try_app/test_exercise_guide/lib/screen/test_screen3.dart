@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_exercise_guide/screen/test_screen.dart';
 
 class TestScreen3 extends StatelessWidget {
   final data;
@@ -10,6 +11,20 @@ class TestScreen3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          GestureDetector(
+            child: Icon(Icons.home),
+            onTap: (){
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => TestScreen(level: "숙련자"),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -13,6 +13,20 @@ class TestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          GestureDetector(
+            child: Icon(Icons.home),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => TestScreen(level: "숙련자"),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         onPressed: () {
