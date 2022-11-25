@@ -67,7 +67,7 @@ class EquipmentFilter extends StatelessWidget {
                   }
 
                   //muscleName과 equipment를 이용해 db에서 select
-
+                  /*
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (BuildContext context) => ExerciseGuide(
@@ -82,6 +82,7 @@ class EquipmentFilter extends StatelessWidget {
                       ),
                     ),
                   );
+                  */
                 },
               ),
             ),

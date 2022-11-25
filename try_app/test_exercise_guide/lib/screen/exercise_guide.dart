@@ -6,11 +6,11 @@ import '../const/exercise_card.dart';
 import 'home_screen.dart';
 
 class ExerciseGuide extends StatefulWidget {
-  final level;
+  final level; //초보자, 숙련자
   final muscleName;
   final exerciseName;
   final equipment;
-  final difficulty;
+  final difficulty; //운동 난이도
   final exerciseImage1;
   final exerciseImage2;
   final exerciseStep;
@@ -104,31 +104,21 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
               child: Text('근육 선택'),
             ),
             SizedBox(height: 16.0),
-            Expanded(
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    final muscleName = widget.muscleName;
-                    final exerciseName = widget.exerciseName;
-                    final equipment = widget.equipment;
-                    final exerciseImage1 = widget.exerciseImage1;
-                    final exerciseImage2 = widget.exerciseImage2;
-                    final exerciseStep = widget.exerciseStep;
-
-                    return ExerciseCard(
-                      muscleName: muscleName,
-                      exerciseName: exerciseName,
-                      equipment: equipment,
-                      exerciseImage1: exerciseImage1,
-                      exerciseImage2: exerciseImage2,
-                      exerciseStep: exerciseStep,
-                      difficulty: widget.difficulty,
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 8.0);
-                  },
-                  itemCount: 3),
-            ),
+            if (widget.exerciseName.length == 0)
+              Center(
+                child: Text('운동이 없습니다.'),
+              )
+            else
+              for (int i = 0; i < widget.exerciseName.length; i++)
+                ExerciseGuide(
+                    level: widget.level,
+                    exerciseStep: widget.exerciseStep[i],
+                    exerciseName: widget.exerciseName[i],
+                    exerciseImage1: widget.exerciseImage1[i],
+                    difficulty: widget.difficulty[i],
+                    exerciseImage2: widget.exerciseImage2[i],
+                    equipment: widget.equipment,
+                    muscleName: widget.muscleName),
           ],
         ),
       ),

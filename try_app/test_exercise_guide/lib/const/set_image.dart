@@ -47,21 +47,21 @@ class SetImage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<List<String>> exerciseLst = [];
     Map<int, String> mapExNum = {
-      1:"이두",
-      2:"가슴",
-      3:'대퇴 사두근',
-      4:'승모근',
-      5:'삼두',
-      6:'어깨',
-      7:'광배근',
-      8:'대퇴 이두근',
-      9:'둔근',
-      10:'전완근',
-      11:'종아리',
-      12:'복근',
-      13:'등 하부',
-      14:'등 중앙부',
-      15:'복사근'
+      1: "이두",
+      2: "가슴",
+      3: '대퇴 사두근',
+      4: '승모근',
+      5: '삼두',
+      6: '어깨',
+      7: '광배근',
+      8: '대퇴 이두근',
+      9: '둔근',
+      10: '전완근',
+      11: '종아리',
+      12: '복근',
+      13: '등 하부',
+      14: '등 중앙부',
+      15: '복사근'
     };
     for (int i = 1; i <= 15; i++) {
       exerciseLst.add(setExercise(i, level, '맨몸'));
@@ -71,7 +71,8 @@ class SetImage extends StatelessWidget {
       children: [
         for (int i = 1; i <= 16; i++)
           LoadImage(
-              onTap: () {
+            onTap: () {
+              /*
                 if (muscleLst[i - 1] == 0)
                   Navigator.of(context).noSuchMethod;
                 else
@@ -89,10 +90,13 @@ class SetImage extends StatelessWidget {
                       ),
                     ),
                   );
-              },
-              dir: dir,
-              col: col,
-              row: i,),
+
+                 */
+            },
+            dir: dir,
+            col: col,
+            row: i,
+          ),
       ],
     );
   }
