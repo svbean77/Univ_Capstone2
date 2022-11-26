@@ -6,6 +6,9 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class RoutineGuide extends StatefulWidget {
+  /*
+  class or 리스트 형태로 받았다고 가정
+   */
   final loginID;
   final routineName;
   final exerciseName;
@@ -34,6 +37,9 @@ class RoutineGuide extends StatefulWidget {
 class _RoutineGuideState extends State<RoutineGuide> {
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 테마 선택
+     */
     int grade = 5;
     return Scaffold(
       drawer: MyDrawer(loginID: widget.loginID),
@@ -78,6 +84,9 @@ class _RoutineGuideState extends State<RoutineGuide> {
             ),
             SizedBox(height: 16.0),
             for (int i = 0; i < 3; i++)
+              /*
+              클래스 or 리스트로 온 값을 item[i]으로 전달
+               */
               RoutineCard(
                 exerciseName: widget.exerciseName,
                 number: widget.number,
@@ -85,7 +94,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
                 exerciseImage2: widget.exerciseImage2,
                 exerciseStep: widget.exerciseStep,
                 numberUnit: widget.numberUnit,
-                idx: i+1,
+                idx: i + 1,
               ),
           ],
         ),

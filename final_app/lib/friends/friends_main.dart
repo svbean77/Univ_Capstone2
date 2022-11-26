@@ -22,11 +22,24 @@ class _FriendsMainState extends State<FriendsMain> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
+    /*
+    select: 친구인 사용자 (join)
+     */
+    /*
+    친구 요청 목록 select
+    select: 1) 내가 신청한 사용자 (join)
+    select: 2) 나한테 신청한 사용자 (join)
+    => 2개의 결과가 있어야 함 (같은 db를 바탕으로 2번 select)
+     */
+    /*
+    => 얘네들을 각각 목록으로 불러오지 말고 친구목록에 있는 사용자들, 요청목록에 있는 사용자들 등등 sql에서 사람으로 만들어 select하자!
+     */
     int grade = 5;
-    //친구 목록 불러오기
     List<String> friendN = ['친구1', '친구2', '친구3', '친구4', '친구5'];
     List<String> friendR = ['챌린저', '다이아몬드', '골드', '브론즈', '아이언'];
-//    List<bool> isActive = [false, false, true, true, false];
     List<String> requestN = ['요청1', '요청2', '요청3'];
     List<String> requestR = ['실버', '플래티넘', '그랜드마스터'];
 
@@ -61,8 +74,11 @@ class _FriendsMainState extends State<FriendsMain> {
                 GestureDetector(
                   child: Icon(Icons.search),
                   onTap: () {
+                    /*
+                    select: 닉네임이 find인 사용자 select -> class
+                    (지금처럼 모든 사용자 불러오지 말고 find인 사람만 불러와서 길이가 1이면 이동, 0이면 토스트)
+                     */
                     String find = controller.text.toString();
-                    //allUser는 닉네임임
                     List<String> allUser = [
                       'user1',
                       'user2',
@@ -72,6 +88,9 @@ class _FriendsMainState extends State<FriendsMain> {
                       'friend1'
                     ];
                     if (allUser.contains(find)) {
+                      /*
+                      class 형태로 전달
+                       */
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
@@ -123,10 +142,12 @@ class _FriendsMainState extends State<FriendsMain> {
                           : ListView(
                               children: [
                                 for (int i = 0; i < friendN.length; i++)
+                                  /*
+                                  class로 보내줘야 함 ([i]가 들어가니까)
+                                   */
                                   FriendCard(
                                       nickname: friendN[i],
                                       rating: friendR[i],
-                                      //isActive: isActive[i],
                                       grade: grade,
                                       loginID: widget.loginID)
                               ],
@@ -152,6 +173,9 @@ class _FriendsMainState extends State<FriendsMain> {
                         : ListView(
                             children: [
                               for (int i = 0; i < requestN.length; i++)
+                                /*
+                                  class로 보내줘야 함 ([i]가 들어가니까)
+                                   */
                                 RequestCard(
                                     nickname: requestN[i],
                                     rating: requestR[i],

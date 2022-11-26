@@ -3,10 +3,12 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class FriendCard extends StatelessWidget {
+  /*
+  class로 넘겼다고 가정!
+   */
   final loginID;
   final nickname;
   final rating;
-  //final isActive;
   final grade;
 
   const FriendCard({
@@ -14,7 +16,6 @@ class FriendCard extends StatelessWidget {
     required this.nickname,
     required this.grade,
     required this.rating,
-    //required this.isActive,
     Key? key,
   }) : super(key: key);
 
@@ -39,11 +40,6 @@ class FriendCard extends StatelessWidget {
               children: [
                 Image.asset('asset/images/ranking/$rating.png'),
                 SizedBox(width: 8.0),
-                /*
-                Icon(Icons.circle,
-                    color: isActive ? Colors.green : Colors.red, size: 15.0),
-
-                 */
                 Text(' $nickname', style: TextStyle(fontSize: 20.0)),
               ],
             ),
@@ -110,8 +106,12 @@ class FriendCard extends StatelessWidget {
                                           elevation: 0,
                                         ),
                                         onPressed: () {
-                                          //db에서 글 삭제하는 코드
-                                          //정보를 build에서 가져오면 새로고침이 되나?
+                                          /*
+                                          delete: db에 친구 삭제하는 코드
+                                           */
+                                          /*
+                                          일단 pop으로 했지만 homescreen index 해결하면 push로 변경!
+                                           */
                                           Navigator.of(context).pop();
                                         },
                                         child: Text(

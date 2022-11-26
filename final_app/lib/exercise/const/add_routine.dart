@@ -17,6 +17,9 @@ class _AddRoutineState extends State<AddRoutine> {
   TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 테마 선택
+     */
     int grade = 5;
 
     return Container(
@@ -70,8 +73,9 @@ class _AddRoutineState extends State<AddRoutine> {
                   elevation: 0,
                 ),
                 onPressed: () {
-                  //db에 루틴 추가하는 코드 작성
-                  //추가됨에 따라 실시간으로 화면에 추가
+                  /*
+                  insert: loginID가 만든 루틴이름 만들기 (insert)
+                   */
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (BuildContext context) =>

@@ -21,6 +21,13 @@ class _FreeBoardState extends State<FreeBoard> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+      select: 사용자의 테마 선택 가져오기
+       */
+    /*
+      select: 자유게시판 게시글들 불러오기
+      (게시글번호, 제목, 작성자, 작성일자, 내용, 사진주소를 리스트로 변경)
+       */
     List<int> boardLst = [1, 3, 4, 5, 6];
     int grade = 5;
     return Scaffold(
@@ -31,10 +38,12 @@ class _FreeBoardState extends State<FreeBoard> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => WriteBoard(
-                  board: 'free',
-                  mode: 'write',
-                  content: "",
-                  loginID: widget.loginID),
+                board: 'free',
+                mode: 'write',
+                content: "",
+                loginID: widget.loginID,
+                title: "",
+              ),
             ),
           );
         },
@@ -79,6 +88,10 @@ class _FreeBoardState extends State<FreeBoard> {
                   GestureDetector(
                     child: Icon(Icons.search),
                     onTap: () {
+                      /*
+                      select: 자유게시판 목록에서 제목에 검색어를 포함하는 게시글만 불러오기
+                      (json으로 보내기)
+                      */
                       List<int> findLst = [];
                       String find = controller.text.toString();
 
@@ -86,9 +99,11 @@ class _FreeBoardState extends State<FreeBoard> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => SearchPage(
-                              boardLst: findLst,
-                              searchfor: find,
-                              loginID: widget.loginID),
+                            boardLst: findLst,
+                            searchfor: find,
+                            loginID: widget.loginID,
+                            board: 'free',
+                          ),
                         ),
                       );
                     },
@@ -112,7 +127,13 @@ class _FreeBoardState extends State<FreeBoard> {
                               child: ContentsList(
                                   boardnum: boardLst[i], grade: grade),
                               onTap: () {
-                                //게시판 번호를 이용해 게시글 정보를 불러오는 코드
+                                /*
+                                위에서 구한 json에서 각 내용들을 클래스로 매핑하는걸 여기서 해도 되나?
+                                여기는 이미 for문 내부라서 안될 것 같은데
+                                각각의 내용을 보냄!!
+                                ex) result.title[i]
+                                contents에게 제목, 내용, 작성자, 작성일자, 조회수, 사진이름, 사진경로 다 보내야 함!
+                                */
                                 String title = '게시판 제목';
                                 String contents = '게시판 내용${i}';
 
@@ -130,7 +151,7 @@ class _FreeBoardState extends State<FreeBoard> {
                         ],
                       ),
               ),
-            )
+            ),
           ],
         ),
       ),

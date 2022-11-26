@@ -73,38 +73,39 @@ class SetImage extends StatelessWidget {
       children: [
         for (int i = 1; i <= 16; i++)
           LoadImage(
-              onTap: () async {
-                if (muscleLst[i - 1] == 0)
-                  Navigator.of(context).noSuchMethod;
-                else {
-                  String muscle = mapExNum[muscleLst[i - 1]]!;
-                  var url =
-                      Uri.http(IP_ADDRESS, '/exersice_guide.php', {'q': '{http}'});
-                  var response = await http.post(url, body: <String, String>{
-                    "muscle": muscle.toString(),
-                    "equipment": '맨몸'.toString(),
-                    "difficulty": level.toString(),
-                  });
-                  var jsondata =
-                      jsonDecode(json.decode(json.encode(response.body)));
+            onTap: () async {
+              if (muscleLst[i - 1] == 0)
+                Navigator.of(context).noSuchMethod;
+              else {
+                String muscle = mapExNum[muscleLst[i - 1]]!;
+                var url = Uri.http(
+                    IP_ADDRESS, '/exersice_guide.php', {'q': '{http}'});
+                var response = await http.post(url, body: <String, String>{
+                  "muscle": muscle.toString(),
+                  "equipment": '맨몸'.toString(),
+                  "difficulty": level.toString(),
+                });
+                var jsondata =
+                    jsonDecode(json.decode(json.encode(response.body)));
 
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => ExerciseGuide(
-                        level: level,
-                        jsondata: jsondata,
-                        muscle: muscle,
-                        equipment: '맨몸',
-                        loginID: loginID,
-                      ),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => ExerciseGuide(
+                      level: level,
+                      jsondata: jsondata,
+                      muscle: muscle,
+                      equipment: '맨몸',
+                      loginID: loginID,
                     ),
-                  );
-                }
-              },
-              dir: dir,
-              col: col,
-              row: i,
-              loginID: loginID),
+                  ),
+                );
+              }
+            },
+            dir: dir,
+            col: col,
+            row: i,
+            loginID: loginID,
+          ),
       ],
     );
   }

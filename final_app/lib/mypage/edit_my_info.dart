@@ -26,6 +26,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
     int grade = 5;
     return Scaffold(
       drawer: MyDrawer(loginID: widget.loginID),
@@ -84,7 +87,6 @@ class _EditMyInfoState extends State<EditMyInfo> {
                         ),
                         child: TextField(
                           controller: _pwController,
-                          //이거 그냥 true로 하면 비밀번호 안 보이는 것!!!!
                           obscureText: isPasswordVisible ? false : true,
                           decoration: InputDecoration(
                               suffixIcon: GestureDetector(
@@ -208,11 +210,13 @@ class _EditMyInfoState extends State<EditMyInfo> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    //db에서 내용을 수정하는 코드
+                    /*
+                    update: 사용자 정보 수정
+                     */
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            MyPage(loginID: widget.loginID),
+                            MyPage(loginID: widget.loginID, grade: grade),
                       ),
                     );
                   },
@@ -229,7 +233,6 @@ class _EditMyInfoState extends State<EditMyInfo> {
                         '저장',
                         style: TextStyle(
                           color: Colors.black,
-                          //fontWeight: FontWeight.bold
                         ),
                       ),
                     ),

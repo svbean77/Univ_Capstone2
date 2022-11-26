@@ -18,11 +18,15 @@ class ChallengeMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
+    /*
+    select: loginID의 exercise에 대한 기록 (내림차순)
+     */
     int grade = 5;
-    //db에서 exercise의 기록을 가져옴, 내림차순 (최근 기록이 위에)
 
-    List<int> num = [1, 4, 5]; //게시판 번호
-    List<int> weight = [200, 155, 140];
+    List<int> num = [1, 4, 5];
     List<int> recordDate = [20221010, 20220202, 20221111];
     List<DateTime> date = [];
 
@@ -68,6 +72,9 @@ class ChallengeMain extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: GestureDetector(
                   onTap: () {
+                    /*
+                    class로 전달 (사진 등도 다 가는거임, [i]로 전달하니까 하나씩)
+                     */
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => ChallengeDetail(
@@ -80,7 +87,6 @@ class ChallengeMain extends StatelessWidget {
                   },
                   child: ChallengeList(
                     grade: grade,
-                    weight: weight[i],
                     date: date[i],
                   ),
                 ),

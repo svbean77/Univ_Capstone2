@@ -10,6 +10,12 @@ class FriendsRanking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
+    /*
+    select: 친구인 사용자 정보
+     */
     int grade = 5;
     List<String> nickname = ['친구1', '친구2', '친구3', '친구4', '친구5'];
     List<String> rating = ['챌린저', '다이아몬드', '골드', '브론즈', '아이언'];

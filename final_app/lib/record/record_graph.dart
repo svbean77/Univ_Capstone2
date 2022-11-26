@@ -19,7 +19,12 @@ class RecordGraph extends StatefulWidget {
 class _RecordGraphState extends State<RecordGraph> {
   @override
   Widget build(BuildContext context) {
-    //운동 시간 구하는 코드
+    /*
+    select: 사용자 선택 테마
+     */
+    /*
+    select: 체중 기록
+     */
     List<int> recordDate = [20220901, 20220905, 20220908, 20220909, 20220910];
     List<double> weight = [45.5, 50.7, 47.3, 57.9, 55.5];
     List<WeightData> data = [];

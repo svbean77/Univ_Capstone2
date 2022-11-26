@@ -1,5 +1,3 @@
-//https://eunoia3jy.tistory.com/110
-
 import 'package:final_app/ranking/const/my_ranking.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 
@@ -32,17 +30,12 @@ class _RankingMainState extends State<RankingMain>
 
   @override
   Widget build(BuildContext context) {
-    //loginID를 통해 닉네임 구하기
-    String myNickName = '안녕';
-
     return Column(
       children: [
-        //나의 등급을 표시해줄 컨테이너
         MyRanking(
-          nickname: myNickName,
+          nickname: widget.loginID,
           loginID: widget.loginID,
         ),
-        //탭바 컨테이너
         Container(
           decoration: BoxDecoration(border: Border.all()),
           child: TabBar(
@@ -68,7 +61,6 @@ class _RankingMainState extends State<RankingMain>
             controller: _tabController,
           ),
         ),
-        //탭바 뷰어 컨테이너
         Expanded(
           child: TabBarView(
             controller: _tabController,

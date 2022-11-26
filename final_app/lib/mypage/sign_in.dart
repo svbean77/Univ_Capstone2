@@ -84,7 +84,6 @@ class _SignInState extends State<SignIn> {
                   ),
                   child: TextField(
                     controller: _pwController,
-                    //이거 그냥 true로 하면 비밀번호 안 보이는 것!!!!
                     obscureText: isPasswordVisible ? false : true,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
@@ -206,7 +205,3 @@ class _SignInState extends State<SignIn> {
     }
   }
 }
-
-/*
-
- */

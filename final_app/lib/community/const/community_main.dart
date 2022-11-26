@@ -28,6 +28,13 @@ class _CommunityMainState extends State<CommunityMain>
 
   @override
   Widget build(BuildContext context) {
+    /*
+      select: 사용자의 테마 선택 가져오기
+       */
+    /*
+    (보류)select: 각 게시글 데이터의 json을 여기서 구해 보내도 되려나???
+    이건 일단 보류.. 각 게시판에서 구하는거 못하겠으면 이거로 해보기
+     */
     int grade = 5;
 
     return Scaffold(

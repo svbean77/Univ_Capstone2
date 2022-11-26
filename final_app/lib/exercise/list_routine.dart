@@ -20,8 +20,14 @@ class ListRoutine extends StatefulWidget {
 class _ListRoutineState extends State<ListRoutine> {
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
+    /*
+    select: 여기서 데이터 구하기 도전! title이 목적, 이것을 이용해 select
+    만약 된다면 json->class까지!
+     */
     int grade = 5;
-    //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
     List<String> routineName = [
       '루틴1',
       '루틴2',
@@ -48,7 +54,8 @@ class _ListRoutineState extends State<ListRoutine> {
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
                     width: double.infinity,
-                    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                       border: Border.all(
@@ -64,9 +71,11 @@ class _ListRoutineState extends State<ListRoutine> {
                   ),
                 ),
                 onTap: () {
-                  //여기서 구해야하나
-                  //String name = '루틴이름1';
-
+                  /*
+                  json 파일을 통째로 보내기! (운동이 몇 개가 있는지 모르니까)
+                  or class로 변형한 형태로 보내기(로 도전해보자! json을 하면 뒤에서 또 까야 함.)
+                  class 형태 통째로 보내기 (data.result 보내기?)
+                   */
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) => ListExercise(

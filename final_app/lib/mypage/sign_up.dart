@@ -91,7 +91,6 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 10.0, vertical: 5.0),
                         child: TextField(
                           controller: _pwController,
-                          //이거 그냥 true로 하면 비밀번호 안 보이는 것!!!!
                           obscureText: isPasswordVisible ? false : true,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -217,7 +216,6 @@ class _SignUpState extends State<SignUp> {
                         style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.black,
-                          //fontWeight: FontWeight.bold
                         ),
                       ),
                     ),
@@ -278,8 +276,7 @@ class _SignUpState extends State<SignUp> {
         msg: '아이디가 중복됩니다.',
         toastLength: Toast.LENGTH_SHORT,
       );
-    }
-    else if (data == "Error2") {
+    } else if (data == "Error2") {
       Fluttertoast.showToast(
         backgroundColor: Colors.grey,
         textColor: Colors.black,
@@ -293,6 +290,10 @@ class _SignUpState extends State<SignUp> {
         msg: '회원가입이 완료되었습니다.',
         toastLength: Toast.LENGTH_SHORT,
       );
+      /*
+      insert: 사용자 3대 정보
+      insert: 사용자 선택 테마
+       */
       Navigator.push(
         context,
         MaterialPageRoute(

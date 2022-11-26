@@ -10,6 +10,12 @@ class AllRanking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 테마 선택
+     */
+    /*
+    select: 모든 사용자 정보
+     */
     int grade = 5;
     List<String> nickname = [
       '유저1',

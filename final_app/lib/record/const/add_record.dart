@@ -51,7 +51,6 @@ class AddRecord extends StatelessWidget {
                   elevation: 0,
                 ),
                 onPressed: () {
-                  //db에 기록 추가하는 코드
                   Navigator.of(context).pop();
                 },
                 child: Text(
@@ -73,7 +72,13 @@ class AddRecord extends StatelessWidget {
                   elevation: 0,
                 ),
                 onPressed: () {
-                  //date에 weight 입력하는 코드 작성
+                  /*
+                  insert: 해당 날짜에 기록 추가
+                   */
+                  /*
+                  지금은 pop이지만 homescreen index 해결되면 push로 변경!
+                  (tapbar도 해결되면 더더 좋아!)
+                   */
                   Navigator.of(context).pop();
                 },
                 child: Text(

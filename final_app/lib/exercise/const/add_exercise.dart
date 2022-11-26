@@ -30,6 +30,9 @@ class _AddExerciseState extends State<AddExercise> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 테마 선택
+     */
     Map<String, int> mapExNum = {
       "이두": 1,
       "가슴": 2,
@@ -191,16 +194,22 @@ class _AddExerciseState extends State<AddExercise> {
                   print(widget.routineName);
                   print(selectedMuscle);
                   print(selectedExercise);
-                  //db에 루틴 추가하는 코드 작성
-                  //추가됨에 따라 실시간으로 화면에 추가
                   if (units[1] == true) {
-                    //시간으로 db에 저장
+                    /*
+                    insert: 시간이냐?를 t로 db에 저장
+                    db는 loginID, 루틴이름을 이용해 선택 (where절 조건)
+                     */
                   } else if (units[0] == true) {
-                    //횟수로 db에 저장
+                    /*
+                    insert: 시간이냐?를 f로 db에 저장
+                    db는 loginID, 루틴이름을 이용해 선택 (where절 조건)
+                     */
                   }
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => ListMyExercise(loginID: widget.loginID, routineName: widget.routineName),
+                      builder: (BuildContext context) => ListMyExercise(
+                          loginID: widget.loginID,
+                          routineName: widget.routineName),
                     ),
                   );
                 },

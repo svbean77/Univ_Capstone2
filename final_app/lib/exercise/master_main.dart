@@ -17,6 +17,9 @@ class MasterMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 테마 선택
+     */
     int grade = 0;
     if (loginID != "") grade = 5;
 

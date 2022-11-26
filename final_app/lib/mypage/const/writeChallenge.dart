@@ -24,6 +24,9 @@ class _WriteChallengeState extends State<WriteChallenge> {
   final TextEditingController contentsController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
     int grade = 5;
 
     return Scaffold(
@@ -92,9 +95,9 @@ class _WriteChallengeState extends State<WriteChallenge> {
             ),
             ElevatedButton(
               onPressed: () {
-                //db에 게시글 저장하는 코드
-                //final saveContent = contentsController.text.toString();
-
+                /*
+                insert: 오늘 날짜, loginID, 내용, 영상 저장 (영상은 항상 있어야하는데!!)
+                 */
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (BuildContext context) => ChallengeMain(

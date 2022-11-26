@@ -5,10 +5,8 @@ import '../../screen/const/grade_colors.dart';
 class ChallengeList extends StatelessWidget {
   final grade;
   final date;
-  final weight;
   const ChallengeList({
     required this.grade,
-    required this.weight,
     required this.date,
     Key? key,
   }) : super(key: key);
@@ -26,13 +24,7 @@ class ChallengeList extends StatelessWidget {
           color: PRIMARY_COLOR[grade],
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('${weight}Kg', style: TextStyle(fontSize: 20.0)),
-          Text('${date.year}.${date.month}.${date.day}')
-        ],
-      ),
+      child: Text('${date.year}.${date.month}.${date.day}', style: TextStyle(fontSize: 20.0)),
 
     );
   }

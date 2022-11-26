@@ -10,6 +10,9 @@ class AddWeight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
     TextEditingController weightController = TextEditingController();
     TextEditingController dateController = TextEditingController();
     int grade = 5;
@@ -92,8 +95,9 @@ class AddWeight extends StatelessWidget {
                   double weight =
                       double.parse(weightController.text.toString());
                    */
-
-                  //date에 weight 입력하는 코드 작성
+                  /*
+                  insert: 해당 날짜에 체중 데이터 입력
+                   */
                   Navigator.of(context).pop();
                 },
                 child: Text(

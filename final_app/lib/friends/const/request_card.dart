@@ -1,9 +1,11 @@
-import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/ranking/const/user_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class RequestCard extends StatelessWidget {
+  /*
+  class로 넘겼다고 가정
+   */
   final loginID;
   final nickname;
   final rating;
@@ -61,7 +63,6 @@ class RequestCard extends StatelessWidget {
                   GestureDetector(
                     child: Icon(Icons.add_circle_outline),
                     onTap: () {
-                      //db에 친구 추가하는 코드
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -104,8 +105,15 @@ class RequestCard extends StatelessWidget {
                                           elevation: 0,
                                         ),
                                         onPressed: () {
-                                          //db에서 글 삭제하는 코드
-                                          //정보를 build에서 가져오면 새로고침이 되나?
+                                          /*
+                                          insert: 친구 추가하는 코드
+                                           */
+                                          /*
+                                          delete: 친구요청 삭제하는 코드
+                                           */
+                                          /*
+                                          일단 pop으로 했지만 homescreen index 해결하면 push로 변경!
+                                           */
                                           Navigator.of(context).pop();
                                         },
                                         child: Text(
@@ -135,7 +143,6 @@ class RequestCard extends StatelessWidget {
                   GestureDetector(
                     child: Icon(Icons.cancel_outlined),
                     onTap: () {
-                      //친구 요청 목록에서 삭제하는 코드
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -178,8 +185,12 @@ class RequestCard extends StatelessWidget {
                                           elevation: 0,
                                         ),
                                         onPressed: () {
-                                          //db에서 글 삭제하는 코드
-                                          //정보를 build에서 가져오면 새로고침이 되나?
+                                          /*
+                                          delete: 친구요청 삭제하는 코드
+                                           */
+                                          /*
+                                          일단 pop으로 했지만 homescreen index 해결하면 push로 변경!
+                                           */
                                           Navigator.of(context).pop();
                                         },
                                         child: Text(

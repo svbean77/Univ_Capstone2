@@ -37,6 +37,14 @@ class _HomeScreenState extends State<HomeScreen> {
     String loginID = '';
     int grade = 0;
     if (LOGIN_BOX.read('id') != null) {
+      /*
+      select:사용자의 테마 선택 가져오기
+       */
+      /*
+      select: 사용자 정보 (아이디가 loginID)
+      사용자의 아이디를 이용해 닉네임 구하기
+      (닉네임을 loginID에 넣어 모든 페이지에는 닉네임을 전달!!)
+       */
       loginID = LOGIN_BOX.read('id');
       grade = 5;
     }
@@ -74,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.fitness_center, color: Colors.black.withOpacity(0.5)),
+            icon: Icon(Icons.fitness_center,
+                color: Colors.black.withOpacity(0.5)),
             title: Text('운동하기',
                 style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
@@ -85,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.emoji_events,
-                color: Colors.black.withOpacity(0.5)),
+            icon:
+                Icon(Icons.emoji_events, color: Colors.black.withOpacity(0.5)),
             title: Text('랭킹',
                 style: TextStyle(color: Colors.black.withOpacity(0.5))),
           ),

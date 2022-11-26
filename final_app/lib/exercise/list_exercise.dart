@@ -5,6 +5,9 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ListExercise extends StatefulWidget {
+  /*
+  class 형태로 불러왔다고 가정!
+   */
   final loginID;
   final routineName;
   const ListExercise({
@@ -20,11 +23,11 @@ class ListExercise extends StatefulWidget {
 class _ListExerciseState extends State<ListExercise> {
   @override
   Widget build(BuildContext context) {
-    //운동 이름 등 db에서 select
+    /*
+    select: 사용자 테마 선택
+     */
     List<String> exerciseName = ['운동1', '운동2', '운동3', '운동4'];
     List<int> number = [15, 10, 12, 20];
-    //횟수랑 시간은 어떻게 구분할 것인가?
-    //db 속성으로 횟수 t/f를 만들고 t이면 회, f이면 초로 단위를 추가
     List<String> isTime = ['f', 'f', 'f', 't'];
     int grade = 5;
 
@@ -84,8 +87,9 @@ class _ListExerciseState extends State<ListExercise> {
                 elevation: 0,
               ),
               onPressed: () {
-                //해당 운동의 데이터를 불러와 넘겨줌 List<Exercise>가 될 것 같아
-                //각각의 데이터들은 클래스로 형태 표기해놓기 (달력 강의 참고)
+                /*
+                class 형태로 전달
+                 */
                 String exerciseStep = '운동방법';
                 String exerciseImage1 =
                     "https://www.musclewiki.com/media/uploads/male-dumbbell-hammercurl-front.gif";

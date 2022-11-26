@@ -10,9 +10,11 @@ import '../screen/const/storage_box.dart';
 
 class MyPage extends StatefulWidget {
   final loginID;
+  int grade;
 
-  const MyPage({
+  MyPage({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +23,6 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-  int grade = 5;
   Map<String, int> THEME_SELECT_RANGE = {
     '아이언': 1,
     '브론즈': 2,
@@ -36,13 +37,16 @@ class _MyPageState extends State<MyPage> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 내정보
+     */
     String nickname = '내닉네임';
     String rating = "챌린저";
     int? selectRange = THEME_SELECT_RANGE[rating];
 
     return Scaffold(
       drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
+      appBar: MyAppBar(grade: widget.grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -61,10 +65,12 @@ class _MyPageState extends State<MyPage> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            grade = i;
+                            widget.grade = i;
+                            /*
+                            update: 사용자 선택 테마 변경
+                             */
                           });
-                          //db에 선택 테마 인덱스를 바꾸는 코드
-                          print(grade);
+                          print(widget.grade);
                         },
                         child: Icon(
                           Icons.circle,
@@ -79,6 +85,9 @@ class _MyPageState extends State<MyPage> {
             SizedBox(height: 16.0),
             GestureDetector(
               onTap: () {
+                /*
+                닉네임만 보내면 됨
+                 */
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) =>
@@ -94,7 +103,7 @@ class _MyPageState extends State<MyPage> {
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: PRIMARY_COLOR[grade],
+                    color: PRIMARY_COLOR[widget.grade],
                   ),
                 ),
               ),
@@ -123,15 +132,15 @@ class _MyPageState extends State<MyPage> {
                                   },
                                   child: Text('취소',
                                       style: TextStyle(
-                                          color: (grade == 0 ||
-                                                  grade == 1 ||
-                                                  grade == 2 ||
-                                                  grade == 4 ||
-                                                  grade == 8)
+                                          color: (widget.grade == 0 ||
+                                                  widget.grade == 1 ||
+                                                  widget.grade == 2 ||
+                                                  widget.grade == 4 ||
+                                                  widget.grade == 8)
                                               ? Colors.black
                                               : Colors.white)),
                                   style: ElevatedButton.styleFrom(
-                                      primary: PRIMARY_COLOR[grade],
+                                      primary: PRIMARY_COLOR[widget.grade],
                                       elevation: 0),
                                 ),
                                 ElevatedButton(
@@ -146,15 +155,15 @@ class _MyPageState extends State<MyPage> {
                                   },
                                   child: Text('확인',
                                       style: TextStyle(
-                                          color: (grade == 0 ||
-                                                  grade == 1 ||
-                                                  grade == 2 ||
-                                                  grade == 4 ||
-                                                  grade == 8)
+                                          color: (widget.grade == 0 ||
+                                                  widget.grade == 1 ||
+                                                  widget.grade == 2 ||
+                                                  widget.grade == 4 ||
+                                                  widget.grade == 8)
                                               ? Colors.black
                                               : Colors.white)),
                                   style: ElevatedButton.styleFrom(
-                                      primary: PRIMARY_COLOR[grade],
+                                      primary: PRIMARY_COLOR[widget.grade],
                                       elevation: 0),
                                 ),
                               ],
@@ -169,16 +178,16 @@ class _MyPageState extends State<MyPage> {
               child: Text(
                 '로그아웃',
                 style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                    color: (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),
               style: ElevatedButton.styleFrom(
-                primary: PRIMARY_COLOR[grade],
+                primary: PRIMARY_COLOR[widget.grade],
                 elevation: 0,
               ),
             ),
@@ -206,19 +215,22 @@ class _MyPageState extends State<MyPage> {
                                   },
                                   child: Text('취소',
                                       style: TextStyle(
-                                          color: (grade == 0 ||
-                                                  grade == 1 ||
-                                                  grade == 2 ||
-                                                  grade == 4 ||
-                                                  grade == 8)
+                                          color: (widget.grade == 0 ||
+                                                  widget.grade == 1 ||
+                                                  widget.grade == 2 ||
+                                                  widget.grade == 4 ||
+                                                  widget.grade == 8)
                                               ? Colors.black
                                               : Colors.white)),
                                   style: ElevatedButton.styleFrom(
-                                      primary: PRIMARY_COLOR[grade],
+                                      primary: PRIMARY_COLOR[widget.grade],
                                       elevation: 0),
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
+                                    /*
+                                    delete: 해당 사용자 삭제
+                                     */
                                     LOGIN_BOX.remove('id');
                                     Navigator.of(context).pushAndRemoveUntil(
                                         MaterialPageRoute(
@@ -229,15 +241,15 @@ class _MyPageState extends State<MyPage> {
                                   },
                                   child: Text('확인',
                                       style: TextStyle(
-                                          color: (grade == 0 ||
-                                                  grade == 1 ||
-                                                  grade == 2 ||
-                                                  grade == 4 ||
-                                                  grade == 8)
+                                          color: (widget.grade == 0 ||
+                                                  widget.grade == 1 ||
+                                                  widget.grade == 2 ||
+                                                  widget.grade == 4 ||
+                                                  widget.grade == 8)
                                               ? Colors.black
                                               : Colors.white)),
                                   style: ElevatedButton.styleFrom(
-                                      primary: PRIMARY_COLOR[grade],
+                                      primary: PRIMARY_COLOR[widget.grade],
                                       elevation: 0),
                                 ),
                               ],
@@ -251,8 +263,7 @@ class _MyPageState extends State<MyPage> {
               },
               child: Text(
                 '회원탈퇴',
-                style: TextStyle(
-                    color: Colors.black),
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ],

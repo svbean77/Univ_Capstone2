@@ -18,9 +18,11 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //로그인 id에 따른 닉네임 구하기
     int grade = 0;
     if (loginID != "") {
+      /*
+      select: 사용자의 테마 선택 가져오기
+       */
       grade = 5;
     }
 
@@ -75,7 +77,7 @@ class MyDrawer extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          MyPage(loginID: loginID),
+                          MyPage(loginID: loginID, grade: grade),
                     ),
                   );
               },

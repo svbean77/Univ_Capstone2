@@ -16,8 +16,13 @@ class UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 테마 선택
+     */
+    /*
+    select: select의 운동기록 내림차순 (최신이 앞에) -> class
+     */
     int grade = 5;
-    //이 사람의 운동기록 불러오기 (db)
     List<int> tmp = [20220901, 20220904, 20221010, 20221111];
     List<DateTime> date = [];
 
@@ -66,7 +71,6 @@ class UserInfo extends StatelessWidget {
                               padding: const EdgeInsets.only(bottom: 8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  //여기서 메모 내용을 불러올까?
                                   showDialog(
                                     context: context,
                                     barrierDismissible: true,

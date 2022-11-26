@@ -33,6 +33,10 @@ class SelectRoutineContainer extends StatelessWidget {
           ),
         ),
         onTap: () {
+          /*
+          select: 선택한 목적에 대한 루틴을 select
+          json으로 전달
+           */
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) =>

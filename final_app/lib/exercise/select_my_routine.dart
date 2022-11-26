@@ -19,7 +19,12 @@ class SelectMyRoutine extends StatefulWidget {
 class _SelectMyRoutineState extends State<SelectMyRoutine> {
   @override
   Widget build(BuildContext context) {
-    //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
+    /*
+    select: 사용자 테마 선택
+     */
+    /*
+    select: loginID를 이용해 내루틴 select -> class
+     */
     int grade = 5;
     List<String> routineName = [
       '루틴1',
@@ -53,8 +58,6 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
               );
             },
           );
-          //db에 루틴을 추가하는 코드
-          //ListView를 실시간으로 바꿀 수 있도록 코드 수정
         },
         backgroundColor: PRIMARY_COLOR[grade],
       ),
@@ -118,11 +121,17 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
             SizedBox(height: 16.0),
             for (int i = 0; i < routineName.length; i++)
               Dismissible(
-                key: ObjectKey(
-                    routineNum), //key를 뭐로 설정해야 하는지 확인 [i]를 껴야돼 말아야돼? seperate로 하면 [i]를 안써도 되는 것 같긴 함
+                /*
+                //key를 뭐로 설정해야 하는지 확인 [i]를 껴야돼 말아야돼? seperate로 하면 [i]를 안써도 되는 것 같긴 함
+                key는 루틴번호로 일단 설정해봄
+                 */
+                key: ObjectKey(routineNum),
                 direction: DismissDirection.endToStart,
                 onDismissed: (DismissDirection direction) {
-                  //db에서 삭제하는 php 코드
+                  /*
+                  delete: 루틴 삭제하는 코드
+                  (굳이 key 사용할 필요 없이 for문 i 사용하면 되는거 아니야? num = routineNum[i]인 요소 삭제!)
+                   */
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (BuildContext context) =>
@@ -152,9 +161,11 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                     ),
                   ),
                   onTap: () {
-                    //여기서 구해야하나
-                    //String name = '루틴이름1';
-
+                    /*
+                    위에서 구한 json->class를 이용해 루틴 상세를 select, class 형태로? 전달
+                    ## 위의 json: 루틴번호 생성아이디 루틴이름
+                    ## 여기 json: 운동번호 생성아이디 루틴이름 운동이름 횟수 시간이냐 사진1 사진2 운동단계
+                     */
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => ListMyExercise(

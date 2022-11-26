@@ -21,8 +21,15 @@ class _RecordCalendarState extends State<RecordCalendar> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
+    /*
+    select: 해당 날짜의 운동 기록
+    (이거는 그냥 다 불러와서 해당 날짜의 기록들만 따로 list로 만들까..)
+    (달력이 class로 빠져서 다 불러와 따로 만드는 게 더 좋을 것 같다)
+     */
     int grade = 5;
-    //실제로 불러오는 데이터는 내용, 작성일자 -> 작성일자별로 구분하는 코드가 필요
     List<String> contents = ['내용1\n엄ㅊ청\n\n\n\n길어\n짱', '내용2', '내용3', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'];
 
     return Scaffold(

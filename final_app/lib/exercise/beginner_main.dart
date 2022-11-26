@@ -15,6 +15,9 @@ class BeginnerMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
     int grade = 0;
     if (loginID != "") grade = 5;
 
@@ -30,7 +33,8 @@ class BeginnerMain extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => SelectMuscle(loginID: loginID, level: '초보자'),
+              builder: (BuildContext context) =>
+                  SelectMuscle(loginID: loginID, level: '초보자'),
             ));
           },
           child: Container(

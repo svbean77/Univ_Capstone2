@@ -19,7 +19,9 @@ class ThreeChallenge extends StatefulWidget {
 class _ThreeChallengeState extends State<ThreeChallenge> {
   @override
   Widget build(BuildContext context) {
-    String nickname = '내닉네임';
+    /*
+    select: 사용자 선택 테마
+     */
     List<String> three = ['데드리프트', '벤치프레스', '스쿼트'];
     int grade = 5;
 
@@ -30,7 +32,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            MyRanking(nickname: nickname, loginID: widget.loginID),
+            MyRanking(nickname: widget.loginID, loginID: widget.loginID),
             SizedBox(height: 8.0),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,

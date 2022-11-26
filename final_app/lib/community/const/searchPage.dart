@@ -6,13 +6,18 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
+  /*
+  boardLst 대신 json 데이터로 받기
+   */
   final loginID;
   final boardLst;
   final searchfor;
+  final board;
   const SearchPage({
     required this.searchfor,
     required this.boardLst,
     required this.loginID,
+    required this.board,
     Key? key,
   }) : super(key: key);
 
@@ -25,6 +30,12 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    전달받은 json을 클래스로 매핑 후 리스트로 바꾸기
+     */
+    /*
+    select: 사용자 선택 테마
+     */
     int grade = 5;
     return Scaffold(
       appBar: MyAppBar(grade: grade),
@@ -64,6 +75,10 @@ class _SearchPageState extends State<SearchPage> {
                   GestureDetector(
                     child: Icon(Icons.search),
                     onTap: () {
+                      /*
+                      select: 제목에 검색어를 포함하는 애들만 불러오기
+                      board == free이면 자유게시판, qna이면 질의응답게판에서 검색
+                       */
                       List<int> findLst = [];
                       String find = controller.text.toString();
 
@@ -71,9 +86,11 @@ class _SearchPageState extends State<SearchPage> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => SearchPage(
-                              boardLst: findLst,
-                              searchfor: find,
-                              loginID: widget.loginID),
+                            boardLst: findLst,
+                            searchfor: find,
+                            loginID: widget.loginID,
+                            board: widget.board,
+                          ),
                         ),
                       );
                     },
@@ -97,7 +114,11 @@ class _SearchPageState extends State<SearchPage> {
                               child: ContentsList(
                                   boardnum: widget.boardLst[i], grade: grade),
                               onTap: () {
-                                //게시판 번호를 이용해 게시글 정보를 불러오는 코드
+                                /*
+                                json->class->list로 구한 길이만큼 반복, 각 내용의 하나씩을 contents로 보내기
+                                ex) result.title[i]
+                                contents에게 제목, 내용, 작성자, 작성일자, 조회수, 사진이름, 사진경로 다 보내야 함!
+                                 */
                                 String title = '게시판 제목';
                                 String contents = '게시판 내용${i}';
 
@@ -105,7 +126,7 @@ class _SearchPageState extends State<SearchPage> {
                                   MaterialPageRoute(
                                     builder: (BuildContext context) => Contents(
                                         loginID: widget.loginID,
-                                        board: '자유게시판',
+                                        board: widget.board,
                                         title: title,
                                         contents: contents),
                                   ),

@@ -10,6 +10,9 @@ import 'package:http/http.dart' as http;
 import '../screen/const/ip_address.dart';
 
 class ListMyExercise extends StatefulWidget {
+  /*
+  json, class 둘 중 뭔가로 전달했다고 가정
+   */
   final loginID;
   final String routineName;
   const ListMyExercise({
@@ -25,7 +28,9 @@ class ListMyExercise extends StatefulWidget {
 class _ListMyExerciseState extends State<ListMyExercise> {
   @override
   Widget build(BuildContext context) {
-    //운동 이름 등 db에서 select
+    /*
+    select: 사용자 선택 테마
+     */
     List<String> exerciseName = [
       '바벨 프론트 스쿼트 바디빌딩',
       '덤벨 고블렛 불가리아 스플릿 스쿼트',
@@ -34,8 +39,6 @@ class _ListMyExerciseState extends State<ListMyExercise> {
     ];
     List<int> exerciseNum = [1, 2, 3, 4];
     List<int> number = [15, 10, 12, 20];
-    //횟수랑 시간은 어떻게 구분할 것인가?
-    //db 속성으로 횟수 t/f를 만들고 t이면 회, f이면 초로 단위를 추가
     List<String> isTime = ['f', 'f', 'f', 't'];
     int grade = 5;
     Map<int, String> mapExNum = {
@@ -78,7 +81,6 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                 ? Colors.black
                 : Colors.white),
         onPressed: () async {
-          //db에 운동을 추가하는 코드
           List<dynamic> jsonlst = [];
           var url = Uri.http(IP_ADDRESS, '/all_exercise.php', {'q': '{http}'});
           for (int i = 1; i <= 15; i++) {
@@ -170,7 +172,10 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                       key: ObjectKey(exerciseNum),
                       direction: DismissDirection.endToStart,
                       onDismissed: (DismissDirection direction) {
-                        //db에서 삭제하는 php 코드
+                        /*
+                        delete: 운동번호를 이용해 삭제
+                        (굳이 key 신경 안쓰고 db에서 select해도 될 듯???)
+                         */
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (BuildContext context) => ListMyExercise(
@@ -181,32 +186,26 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                       },
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            //db 횟수를 변경하는 코드 작성
-                            //ListView를 실시간으로 바꿀 수 있도록 코드 수정
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: 70.0,
-                            padding: EdgeInsets.all(8.0),
-                            alignment: Alignment.centerLeft,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: PRIMARY_COLOR[grade],
+                        child: Container(
+                          width: double.infinity,
+                          height: 70.0,
+                          padding: EdgeInsets.all(8.0),
+                          alignment: Alignment.centerLeft,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: PRIMARY_COLOR[grade],
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                exerciseName[i],
+                                style: TextStyle(fontSize: 20.0),
                               ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  exerciseName[i],
-                                  style: TextStyle(fontSize: 20.0),
-                                ),
-                                Text(
-                                    '${number[i].toString()}${numberUnit(isTime[i])}'),
-                              ],
-                            ),
+                              Text(
+                                  '${number[i].toString()}${numberUnit(isTime[i])}'),
+                            ],
                           ),
                         ),
                       ),
@@ -221,6 +220,9 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                 elevation: 0,
               ),
               onPressed: () {
+                /*
+                class로 전달 or list로 바꿔 전달
+                 */
                 String exerciseStep = '운동방법';
                 String exerciseImage1 =
                     "https://www.musclewiki.com/media/uploads/male-dumbbell-hammercurl-front.gif";

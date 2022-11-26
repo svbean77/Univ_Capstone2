@@ -30,6 +30,9 @@ class ExerciseGuide extends StatefulWidget {
 class _ExerciseGuideState extends State<ExerciseGuide> {
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
     int grade = 0;
     if (widget.loginID != "") grade = 5;
 

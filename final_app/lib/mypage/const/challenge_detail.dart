@@ -4,6 +4,10 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 
 class ChallengeDetail extends StatelessWidget {
+  /*
+  해당 게시글의 내용이 모두 개별 단위로 옴 [i]로 전달이니까
+  영상은 없으면 안되게 해야 함
+   */
   final loginID;
   final exercise;
   final num;
@@ -18,10 +22,9 @@ class ChallengeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //게시글 번호를 통해 이미지와 내용을 구함
-    String image1 = 'https://www.youtube.com/watch?v=3ZUh-GiRDjM';
-    String image2 =
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4';
+    /*
+    select: 사용자 선택 테마
+     */
     String video1 =
         '/data/user/0/com.example.final_app/cache/image_picker3641971445983601714.mp4';
     String contents =

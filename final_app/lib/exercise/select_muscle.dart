@@ -19,6 +19,9 @@ class SelectMuscle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*
+    select: 사용자 선택 테마
+     */
     int grade = 0;
     if (loginID != "") grade = 5;
 

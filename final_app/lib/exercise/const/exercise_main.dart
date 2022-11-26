@@ -1,7 +1,6 @@
 import 'package:final_app/exercise/master_main.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
-import '../../screen/const/after_login.dart';
 import '../beginner_main.dart';
 
 class ExerciseMain extends StatefulWidget {

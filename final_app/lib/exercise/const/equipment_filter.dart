@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:final_app/exercise/exercise_guide.dart';
 import 'package:final_app/screen/const/const_exercise_info.dart';
-import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../screen/const/ip_address.dart';
@@ -60,8 +59,8 @@ class EquipmentFilter extends StatelessWidget {
                   } else {
                     equipment = '스트레칭';
                   }
-                  var url =
-                      Uri.http(IP_ADDRESS, '/exersice_guide.php', {'q': '{http}'});
+                  var url = Uri.http(
+                      IP_ADDRESS, '/exersice_guide.php', {'q': '{http}'});
                   var response = await http.post(url, body: <String, String>{
                     "muscle": muscle.toString(),
                     "equipment": equipment.toString(),
