@@ -1,3 +1,4 @@
+import 'package:final_app/exercise/list_my_exercise.dart';
 import 'package:final_app/screen/const/const_exercise_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
@@ -5,9 +6,11 @@ import 'package:flutter/material.dart';
 class AddExercise extends StatefulWidget {
   final loginID;
   final jsonlst;
+  final routineName;
   const AddExercise({
     required this.loginID,
     required this.jsonlst,
+    required this.routineName,
     Key? key,
   }) : super(key: key);
 
@@ -185,6 +188,7 @@ class _AddExerciseState extends State<AddExercise> {
                   elevation: 0,
                 ),
                 onPressed: () {
+                  print(widget.routineName);
                   print(selectedMuscle);
                   print(selectedExercise);
                   //db에 루틴 추가하는 코드 작성
@@ -194,7 +198,11 @@ class _AddExerciseState extends State<AddExercise> {
                   } else if (units[0] == true) {
                     //횟수로 db에 저장
                   }
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ListMyExercise(loginID: widget.loginID, routineName: widget.routineName),
+                    ),
+                  );
                 },
                 child: Text(
                   '추가',

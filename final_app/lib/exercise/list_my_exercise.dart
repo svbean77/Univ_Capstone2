@@ -56,6 +56,9 @@ class _ListMyExerciseState extends State<ListMyExercise> {
       return unit;
     }
 
+    var tmpdata = getTestJson();
+    print(tmpdata);
+
     return Scaffold(
       drawer: MyDrawer(loginID: widget.loginID),
       appBar: MyAppBar(grade: grade),
@@ -85,7 +88,10 @@ class _ListMyExerciseState extends State<ListMyExercise> {
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddExercise(loginID: widget.loginID, jsonlst: jsonlst),
+                content: AddExercise(
+                    loginID: widget.loginID,
+                    jsonlst: jsonlst,
+                    routineName: widget.routineName),
                 scrollable: true,
               );
             },
@@ -161,6 +167,13 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                       direction: DismissDirection.endToStart,
                       onDismissed: (DismissDirection direction) {
                         //db에서 삭제하는 php 코드
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => ListMyExercise(
+                                loginID: widget.loginID,
+                                routineName: widget.routineName),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 8.0),
@@ -241,5 +254,16 @@ class _ListMyExerciseState extends State<ListMyExercise> {
         ),
       ),
     );
+  }
+
+  Future getTestJson() async {
+    var url = Uri.http(IP_ADDRESS, '/all_exercise.php', {'q': '{http}'});
+    for (int i = 1; i <= 15; i++) {
+      var response = await http.post(url, body: <String, String>{
+        "muscle": '이두'.toString(),
+      });
+      var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+      return jsondata;
+    }
   }
 }

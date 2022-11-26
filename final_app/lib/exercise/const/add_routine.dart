@@ -1,3 +1,4 @@
+import 'package:final_app/exercise/select_my_routine.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -71,7 +72,12 @@ class _AddRoutineState extends State<AddRoutine> {
                 onPressed: () {
                   //db에 루틴 추가하는 코드 작성
                   //추가됨에 따라 실시간으로 화면에 추가
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          SelectMyRoutine(loginID: widget.loginID),
+                    ),
+                  );
                 },
                 child: Text(
                   '확인',

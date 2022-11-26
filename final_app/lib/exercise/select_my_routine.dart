@@ -77,7 +77,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text('오른쪽에서 왼쪽으로 밀면\n루틴이 삭제됩니다!', textAlign: TextAlign.center),
+                                Text('오른쪽에서 왼쪽으로 밀면\n루틴이 삭제됩니다!',
+                                    textAlign: TextAlign.center),
                                 SizedBox(height: 8.0),
                                 ElevatedButton(
                                   onPressed: () {
@@ -117,6 +118,12 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                 direction: DismissDirection.endToStart,
                 onDismissed: (DismissDirection direction) {
                   //db에서 삭제하는 php 코드
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          SelectMyRoutine(loginID: widget.loginID),
+                    ),
+                  );
                 },
                 child: GestureDetector(
                   child: Padding(
