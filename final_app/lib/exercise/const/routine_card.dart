@@ -35,11 +35,12 @@ class RoutineCard extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           Text(
-            '$idx. $exerciseName X$number$numberUnit',
+            '$idx. $exerciseName',
             style: TextStyle(
               fontSize: 20.0,
             ),
           ),
+          Text('X$number$numberUnit'),
           SizedBox(height: 8.0),
           Text(
             exerciseStep,

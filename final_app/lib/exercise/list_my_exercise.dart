@@ -26,7 +26,12 @@ class _ListMyExerciseState extends State<ListMyExercise> {
   @override
   Widget build(BuildContext context) {
     //운동 이름 등 db에서 select
-    List<String> exerciseName = ['운동1', '운동2', '운동3', '운동4'];
+    List<String> exerciseName = [
+      '바벨 프론트 스쿼트 바디빌딩',
+      '덤벨 고블렛 불가리아 스플릿 스쿼트',
+      '케틀벨 오스탠딩 트라이셉스 익스텐션',
+      '운동4'
+    ];
     List<int> exerciseNum = [1, 2, 3, 4];
     List<int> number = [15, 10, 12, 20];
     //횟수랑 시간은 어떻게 구분할 것인가?
@@ -106,59 +111,58 @@ class _ListMyExerciseState extends State<ListMyExercise> {
             Expanded(
               child: ListView(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.routineName,
-                        style: TextStyle(fontSize: 25.0),
-                      ),
-                      GestureDetector(
-                        child: Icon(Icons.question_mark),
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            barrierDismissible: true,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                content: Container(
-                                  height: 120.0,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!',
-                                          textAlign: TextAlign.center),
-                                      SizedBox(height: 8.0),
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Text(
-                                          '확인',
-                                          style: TextStyle(
-                                              color: (grade == 0 ||
-                                                      grade == 1 ||
-                                                      grade == 2 ||
-                                                      grade == 4 ||
-                                                      grade == 8)
-                                                  ? Colors.black
-                                                  : Colors.white),
-                                        ),
-                                        style: ElevatedButton.styleFrom(
-                                          primary: PRIMARY_COLOR[grade],
-                                        ),
+                  Text(
+                    widget.routineName,
+                    style: TextStyle(fontSize: 25.0),
+                  ),
+                  SizedBox(height: 8.0),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      child: Icon(Icons.question_mark),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              content: Container(
+                                height: 120.0,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!',
+                                        textAlign: TextAlign.center),
+                                    SizedBox(height: 8.0),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text(
+                                        '확인',
+                                        style: TextStyle(
+                                            color: (grade == 0 ||
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
+                                                ? Colors.black
+                                                : Colors.white),
                                       ),
-                                    ],
-                                  ),
+                                      style: ElevatedButton.styleFrom(
+                                        primary: PRIMARY_COLOR[grade],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                scrollable: true,
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ],
+                              ),
+                              scrollable: true,
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(height: 16.0),
                   for (int i = 0; i < exerciseName.length; i++)

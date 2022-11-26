@@ -22,7 +22,12 @@ class _ListRoutineState extends State<ListRoutine> {
   Widget build(BuildContext context) {
     int grade = 5;
     //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
-    List<String> routineName = ['루틴1', '루틴2', '루틴3', '루틴4'];
+    List<String> routineName = [
+      '루틴1',
+      '루틴2',
+      '루틴3',
+      '루틴4이름완전대박짱길어이렇게하면넘어가는데어떻게되는거지',
+    ];
     List<int> routineTime = [15, 20, 25, 30];
 
     return Scaffold(
@@ -43,23 +48,18 @@ class _ListRoutineState extends State<ListRoutine> {
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
                     width: double.infinity,
-                    height: 70.0,
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: PRIMARY_COLOR[grade],
                       ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          routineName[i],
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        Text('${routineTime[i]}분'),
-                      ],
+                    child: IntrinsicHeight(
+                      child: Text(
+                        '(${routineTime[i]}분) ${routineName[i]}',
+                        style: TextStyle(fontSize: 20.0),
+                      ),
                     ),
                   ),
                 ),

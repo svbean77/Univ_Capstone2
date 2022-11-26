@@ -21,7 +21,12 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
   Widget build(BuildContext context) {
     //데이터 길이만큼 for문 반복, 루틴 이름, 시간만 가져오면 됨
     int grade = 5;
-    List<String> routineName = ['루틴1', '루틴2', '루틴3', '루틴4'];
+    List<String> routineName = [
+      '루틴1',
+      '루틴2이름아주길고매우길고진짜진짜길어서한100줄은될것같은데그렇게까지쓰기는힘드니까어느정도만해보는루틴이름',
+      '루틴3',
+      '루틴4'
+    ];
     List<int> routineNum = [1, 2, 3, 4];
 
     return Scaffold(
@@ -130,17 +135,19 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Container(
                       width: double.infinity,
-                      height: 70.0,
-                      padding: EdgeInsets.all(8.0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
                       alignment: Alignment.centerLeft,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: PRIMARY_COLOR[grade],
                         ),
                       ),
-                      child: Text(
-                        routineName[i],
-                        style: TextStyle(fontSize: 20.0),
+                      child: IntrinsicHeight(
+                        child: Text(
+                          routineName[i],
+                          style: TextStyle(fontSize: 20.0),
+                        ),
                       ),
                     ),
                   ),
