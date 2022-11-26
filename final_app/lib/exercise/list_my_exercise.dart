@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:final_app/exercise/const/add_exercise.dart';
 import 'package:final_app/exercise/routine_guide.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../screen/const/ip_address.dart';
 
 class ListMyExercise extends StatefulWidget {
   final loginID;
@@ -29,7 +33,23 @@ class _ListMyExerciseState extends State<ListMyExercise> {
     //db 속성으로 횟수 t/f를 만들고 t이면 회, f이면 초로 단위를 추가
     List<String> isTime = ['f', 'f', 'f', 't'];
     int grade = 5;
-
+    Map<int, String> mapExNum = {
+      1: "이두",
+      2: "가슴",
+      3: '대퇴 사두근',
+      4: '승모근',
+      5: '삼두',
+      6: '어깨',
+      7: '광배근',
+      8: '대퇴 이두근',
+      9: '둔근',
+      10: '전완근',
+      11: '종아리',
+      12: '복근',
+      13: '등 하부',
+      14: '등 중앙부',
+      15: '복사근'
+    };
     String numberUnit(String boolean) {
       String unit = (boolean == 't') ? '초' : '회';
 
@@ -49,14 +69,23 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                     grade == 8)
                 ? Colors.black
                 : Colors.white),
-        onPressed: () {
+        onPressed: () async {
           //db에 운동을 추가하는 코드
+          List<dynamic> jsonlst = [];
+          var url = Uri.http(IP_ADDRESS, '/all_exercise.php', {'q': '{http}'});
+          for (int i = 1; i <= 15; i++) {
+            var response = await http.post(url, body: <String, String>{
+              "muscle": mapExNum[i].toString(),
+            });
+            jsonlst.add(jsonDecode(json.decode(json.encode(response.body))));
+          }
+
           showDialog(
             context: context,
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddExercise(loginID: widget.loginID),
+                content: AddExercise(loginID: widget.loginID, jsonlst: jsonlst),
                 scrollable: true,
               );
             },
@@ -89,9 +118,11 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                 content: Container(
                                   height: 120.0,
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text('오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!', textAlign: TextAlign.center),
+                                      Text('오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!',
+                                          textAlign: TextAlign.center),
                                       SizedBox(height: 8.0),
                                       ElevatedButton(
                                         onPressed: () {

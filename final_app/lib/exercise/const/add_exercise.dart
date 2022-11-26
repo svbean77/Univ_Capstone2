@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class AddExercise extends StatefulWidget {
   final loginID;
+  final jsonlst;
   const AddExercise({
     required this.loginID,
+    required this.jsonlst,
     Key? key,
   }) : super(key: key);
 
@@ -20,10 +22,28 @@ class _AddExerciseState extends State<AddExercise> {
   String? selectedExercise;
   UnitItems? selectedUnit = UnitItems.numbers;
   List<bool> units = <bool>[true, false];
+  int jsonIdx = -1;
   TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    Map<String, int> mapExNum = {
+      "이두": 1,
+      "가슴": 2,
+      '대퇴 사두근': 3,
+      '승모근': 4,
+      '삼두': 5,
+      '어깨': 6,
+      '광배근': 7,
+      '대퇴 이두근': 8,
+      '둔근': 9,
+      '전완근': 10,
+      '종아리': 11,
+      '복근': 12,
+      '등 하부': 13,
+      '등 중앙부': 14,
+      '복사근': 15
+    };
     int grade = 5;
     return Container(
       height: 400.0,
@@ -46,6 +66,7 @@ class _AddExerciseState extends State<AddExercise> {
                     setState(() {
                       selectedMuscle = newValue!;
                       selectedExercise = null;
+                      jsonIdx = mapExNum[selectedMuscle]! - 1;
                     });
                   },
                   items: muscleLst.map((String value) {
@@ -59,15 +80,15 @@ class _AddExerciseState extends State<AddExercise> {
             );
           }),
           FormField(builder: (FormFieldState<String> state) {
-            //해당 근육에 따른 운동 리스트를 골라와야함
             List<String> exerciseLst = [];
-            //selectedMuscle을 통해 php문을 실행하고 운동 종류를 불러옴
-            if (selectedMuscle == '이두')
-              exerciseLst = ['아두 운동1', '이두 운동2', '이두 운동3'];
-            else if (selectedMuscle == '종아리')
-              exerciseLst = ['종아리 운동7', '종아리 운동8'];
-            else
-              exerciseLst = ['그냥운동1', '그냥운동2', '그냥운동3', '그냥운동4', '그냥운동5'];
+
+            if (jsonIdx != -1) {
+              var jsondata = widget.jsonlst[jsonIdx];
+              dbALLEXERCISE data = dbALLEXERCISE.fromJson(jsondata);
+              for (int i = 0; i < data.result!.length; i++) {
+                exerciseLst.add(data.result![i].exercise.toString());
+              }
+            }
 
             return InputDecorator(
               decoration: InputDecoration(),
@@ -164,6 +185,8 @@ class _AddExerciseState extends State<AddExercise> {
                   elevation: 0,
                 ),
                 onPressed: () {
+                  print(selectedMuscle);
+                  print(selectedExercise);
                   //db에 루틴 추가하는 코드 작성
                   //추가됨에 따라 실시간으로 화면에 추가
                   if (units[1] == true) {
@@ -191,5 +214,44 @@ class _AddExerciseState extends State<AddExercise> {
         ],
       ),
     );
+  }
+}
+
+class dbALLEXERCISE {
+  List<Result>? result;
+
+  dbALLEXERCISE({this.result});
+
+  dbALLEXERCISE.fromJson(Map<String, dynamic> json) {
+    if (json['result'] != null) {
+      result = <Result>[];
+      json['result'].forEach((v) {
+        result!.add(new Result.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.result != null) {
+      data['result'] = this.result!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Result {
+  String? exercise;
+
+  Result({this.exercise});
+
+  Result.fromJson(Map<String, dynamic> json) {
+    exercise = json['exercise'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['exercise'] = this.exercise;
+    return data;
   }
 }
