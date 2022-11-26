@@ -79,7 +79,7 @@ class SetImage extends StatelessWidget {
                 else {
                   String muscle = mapExNum[muscleLst[i - 1]]!;
                   var url =
-                      Uri.http(IP_ADDRESS, '/test_select.php', {'q': '{http}'});
+                      Uri.http(IP_ADDRESS, '/exersice_guide.php', {'q': '{http}'});
                   var response = await http.post(url, body: <String, String>{
                     "muscle": muscle.toString(),
                     "equipment": '맨몸'.toString(),
