@@ -1,6 +1,9 @@
-import 'package:final_app/exercise/const/set_exercise.dart';
+import 'dart:convert';
+
 import 'package:final_app/exercise/exercise_guide.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../../screen/const/ip_address.dart';
 
 class LoadImage extends StatelessWidget {
   final loginID;
@@ -48,35 +51,55 @@ class SetImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<List<String>> exerciseLst = [];
-    for (int i = 1; i <= 16; i++) {
-      exerciseLst.add(setExercise(i, level));
-    }
+    Map<int, String> mapExNum = {
+      1: "이두",
+      2: "가슴",
+      3: '대퇴 사두근',
+      4: '승모근',
+      5: '삼두',
+      6: '어깨',
+      7: '광배근',
+      8: '대퇴 이두근',
+      9: '둔근',
+      10: '전완근',
+      11: '종아리',
+      12: '복근',
+      13: '등 하부',
+      14: '등 중앙부',
+      15: '복사근'
+    };
 
     return Column(
       children: [
         for (int i = 1; i <= 16; i++)
           LoadImage(
-              onTap: () {
+              onTap: () async {
                 if (muscleLst[i - 1] == 0)
                   Navigator.of(context).noSuchMethod;
-                else
+                else {
+                  String muscle = mapExNum[muscleLst[i - 1]]!;
+                  var url =
+                      Uri.http(IP_ADDRESS, '/test_select.php', {'q': '{http}'});
+                  var response = await http.post(url, body: <String, String>{
+                    "muscle": muscle.toString(),
+                    "equipment": '맨몸'.toString(),
+                    "difficulty": level.toString(),
+                  });
+                  var jsondata =
+                      jsonDecode(json.decode(json.encode(response.body)));
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) => ExerciseGuide(
-                        muscleName: exerciseLst[muscleLst[i - 1] - 1][0],
-                        exerciseName: exerciseLst[muscleLst[i - 1] - 1][1],
-                        exerciseImage1: exerciseLst[muscleLst[i - 1] - 1][2],
-                        exerciseImage2: exerciseLst[muscleLst[i - 1] - 1][3],
-                        //이미지가 하나인 경우 어떻게 처리할 것인지 생각
-                        equipment: exerciseLst[muscleLst[i - 1] - 1][4],
-                        exerciseStep: exerciseLst[muscleLst[i - 1] - 1][6],
-                        difficulty: exerciseLst[muscleLst[i - 1] - 1][7],
                         level: level,
+                        jsondata: jsondata,
+                        muscle: muscle,
+                        equipment: '맨몸',
                         loginID: loginID,
                       ),
                     ),
                   );
+                }
               },
               dir: dir,
               col: col,

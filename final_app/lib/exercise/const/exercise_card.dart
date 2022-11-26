@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ExerciseCard extends StatelessWidget {
-  final int grade;
   final String muscleName;
   final String exerciseName;
   final String equipment;
@@ -11,7 +10,6 @@ class ExerciseCard extends StatelessWidget {
   final String exerciseStep;
 
   const ExerciseCard({
-    required this.grade,
     required this.muscleName,
     required this.exerciseName,
     required this.equipment,
@@ -44,7 +42,7 @@ class ExerciseCard extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           Text(
-            exerciseStep,
+            exerciseStep.replaceAll('@', '\n'),
           ),
           SizedBox(height: 16.0),
         ],

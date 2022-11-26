@@ -10,24 +10,16 @@ import 'const/exercise_card.dart';
 class ExerciseGuide extends StatefulWidget {
   final loginID;
   final level;
-  final muscleName;
-  final exerciseName;
+  final muscle;
   final equipment;
-  final difficulty;
-  final exerciseImage1;
-  final exerciseImage2;
-  final exerciseStep;
+  final jsondata;
 
   const ExerciseGuide({
     required this.loginID,
     required this.level,
-    required this.exerciseStep,
-    required this.exerciseName,
-    required this.exerciseImage1,
-    required this.difficulty,
-    required this.exerciseImage2,
+    required this.muscle,
     required this.equipment,
-    required this.muscleName,
+    required this.jsondata,
     Key? key,
   }) : super(key: key);
 
@@ -40,6 +32,9 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
   Widget build(BuildContext context) {
     int grade = 0;
     if (widget.loginID != "") grade = 5;
+
+    dbEXERCISE data = dbEXERCISE.fromJson(widget.jsondata);
+    int cnt = data.result!.length;
 
     return Scaffold(
       drawer: MyDrawer(loginID: widget.loginID),
@@ -122,16 +117,9 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                 isScrollControlled: true,
                 builder: (_) {
                   return EquipmentFilter(
-                    level: widget.level,
-                    exerciseImage2: widget.exerciseImage2,
-                    muscleName: widget.muscleName,
-                    exerciseStep: widget.exerciseStep,
-                    equipment: widget.equipment,
-                    difficulty: widget.difficulty,
-                    exerciseName: widget.exerciseName,
-                    exerciseImage1: widget.exerciseImage1,
-                    loginID: widget.loginID,
-                  );
+                      level: widget.level,
+                      loginID: widget.loginID,
+                      muscle: widget.muscle);
                 },
               );
             },
@@ -145,7 +133,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${widget.level} ${widget.muscleName} 운동 가이드\n> ${widget.equipment}',
+              '${widget.level} ${widget.muscle} 운동 가이드\n> ${widget.equipment}',
               style: TextStyle(
                 fontSize: 25.0,
               ),
@@ -177,35 +165,95 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
               ),
             ),
             SizedBox(height: 16.0),
-            Expanded(
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    final muscleName = widget.muscleName;
-                    final exerciseName = widget.exerciseName;
-                    final equipment = widget.equipment;
-                    final exerciseImage1 = widget.exerciseImage1;
-                    final exerciseImage2 = widget.exerciseImage2;
-                    final exerciseStep = widget.exerciseStep;
-
-                    return ExerciseCard(
-                      grade: 1,
-                      muscleName: muscleName,
-                      exerciseName: exerciseName,
-                      equipment: equipment,
-                      exerciseImage1: exerciseImage1,
-                      exerciseImage2: exerciseImage2,
-                      exerciseStep: exerciseStep,
-                      difficulty: widget.difficulty,
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 8.0);
-                  },
-                  itemCount: 3),
-            ),
+            if (cnt == 0)
+              Expanded(
+                child: Center(
+                  child: Text('운동이 없습니다.'),
+                ),
+              )
+            else
+              Expanded(
+                child: ListView(
+                  children: [
+                    for (int i = 0; i < cnt; i++)
+                      ExerciseCard(
+                          exerciseStep: data.result![i].step!,
+                          exerciseName: data.result![i].exercise!,
+                          exerciseImage1: data.result![i].image1!,
+                          difficulty: data.result![i].difficulty!,
+                          exerciseImage2: data.result![i].image2!,
+                          equipment: data.result![i].equipment!,
+                          muscleName: data.result![i].muscle!),
+                  ],
+                ),
+              ),
           ],
         ),
       ),
     );
+  }
+}
+
+class dbEXERCISE {
+  List<Result>? result;
+
+  dbEXERCISE({this.result});
+
+  dbEXERCISE.fromJson(Map<String, dynamic> json) {
+    if (json['result'] != null) {
+      result = <Result>[];
+      json['result'].forEach((v) {
+        result!.add(new Result.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.result != null) {
+      data['result'] = this.result!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Result {
+  String? muscle;
+  String? equipment;
+  String? difficulty;
+  String? exercise;
+  String? image1;
+  String? image2;
+  String? step;
+
+  Result(
+      {this.muscle,
+      this.equipment,
+      this.difficulty,
+      this.exercise,
+      this.image1,
+      this.image2,
+      this.step});
+
+  Result.fromJson(Map<String, dynamic> json) {
+    muscle = json['muscle'];
+    equipment = json['equipment'];
+    difficulty = json['difficulty'];
+    exercise = json['exercise'];
+    image1 = json['image1'];
+    image2 = json['image2'];
+    step = json['step'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['muscle'] = this.muscle;
+    data['equipment'] = this.equipment;
+    data['difficulty'] = this.difficulty;
+    data['exercise'] = this.exercise;
+    data['image1'] = this.image1;
+    data['image2'] = this.image2;
+    data['step'] = this.step;
+    return data;
   }
 }
