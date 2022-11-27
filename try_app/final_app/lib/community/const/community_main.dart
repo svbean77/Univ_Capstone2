@@ -31,14 +31,15 @@ class _CommunityMainState extends State<CommunityMain>
     super.initState();
   }
 
-  Future getSelectTheme(String username) async {
-    var url = Uri.http(IP_ADDRESS, '/test_select_theme.php', {'q': '{http}'});
+  Future getUserData(String username) async {
+    var url =
+        Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
-      "nickname": widget.loginID.toString(),
+      "username": username.toString(),
+      "mode": "Nickname".toString(),
     });
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
-    SELECT_THEME data = SELECT_THEME.fromJson(jsondata);
-
+    USERDATA data = USERDATA.fromJson(jsondata);
     return data;
   }
 
@@ -51,7 +52,7 @@ class _CommunityMainState extends State<CommunityMain>
      */
 
     return FutureBuilder(
-        future: getSelectTheme(widget.loginID),
+        future: getUserData(widget.loginID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             grade = snapshot.data.result![0].apptheme;

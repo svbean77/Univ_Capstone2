@@ -284,13 +284,6 @@ class _SignUpState extends State<SignUp> {
         toastLength: Toast.LENGTH_SHORT,
       );
     } else {
-      var url2 = Uri.http(
-          IP_ADDRESS, '/test_register_theme_insert.php', {'q': '{http}'});
-      var response2 = await http.post(url2, body: <String, String>{
-        "nickname": _nicknameController.text.toString(),
-      });
-      var data2 = json.decode(json.encode(response2.body));
-
       Fluttertoast.showToast(
         backgroundColor: Colors.grey,
         textColor: Colors.black,
