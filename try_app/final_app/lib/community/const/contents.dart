@@ -23,11 +23,13 @@ class Contents extends StatefulWidget {
   final board;
   final title;
   final contents;
+  final grade;
   const Contents({
     required this.loginID,
     required this.board,
     required this.title,
     required this.contents,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -54,7 +56,6 @@ class _ContentsState extends State<Contents> {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
     /*
     여기서 구한 댓글을 제외한 모든 내용들은 final로 받아오는 내용들!
     (내 아이디, 작성자, 날짜, 사진 등등 게시물 관련 내용들!)
@@ -73,12 +74,12 @@ class _ContentsState extends State<Contents> {
         future: getDatas(widget.loginID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            grade = snapshot.data[0].result![0].apptheme;
+            //snapshot.data[0].result![i];
           }
 
           return Scaffold(
-            appBar: MyAppBar(grade: grade),
-            drawer: MyDrawer(loginID: widget.loginID),
+            appBar: MyAppBar(grade: widget.grade),
+            drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: ListView(
@@ -131,24 +132,26 @@ class _ContentsState extends State<Contents> {
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  CommunityMain(loginID: widget.loginID),
+                              builder: (BuildContext context) => CommunityMain(
+                                loginID: widget.loginID,
+                                grade: widget.grade,
+                              ),
                             ),
                           );
                         },
                         child: Text(
                           '목록',
                           style: TextStyle(
-                              color: (grade == 0 ||
-                                      grade == 1 ||
-                                      grade == 2 ||
-                                      grade == 4 ||
-                                      grade == 8)
+                              color: (widget.grade == 0 ||
+                                      widget.grade == 1 ||
+                                      widget.grade == 2 ||
+                                      widget.grade == 4 ||
+                                      widget.grade == 8)
                                   ? Colors.black
                                   : Colors.white),
                         ),
                         style: ElevatedButton.styleFrom(
-                          primary: PRIMARY_COLOR[grade],
+                          primary: PRIMARY_COLOR[widget.grade],
                           elevation: 0,
                         ),
                       ),
@@ -167,6 +170,7 @@ class _ContentsState extends State<Contents> {
                                       mode: 'edit',
                                       content: widget.contents,
                                       title: widget.title,
+                                      grade: widget.grade,
                                     ),
                                   ),
                                 );
@@ -174,16 +178,16 @@ class _ContentsState extends State<Contents> {
                               child: Text(
                                 '수정',
                                 style: TextStyle(
-                                    color: (grade == 0 ||
-                                            grade == 1 ||
-                                            grade == 2 ||
-                                            grade == 4 ||
-                                            grade == 8)
+                                    color: (widget.grade == 0 ||
+                                            widget.grade == 1 ||
+                                            widget.grade == 2 ||
+                                            widget.grade == 4 ||
+                                            widget.grade == 8)
                                         ? Colors.black
                                         : Colors.white),
                               ),
                               style: ElevatedButton.styleFrom(
-                                primary: PRIMARY_COLOR[grade],
+                                primary: PRIMARY_COLOR[widget.grade],
                                 elevation: 0,
                               ),
                             ),
@@ -208,8 +212,8 @@ class _ContentsState extends State<Contents> {
                                                 ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
-                                                    primary:
-                                                        PRIMARY_COLOR[grade],
+                                                    primary: PRIMARY_COLOR[
+                                                        widget.grade],
                                                     elevation: 0,
                                                   ),
                                                   onPressed: () {
@@ -218,11 +222,14 @@ class _ContentsState extends State<Contents> {
                                                   child: Text(
                                                     '취소',
                                                     style: TextStyle(
-                                                      color: (grade == 0 ||
-                                                              grade == 1 ||
-                                                              grade == 2 ||
-                                                              grade == 4 ||
-                                                              grade == 8)
+                                                      color: (widget.grade == 0 ||
+                                                              widget.grade ==
+                                                                  1 ||
+                                                              widget.grade ==
+                                                                  2 ||
+                                                              widget.grade ==
+                                                                  4 ||
+                                                              widget.grade == 8)
                                                           ? Colors.black
                                                           : Colors.white,
                                                     ),
@@ -231,8 +238,8 @@ class _ContentsState extends State<Contents> {
                                                 ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
-                                                    primary:
-                                                        PRIMARY_COLOR[grade],
+                                                    primary: PRIMARY_COLOR[
+                                                        widget.grade],
                                                     elevation: 0,
                                                   ),
                                                   onPressed: () {
@@ -246,19 +253,24 @@ class _ContentsState extends State<Contents> {
                                                         builder: (BuildContext
                                                                 context) =>
                                                             CommunityMain(
-                                                                loginID: widget
-                                                                    .loginID),
+                                                          loginID:
+                                                              widget.loginID,
+                                                          grade: widget.grade,
+                                                        ),
                                                       ),
                                                     );
                                                   },
                                                   child: Text(
                                                     '확인',
                                                     style: TextStyle(
-                                                      color: (grade == 0 ||
-                                                              grade == 1 ||
-                                                              grade == 2 ||
-                                                              grade == 4 ||
-                                                              grade == 8)
+                                                      color: (widget.grade == 0 ||
+                                                              widget.grade ==
+                                                                  1 ||
+                                                              widget.grade ==
+                                                                  2 ||
+                                                              widget.grade ==
+                                                                  4 ||
+                                                              widget.grade == 8)
                                                           ? Colors.black
                                                           : Colors.white,
                                                     ),
@@ -276,16 +288,16 @@ class _ContentsState extends State<Contents> {
                               child: Text(
                                 '삭제',
                                 style: TextStyle(
-                                    color: (grade == 0 ||
-                                            grade == 1 ||
-                                            grade == 2 ||
-                                            grade == 4 ||
-                                            grade == 8)
+                                    color: (widget.grade == 0 ||
+                                            widget.grade == 1 ||
+                                            widget.grade == 2 ||
+                                            widget.grade == 4 ||
+                                            widget.grade == 8)
                                         ? Colors.black
                                         : Colors.white),
                               ),
                               style: ElevatedButton.styleFrom(
-                                primary: PRIMARY_COLOR[grade],
+                                primary: PRIMARY_COLOR[widget.grade],
                                 elevation: 0,
                               ),
                             ),
@@ -338,7 +350,7 @@ class _ContentsState extends State<Contents> {
                                                             .styleFrom(
                                                           primary:
                                                               PRIMARY_COLOR[
-                                                                  grade],
+                                                                  widget.grade],
                                                           elevation: 0,
                                                         ),
                                                         onPressed: () {
@@ -348,20 +360,17 @@ class _ContentsState extends State<Contents> {
                                                         child: Text(
                                                           '취소',
                                                           style: TextStyle(
-                                                            color:
-                                                                (grade == 0 ||
-                                                                        grade ==
-                                                                            1 ||
-                                                                        grade ==
-                                                                            2 ||
-                                                                        grade ==
-                                                                            4 ||
-                                                                        grade ==
-                                                                            8)
-                                                                    ? Colors
-                                                                        .black
-                                                                    : Colors
-                                                                        .white,
+                                                            color: (widget.grade == 0 ||
+                                                                    widget.grade ==
+                                                                        1 ||
+                                                                    widget.grade ==
+                                                                        2 ||
+                                                                    widget.grade ==
+                                                                        4 ||
+                                                                    widget.grade ==
+                                                                        8)
+                                                                ? Colors.black
+                                                                : Colors.white,
                                                           ),
                                                         ),
                                                       ),
@@ -370,7 +379,7 @@ class _ContentsState extends State<Contents> {
                                                             .styleFrom(
                                                           primary:
                                                               PRIMARY_COLOR[
-                                                                  grade],
+                                                                  widget.grade],
                                                           elevation: 0,
                                                         ),
                                                         onPressed: () {
@@ -391,6 +400,8 @@ class _ContentsState extends State<Contents> {
                                                                     .title,
                                                                 contents: widget
                                                                     .contents,
+                                                                grade: widget
+                                                                    .grade,
                                                               ),
                                                             ),
                                                           );
@@ -398,20 +409,17 @@ class _ContentsState extends State<Contents> {
                                                         child: Text(
                                                           '확인',
                                                           style: TextStyle(
-                                                            color:
-                                                                (grade == 0 ||
-                                                                        grade ==
-                                                                            1 ||
-                                                                        grade ==
-                                                                            2 ||
-                                                                        grade ==
-                                                                            4 ||
-                                                                        grade ==
-                                                                            8)
-                                                                    ? Colors
-                                                                        .black
-                                                                    : Colors
-                                                                        .white,
+                                                            color: (widget.grade == 0 ||
+                                                                    widget.grade ==
+                                                                        1 ||
+                                                                    widget.grade ==
+                                                                        2 ||
+                                                                    widget.grade ==
+                                                                        4 ||
+                                                                    widget.grade ==
+                                                                        8)
+                                                                ? Colors.black
+                                                                : Colors.white,
                                                           ),
                                                         ),
                                                       ),
@@ -443,9 +451,9 @@ class _ContentsState extends State<Contents> {
                             height: 100.0,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: grade == 0
+                                color: widget.grade == 0
                                     ? Colors.grey.withOpacity(0.2)
-                                    : PRIMARY_COLOR[grade],
+                                    : PRIMARY_COLOR[widget.grade],
                               ),
                             ),
                             child: TextField(
@@ -464,9 +472,9 @@ class _ContentsState extends State<Contents> {
                           height: 100.0,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: grade == 0
+                              color: widget.grade == 0
                                   ? Colors.grey.withOpacity(0.2)
-                                  : PRIMARY_COLOR[grade],
+                                  : PRIMARY_COLOR[widget.grade],
                             ),
                           ),
                           child: TextButton(
@@ -477,10 +485,12 @@ class _ContentsState extends State<Contents> {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (BuildContext context) => Contents(
-                                      loginID: widget.loginID,
-                                      board: widget.board,
-                                      title: widget.title,
-                                      contents: widget.contents),
+                                    loginID: widget.loginID,
+                                    board: widget.board,
+                                    title: widget.title,
+                                    contents: widget.contents,
+                                    grade: widget.grade,
+                                  ),
                                 ),
                               );
                             },

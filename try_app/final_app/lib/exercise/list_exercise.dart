@@ -10,9 +10,11 @@ class ListExercise extends StatefulWidget {
    */
   final loginID;
   final routineName;
+  final grade;
   const ListExercise({
     required this.loginID,
     required this.routineName,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -23,13 +25,9 @@ class ListExercise extends StatefulWidget {
 class _ListExerciseState extends State<ListExercise> {
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 테마 선택
-     */
     List<String> exerciseName = ['운동1', '운동2', '운동3', '운동4'];
     List<int> number = [15, 10, 12, 20];
     List<String> isTime = ['f', 'f', 'f', 't'];
-    int grade = 5;
 
     String numberUnit(String boolean) {
       String unit = (boolean == 't') ? '초' : '회';
@@ -38,8 +36,11 @@ class _ListExerciseState extends State<ListExercise> {
     }
 
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
+      drawer: MyDrawer(
+        loginID: widget.loginID,
+        grade: widget.grade,
+      ),
+      appBar: MyAppBar(grade: widget.grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -62,7 +63,7 @@ class _ListExerciseState extends State<ListExercise> {
                         alignment: Alignment.centerLeft,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: PRIMARY_COLOR[grade],
+                            color: PRIMARY_COLOR[widget.grade],
                           ),
                         ),
                         child: Row(
@@ -83,7 +84,7 @@ class _ListExerciseState extends State<ListExercise> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: PRIMARY_COLOR[grade],
+                primary: PRIMARY_COLOR[widget.grade],
                 elevation: 0,
               ),
               onPressed: () {
@@ -107,6 +108,7 @@ class _ListExerciseState extends State<ListExercise> {
                       numberUnit: numberUnit(isTime[0]),
                       number: number[0],
                       loginID: widget.loginID,
+                      grade: widget.grade,
                     ),
                   ),
                 );
@@ -114,11 +116,11 @@ class _ListExerciseState extends State<ListExercise> {
               child: Text(
                 '운동시작',
                 style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                    color: (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),

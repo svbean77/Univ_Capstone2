@@ -11,21 +11,15 @@ import 'grade_colors.dart';
 
 class MyDrawer extends StatelessWidget {
   final loginID;
+  final grade;
   const MyDrawer({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
-    if (loginID != "") {
-      /*
-      select: 사용자의 테마 선택 가져오기
-       */
-      grade = 5;
-    }
-
     return Drawer(
       backgroundColor: PRIMARY_COLOR[grade],
       child: ListView(
@@ -103,7 +97,7 @@ class MyDrawer extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (BuildContext context) => Scaffold(
                         appBar: MyAppBar(grade: 0),
-                        drawer: MyDrawer(loginID: ""),
+                        drawer: MyDrawer(loginID: "", grade: grade),
                         body: AfterLogin(),
                       ),
                     ),
@@ -139,7 +133,7 @@ class MyDrawer extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (BuildContext context) => Scaffold(
                         appBar: MyAppBar(grade: 0),
-                        drawer: MyDrawer(loginID: ""),
+                        drawer: MyDrawer(loginID: "", grade: grade),
                         body: AfterLogin(),
                       ),
                     ),
@@ -148,7 +142,7 @@ class MyDrawer extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          CommunityMain(loginID: loginID),
+                          CommunityMain(loginID: loginID, grade: grade),
                     ),
                   );
               },

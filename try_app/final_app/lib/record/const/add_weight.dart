@@ -3,19 +3,17 @@ import 'package:flutter/material.dart';
 
 class AddWeight extends StatelessWidget {
   final loginID;
+  final grade;
   const AddWeight({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 선택 테마
-     */
     TextEditingController weightController = TextEditingController();
     TextEditingController dateController = TextEditingController();
-    int grade = 5;
 
     return Container(
       height: 180.0,

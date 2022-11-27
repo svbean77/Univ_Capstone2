@@ -45,7 +45,7 @@ class _FriendsMainState extends State<FriendsMain> {
 
     return Scaffold(
       appBar: MyAppBar(grade: widget.grade),
-      drawer: MyDrawer(loginID: widget.loginID),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -66,7 +66,8 @@ class _FriendsMainState extends State<FriendsMain> {
                       child: TextField(
                         controller: controller,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 10.0),
                           hintText: '닉네임으로 사용자 검색',
                           border: InputBorder.none,
                         ),
@@ -96,8 +97,11 @@ class _FriendsMainState extends State<FriendsMain> {
                          */
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                UserInfo(nickname: find, loginID: widget.loginID),
+                            builder: (BuildContext context) => UserInfo(
+                              nickname: find,
+                              loginID: widget.loginID,
+                              grade: widget.grade,
+                            ),
                           ),
                         );
                       } else {
@@ -105,10 +109,10 @@ class _FriendsMainState extends State<FriendsMain> {
                           msg: '존재하지 않는 닉네임입니다.',
                           backgroundColor: PRIMARY_COLOR[widget.grade],
                           textColor: (widget.grade == 0 ||
-                              widget.grade == 1 ||
-                              widget.grade == 2 ||
-                              widget.grade == 4 ||
-                              widget.grade == 8)
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
                               ? Colors.black
                               : Colors.white,
                           toastLength: Toast.LENGTH_SHORT,

@@ -12,8 +12,10 @@ import 'const/contents.dart';
 
 class QnABoard extends StatefulWidget {
   final loginID;
+  final grade;
   const QnABoard({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -43,18 +45,18 @@ class _QnABoardState extends State<QnABoard> {
       (게시글번호, 제목, 작성자, 작성일자, 내용, 사진주소를 리스트로 변경)
        */
     List<int> boardLst = [3, 4, 5, 6, 7];
-    int grade = 0;
+
     return FutureBuilder(
         future: getDatas(widget.loginID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            grade = snapshot.data[0].result![0].apptheme;
+            //snapshot.data[0].result![0].apptheme;
           }
 
           return Scaffold(
             floatingActionButton: FloatingActionButton(
               elevation: 0,
-              backgroundColor: PRIMARY_COLOR[grade],
+              backgroundColor: PRIMARY_COLOR[widget.grade],
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -64,16 +66,17 @@ class _QnABoardState extends State<QnABoard> {
                       content: "",
                       loginID: widget.loginID,
                       title: "",
+                      grade: widget.grade,
                     ),
                   ),
                 );
               },
               child: Icon(Icons.create,
-                  color: (grade == 0 ||
-                          grade == 1 ||
-                          grade == 2 ||
-                          grade == 4 ||
-                          grade == 8)
+                  color: (widget.grade == 0 ||
+                          widget.grade == 1 ||
+                          widget.grade == 2 ||
+                          widget.grade == 4 ||
+                          widget.grade == 8)
                       ? Colors.black
                       : Colors.white),
             ),
@@ -89,9 +92,9 @@ class _QnABoardState extends State<QnABoard> {
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: grade == 0
+                                color: widget.grade == 0
                                     ? Colors.grey.withOpacity(0.2)
-                                    : PRIMARY_COLOR[grade],
+                                    : PRIMARY_COLOR[widget.grade],
                               ),
                             ),
                             child: TextField(
@@ -124,6 +127,7 @@ class _QnABoardState extends State<QnABoard> {
                                   searchfor: find,
                                   loginID: widget.loginID,
                                   board: 'qna',
+                                  grade: widget.grade,
                                 ),
                               ),
                             );
@@ -146,7 +150,8 @@ class _QnABoardState extends State<QnABoard> {
                                 for (int i = 0; i < boardLst.length; i++)
                                   GestureDetector(
                                     child: ContentsList(
-                                        boardnum: boardLst[i], grade: grade),
+                                        boardnum: boardLst[i],
+                                        grade: widget.grade),
                                     onTap: () {
                                       /*
                                     위에서 구한 json에서 각 내용들을 클래스로 매핑하는걸 여기서 해도 되나?
@@ -162,10 +167,12 @@ class _QnABoardState extends State<QnABoard> {
                                         MaterialPageRoute(
                                           builder: (BuildContext context) =>
                                               Contents(
-                                                  loginID: widget.loginID,
-                                                  board: 'qna',
-                                                  title: title,
-                                                  contents: contents),
+                                            loginID: widget.loginID,
+                                            board: 'qna',
+                                            title: title,
+                                            contents: contents,
+                                            grade: widget.grade,
+                                          ),
                                         ),
                                       );
                                     },

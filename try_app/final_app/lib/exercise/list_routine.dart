@@ -7,9 +7,11 @@ import 'package:flutter/material.dart';
 class ListRoutine extends StatefulWidget {
   final loginID;
   final title;
+  final grade;
   const ListRoutine({
     required this.title,
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -21,13 +23,10 @@ class _ListRoutineState extends State<ListRoutine> {
   @override
   Widget build(BuildContext context) {
     /*
-    select: 사용자 선택 테마
-     */
-    /*
     select: 여기서 데이터 구하기 도전! title이 목적, 이것을 이용해 select
     만약 된다면 json->class까지!
      */
-    int grade = 5;
+
     List<String> routineName = [
       '루틴1',
       '루틴2',
@@ -37,8 +36,8 @@ class _ListRoutineState extends State<ListRoutine> {
     List<int> routineTime = [15, 20, 25, 30];
 
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
+      appBar: MyAppBar(grade: widget.grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(
@@ -59,7 +58,7 @@ class _ListRoutineState extends State<ListRoutine> {
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: PRIMARY_COLOR[grade],
+                        color: PRIMARY_COLOR[widget.grade],
                       ),
                     ),
                     child: IntrinsicHeight(
@@ -79,7 +78,10 @@ class _ListRoutineState extends State<ListRoutine> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) => ListExercise(
-                          routineName: routineName[i], loginID: widget.loginID),
+                        routineName: routineName[i],
+                        loginID: widget.loginID,
+                        grade: widget.grade,
+                      ),
                     ),
                   );
                 },

@@ -56,8 +56,8 @@ class _RecordMainState extends State<RecordMain> with TickerProviderStateMixin {
           child: TabBarView(
             controller: _tabController,
             children: [
-              RecordCalendar(loginID: widget.loginID),
-              RecordGraph(loginID: widget.loginID),
+              RecordCalendar(loginID: widget.loginID, grade: widget.grade),
+              RecordGraph(loginID: widget.loginID, grade: widget.grade),
             ],
           ),
         ),

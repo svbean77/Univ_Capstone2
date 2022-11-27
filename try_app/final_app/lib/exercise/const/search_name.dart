@@ -9,10 +9,12 @@ class SearchName extends StatelessWidget {
   final loginID;
   final name;
   final level;
+  final grade;
   const SearchName({
     required this.loginID,
     required this.name,
     required this.level,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -38,6 +40,7 @@ class SearchName extends StatelessWidget {
                 muscle: name,
                 equipment: '맨몸',
                 loginID: loginID,
+                grade: grade,
               ),
             ),
           );

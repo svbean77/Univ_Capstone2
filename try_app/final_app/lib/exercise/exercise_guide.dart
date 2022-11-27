@@ -14,6 +14,7 @@ class ExerciseGuide extends StatefulWidget {
   final muscle;
   final equipment;
   final jsondata;
+  final grade;
 
   const ExerciseGuide({
     required this.loginID,
@@ -21,6 +22,7 @@ class ExerciseGuide extends StatefulWidget {
     required this.muscle,
     required this.equipment,
     required this.jsondata,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -31,18 +33,12 @@ class ExerciseGuide extends StatefulWidget {
 class _ExerciseGuideState extends State<ExerciseGuide> {
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 선택 테마
-     */
-    int grade = 0;
-    if (widget.loginID != "") grade = 5;
-
     EXERCISE_GUIDE data = EXERCISE_GUIDE.fromJson(widget.jsondata);
     int cnt = data.result!.length;
 
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
+      appBar: MyAppBar(grade: widget.grade),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -50,11 +46,11 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             elevation: 0,
             heroTag: 'memo',
             child: Icon(Icons.edit_calendar,
-                color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
+                color: (widget.grade == 0 ||
+                        widget.grade == 1 ||
+                        widget.grade == 2 ||
+                        widget.grade == 4 ||
+                        widget.grade == 8)
                     ? Colors.black
                     : Colors.white),
             onPressed: () {
@@ -93,7 +89,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       content: AddRecord(
-                          grade: grade,
+                          grade: widget.grade,
                           selectedDate: DateTime.now(),
                           loginID: widget.loginID),
                       scrollable: true,
@@ -101,18 +97,18 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                   },
                 );
             },
-            backgroundColor: PRIMARY_COLOR[grade],
+            backgroundColor: PRIMARY_COLOR[widget.grade],
           ),
           SizedBox(height: 8.0),
           FloatingActionButton(
             elevation: 0,
             heroTag: 'filter',
             child: Icon(Icons.filter_list_alt,
-                color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
+                color: (widget.grade == 0 ||
+                        widget.grade == 1 ||
+                        widget.grade == 2 ||
+                        widget.grade == 4 ||
+                        widget.grade == 8)
                     ? Colors.black
                     : Colors.white),
             onPressed: () {
@@ -121,13 +117,15 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                 isScrollControlled: true,
                 builder: (_) {
                   return EquipmentFilter(
-                      level: widget.level,
-                      loginID: widget.loginID,
-                      muscle: widget.muscle);
+                    level: widget.level,
+                    loginID: widget.loginID,
+                    muscle: widget.muscle,
+                    grade: widget.grade,
+                  );
                 },
               );
             },
-            backgroundColor: PRIMARY_COLOR[grade],
+            backgroundColor: PRIMARY_COLOR[widget.grade],
           ),
         ],
       ),
@@ -144,25 +142,28 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: PRIMARY_COLOR[grade],
+                primary: PRIMARY_COLOR[widget.grade],
                 elevation: 0,
               ),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) => SelectMuscle(
-                        loginID: widget.loginID, level: widget.level),
+                      loginID: widget.loginID,
+                      level: widget.level,
+                      grade: widget.grade,
+                    ),
                   ),
                 );
               },
               child: Text(
                 '근육 선택',
                 style: TextStyle(
-                  color: (grade == 0 ||
-                          grade == 1 ||
-                          grade == 2 ||
-                          grade == 4 ||
-                          grade == 8)
+                  color: (widget.grade == 0 ||
+                          widget.grade == 1 ||
+                          widget.grade == 2 ||
+                          widget.grade == 4 ||
+                          widget.grade == 8)
                       ? Colors.black
                       : Colors.white,
                 ),

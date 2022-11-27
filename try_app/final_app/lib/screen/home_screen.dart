@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  Future getUserData(String username) async {
+  Future getDatas(String username) async {
     if (username != "") {
       var url =
           Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
@@ -64,14 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return FutureBuilder(
-        future: getUserData(loginID),
+        future: getDatas(loginID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             grade = snapshot.data.result![0].apptheme;
             loginID = snapshot.data.result![0].nickname;
           }
           return Scaffold(
-            drawer: MyDrawer(loginID: loginID),
+            drawer: MyDrawer(loginID: loginID, grade: grade),
             appBar: MyAppBar(grade: grade),
             resizeToAvoidBottomInset: false,
             body: SizedBox.expand(

@@ -1,18 +1,23 @@
+import 'dart:convert';
+
 import 'package:final_app/exercise/list_my_exercise.dart';
 import 'package:final_app/screen/const/const_exercise_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import '../../screen/const/db_class.dart';
+import '../../screen/const/ip_address.dart';
 
 class AddExercise extends StatefulWidget {
   final loginID;
   final jsonlst;
   final routineName;
+  final grade;
   const AddExercise({
     required this.loginID,
     required this.jsonlst,
     required this.routineName,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -32,9 +37,6 @@ class _AddExerciseState extends State<AddExercise> {
 
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 테마 선택
-     */
     Map<String, int> mapExNum = {
       "이두": 1,
       "가슴": 2,
@@ -52,7 +54,7 @@ class _AddExerciseState extends State<AddExercise> {
       '등 중앙부': 14,
       '복사근': 15
     };
-    int grade = 5;
+
     return Container(
       height: 400.0,
       child: Column(
@@ -145,9 +147,9 @@ class _AddExerciseState extends State<AddExercise> {
                   ],
                   isSelected: units,
                   selectedColor: Colors.black,
-                  fillColor: (grade == 0 || grade == 7)
+                  fillColor: (widget.grade == 0 || widget.grade == 7)
                       ? Colors.black.withOpacity(0.1)
-                      : PRIMARY_COLOR[grade].withOpacity(0.3),
+                      : PRIMARY_COLOR[widget.grade].withOpacity(0.3),
                   onPressed: (value) {
                     setState(() {
                       if (value == 0) {
@@ -168,7 +170,7 @@ class _AddExerciseState extends State<AddExercise> {
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: PRIMARY_COLOR[grade],
+                  primary: PRIMARY_COLOR[widget.grade],
                   elevation: 0,
                 ),
                 onPressed: () {
@@ -177,11 +179,11 @@ class _AddExerciseState extends State<AddExercise> {
                 child: Text(
                   '취소',
                   style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                    color: (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),
@@ -189,7 +191,7 @@ class _AddExerciseState extends State<AddExercise> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: PRIMARY_COLOR[grade],
+                  primary: PRIMARY_COLOR[widget.grade],
                   elevation: 0,
                 ),
                 onPressed: () {
@@ -198,31 +200,32 @@ class _AddExerciseState extends State<AddExercise> {
                   print(selectedExercise);
                   if (units[1] == true) {
                     /*
-                    insert: 시간이냐?를 t로 db에 저장
-                    db는 loginID, 루틴이름을 이용해 선택 (where절 조건)
-                     */
+                        insert: 시간이냐?를 t로 db에 저장
+                        db는 loginID, 루틴이름을 이용해 선택 (where절 조건)
+                         */
                   } else if (units[0] == true) {
                     /*
-                    insert: 시간이냐?를 f로 db에 저장
-                    db는 loginID, 루틴이름을 이용해 선택 (where절 조건)
-                     */
+                        insert: 시간이냐?를 f로 db에 저장
+                        db는 loginID, 루틴이름을 이용해 선택 (where절 조건)
+                         */
                   }
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (BuildContext context) => ListMyExercise(
                           loginID: widget.loginID,
-                          routineName: widget.routineName),
+                          routineName: widget.routineName,
+                          grade: widget.grade),
                     ),
                   );
                 },
                 child: Text(
                   '추가',
                   style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                    color: (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),

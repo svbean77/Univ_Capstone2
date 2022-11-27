@@ -9,22 +9,20 @@ import 'package:flutter/material.dart';
 class ChallengeMain extends StatelessWidget {
   final loginID;
   final exercise;
+  final grade;
 
   const ChallengeMain({
     required this.exercise,
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     /*
-    select: 사용자 선택 테마
-     */
-    /*
     select: loginID의 exercise에 대한 기록 (내림차순)
      */
-    int grade = 5;
 
     List<int> num = [1, 4, 5];
     List<int> recordDate = [20221010, 20220202, 20221111];
@@ -40,15 +38,18 @@ class ChallengeMain extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(loginID: loginID),
+      drawer: MyDrawer(loginID: loginID, grade: grade),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         backgroundColor: PRIMARY_COLOR[grade],
         onPressed: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  WriteChallenge(exercise: exercise, loginID: loginID),
+              builder: (BuildContext context) => WriteChallenge(
+                exercise: exercise,
+                loginID: loginID,
+                grade: grade,
+              ),
             ),
           );
         },
@@ -78,10 +79,12 @@ class ChallengeMain extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => ChallengeDetail(
-                            date: date[i],
-                            exercise: exercise,
-                            num: num[i],
-                            loginID: loginID),
+                          date: date[i],
+                          exercise: exercise,
+                          num: num[i],
+                          loginID: loginID,
+                          grade: grade,
+                        ),
                       ),
                     );
                   },

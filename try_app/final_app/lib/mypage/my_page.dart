@@ -44,7 +44,7 @@ class _MyPageState extends State<MyPage> {
     int? selectRange = THEME_SELECT_RANGE[rating];
 
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
       appBar: MyAppBar(grade: widget.grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -81,6 +81,40 @@ class _MyPageState extends State<MyPage> {
                 ],
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(),
+                ElevatedButton(
+                  onPressed: () {
+                    print(widget.grade);
+                    /*
+                    update: apptheme 정보를 수정하는 코드
+                     */
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => HomeScreen(),
+                        ),
+                        (route) => false);
+                  },
+                  child: Text(
+                    '테마 변경!',
+                    style: TextStyle(
+                        color: (widget.grade == 0 ||
+                                widget.grade == 1 ||
+                                widget.grade == 2 ||
+                                widget.grade == 4 ||
+                                widget.grade == 8)
+                            ? Colors.black
+                            : Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: PRIMARY_COLOR[widget.grade],
+                    elevation: 0,
+                  ),
+                ),
+              ],
+            ),
             SizedBox(height: 16.0),
             GestureDetector(
               onTap: () {
@@ -89,8 +123,8 @@ class _MyPageState extends State<MyPage> {
                  */
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        EditMyInfo(loginID: widget.loginID),
+                    builder: (BuildContext context) => EditMyInfo(
+                        loginID: widget.loginID, grade: widget.grade),
                   ),
                 );
               },

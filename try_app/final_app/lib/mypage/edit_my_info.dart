@@ -7,8 +7,10 @@ import '../screen/const/grade_colors.dart';
 
 class EditMyInfo extends StatefulWidget {
   final loginID;
+  final grade;
   const EditMyInfo({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -26,13 +28,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
 
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 선택 테마
-     */
-    int grade = 5;
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
+      appBar: MyAppBar(grade: widget.grade),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -80,9 +78,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                         padding: EdgeInsets.only(left: 8.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: grade == 0
+                            color: widget.grade == 0
                                 ? Colors.grey.withOpacity(0.2)
-                                : PRIMARY_COLOR[grade],
+                                : PRIMARY_COLOR[widget.grade],
                           ),
                         ),
                         child: TextField(
@@ -99,9 +97,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                                   isPasswordVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: grade == 0
+                                  color: widget.grade == 0
                                       ? Colors.grey
-                                      : PRIMARY_COLOR[grade],
+                                      : PRIMARY_COLOR[widget.grade],
                                 ),
                               ),
                               border: InputBorder.none),
@@ -125,9 +123,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: grade == 0
+                            color: widget.grade == 0
                                 ? Colors.grey.withOpacity(0.2)
-                                : PRIMARY_COLOR[grade],
+                                : PRIMARY_COLOR[widget.grade],
                           ),
                         ),
                         child: TextField(
@@ -157,9 +155,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: grade == 0
+                            color: widget.grade == 0
                                 ? Colors.grey.withOpacity(0.2)
-                                : PRIMARY_COLOR[grade],
+                                : PRIMARY_COLOR[widget.grade],
                           ),
                         ),
                         child: TextField(
@@ -187,9 +185,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                         ],
                         isSelected: sex,
                         selectedColor: Colors.black,
-                        fillColor: (grade == 0 || grade == 7)
+                        fillColor: (widget.grade == 0 || widget.grade == 7)
                             ? Colors.black.withOpacity(0.1)
-                            : PRIMARY_COLOR[grade].withOpacity(0.3),
+                            : PRIMARY_COLOR[widget.grade].withOpacity(0.3),
                         onPressed: (value) {
                           setState(() {
                             if (value == 0) {
@@ -215,8 +213,8 @@ class _EditMyInfoState extends State<EditMyInfo> {
                      */
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            MyPage(loginID: widget.loginID, grade: grade),
+                        builder: (BuildContext context) => MyPage(
+                            loginID: widget.loginID, grade: widget.grade),
                       ),
                     );
                   },
@@ -225,7 +223,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: PRIMARY_COLOR[grade],
+                        color: PRIMARY_COLOR[widget.grade],
                       ),
                     ),
                     child: Center(

@@ -65,8 +65,8 @@ class _RankingMainState extends State<RankingMain>
           child: TabBarView(
             controller: _tabController,
             children: [
-              AllRanking(loginID: widget.loginID),
-              FriendsRanking(loginID: widget.loginID),
+              AllRanking(loginID: widget.loginID, grade: widget.grade),
+              FriendsRanking(loginID: widget.loginID, grade: widget.grade),
             ],
           ),
         ),

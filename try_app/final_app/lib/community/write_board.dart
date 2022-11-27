@@ -16,9 +16,11 @@ class WriteBoard extends StatefulWidget {
   String content;
   String title;
   final board;
+  final grade;
   final mode;
   WriteBoard({
     required this.board,
+    required this.grade,
     required this.mode,
     required this.loginID,
     required this.content,
@@ -49,17 +51,15 @@ class _WriteBoardState extends State<WriteBoard> {
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
-
     return FutureBuilder(
         future: getDatas(widget.loginID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            grade = snapshot.data[0].result![0].apptheme;
+            //snapshot.data[0].result![0].apptheme;
           }
           return Scaffold(
-            appBar: MyAppBar(grade: grade),
-            drawer: MyDrawer(loginID: widget.loginID),
+            appBar: MyAppBar(grade: widget.grade),
+            drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
             body: Padding(
               padding: EdgeInsets.all(16.0),
               child: ListView(
@@ -76,9 +76,9 @@ class _WriteBoardState extends State<WriteBoard> {
                             padding: EdgeInsets.only(left: 8.0),
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: grade == 0
+                                color: widget.grade == 0
                                     ? Colors.grey.withOpacity(0.2)
-                                    : PRIMARY_COLOR[grade],
+                                    : PRIMARY_COLOR[widget.grade],
                               ),
                             ),
                             child: Form(
@@ -110,9 +110,9 @@ class _WriteBoardState extends State<WriteBoard> {
                           EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: grade == 0
+                          color: widget.grade == 0
                               ? Colors.grey.withOpacity(0.2)
-                              : PRIMARY_COLOR[grade],
+                              : PRIMARY_COLOR[widget.grade],
                         ),
                       ),
                       child: Form(
@@ -145,16 +145,16 @@ class _WriteBoardState extends State<WriteBoard> {
                         child: Text(
                           '갤러리',
                           style: TextStyle(
-                              color: (grade == 0 ||
-                                      grade == 1 ||
-                                      grade == 2 ||
-                                      grade == 4 ||
-                                      grade == 8)
+                              color: (widget.grade == 0 ||
+                                      widget.grade == 1 ||
+                                      widget.grade == 2 ||
+                                      widget.grade == 4 ||
+                                      widget.grade == 8)
                                   ? Colors.black
                                   : Colors.white),
                         ),
                         style: ElevatedButton.styleFrom(
-                            primary: PRIMARY_COLOR[grade], elevation: 0),
+                            primary: PRIMARY_COLOR[widget.grade], elevation: 0),
                       ),
                       SizedBox(width: 8.0),
                       ElevatedButton(
@@ -168,16 +168,16 @@ class _WriteBoardState extends State<WriteBoard> {
                         child: Text(
                           '카메라',
                           style: TextStyle(
-                              color: (grade == 0 ||
-                                      grade == 1 ||
-                                      grade == 2 ||
-                                      grade == 4 ||
-                                      grade == 8)
+                              color: (widget.grade == 0 ||
+                                      widget.grade == 1 ||
+                                      widget.grade == 2 ||
+                                      widget.grade == 4 ||
+                                      widget.grade == 8)
                                   ? Colors.black
                                   : Colors.white),
                         ),
                         style: ElevatedButton.styleFrom(
-                            primary: PRIMARY_COLOR[grade], elevation: 0),
+                            primary: PRIMARY_COLOR[widget.grade], elevation: 0),
                       ),
                     ],
                   ),
@@ -233,26 +233,28 @@ class _WriteBoardState extends State<WriteBoard> {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) => Contents(
-                              loginID: widget.loginID,
-                              title: saveTitle,
-                              contents: saveContent,
-                              board: widget.board),
+                            loginID: widget.loginID,
+                            title: saveTitle,
+                            contents: saveContent,
+                            board: widget.board,
+                            grade: widget.grade,
+                          ),
                         ),
                       );
                     },
                     child: Text(
                       '저장',
                       style: TextStyle(
-                          color: (grade == 0 ||
-                                  grade == 1 ||
-                                  grade == 2 ||
-                                  grade == 4 ||
-                                  grade == 8)
+                          color: (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
                               ? Colors.black
                               : Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
-                        primary: PRIMARY_COLOR[grade], elevation: 0),
+                        primary: PRIMARY_COLOR[widget.grade], elevation: 0),
                   ),
                 ],
               ),

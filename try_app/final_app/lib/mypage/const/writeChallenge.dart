@@ -9,9 +9,11 @@ import 'dart:io';
 class WriteChallenge extends StatefulWidget {
   final loginID;
   final exercise;
+  final grade;
   const WriteChallenge({
     required this.exercise,
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -24,14 +26,9 @@ class _WriteChallengeState extends State<WriteChallenge> {
   final TextEditingController contentsController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 선택 테마
-     */
-    int grade = 5;
-
     return Scaffold(
-      appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(loginID: widget.loginID),
+      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(
@@ -44,9 +41,9 @@ class _WriteChallengeState extends State<WriteChallenge> {
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: grade == 0
+                    color: widget.grade == 0
                         ? Colors.grey.withOpacity(0.2)
-                        : PRIMARY_COLOR[grade],
+                        : PRIMARY_COLOR[widget.grade],
                   ),
                 ),
                 child: TextField(
@@ -72,16 +69,16 @@ class _WriteChallengeState extends State<WriteChallenge> {
               child: Text(
                 '갤러리',
                 style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                    color: (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),
               style: ElevatedButton.styleFrom(
-                  primary: PRIMARY_COLOR[grade], elevation: 0),
+                  primary: PRIMARY_COLOR[widget.grade], elevation: 0),
             ),
             Container(
               height: 80.0,
@@ -101,23 +98,26 @@ class _WriteChallengeState extends State<WriteChallenge> {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (BuildContext context) => ChallengeMain(
-                        exercise: widget.exercise, loginID: widget.loginID),
+                      exercise: widget.exercise,
+                      loginID: widget.loginID,
+                      grade: widget.grade,
+                    ),
                   ),
                 );
               },
               child: Text(
                 '저장',
                 style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                    color: (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),
               style: ElevatedButton.styleFrom(
-                  primary: PRIMARY_COLOR[grade], elevation: 0),
+                  primary: PRIMARY_COLOR[widget.grade], elevation: 0),
             ),
           ],
         ),

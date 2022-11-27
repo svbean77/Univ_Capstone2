@@ -10,19 +10,15 @@ import '../screen/const/drawer.dart';
 
 class MasterMain extends StatelessWidget {
   final loginID;
+  final grade;
   const MasterMain({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 테마 선택
-     */
-    int grade = 0;
-    if (loginID != "") grade = 5;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -36,8 +32,11 @@ class MasterMain extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    SelectMuscle(loginID: loginID, level: '숙련자'),
+                builder: (BuildContext context) => SelectMuscle(
+                  loginID: loginID,
+                  level: '숙련자',
+                  grade: grade,
+                ),
               ),
             );
           },
@@ -64,10 +63,10 @@ class MasterMain extends StatelessWidget {
                 builder: (BuildContext ccontext) => loginID == ""
                     ? Scaffold(
                         appBar: MyAppBar(grade: grade),
-                        drawer: MyDrawer(loginID: loginID),
+                        drawer: MyDrawer(loginID: loginID, grade: grade),
                         body: AfterLogin(),
                       )
-                    : SelectRoutine(loginID: loginID),
+                    : SelectRoutine(loginID: loginID, grade: grade),
               ),
             );
           },
@@ -94,10 +93,10 @@ class MasterMain extends StatelessWidget {
                 builder: (BuildContext ccontext) => loginID == ""
                     ? Scaffold(
                         appBar: MyAppBar(grade: grade),
-                        drawer: MyDrawer(loginID: loginID),
+                        drawer: MyDrawer(loginID: loginID, grade: grade),
                         body: AfterLogin(),
                       )
-                    : SelectMyRoutine(loginID: loginID),
+                    : SelectMyRoutine(loginID: loginID, grade: grade),
               ),
             );
           },

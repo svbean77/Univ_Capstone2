@@ -39,6 +39,7 @@ class SetImage extends StatelessWidget {
   final col;
   final muscleLst;
   final level;
+  final grade;
 
   SetImage({
     required this.loginID,
@@ -46,6 +47,7 @@ class SetImage extends StatelessWidget {
     required this.col,
     required this.muscleLst,
     required this.level,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -96,6 +98,7 @@ class SetImage extends StatelessWidget {
                       muscle: muscle,
                       equipment: '맨몸',
                       loginID: loginID,
+                      grade: grade,
                     ),
                   ),
                 );

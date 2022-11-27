@@ -57,6 +57,7 @@ class FriendCard extends StatelessWidget {
                           builder: (BuildContext context) => UserInfo(
                             loginID: loginID,
                             nickname: nickname,
+                            grade: grade,
                           ),
                         ),
                       );

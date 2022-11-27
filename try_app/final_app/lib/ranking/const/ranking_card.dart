@@ -29,6 +29,7 @@ class RankingCard extends StatelessWidget {
             builder: (BuildContext context) => UserInfo(
               nickname: nickname,
               loginID: loginID,
+              grade: grade,
             ),
           ),
         );

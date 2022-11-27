@@ -17,6 +17,7 @@ class RoutineGuide extends StatefulWidget {
   final exerciseStep;
   final number;
   final numberUnit;
+  final grade;
 
   const RoutineGuide({
     required this.loginID,
@@ -27,6 +28,7 @@ class RoutineGuide extends StatefulWidget {
     required this.exerciseImage2,
     required this.number,
     required this.numberUnit,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -37,23 +39,19 @@ class RoutineGuide extends StatefulWidget {
 class _RoutineGuideState extends State<RoutineGuide> {
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 테마 선택
-     */
-    int grade = 5;
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
+      appBar: MyAppBar(grade: widget.grade),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        backgroundColor: PRIMARY_COLOR[grade],
+        backgroundColor: PRIMARY_COLOR[widget.grade],
         heroTag: 'memo',
         child: Icon(Icons.edit_calendar,
-            color: (grade == 0 ||
-                    grade == 1 ||
-                    grade == 2 ||
-                    grade == 4 ||
-                    grade == 8)
+            color: (widget.grade == 0 ||
+                    widget.grade == 1 ||
+                    widget.grade == 2 ||
+                    widget.grade == 4 ||
+                    widget.grade == 8)
                 ? Colors.black
                 : Colors.white),
         onPressed: () {
@@ -63,7 +61,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
             builder: (BuildContext context) {
               return AlertDialog(
                 content: AddRecord(
-                    grade: grade,
+                    grade: widget.grade,
                     selectedDate: DateTime.now(),
                     loginID: widget.loginID),
                 scrollable: true,

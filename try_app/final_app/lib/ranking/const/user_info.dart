@@ -7,22 +7,20 @@ import 'package:flutter/material.dart';
 class UserInfo extends StatelessWidget {
   final loginID;
   final nickname;
+  final grade;
 
   const UserInfo({
     required this.loginID,
     required this.nickname,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     /*
-    select: 사용자 테마 선택
-     */
-    /*
     select: select의 운동기록 내림차순 (최신이 앞에) -> class
      */
-    int grade = 5;
     List<int> tmp = [20220901, 20220904, 20221010, 20221111];
     List<DateTime> date = [];
 
@@ -36,7 +34,7 @@ class UserInfo extends StatelessWidget {
 
     return Scaffold(
       appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(loginID: loginID),
+      drawer: MyDrawer(loginID: loginID, grade: grade),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
