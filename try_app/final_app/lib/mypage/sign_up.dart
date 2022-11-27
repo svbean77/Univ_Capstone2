@@ -290,10 +290,6 @@ class _SignUpState extends State<SignUp> {
         msg: '회원가입이 완료되었습니다.',
         toastLength: Toast.LENGTH_SHORT,
       );
-      /*
-      insert: 사용자 3대 정보
-      insert: 사용자 선택 테마
-       */
       Navigator.push(
         context,
         MaterialPageRoute(

@@ -31,7 +31,7 @@ class _CommunityMainState extends State<CommunityMain>
     super.initState();
   }
 
-  Future getUserData(String username) async {
+  Future getDatas(String username) async {
     var url =
         Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
@@ -40,7 +40,7 @@ class _CommunityMainState extends State<CommunityMain>
     });
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     USERDATA data = USERDATA.fromJson(jsondata);
-    return data;
+    return [data];
   }
 
   @override
@@ -52,10 +52,10 @@ class _CommunityMainState extends State<CommunityMain>
      */
 
     return FutureBuilder(
-        future: getUserData(widget.loginID),
+        future: getDatas(widget.loginID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            grade = snapshot.data.result![0].apptheme;
+            grade = snapshot.data[0].result![0].apptheme;
           }
           return Scaffold(
             appBar: MyAppBar(grade: grade),

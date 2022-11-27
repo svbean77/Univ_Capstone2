@@ -138,31 +138,3 @@ class classALL_EXERCISE {
   }
 }
 
-/*
-select theme color index
- */
-
-class SELECT_THEME {
-  List<classSELECT_THEME>? result;
-
-  SELECT_THEME({this.result});
-
-  SELECT_THEME.fromJson(Map<String, dynamic> jsondata) {
-    if (jsondata['result'] != null) {
-      result = <classSELECT_THEME>[];
-      jsondata['result'].forEach((v) {
-        result!.add(new classSELECT_THEME.fromJson(v));
-      });
-    }
-  }
-}
-
-class classSELECT_THEME {
-  int? apptheme;
-
-  classSELECT_THEME({this.apptheme});
-
-  classSELECT_THEME.fromJson(Map<String, dynamic> jsondata) {
-    apptheme = jsondata['apptheme'];
-  }
-}
