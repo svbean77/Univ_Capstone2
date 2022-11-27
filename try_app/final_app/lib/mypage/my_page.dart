@@ -1,11 +1,14 @@
+import 'dart:convert';
+
 import 'package:final_app/mypage/edit_my_info.dart';
 import 'package:final_app/ranking/const/my_ranking.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import '../screen/const/grade_colors.dart';
+import '../screen/const/ip_address.dart';
 import '../screen/const/storage_box.dart';
 
 class MyPage extends StatefulWidget {
@@ -65,11 +68,7 @@ class _MyPageState extends State<MyPage> {
                         onTap: () {
                           setState(() {
                             widget.grade = i;
-                            /*
-                            update: 사용자 선택 테마 변경
-                             */
                           });
-                          print(widget.grade);
                         },
                         child: Icon(
                           Icons.circle,
@@ -86,16 +85,25 @@ class _MyPageState extends State<MyPage> {
               children: [
                 SizedBox(),
                 ElevatedButton(
-                  onPressed: () {
-                    print(widget.grade);
+                  onPressed: () async {
                     /*
                     update: apptheme 정보를 수정하는 코드
                      */
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => HomeScreen(),
-                        ),
-                        (route) => false);
+                    var url = Uri.http(
+                        IP_ADDRESS, '/test_change_theme.php', {'q': '{http}'});
+                    var response = await http.post(url, body: <String, String>{
+                      "nickname": widget.loginID.toString(),
+                      "apptheme": widget.grade.toString(),
+                    });
+                    var jsondata =
+                        jsonDecode(json.decode(json.encode(response.body)));
+
+                    if (jsondata == "Success")
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => HomeScreen(),
+                          ),
+                          (route) => false);
                   },
                   child: Text(
                     '테마 변경!',
