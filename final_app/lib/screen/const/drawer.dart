@@ -1,7 +1,7 @@
 import 'package:final_app/community/const/community_main.dart';
+import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/mypage/my_page.dart';
 import 'package:final_app/mypage/sign_in.dart';
-import 'package:final_app/mypage/three_challenge.dart';
 import 'package:final_app/screen/const/after_login.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +87,42 @@ class MyDrawer extends StatelessWidget {
             color: PRIMARY_COLOR[grade],
             child: ListTile(
               title: Text(
+                '친구',
+                style: TextStyle(
+                    color: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                        ? Colors.black
+                        : Colors.white),
+              ),
+              onTap: () {
+                if (loginID == '')
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => Scaffold(
+                        appBar: MyAppBar(grade: 0),
+                        drawer: MyDrawer(loginID: ""),
+                        body: AfterLogin(),
+                      ),
+                    ),
+                  );
+                else
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          FriendsMain(loginID: loginID, grade: grade),
+                    ),
+                  );
+              },
+            ),
+            elevation: 0,
+          ),
+          Card(
+            color: PRIMARY_COLOR[grade],
+            child: ListTile(
+              title: Text(
                 '커뮤니티',
                 style: TextStyle(
                     color: (grade == 0 ||
@@ -113,42 +149,6 @@ class MyDrawer extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (BuildContext context) =>
                           CommunityMain(loginID: loginID),
-                    ),
-                  );
-              },
-            ),
-            elevation: 0,
-          ),
-          Card(
-            color: PRIMARY_COLOR[grade],
-            child: ListTile(
-              title: Text(
-                '3대 챌린지',
-                style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
-                        ? Colors.black
-                        : Colors.white),
-              ),
-              onTap: () {
-                if (loginID == '')
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => Scaffold(
-                        appBar: MyAppBar(grade: 0),
-                        drawer: MyDrawer(loginID: ""),
-                        body: AfterLogin(),
-                      ),
-                    ),
-                  );
-                else
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          ThreeChallenge(loginID: loginID),
                     ),
                   );
               },

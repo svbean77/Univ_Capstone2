@@ -2,6 +2,8 @@ import 'package:final_app/ranking/const/user_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../friends_main.dart';
+
 class FriendCard extends StatelessWidget {
   /*
   class로 넘겼다고 가정!
@@ -109,10 +111,14 @@ class FriendCard extends StatelessWidget {
                                           /*
                                           delete: db에 친구 삭제하는 코드
                                            */
-                                          /*
-                                          일단 pop으로 했지만 homescreen index 해결하면 push로 변경!
-                                           */
-                                          Navigator.of(context).pop();
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        FriendsMain(
+                                                            loginID: loginID,
+                                                            grade: grade)),
+                                          );
                                         },
                                         child: Text(
                                           '확인',

@@ -1,3 +1,4 @@
+import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/ranking/const/user_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
@@ -111,10 +112,14 @@ class RequestCard extends StatelessWidget {
                                           /*
                                           delete: 친구요청 삭제하는 코드
                                            */
-                                          /*
-                                          일단 pop으로 했지만 homescreen index 해결하면 push로 변경!
-                                           */
-                                          Navigator.of(context).pop();
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        FriendsMain(
+                                                            loginID: loginID,
+                                                            grade: grade)),
+                                          );
                                         },
                                         child: Text(
                                           '확인',
@@ -188,10 +193,14 @@ class RequestCard extends StatelessWidget {
                                           /*
                                           delete: 친구요청 삭제하는 코드
                                            */
-                                          /*
-                                          일단 pop으로 했지만 homescreen index 해결하면 push로 변경!
-                                           */
-                                          Navigator.of(context).pop();
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        FriendsMain(
+                                                            loginID: loginID,
+                                                            grade: grade)),
+                                          );
                                         },
                                         child: Text(
                                           '확인',

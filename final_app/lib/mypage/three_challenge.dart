@@ -1,14 +1,14 @@
 import 'package:final_app/mypage/const/challenge_main.dart';
 import 'package:final_app/ranking/const/my_ranking.dart';
-import 'package:final_app/screen/const/app_bar.dart';
-import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ThreeChallenge extends StatefulWidget {
   final loginID;
+  final grade;
   const ThreeChallenge({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -25,10 +25,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
     List<String> three = ['데드리프트', '벤치프레스', '스쿼트'];
     int grade = 5;
 
-    return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
@@ -72,7 +69,6 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
             )
           ],
         ),
-      ),
     );
   }
 }
