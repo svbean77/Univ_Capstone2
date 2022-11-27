@@ -2,6 +2,7 @@ import 'package:final_app/exercise/const/equipment_filter.dart';
 import 'package:final_app/exercise/select_muscle.dart';
 import 'package:final_app/record/const/add_record.dart';
 import 'package:final_app/screen/const/app_bar.dart';
+import 'package:final_app/screen/const/db_class.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 import '../screen/const/grade_colors.dart';
@@ -36,7 +37,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
     int grade = 0;
     if (widget.loginID != "") grade = 5;
 
-    dbEXERCISE data = dbEXERCISE.fromJson(widget.jsondata);
+    EXERCISE_GUIDE data = EXERCISE_GUIDE.fromJson(widget.jsondata);
     int cnt = data.result!.length;
 
     return Scaffold(
@@ -194,69 +195,5 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
         ),
       ),
     );
-  }
-}
-
-class dbEXERCISE {
-  List<Result>? result;
-
-  dbEXERCISE({this.result});
-
-  dbEXERCISE.fromJson(Map<String, dynamic> json) {
-    if (json['result'] != null) {
-      result = <Result>[];
-      json['result'].forEach((v) {
-        result!.add(new Result.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.result != null) {
-      data['result'] = this.result!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Result {
-  String? muscle;
-  String? equipment;
-  String? difficulty;
-  String? exercise;
-  String? image1;
-  String? image2;
-  String? step;
-
-  Result(
-      {this.muscle,
-      this.equipment,
-      this.difficulty,
-      this.exercise,
-      this.image1,
-      this.image2,
-      this.step});
-
-  Result.fromJson(Map<String, dynamic> json) {
-    muscle = json['muscle'];
-    equipment = json['equipment'];
-    difficulty = json['difficulty'];
-    exercise = json['exercise'];
-    image1 = json['image1'];
-    image2 = json['image2'];
-    step = json['step'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['muscle'] = this.muscle;
-    data['equipment'] = this.equipment;
-    data['difficulty'] = this.difficulty;
-    data['exercise'] = this.exercise;
-    data['image1'] = this.image1;
-    data['image2'] = this.image2;
-    data['step'] = this.step;
-    return data;
   }
 }

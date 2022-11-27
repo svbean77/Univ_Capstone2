@@ -26,6 +26,17 @@ class ListMyExercise extends StatefulWidget {
 }
 
 class _ListMyExerciseState extends State<ListMyExercise> {
+  Future getTestJson() async {
+    var url = Uri.http(IP_ADDRESS, '/all_exercise.php', {'q': '{http}'});
+    for (int i = 1; i <= 15; i++) {
+      var response = await http.post(url, body: <String, String>{
+        "muscle": '이두'.toString(),
+      });
+      var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+      return jsondata;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     /*
@@ -260,16 +271,5 @@ class _ListMyExerciseState extends State<ListMyExercise> {
         ),
       ),
     );
-  }
-
-  Future getTestJson() async {
-    var url = Uri.http(IP_ADDRESS, '/all_exercise.php', {'q': '{http}'});
-    for (int i = 1; i <= 15; i++) {
-      var response = await http.post(url, body: <String, String>{
-        "muscle": '이두'.toString(),
-      });
-      var jsondata = jsonDecode(json.decode(json.encode(response.body)));
-      return jsondata;
-    }
   }
 }

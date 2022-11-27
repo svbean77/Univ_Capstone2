@@ -3,6 +3,8 @@ import 'package:final_app/screen/const/const_exercise_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../screen/const/db_class.dart';
+
 class AddExercise extends StatefulWidget {
   final loginID;
   final jsonlst;
@@ -90,7 +92,7 @@ class _AddExerciseState extends State<AddExercise> {
 
             if (jsonIdx != -1) {
               var jsondata = widget.jsonlst[jsonIdx];
-              dbALLEXERCISE data = dbALLEXERCISE.fromJson(jsondata);
+              ALL_EXERCISE data = ALL_EXERCISE.fromJson(jsondata);
               for (int i = 0; i < data.result!.length; i++) {
                 exerciseLst.add(data.result![i].exercise.toString());
               }
@@ -231,44 +233,5 @@ class _AddExerciseState extends State<AddExercise> {
         ],
       ),
     );
-  }
-}
-
-class dbALLEXERCISE {
-  List<Result>? result;
-
-  dbALLEXERCISE({this.result});
-
-  dbALLEXERCISE.fromJson(Map<String, dynamic> json) {
-    if (json['result'] != null) {
-      result = <Result>[];
-      json['result'].forEach((v) {
-        result!.add(new Result.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.result != null) {
-      data['result'] = this.result!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Result {
-  String? exercise;
-
-  Result({this.exercise});
-
-  Result.fromJson(Map<String, dynamic> json) {
-    exercise = json['exercise'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['exercise'] = this.exercise;
-    return data;
   }
 }

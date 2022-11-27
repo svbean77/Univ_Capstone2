@@ -30,7 +30,6 @@ class SearchName extends StatelessWidget {
             "difficulty": level.toString(),
           });
           var jsondata = jsonDecode(json.decode(json.encode(response.body)));
-
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) => ExerciseGuide(
