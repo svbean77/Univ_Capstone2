@@ -1,5 +1,5 @@
 /*
-select user data
+select user data join select theme index
  */
 
 class USERDATA {
@@ -7,10 +7,10 @@ class USERDATA {
 
   USERDATA({this.result});
 
-  USERDATA.fromJson(Map<String, dynamic> json) {
-    if (json['result'] != null) {
+  USERDATA.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
       result = <classUSERDATA>[];
-      json['result'].forEach((v) {
+      jsondata['result'].forEach((v) {
         result!.add(new classUSERDATA.fromJson(v));
       });
     }
@@ -46,19 +46,19 @@ class classUSERDATA {
     this.apptheme,
   });
 
-  classUSERDATA.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    username = json['username'];
-    password = json['password'];
-    nickname = json['nickname'];
-    userage = json['userage'];
-    sex = json['sex'];
-    rating = json['rating'];
-    deadlift = json['deadlift'];
-    benchpress = json['benchpress'];
-    squat = json['squat'];
-    total = json['total'];
-    apptheme = json['apptheme'];
+  classUSERDATA.fromJson(Map<String, dynamic> jsondata) {
+    id = jsondata['id'];
+    username = jsondata['username'];
+    password = jsondata['password'];
+    nickname = jsondata['nickname'];
+    userage = jsondata['userage'];
+    sex = jsondata['sex'];
+    rating = jsondata['rating'];
+    deadlift = jsondata['deadlift'];
+    benchpress = jsondata['benchpress'];
+    squat = jsondata['squat'];
+    total = jsondata['total'];
+    apptheme = jsondata['apptheme'];
   }
 }
 
@@ -70,10 +70,10 @@ class EXERCISE_GUIDE {
 
   EXERCISE_GUIDE({this.result});
 
-  EXERCISE_GUIDE.fromJson(Map<String, dynamic> json) {
-    if (json['result'] != null) {
+  EXERCISE_GUIDE.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
       result = <classEXERCISE_GUIDE>[];
-      json['result'].forEach((v) {
+      jsondata['result'].forEach((v) {
         result!.add(new classEXERCISE_GUIDE.fromJson(v));
       });
     }
@@ -98,14 +98,14 @@ class classEXERCISE_GUIDE {
       this.image2,
       this.step});
 
-  classEXERCISE_GUIDE.fromJson(Map<String, dynamic> json) {
-    muscle = json['muscle'];
-    equipment = json['equipment'];
-    difficulty = json['difficulty'];
-    exercise = json['exercise'];
-    image1 = json['image1'];
-    image2 = json['image2'];
-    step = json['step'];
+  classEXERCISE_GUIDE.fromJson(Map<String, dynamic> jsondata) {
+    muscle = jsondata['muscle'];
+    equipment = jsondata['equipment'];
+    difficulty = jsondata['difficulty'];
+    exercise = jsondata['exercise'];
+    image1 = jsondata['image1'];
+    image2 = jsondata['image2'];
+    step = jsondata['step'];
   }
 }
 
@@ -118,10 +118,10 @@ class ALL_EXERCISE {
 
   ALL_EXERCISE({this.result});
 
-  ALL_EXERCISE.fromJson(Map<String, dynamic> json) {
-    if (json['result'] != null) {
+  ALL_EXERCISE.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
       result = <classALL_EXERCISE>[];
-      json['result'].forEach((v) {
+      jsondata['result'].forEach((v) {
         result!.add(new classALL_EXERCISE.fromJson(v));
       });
     }
@@ -133,7 +133,36 @@ class classALL_EXERCISE {
 
   classALL_EXERCISE({this.exercise});
 
-  classALL_EXERCISE.fromJson(Map<String, dynamic> json) {
-    exercise = json['exercise'];
+  classALL_EXERCISE.fromJson(Map<String, dynamic> jsondata) {
+    exercise = jsondata['exercise'];
+  }
+}
+
+/*
+select theme color index
+ */
+
+class SELECT_THEME {
+  List<classSELECT_THEME>? result;
+
+  SELECT_THEME({this.result});
+
+  SELECT_THEME.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classSELECT_THEME>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classSELECT_THEME.fromJson(v));
+      });
+    }
+  }
+}
+
+class classSELECT_THEME {
+  int? apptheme;
+
+  classSELECT_THEME({this.apptheme});
+
+  classSELECT_THEME.fromJson(Map<String, dynamic> jsondata) {
+    apptheme = jsondata['apptheme'];
   }
 }

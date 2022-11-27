@@ -65,24 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return FutureBuilder(
         future: getUserData(loginID),
         builder: (context, snapshot) {
-          //loginID = data.result![0].nickname!;
-          /*
-      select:사용자의 테마 선택 가져오기
-       */
-          /*
-      select: 사용자 정보 (아이디가 loginID)
-      사용자의 아이디를 이용해 닉네임 구하기
-      (닉네임을 loginID에 넣어 모든 페이지에는 닉네임을 전달!!)
-       */
           if (snapshot.hasData) {
-            print(snapshot.data.result![0].username);
-            print(snapshot.data.result![0].password);
-            print(snapshot.data.result![0].nickname);
-            print(snapshot.data.result![0].sex);
-            print(snapshot.data.result![0].rating);
-            print(snapshot.data.result![0].benchpress);
-            print(snapshot.data.result![0].apptheme);
-
             grade = snapshot.data.result![0].apptheme;
             loginID = snapshot.data.result![0].nickname;
           }
