@@ -327,3 +327,33 @@ class classMY_EXERCISE_RECORD {
     writeDate = jsondata['writeDate'];
   }
 }
+
+/*
+select my weight
+ */
+class WEIGHT {
+  List<classWEIGHT>? result;
+
+  WEIGHT({this.result});
+
+  WEIGHT.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classWEIGHT>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classWEIGHT.fromJson(v));
+      });
+    }
+  }
+}
+
+class classWEIGHT {
+  double? weight;
+  String? writeDate;
+
+  classWEIGHT({this.weight, this.writeDate});
+
+  classWEIGHT.fromJson(Map<String, dynamic> jsondata) {
+    weight = double.parse(jsondata['weight'].toString());
+    writeDate = jsondata['writeDate'];
+  }
+}

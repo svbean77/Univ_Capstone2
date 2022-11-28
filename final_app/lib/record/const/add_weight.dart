@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../../screen/const/ip_address.dart';
 
 class AddWeight extends StatelessWidget {
   final loginID;
@@ -69,10 +73,10 @@ class AddWeight extends StatelessWidget {
                   '취소',
                   style: TextStyle(
                     color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),
@@ -83,29 +87,26 @@ class AddWeight extends StatelessWidget {
                   primary: PRIMARY_COLOR[grade],
                   elevation: 0,
                 ),
-                onPressed: () {
-                  /*
-                  int inputDate = int.parse(dateController.text.toString());
-                  int year = inputDate ~/ 10000;
-                  int month = (inputDate % 10000) ~/ 100;
-                  int day = inputDate % 100;
-                  DateTime date = DateTime(year, month, day);
-                  double weight =
-                      double.parse(weightController.text.toString());
-                   */
-                  /*
-                  insert: 해당 날짜에 체중 데이터 입력
-                   */
-                  Navigator.of(context).pop();
+                onPressed: () async {
+                  var url = Uri.http(IP_ADDRESS,
+                      '/test_add_weight_record.php', {'q': '{http}'});
+                  var response = await http.post(url, body: <String, String>{
+                    "nickname": loginID.toString(),
+                    "writeDate": dateController.text.toString(),
+                    "weight": weightController.text.toString(),
+                  });
+                  var jsondata =
+                      jsonDecode(json.decode(json.encode(response.body)));
+                  if (jsondata == "Success") Navigator.of(context).pop();
                 },
                 child: Text(
                   '확인',
                   style: TextStyle(
                     color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),

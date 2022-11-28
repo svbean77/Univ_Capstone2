@@ -1,9 +1,12 @@
-import 'dart:math';
-
+import 'dart:async';
+import 'dart:convert';
 import 'package:final_app/record/const/add_weight.dart';
+import 'package:final_app/screen/const/db_class.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:http/http.dart' as http;
+import '../screen/const/ip_address.dart';
 
 class RecordGraph extends StatefulWidget {
   final loginID;
@@ -19,109 +22,150 @@ class RecordGraph extends StatefulWidget {
 }
 
 class _RecordGraphState extends State<RecordGraph> {
+  StreamController controller = StreamController();
+  Timer? _timer;
+
+  Future getDatas() async {
+    var url =
+        Uri.http(IP_ADDRESS, '/test_select_weight_record.php', {'q': '{http}'});
+    var response = await http.post(url, body: <String, String>{
+      "nickname": widget.loginID.toString(),
+    });
+    var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+    WEIGHT data = WEIGHT.fromJson(jsondata);
+
+    controller.add(data);
+  }
+
+  @override
+  void initState() {
+    getDatas();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) => getDatas());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (_timer!.isActive) _timer!.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 체중 기록
-     */
-    List<int> recordDate = [20220901, 20220905, 20220908, 20220909, 20220910];
-    List<double> weight = [45.5, 50.7, 47.3, 57.9, 55.5];
-    List<WeightData> data = [];
-
-    for (int i = 0; i < recordDate.length; i++) {
-      int year = recordDate[i] ~/ 10000;
-      int month = (recordDate[i] % 10000) ~/ 100;
-      int day = recordDate[i] % 100;
-      data.add(
-        WeightData(DateTime(year, month, day), weight[i]),
-      );
-    }
-
-    int dif = data[data.length - 1].date.difference(data[0].date).inDays;
-
     return Padding(
       padding: EdgeInsets.all(16.0),
-      child: ListView(
-        children: [
-          Text('체중', style: TextStyle(fontSize: 25.0)),
-          SizedBox(height: 16.0),
-          SingleChildScrollView(
-            reverse: true,
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              height: 250.0,
-              width: dif * 40 < MediaQuery.of(context).size.width
-                  ? MediaQuery.of(context).size.width
-                  : MediaQuery.of(context).size.width + dif * 40,
-              color: PRIMARY_COLOR[widget.grade].withOpacity(0.03),
-              child: SfCartesianChart(
-                primaryXAxis: DateTimeAxis(
-                  intervalType: DateTimeIntervalType.days,
-                  interval: 1,
-                  rangePadding: ChartRangePadding.additional,
-                ),
-                primaryYAxis: NumericAxis(
-                  minimum: weight.reduce(min) - 5,
-                  maximum: weight.reduce(max) + 5,
-                  isVisible: false,
-                ),
-                series: <ChartSeries>[
-                  LineSeries<WeightData, DateTime>(
-                    markerSettings: MarkerSettings(
-                        isVisible: true,
-                        height: 8.0,
-                        width: 8.0,
-                        color: Colors.white,
-                        borderColor: widget.grade == 0
-                            ? Colors.grey.withOpacity(0.1)
-                            : widget.grade == 2
-                            ? Colors.yellow[600]
-                            : widget.grade == 8
-                            ? Colors.lightGreen[200]
-                            : PRIMARY_COLOR[widget.grade],
-                        shape: DataMarkerType.circle),
-                    color: widget.grade == 0
-                        ? Colors.grey.withOpacity(0.1)
-                        : widget.grade == 2
-                        ? Colors.yellow[600]
-                        : widget.grade == 8
-                        ? Colors.lightGreen[200]
-                        : PRIMARY_COLOR[widget.grade],
-                    dataSource: data,
-                    xValueMapper: (WeightData info, _) => info.date,
-                    yValueMapper: (WeightData info, _) => info.weight,
-                    dataLabelSettings: DataLabelSettings(
-                      isVisible: true,
-                      textStyle: TextStyle(color: Colors.grey[700]),
+      child: StreamBuilder(
+          stream: controller.stream,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            int dif = 0;
+            List<WeightData> record_date = [];
+            double minWeight = 100000;
+            double maxWeight = -1;
+            if (snapshot.hasData) {
+              for (int i = 0; i < snapshot.data.result!.length; i++) {
+                int today = int.parse(snapshot.data.result![i].writeDate);
+                int year = today ~/ 10000;
+                int month = (today % 10000) ~/ 100;
+                int day = today % 100;
+
+                if (minWeight > snapshot.data.result![i].weight)
+                  minWeight = snapshot.data.result![i].weight;
+                if (maxWeight < snapshot.data.result![i].weight)
+                  maxWeight = snapshot.data.result![i].weight;
+
+                record_date.add(WeightData(DateTime(year, month, day),
+                    double.parse(snapshot.data.result![i].weight.toString())));
+              }
+
+              dif = record_date[record_date.length - 1]
+                  .date
+                  .difference(record_date[0].date)
+                  .inDays;
+            }
+
+            return ListView(
+              children: [
+                Text('체중', style: TextStyle(fontSize: 25.0)),
+                SizedBox(height: 16.0),
+                if (snapshot.hasData)
+                  SingleChildScrollView(
+                    reverse: true,
+                    scrollDirection: Axis.horizontal,
+                    child: Container(
+                      height: 250.0,
+                      width: dif * 40 < MediaQuery.of(context).size.width
+                          ? MediaQuery.of(context).size.width
+                          : MediaQuery.of(context).size.width + dif * 40,
+                      color: PRIMARY_COLOR[widget.grade].withOpacity(0.03),
+                      child: SfCartesianChart(
+                        primaryXAxis: DateTimeAxis(
+                          intervalType: DateTimeIntervalType.days,
+                          interval: 1,
+                          rangePadding: ChartRangePadding.additional,
+                        ),
+                        primaryYAxis: NumericAxis(
+                          minimum: minWeight - 5,
+                          maximum: maxWeight + 5,
+                          isVisible: false,
+                        ),
+                        series: <ChartSeries>[
+                          LineSeries<WeightData, DateTime>(
+                            markerSettings: MarkerSettings(
+                                isVisible: true,
+                                height: 8.0,
+                                width: 8.0,
+                                color: Colors.white,
+                                borderColor: widget.grade == 0
+                                    ? Colors.grey.withOpacity(0.1)
+                                    : widget.grade == 2
+                                        ? Colors.yellow[600]
+                                        : widget.grade == 8
+                                            ? Colors.lightGreen[200]
+                                            : PRIMARY_COLOR[widget.grade],
+                                shape: DataMarkerType.circle),
+                            color: widget.grade == 0
+                                ? Colors.grey.withOpacity(0.1)
+                                : widget.grade == 2
+                                    ? Colors.yellow[600]
+                                    : widget.grade == 8
+                                        ? Colors.lightGreen[200]
+                                        : PRIMARY_COLOR[widget.grade],
+                            dataSource: record_date,
+                            xValueMapper: (WeightData info, _) => info.date,
+                            yValueMapper: (WeightData info, _) => info.weight,
+                            dataLabelSettings: DataLabelSettings(
+                              isVisible: true,
+                              textStyle: TextStyle(color: Colors.grey[700]),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      content: AddWeight(
-                        loginID: widget.loginID,
-                        grade: widget.grade,
-                      ),
-                      scrollable: true,
-                    );
-                  },
-                );
-              },
-              child: Text('체중입력', style: TextStyle(color: Colors.black)),
-            ),
-          )
-        ],
-      ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: true,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: AddWeight(
+                              loginID: widget.loginID,
+                              grade: widget.grade,
+                            ),
+                            scrollable: true,
+                          );
+                        },
+                      );
+                    },
+                    child: Text('체중입력', style: TextStyle(color: Colors.black)),
+                  ),
+                )
+              ],
+            );
+          }),
     );
   }
 }
