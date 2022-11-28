@@ -50,9 +50,11 @@ class _SelectRoutineState extends State<SelectRoutine> {
                 children: [
                   for (int i = 0; i < timeLst.length; i++)
                     SelectRoutineContainer(
-                        title: timeLst[i],
-                        grade: widget.grade,
-                        loginID: widget.loginID)
+                      title: timeLst[i],
+                      grade: widget.grade,
+                      loginID: widget.loginID,
+                      time: timeLst[i].replaceAll("분", ""),
+                    ),
                 ],
               ),
             ),
@@ -70,17 +72,23 @@ class _SelectRoutineState extends State<SelectRoutine> {
                     Column(
                       children: [
                         SelectRoutineContainer(
-                            title: muscleLst[i * 3],
-                            grade: widget.grade,
-                            loginID: widget.loginID),
+                          title: muscleLst[i * 3],
+                          grade: widget.grade,
+                          loginID: widget.loginID,
+                          time: 0,
+                        ),
                         SelectRoutineContainer(
-                            title: muscleLst[i * 3 + 1],
-                            grade: widget.grade,
-                            loginID: widget.loginID),
+                          title: muscleLst[i * 3 + 1],
+                          grade: widget.grade,
+                          loginID: widget.loginID,
+                          time: 0,
+                        ),
                         SelectRoutineContainer(
-                            title: muscleLst[i * 3 + 2],
-                            grade: widget.grade,
-                            loginID: widget.loginID),
+                          title: muscleLst[i * 3 + 2],
+                          grade: widget.grade,
+                          loginID: widget.loginID,
+                          time: 0,
+                        ),
                       ],
                     )
                 ],
@@ -98,9 +106,11 @@ class _SelectRoutineState extends State<SelectRoutine> {
                 children: [
                   for (int i = 0; i < divisionLst.length; i++)
                     SelectRoutineContainer(
-                        title: divisionLst[i],
-                        grade: widget.grade,
-                        loginID: widget.loginID)
+                      title: divisionLst[i],
+                      grade: widget.grade,
+                      loginID: widget.loginID,
+                      time: 0,
+                    )
                 ],
               ),
             ),

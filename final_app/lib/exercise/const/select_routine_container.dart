@@ -1,15 +1,22 @@
+import 'dart:convert';
+
 import 'package:final_app/exercise/list_routine.dart';
+import 'package:final_app/screen/const/db_class.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../../screen/const/ip_address.dart';
 
 class SelectRoutineContainer extends StatelessWidget {
   final loginID;
   final title;
   final grade;
+  final time;
   const SelectRoutineContainer({
     required this.loginID,
     required this.grade,
     required this.title,
+    required this.time,
     Key? key,
   }) : super(key: key);
 
@@ -32,15 +39,20 @@ class SelectRoutineContainer extends StatelessWidget {
             ),
           ),
         ),
-        onTap: () {
-          /*
-          select: 선택한 목적에 대한 루틴을 select
-          json으로 전달
-           */
+        onTap: () async {
+          var url =
+              Uri.http(IP_ADDRESS, '/test_select_routine.php', {'q': '{http}'});
+          var response = await http.post(url, body: <String, String>{
+            "part": title.toString(),
+            "time": time.toString(),
+          });
+
+          var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+          ROUTINE_LIST data = ROUTINE_LIST.fromJson(jsondata);
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  ListRoutine(title: title, loginID: loginID, grade: grade),
+              builder: (BuildContext context) => ListRoutine(
+                  title: title, loginID: loginID, grade: grade, data: data),
             ),
           );
         },

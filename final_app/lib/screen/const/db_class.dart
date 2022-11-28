@@ -91,12 +91,12 @@ class classEXERCISE_GUIDE {
 
   classEXERCISE_GUIDE(
       {this.muscle,
-        this.equipment,
-        this.difficulty,
-        this.exercise,
-        this.image1,
-        this.image2,
-        this.step});
+      this.equipment,
+      this.difficulty,
+      this.exercise,
+      this.image1,
+      this.image2,
+      this.step});
 
   classEXERCISE_GUIDE.fromJson(Map<String, dynamic> jsondata) {
     muscle = jsondata['muscle'];
@@ -138,3 +138,76 @@ class classALL_EXERCISE {
   }
 }
 
+/*
+select routine list
+ */
+class ROUTINE_LIST {
+  List<classROUTINE_LIST>? result;
+
+  ROUTINE_LIST({this.result});
+
+  ROUTINE_LIST.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classROUTINE_LIST>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classROUTINE_LIST.fromJson(v));
+      });
+    }
+  }
+}
+
+class classROUTINE_LIST {
+  String? routine;
+  int? time;
+
+  classROUTINE_LIST({this.routine, this.time});
+
+  classROUTINE_LIST.fromJson(Map<String, dynamic> jsondata) {
+    routine = jsondata['routine'];
+    time = jsondata['time'];
+  }
+}
+
+/*
+select routine detail
+ */
+class ROUTINE_DETAIL {
+  List<classROUTINE_DETAIL>? result;
+
+  ROUTINE_DETAIL({this.result});
+
+  ROUTINE_DETAIL.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classROUTINE_DETAIL>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classROUTINE_DETAIL.fromJson(v));
+      });
+    }
+  }
+}
+
+class classROUTINE_DETAIL {
+  String? routine;
+  String? exercise;
+  String? num;
+  String? image1;
+  String? image2;
+  String? step;
+
+  classROUTINE_DETAIL(
+      {this.routine,
+      this.exercise,
+      this.num,
+      this.image1,
+      this.image2,
+      this.step});
+
+  classROUTINE_DETAIL.fromJson(Map<String, dynamic> jsondata) {
+    routine = jsondata['routine'];
+    exercise = jsondata['exercise'];
+    num = jsondata['num'];
+    image1 = jsondata['image1'];
+    image2 = jsondata['image2'];
+    step = jsondata['step'];
+  }
+}

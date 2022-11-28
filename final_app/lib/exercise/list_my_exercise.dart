@@ -246,13 +246,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) => RoutineGuide(
-                      routineName: widget.routineName,
-                      exerciseName: exerciseName[0],
-                      exerciseStep: exerciseStep,
-                      exerciseImage1: exerciseImage1,
-                      exerciseImage2: exerciseImage2,
-                      numberUnit: numberUnit(isTime[0]),
-                      number: number[0],
+                      data: null,
                       loginID: widget.loginID,
                       grade: widget.grade,
                     ),

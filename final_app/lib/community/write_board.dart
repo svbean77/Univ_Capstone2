@@ -12,6 +12,9 @@ import '../screen/const/db_class.dart';
 import '../screen/const/ip_address.dart';
 
 class WriteBoard extends StatefulWidget {
+  /*
+  여기 사진도 보내서 가장 처음에 file에 추가해야겠다 (수정도 있으니까)
+   */
   final loginID;
   String content;
   String title;
@@ -89,7 +92,7 @@ class _WriteBoardState extends State<WriteBoard> {
                                 ),
                                 maxLines: 15,
                                 initialValue: widget.title ?? '',
-                                onSaved: (String? val) {
+                                onChanged: (String? val) {
                                   widget.title = val!;
                                 },
                               ),
@@ -123,7 +126,7 @@ class _WriteBoardState extends State<WriteBoard> {
                           ),
                           maxLines: 15,
                           initialValue: widget.content ?? '',
-                          onSaved: (String? val) {
+                          onChanged: (String? val) {
                             widget.content = val!;
                           },
                         ),

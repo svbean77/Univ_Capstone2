@@ -6,28 +6,13 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class RoutineGuide extends StatefulWidget {
-  /*
-  class or 리스트 형태로 받았다고 가정
-   */
   final loginID;
-  final routineName;
-  final exerciseName;
-  final exerciseImage1;
-  final exerciseImage2;
-  final exerciseStep;
-  final number;
-  final numberUnit;
+  final data;
   final grade;
 
   const RoutineGuide({
     required this.loginID,
-    required this.routineName,
-    required this.exerciseName,
-    required this.exerciseStep,
-    required this.exerciseImage1,
-    required this.exerciseImage2,
-    required this.number,
-    required this.numberUnit,
+    required this.data,
     required this.grade,
     Key? key,
   }) : super(key: key);
@@ -75,23 +60,19 @@ class _RoutineGuideState extends State<RoutineGuide> {
         child: ListView(
           children: [
             Text(
-              '${widget.routineName}',
+              '${widget.data[0].routine}',
               style: TextStyle(
                 fontSize: 25.0,
               ),
             ),
             SizedBox(height: 16.0),
-            for (int i = 0; i < 3; i++)
-            /*
-              클래스 or 리스트로 온 값을 item[i]으로 전달
-               */
+            for (int i = 0; i < widget.data.length; i++)
               RoutineCard(
-                exerciseName: widget.exerciseName,
-                number: widget.number,
-                exerciseImage1: widget.exerciseImage1,
-                exerciseImage2: widget.exerciseImage2,
-                exerciseStep: widget.exerciseStep,
-                numberUnit: widget.numberUnit,
+                exerciseName: widget.data[i].exercise,
+                number: widget.data[i].num,
+                exerciseImage1: widget.data[i].image1,
+                exerciseImage2: widget.data[i].image2,
+                exerciseStep: widget.data[i].step,
                 idx: i + 1,
               ),
           ],

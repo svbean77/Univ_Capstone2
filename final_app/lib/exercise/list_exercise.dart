@@ -5,15 +5,12 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 
 class ListExercise extends StatefulWidget {
-  /*
-  class 형태로 불러왔다고 가정!
-   */
   final loginID;
-  final routineName;
+  final data;
   final grade;
   const ListExercise({
     required this.loginID,
-    required this.routineName,
+    required this.data,
     required this.grade,
     Key? key,
   }) : super(key: key);
@@ -25,16 +22,6 @@ class ListExercise extends StatefulWidget {
 class _ListExerciseState extends State<ListExercise> {
   @override
   Widget build(BuildContext context) {
-    List<String> exerciseName = ['운동1', '운동2', '운동3', '운동4'];
-    List<int> number = [15, 10, 12, 20];
-    List<String> isTime = ['f', 'f', 'f', 't'];
-
-    String numberUnit(String boolean) {
-      String unit = (boolean == 't') ? '초' : '회';
-
-      return unit;
-    }
-
     return Scaffold(
       drawer: MyDrawer(
         loginID: widget.loginID,
@@ -49,11 +36,11 @@ class _ListExerciseState extends State<ListExercise> {
               child: ListView(
                 children: [
                   Text(
-                    widget.routineName,
+                    widget.data[0].routine,
                     style: TextStyle(fontSize: 25.0),
                   ),
                   SizedBox(height: 16.0),
-                  for (int i = 0; i < exerciseName.length; i++)
+                  for (int i = 0; i < widget.data.length; i++)
                     Padding(
                       padding: EdgeInsets.only(bottom: 8.0),
                       child: Container(
@@ -70,11 +57,10 @@ class _ListExerciseState extends State<ListExercise> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              exerciseName[i],
+                              widget.data[i].exercise,
                               style: TextStyle(fontSize: 20.0),
                             ),
-                            Text(
-                                '${number[i].toString()}${numberUnit(isTime[i])}'),
+                            Text(widget.data[i].num),
                           ],
                         ),
                       ),
@@ -88,25 +74,10 @@ class _ListExerciseState extends State<ListExercise> {
                 elevation: 0,
               ),
               onPressed: () {
-                /*
-                class 형태로 전달
-                 */
-                String exerciseStep = '운동방법';
-                String exerciseImage1 =
-                    "https://www.musclewiki.com/media/uploads/male-dumbbell-hammercurl-front.gif";
-                String exerciseImage2 =
-                    "https://www.musclewiki.com/media/uploads/male-dumbbell-hammercurl-front.gif";
-
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) => RoutineGuide(
-                      routineName: widget.routineName,
-                      exerciseName: exerciseName[0],
-                      exerciseStep: exerciseStep,
-                      exerciseImage1: exerciseImage1,
-                      exerciseImage2: exerciseImage2,
-                      numberUnit: numberUnit(isTime[0]),
-                      number: number[0],
+                      data: widget.data,
                       loginID: widget.loginID,
                       grade: widget.grade,
                     ),
@@ -117,10 +88,10 @@ class _ListExerciseState extends State<ListExercise> {
                 '운동시작',
                 style: TextStyle(
                     color: (widget.grade == 0 ||
-                        widget.grade == 1 ||
-                        widget.grade == 2 ||
-                        widget.grade == 4 ||
-                        widget.grade == 8)
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),
