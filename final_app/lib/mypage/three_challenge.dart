@@ -19,56 +19,51 @@ class ThreeChallenge extends StatefulWidget {
 class _ThreeChallengeState extends State<ThreeChallenge> {
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 선택 테마
-     */
     List<String> three = ['데드리프트', '벤치프레스', '스쿼트'];
-    int grade = 5;
 
-    return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            MyRanking(nickname: widget.loginID, loginID: widget.loginID),
-            SizedBox(height: 8.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (int i = 0; i < 3; i++)
-                  Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  ChallengeMain(
-                                      exercise: three[i],
-                                      loginID: widget.loginID),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(8.0),
-                          alignment: Alignment.centerLeft,
-                          height: 100.0,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: PRIMARY_COLOR[grade],
+    return Column(
+      children: [
+        MyRanking(nickname: widget.loginID, loginID: widget.loginID),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (int i = 0; i < 3; i++)
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => ChallengeMain(
+                              exercise: three[i],
+                              loginID: widget.loginID,
+                              grade: widget.grade,
                             ),
                           ),
-                          child: Text(three[i],
-                              style: TextStyle(fontSize: 20.0)),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(8.0),
+                        alignment: Alignment.centerLeft,
+                        height: 100.0,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: PRIMARY_COLOR[widget.grade],
+                          ),
                         ),
+                        child: Text(three[i], style: TextStyle(fontSize: 20.0)),
                       ),
-                      SizedBox(height: 8.0),
-                    ],
-                  ),
-              ],
-            )
-          ],
-        ),
+                    ),
+                    SizedBox(height: 8.0),
+                  ],
+                ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

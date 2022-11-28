@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 
 class SelectMyRoutine extends StatefulWidget {
   final loginID;
+  final grade;
   const SelectMyRoutine({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -20,12 +22,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
   @override
   Widget build(BuildContext context) {
     /*
-    select: 사용자 테마 선택
-     */
-    /*
     select: loginID를 이용해 내루틴 select -> class
      */
-    int grade = 5;
     List<String> routineName = [
       '루틴1',
       '루틴2이름아주길고매우길고진짜진짜길어서한100줄은될것같은데그렇게까지쓰기는힘드니까어느정도만해보는루틴이름',
@@ -35,16 +33,16 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
     List<int> routineNum = [1, 2, 3, 4];
 
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
+      appBar: MyAppBar(grade: widget.grade),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         child: Icon(Icons.add,
-            color: (grade == 0 ||
-                    grade == 1 ||
-                    grade == 2 ||
-                    grade == 4 ||
-                    grade == 8)
+            color: (widget.grade == 0 ||
+                widget.grade == 1 ||
+                widget.grade == 2 ||
+                widget.grade == 4 ||
+                widget.grade == 8)
                 ? Colors.black
                 : Colors.white),
         onPressed: () {
@@ -53,13 +51,14 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
             barrierDismissible: true,
             builder: (BuildContext context) {
               return AlertDialog(
-                content: AddRoutine(loginID: widget.loginID),
+                content:
+                AddRoutine(loginID: widget.loginID, grade: widget.grade),
                 scrollable: true,
               );
             },
           );
         },
-        backgroundColor: PRIMARY_COLOR[grade],
+        backgroundColor: PRIMARY_COLOR[widget.grade],
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -95,16 +94,16 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                   child: Text(
                                     '확인',
                                     style: TextStyle(
-                                        color: (grade == 0 ||
-                                                grade == 1 ||
-                                                grade == 2 ||
-                                                grade == 4 ||
-                                                grade == 8)
+                                        color: (widget.grade == 0 ||
+                                            widget.grade == 1 ||
+                                            widget.grade == 2 ||
+                                            widget.grade == 4 ||
+                                            widget.grade == 8)
                                             ? Colors.black
                                             : Colors.white),
                                   ),
                                   style: ElevatedButton.styleFrom(
-                                    primary: PRIMARY_COLOR[grade],
+                                    primary: PRIMARY_COLOR[widget.grade],
                                   ),
                                 ),
                               ],
@@ -134,8 +133,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                    */
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          SelectMyRoutine(loginID: widget.loginID),
+                      builder: (BuildContext context) => SelectMyRoutine(
+                          loginID: widget.loginID, grade: widget.grade),
                     ),
                   );
                 },
@@ -145,11 +144,11 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                     child: Container(
                       width: double.infinity,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+                      EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
                       alignment: Alignment.centerLeft,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: PRIMARY_COLOR[grade],
+                          color: PRIMARY_COLOR[widget.grade],
                         ),
                       ),
                       child: IntrinsicHeight(
@@ -171,6 +170,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                         builder: (BuildContext context) => ListMyExercise(
                           routineName: routineName[i],
                           loginID: widget.loginID,
+                          grade: widget.grade,
                         ),
                       ),
                     );

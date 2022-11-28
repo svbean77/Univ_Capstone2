@@ -59,8 +59,8 @@ class _ExerciseMainState extends State<ExerciseMain>
           child: TabBarView(
             controller: _tabController,
             children: [
-              BeginnerMain(loginID: widget.loginID),
-              MasterMain(loginID: widget.loginID),
+              BeginnerMain(loginID: widget.loginID, grade: widget.grade),
+              MasterMain(loginID: widget.loginID, grade: widget.grade),
             ],
           ),
         ),

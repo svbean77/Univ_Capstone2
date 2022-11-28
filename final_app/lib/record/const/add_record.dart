@@ -57,10 +57,10 @@ class AddRecord extends StatelessWidget {
                   '취소',
                   style: TextStyle(
                     color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),
@@ -85,10 +85,10 @@ class AddRecord extends StatelessWidget {
                   '확인',
                   style: TextStyle(
                     color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),

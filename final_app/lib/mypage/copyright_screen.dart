@@ -13,11 +13,11 @@ class CopyrightScreen extends StatelessWidget {
     required this.grade,
     this.muscleUrl = 'https://musclewiki.com/',
     this.armUrl =
-        'https://www.flaticon.com/kr/free-icon/exercise_863646?term=%EC%9A%B4%EB%8F%99&page=1&position=32&page=1&position=32&related_id=863646&origin=search',
+    'https://www.flaticon.com/kr/free-icon/exercise_863646?term=%EC%9A%B4%EB%8F%99&page=1&position=32&page=1&position=32&related_id=863646&origin=search',
     this.appleUrl =
-        'https://www.flaticon.com/kr/free-icon/apple_1202063?term=%EC%82%AC%EA%B3%BC&page=1&position=11&page=1&position=11&related_id=1202063&origin=search',
+    'https://www.flaticon.com/kr/free-icon/apple_1202063?term=%EC%82%AC%EA%B3%BC&page=1&position=11&page=1&position=11&related_id=1202063&origin=search',
     this.ratingUrl =
-        'https://namu.wiki/w/%EB%A6%AC%EA%B7%B8%20%EC%98%A4%EB%B8%8C%20%EB%A0%88%EC%A0%84%EB%93%9C/%EB%9E%AD%ED%81%AC%20%EA%B2%8C%EC%9E%84#s-7',
+    'https://namu.wiki/w/%EB%A6%AC%EA%B7%B8%20%EC%98%A4%EB%B8%8C%20%EB%A0%88%EC%A0%84%EB%93%9C/%EB%9E%AD%ED%81%AC%20%EA%B2%8C%EC%9E%84#s-7',
     Key? key,
   }) : super(key: key);
 

@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 
 class CommunityMain extends StatefulWidget {
   final loginID;
+  final grade;
   const CommunityMain({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -28,18 +30,9 @@ class _CommunityMainState extends State<CommunityMain>
 
   @override
   Widget build(BuildContext context) {
-    /*
-      select: 사용자의 테마 선택 가져오기
-       */
-    /*
-    (보류)select: 각 게시글 데이터의 json을 여기서 구해 보내도 되려나???
-    이건 일단 보류.. 각 게시판에서 구하는거 못하겠으면 이거로 해보기
-     */
-    int grade = 5;
-
     return Scaffold(
-      appBar: MyAppBar(grade: grade),
-      drawer: MyDrawer(loginID: widget.loginID),
+      appBar: MyAppBar(grade: widget.grade),
+      drawer: MyDrawer(loginID: widget.loginID,grade: widget.grade),
       body: Column(
         children: [
           Container(
@@ -58,9 +51,9 @@ class _CommunityMainState extends State<CommunityMain>
                 ),
               ],
               indicator: BoxDecoration(
-                color: (grade == 0 || grade == 7)
+                color: (widget.grade == 0 || widget.grade == 7)
                     ? Colors.black.withOpacity(0.1)
-                    : PRIMARY_COLOR[grade].withOpacity(0.3),
+                    : PRIMARY_COLOR[widget.grade].withOpacity(0.3),
               ),
               labelColor: Colors.black,
               unselectedLabelColor: Colors.black,
@@ -71,8 +64,8 @@ class _CommunityMainState extends State<CommunityMain>
             child: TabBarView(
               controller: _tabController,
               children: [
-                FreeBoard(loginID: widget.loginID),
-                QnABoard(loginID: widget.loginID),
+                FreeBoard(loginID: widget.loginID, grade: widget.grade),
+                QnABoard(loginID: widget.loginID, grade: widget.grade),
               ],
             ),
           ),

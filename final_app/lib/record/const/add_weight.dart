@@ -3,19 +3,17 @@ import 'package:flutter/material.dart';
 
 class AddWeight extends StatelessWidget {
   final loginID;
+  final grade;
   const AddWeight({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 선택 테마
-     */
     TextEditingController weightController = TextEditingController();
     TextEditingController dateController = TextEditingController();
-    int grade = 5;
 
     return Container(
       height: 180.0,
@@ -71,10 +69,10 @@ class AddWeight extends StatelessWidget {
                   '취소',
                   style: TextStyle(
                     color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),
@@ -104,10 +102,10 @@ class AddWeight extends StatelessWidget {
                   '확인',
                   style: TextStyle(
                     color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),

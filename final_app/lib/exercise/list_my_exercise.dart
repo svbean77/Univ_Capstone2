@@ -15,9 +15,11 @@ class ListMyExercise extends StatefulWidget {
    */
   final loginID;
   final String routineName;
+  final grade;
   const ListMyExercise({
     required this.loginID,
     required this.routineName,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -26,11 +28,19 @@ class ListMyExercise extends StatefulWidget {
 }
 
 class _ListMyExerciseState extends State<ListMyExercise> {
+  Future getTestJson() async {
+    var url = Uri.http(IP_ADDRESS, '/all_exercise.php', {'q': '{http}'});
+    for (int i = 1; i <= 15; i++) {
+      var response = await http.post(url, body: <String, String>{
+        "muscle": '이두'.toString(),
+      });
+      var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+      return jsondata;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 선택 테마
-     */
     List<String> exerciseName = [
       '바벨 프론트 스쿼트 바디빌딩',
       '덤벨 고블렛 불가리아 스플릿 스쿼트',
@@ -40,7 +50,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
     List<int> exerciseNum = [1, 2, 3, 4];
     List<int> number = [15, 10, 12, 20];
     List<String> isTime = ['f', 'f', 'f', 't'];
-    int grade = 5;
+
     Map<int, String> mapExNum = {
       1: "이두",
       2: "가슴",
@@ -68,16 +78,16 @@ class _ListMyExerciseState extends State<ListMyExercise> {
     print(tmpdata);
 
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
-      appBar: MyAppBar(grade: grade),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
+      appBar: MyAppBar(grade: widget.grade),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         child: Icon(Icons.add,
-            color: (grade == 0 ||
-                    grade == 1 ||
-                    grade == 2 ||
-                    grade == 4 ||
-                    grade == 8)
+            color: (widget.grade == 0 ||
+                widget.grade == 1 ||
+                widget.grade == 2 ||
+                widget.grade == 4 ||
+                widget.grade == 8)
                 ? Colors.black
                 : Colors.white),
         onPressed: () async {
@@ -96,15 +106,17 @@ class _ListMyExerciseState extends State<ListMyExercise> {
             builder: (BuildContext context) {
               return AlertDialog(
                 content: AddExercise(
-                    loginID: widget.loginID,
-                    jsonlst: jsonlst,
-                    routineName: widget.routineName),
+                  loginID: widget.loginID,
+                  jsonlst: jsonlst,
+                  routineName: widget.routineName,
+                  grade: widget.grade,
+                ),
                 scrollable: true,
               );
             },
           );
         },
-        backgroundColor: PRIMARY_COLOR[grade],
+        backgroundColor: PRIMARY_COLOR[widget.grade],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -132,7 +144,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                 height: 120.0,
                                 child: Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text('오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!',
                                         textAlign: TextAlign.center),
@@ -144,16 +156,16 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                       child: Text(
                                         '확인',
                                         style: TextStyle(
-                                            color: (grade == 0 ||
-                                                    grade == 1 ||
-                                                    grade == 2 ||
-                                                    grade == 4 ||
-                                                    grade == 8)
+                                            color: (widget.grade == 0 ||
+                                                widget.grade == 1 ||
+                                                widget.grade == 2 ||
+                                                widget.grade == 4 ||
+                                                widget.grade == 8)
                                                 ? Colors.black
                                                 : Colors.white),
                                       ),
                                       style: ElevatedButton.styleFrom(
-                                        primary: PRIMARY_COLOR[grade],
+                                        primary: PRIMARY_COLOR[widget.grade],
                                       ),
                                     ),
                                   ],
@@ -179,8 +191,10 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (BuildContext context) => ListMyExercise(
-                                loginID: widget.loginID,
-                                routineName: widget.routineName),
+                              loginID: widget.loginID,
+                              routineName: widget.routineName,
+                              grade: widget.grade,
+                            ),
                           ),
                         );
                       },
@@ -193,7 +207,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                           alignment: Alignment.centerLeft,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: PRIMARY_COLOR[grade],
+                              color: PRIMARY_COLOR[widget.grade],
                             ),
                           ),
                           child: Row(
@@ -216,7 +230,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
             SizedBox(height: 8.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: PRIMARY_COLOR[grade],
+                primary: PRIMARY_COLOR[widget.grade],
                 elevation: 0,
               ),
               onPressed: () {
@@ -232,25 +246,27 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) => RoutineGuide(
-                        routineName: widget.routineName,
-                        exerciseName: exerciseName[0],
-                        exerciseStep: exerciseStep,
-                        exerciseImage1: exerciseImage1,
-                        exerciseImage2: exerciseImage2,
-                        numberUnit: numberUnit(isTime[0]),
-                        number: number[0],
-                        loginID: widget.loginID),
+                      routineName: widget.routineName,
+                      exerciseName: exerciseName[0],
+                      exerciseStep: exerciseStep,
+                      exerciseImage1: exerciseImage1,
+                      exerciseImage2: exerciseImage2,
+                      numberUnit: numberUnit(isTime[0]),
+                      number: number[0],
+                      loginID: widget.loginID,
+                      grade: widget.grade,
+                    ),
                   ),
                 );
               },
               child: Text(
                 '운동시작',
                 style: TextStyle(
-                  color: (grade == 0 ||
-                          grade == 1 ||
-                          grade == 2 ||
-                          grade == 4 ||
-                          grade == 8)
+                  color: (widget.grade == 0 ||
+                      widget.grade == 1 ||
+                      widget.grade == 2 ||
+                      widget.grade == 4 ||
+                      widget.grade == 8)
                       ? Colors.black
                       : Colors.white,
                 ),
@@ -260,16 +276,5 @@ class _ListMyExerciseState extends State<ListMyExercise> {
         ),
       ),
     );
-  }
-
-  Future getTestJson() async {
-    var url = Uri.http(IP_ADDRESS, '/all_exercise.php', {'q': '{http}'});
-    for (int i = 1; i <= 15; i++) {
-      var response = await http.post(url, body: <String, String>{
-        "muscle": '이두'.toString(),
-      });
-      var jsondata = jsonDecode(json.decode(json.encode(response.body)));
-      return jsondata;
-    }
   }
 }

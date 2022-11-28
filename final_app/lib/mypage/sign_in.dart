@@ -26,7 +26,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(loginID: ""),
+      drawer: MyDrawer(loginID: "", grade: 0),
       appBar: MyAppBar(grade: 0),
       body: Container(
         height: double.infinity,
@@ -52,7 +52,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 Container(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.white,
@@ -76,7 +76,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 Container(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.white,
@@ -174,7 +174,7 @@ class _SignInState extends State<SignIn> {
   }
 
   Future login() async {
-    var url = Uri.http(IP_ADDRESS, '/login.php', {'q': '{http}'});
+    var url = Uri.http(IP_ADDRESS, '/test_login.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
       'username': _idController.text.toString(),
       'password': _pwController.text.toString(),
@@ -182,6 +182,7 @@ class _SignInState extends State<SignIn> {
     var data = json.decode(json.encode(response.body));
     if (data.toString() == "Success") {
       Fluttertoast.showToast(
+
         msg: '로그인 성공',
         backgroundColor: Colors.grey,
         textColor: Colors.black,
@@ -193,7 +194,7 @@ class _SignInState extends State<SignIn> {
           MaterialPageRoute(
             builder: (context) => HomeScreen(),
           ),
-          (route) => false);
+              (route) => false);
     } else {
       print(data.toString());
       Fluttertoast.showToast(

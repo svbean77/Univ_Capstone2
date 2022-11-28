@@ -3,20 +3,18 @@ import 'package:flutter/material.dart';
 
 class AllRanking extends StatelessWidget {
   final loginID;
+  final grade;
   const AllRanking({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     /*
-    select: 사용자 테마 선택
-     */
-    /*
     select: 모든 사용자 정보
      */
-    int grade = 5;
     List<String> nickname = [
       '유저1',
       '유저2',

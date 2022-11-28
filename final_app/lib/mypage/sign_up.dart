@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(loginID: ""),
+      drawer: MyDrawer(loginID: "", grade: 0),
       appBar: MyAppBar(grade: 0),
       body: Container(
         height: double.infinity,
@@ -67,7 +67,7 @@ class _SignUpState extends State<SignUp> {
                           controller: _idController,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
+                            EdgeInsets.symmetric(horizontal: 10.0),
                           ),
                         ),
                       ),
@@ -133,7 +133,7 @@ class _SignUpState extends State<SignUp> {
                           controller: _nicknameController,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
+                            EdgeInsets.symmetric(horizontal: 10.0),
                           ),
                         ),
                       ),
@@ -159,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                           controller: _userageController,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
+                            EdgeInsets.symmetric(horizontal: 10.0),
                           ),
                           keyboardType: TextInputType.number,
                         ),
@@ -259,7 +259,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   Future register() async {
-    var url = Uri.http(IP_ADDRESS, '/register.php', {'q': '{http}'});
+    var url = Uri.http(IP_ADDRESS, '/test_register.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
       "username": _idController.text.toString(),
       "password": _pwController.text.toString(),
@@ -290,10 +290,6 @@ class _SignUpState extends State<SignUp> {
         msg: '회원가입이 완료되었습니다.',
         toastLength: Toast.LENGTH_SHORT,
       );
-      /*
-      insert: 사용자 3대 정보
-      insert: 사용자 선택 테마
-       */
       Navigator.push(
         context,
         MaterialPageRoute(

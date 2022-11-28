@@ -6,8 +6,10 @@ import 'package:table_calendar/table_calendar.dart';
 
 class RecordCalendar extends StatefulWidget {
   final loginID;
+  final grade;
   const RecordCalendar({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -22,20 +24,22 @@ class _RecordCalendarState extends State<RecordCalendar> {
   @override
   Widget build(BuildContext context) {
     /*
-    select: 사용자 선택 테마
-     */
-    /*
     select: 해당 날짜의 운동 기록
     (이거는 그냥 다 불러와서 해당 날짜의 기록들만 따로 list로 만들까..)
     (달력이 class로 빠져서 다 불러와 따로 만드는 게 더 좋을 것 같다)
      */
-    int grade = 5;
-    List<String> contents = ['내용1\n엄ㅊ청\n\n\n\n길어\n짱', '내용2', '내용3', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'];
+
+    List<String> contents = [
+      '내용1\n엄ㅊ청\n\n\n\n길어\n짱',
+      '내용2',
+      '내용3',
+      'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    ];
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        backgroundColor: PRIMARY_COLOR[grade],
+        backgroundColor: PRIMARY_COLOR[widget.grade],
         onPressed: () {
           showDialog(
             context: context,
@@ -43,7 +47,7 @@ class _RecordCalendarState extends State<RecordCalendar> {
             builder: (BuildContext context) {
               return AlertDialog(
                 content: AddRecord(
-                    grade: grade,
+                    grade: widget.grade,
                     selectedDate: selectedDay,
                     loginID: widget.loginID),
                 scrollable: true,
@@ -52,11 +56,11 @@ class _RecordCalendarState extends State<RecordCalendar> {
           );
         },
         child: Icon(Icons.add,
-            color: (grade == 0 ||
-                    grade == 1 ||
-                    grade == 2 ||
-                    grade == 4 ||
-                    grade == 8)
+            color: (widget.grade == 0 ||
+                widget.grade == 1 ||
+                widget.grade == 2 ||
+                widget.grade == 4 ||
+                widget.grade == 8)
                 ? Colors.black
                 : Colors.white),
       ),
@@ -64,7 +68,7 @@ class _RecordCalendarState extends State<RecordCalendar> {
         children: [
           Calendar(
             selectedDay: selectedDay,
-            grade: grade,
+            grade: widget.grade,
             focusedDay: focusedDay,
             onDaySelected: onDaySelected,
           ),
@@ -72,29 +76,29 @@ class _RecordCalendarState extends State<RecordCalendar> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             height: 30.0,
-            color: PRIMARY_COLOR[grade],
+            color: PRIMARY_COLOR[widget.grade],
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
                   style: TextStyle(
-                      color: (grade == 0 ||
-                              grade == 1 ||
-                              grade == 2 ||
-                              grade == 4 ||
-                              grade == 8)
+                      color: (widget.grade == 0 ||
+                          widget.grade == 1 ||
+                          widget.grade == 2 ||
+                          widget.grade == 4 ||
+                          widget.grade == 8)
                           ? Colors.black
                           : Colors.white),
                 ),
                 Text(
                   '${contents.length}개',
                   style: TextStyle(
-                      color: (grade == 0 ||
-                              grade == 1 ||
-                              grade == 2 ||
-                              grade == 4 ||
-                              grade == 8)
+                      color: (widget.grade == 0 ||
+                          widget.grade == 1 ||
+                          widget.grade == 2 ||
+                          widget.grade == 4 ||
+                          widget.grade == 8)
                           ? Colors.black
                           : Colors.white),
                 ),
@@ -105,7 +109,7 @@ class _RecordCalendarState extends State<RecordCalendar> {
           for (int i = 0; i < contents.length; i++)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: RecordCard(grade: grade, content: contents[i]),
+              child: RecordCard(grade: widget.grade, content: contents[i]),
             )
         ],
       ),

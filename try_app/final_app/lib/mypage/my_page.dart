@@ -7,6 +7,7 @@ import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../screen/const/db_class.dart';
 import '../screen/const/grade_colors.dart';
 import '../screen/const/ip_address.dart';
 import '../screen/const/storage_box.dart';
@@ -86,9 +87,6 @@ class _MyPageState extends State<MyPage> {
                 SizedBox(),
                 ElevatedButton(
                   onPressed: () async {
-                    /*
-                    update: apptheme 정보를 수정하는 코드
-                     */
                     var url = Uri.http(
                         IP_ADDRESS, '/test_change_theme.php', {'q': '{http}'});
                     var response = await http.post(url, body: <String, String>{
@@ -125,14 +123,20 @@ class _MyPageState extends State<MyPage> {
             ),
             SizedBox(height: 16.0),
             GestureDetector(
-              onTap: () {
-                /*
-                닉네임만 보내면 됨
-                 */
+              onTap: () async {
+                var url = Uri.http(
+                    IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
+                var response = await http.post(url, body: <String, String>{
+                  "username": widget.loginID.toString(),
+                  "mode": "Nickname".toString(),
+                });
+                var jsondata =
+                    jsonDecode(json.decode(json.encode(response.body)));
+                USERDATA data = USERDATA.fromJson(jsondata);
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) => EditMyInfo(
-                        loginID: widget.loginID, grade: widget.grade),
+                        loginID: data.result![0].username, grade: widget.grade),
                   ),
                 );
               },

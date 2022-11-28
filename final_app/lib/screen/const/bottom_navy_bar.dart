@@ -107,8 +107,8 @@ class _ItemWidget extends StatelessWidget {
           color: !isSelected
               ? backgroundColor
               : (grade == 0 || grade == 7)
-                  ? Colors.black.withOpacity(0.1)
-                  : PRIMARY_COLOR[grade].withOpacity(0.3),
+              ? Colors.black.withOpacity(0.1)
+              : PRIMARY_COLOR[grade].withOpacity(0.3),
           borderRadius: BorderRadius.circular(itemCornerRadius),
         ),
         child: SingleChildScrollView(
@@ -128,8 +128,8 @@ class _ItemWidget extends StatelessWidget {
                     color: isSelected
                         ? item.activeColor.withOpacity(1)
                         : item.inactiveColor == null
-                            ? item.activeColor
-                            : item.inactiveColor,
+                        ? item.activeColor
+                        : item.inactiveColor,
                   ),
                   child: item.icon,
                 ),

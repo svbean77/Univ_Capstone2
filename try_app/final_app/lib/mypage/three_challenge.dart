@@ -21,13 +21,12 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
   Widget build(BuildContext context) {
     List<String> three = ['데드리프트', '벤치프레스', '스쿼트'];
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          MyRanking(nickname: widget.loginID, loginID: widget.loginID),
-          SizedBox(height: 8.0),
-          Column(
+    return Column(
+      children: [
+        MyRanking(nickname: widget.loginID, loginID: widget.loginID),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               for (int i = 0; i < 3; i++)
@@ -62,9 +61,9 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                   ],
                 ),
             ],
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }

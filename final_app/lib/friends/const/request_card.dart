@@ -55,6 +55,7 @@ class RequestCard extends StatelessWidget {
                           builder: (BuildContext context) => UserInfo(
                             loginID: loginID,
                             nickname: nickname,
+                            grade: grade,
                           ),
                         ),
                       );
@@ -72,12 +73,12 @@ class RequestCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('친구추가 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -91,10 +92,10 @@ class RequestCard extends StatelessWidget {
                                           '취소',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                    grade == 1 ||
-                                                    grade == 2 ||
-                                                    grade == 4 ||
-                                                    grade == 8)
+                                                grade == 1 ||
+                                                grade == 2 ||
+                                                grade == 4 ||
+                                                grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
@@ -116,19 +117,19 @@ class RequestCard extends StatelessWidget {
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                        FriendsMain(
-                                                            loginID: loginID,
-                                                            grade: grade)),
+                                                    FriendsMain(
+                                                        loginID: loginID,
+                                                        grade: grade)),
                                           );
                                         },
                                         child: Text(
                                           '확인',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                    grade == 1 ||
-                                                    grade == 2 ||
-                                                    grade == 4 ||
-                                                    grade == 8)
+                                                grade == 1 ||
+                                                grade == 2 ||
+                                                grade == 4 ||
+                                                grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
@@ -156,12 +157,12 @@ class RequestCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('요청삭제 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -175,10 +176,10 @@ class RequestCard extends StatelessWidget {
                                           '취소',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                    grade == 1 ||
-                                                    grade == 2 ||
-                                                    grade == 4 ||
-                                                    grade == 8)
+                                                grade == 1 ||
+                                                grade == 2 ||
+                                                grade == 4 ||
+                                                grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
@@ -197,19 +198,19 @@ class RequestCard extends StatelessWidget {
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                        FriendsMain(
-                                                            loginID: loginID,
-                                                            grade: grade)),
+                                                    FriendsMain(
+                                                        loginID: loginID,
+                                                        grade: grade)),
                                           );
                                         },
                                         child: Text(
                                           '확인',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                    grade == 1 ||
-                                                    grade == 2 ||
-                                                    grade == 4 ||
-                                                    grade == 8)
+                                                grade == 1 ||
+                                                grade == 2 ||
+                                                grade == 4 ||
+                                                grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),

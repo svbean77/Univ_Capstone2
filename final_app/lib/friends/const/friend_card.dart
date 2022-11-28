@@ -57,6 +57,7 @@ class FriendCard extends StatelessWidget {
                           builder: (BuildContext context) => UserInfo(
                             loginID: loginID,
                             nickname: nickname,
+                            grade: grade,
                           ),
                         ),
                       );
@@ -74,12 +75,12 @@ class FriendCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                MainAxisAlignment.spaceAround,
                                 children: [
                                   Text('친구삭제 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -93,10 +94,10 @@ class FriendCard extends StatelessWidget {
                                           '취소',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                    grade == 1 ||
-                                                    grade == 2 ||
-                                                    grade == 4 ||
-                                                    grade == 8)
+                                                grade == 1 ||
+                                                grade == 2 ||
+                                                grade == 4 ||
+                                                grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
@@ -115,19 +116,19 @@ class FriendCard extends StatelessWidget {
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                        FriendsMain(
-                                                            loginID: loginID,
-                                                            grade: grade)),
+                                                    FriendsMain(
+                                                        loginID: loginID,
+                                                        grade: grade)),
                                           );
                                         },
                                         child: Text(
                                           '확인',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                    grade == 1 ||
-                                                    grade == 2 ||
-                                                    grade == 4 ||
-                                                    grade == 8)
+                                                grade == 1 ||
+                                                grade == 2 ||
+                                                grade == 4 ||
+                                                grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),

@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:final_app/mypage/edit_my_info.dart';
 import 'package:final_app/ranking/const/my_ranking.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
+import '../screen/const/db_class.dart';
 import '../screen/const/grade_colors.dart';
+import '../screen/const/ip_address.dart';
 import '../screen/const/storage_box.dart';
 
 class MyPage extends StatefulWidget {
@@ -44,7 +48,7 @@ class _MyPageState extends State<MyPage> {
     int? selectRange = THEME_SELECT_RANGE[rating];
 
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
       appBar: MyAppBar(grade: widget.grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -65,11 +69,7 @@ class _MyPageState extends State<MyPage> {
                         onTap: () {
                           setState(() {
                             widget.grade = i;
-                            /*
-                            update: 사용자 선택 테마 변경
-                             */
                           });
-                          print(widget.grade);
                         },
                         child: Icon(
                           Icons.circle,
@@ -81,16 +81,62 @@ class _MyPageState extends State<MyPage> {
                 ],
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(),
+                ElevatedButton(
+                  onPressed: () async {
+                    var url = Uri.http(
+                        IP_ADDRESS, '/test_change_theme.php', {'q': '{http}'});
+                    var response = await http.post(url, body: <String, String>{
+                      "nickname": widget.loginID.toString(),
+                      "apptheme": widget.grade.toString(),
+                    });
+                    var jsondata =
+                    jsonDecode(json.decode(json.encode(response.body)));
+
+                    if (jsondata == "Success")
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => HomeScreen(),
+                          ),
+                              (route) => false);
+                  },
+                  child: Text(
+                    '테마 변경!',
+                    style: TextStyle(
+                        color: (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
+                            ? Colors.black
+                            : Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: PRIMARY_COLOR[widget.grade],
+                    elevation: 0,
+                  ),
+                ),
+              ],
+            ),
             SizedBox(height: 16.0),
             GestureDetector(
-              onTap: () {
-                /*
-                닉네임만 보내면 됨
-                 */
+              onTap: () async {
+                var url = Uri.http(
+                    IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
+                var response = await http.post(url, body: <String, String>{
+                  "username": widget.loginID.toString(),
+                  "mode": "Nickname".toString(),
+                });
+                var jsondata =
+                jsonDecode(json.decode(json.encode(response.body)));
+                USERDATA data = USERDATA.fromJson(jsondata);
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        EditMyInfo(loginID: widget.loginID),
+                    builder: (BuildContext context) => EditMyInfo(
+                        loginID: data.result![0].username, grade: widget.grade),
                   ),
                 );
               },
@@ -132,10 +178,10 @@ class _MyPageState extends State<MyPage> {
                                   child: Text('취소',
                                       style: TextStyle(
                                           color: (widget.grade == 0 ||
-                                                  widget.grade == 1 ||
-                                                  widget.grade == 2 ||
-                                                  widget.grade == 4 ||
-                                                  widget.grade == 8)
+                                              widget.grade == 1 ||
+                                              widget.grade == 2 ||
+                                              widget.grade == 4 ||
+                                              widget.grade == 8)
                                               ? Colors.black
                                               : Colors.white)),
                                   style: ElevatedButton.styleFrom(
@@ -150,15 +196,15 @@ class _MyPageState extends State<MyPage> {
                                           builder: (BuildContext context) =>
                                               HomeScreen(),
                                         ),
-                                        (route) => false);
+                                            (route) => false);
                                   },
                                   child: Text('확인',
                                       style: TextStyle(
                                           color: (widget.grade == 0 ||
-                                                  widget.grade == 1 ||
-                                                  widget.grade == 2 ||
-                                                  widget.grade == 4 ||
-                                                  widget.grade == 8)
+                                              widget.grade == 1 ||
+                                              widget.grade == 2 ||
+                                              widget.grade == 4 ||
+                                              widget.grade == 8)
                                               ? Colors.black
                                               : Colors.white)),
                                   style: ElevatedButton.styleFrom(
@@ -178,10 +224,10 @@ class _MyPageState extends State<MyPage> {
                 '로그아웃',
                 style: TextStyle(
                     color: (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
+                        widget.grade == 1 ||
+                        widget.grade == 2 ||
+                        widget.grade == 4 ||
+                        widget.grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),
@@ -215,10 +261,10 @@ class _MyPageState extends State<MyPage> {
                                   child: Text('취소',
                                       style: TextStyle(
                                           color: (widget.grade == 0 ||
-                                                  widget.grade == 1 ||
-                                                  widget.grade == 2 ||
-                                                  widget.grade == 4 ||
-                                                  widget.grade == 8)
+                                              widget.grade == 1 ||
+                                              widget.grade == 2 ||
+                                              widget.grade == 4 ||
+                                              widget.grade == 8)
                                               ? Colors.black
                                               : Colors.white)),
                                   style: ElevatedButton.styleFrom(
@@ -236,15 +282,15 @@ class _MyPageState extends State<MyPage> {
                                           builder: (BuildContext context) =>
                                               HomeScreen(),
                                         ),
-                                        (route) => false);
+                                            (route) => false);
                                   },
                                   child: Text('확인',
                                       style: TextStyle(
                                           color: (widget.grade == 0 ||
-                                                  widget.grade == 1 ||
-                                                  widget.grade == 2 ||
-                                                  widget.grade == 4 ||
-                                                  widget.grade == 8)
+                                              widget.grade == 1 ||
+                                              widget.grade == 2 ||
+                                              widget.grade == 4 ||
+                                              widget.grade == 8)
                                               ? Colors.black
                                               : Colors.white)),
                                   style: ElevatedButton.styleFrom(

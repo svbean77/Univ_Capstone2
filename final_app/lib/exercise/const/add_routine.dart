@@ -1,11 +1,18 @@
+import 'dart:convert';
+
 import 'package:final_app/exercise/select_my_routine.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../../screen/const/db_class.dart';
+import '../../screen/const/ip_address.dart';
 
 class AddRoutine extends StatefulWidget {
   final loginID;
+  final grade;
   const AddRoutine({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -15,13 +22,9 @@ class AddRoutine extends StatefulWidget {
 
 class _AddRoutineState extends State<AddRoutine> {
   TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 사용자 테마 선택
-     */
-    int grade = 5;
-
     return Container(
       height: 120.0,
       child: Column(
@@ -38,7 +41,7 @@ class _AddRoutineState extends State<AddRoutine> {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: PRIMARY_COLOR[grade],
+                color: PRIMARY_COLOR[widget.grade],
               ),
             ),
           ),
@@ -48,7 +51,7 @@ class _AddRoutineState extends State<AddRoutine> {
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: PRIMARY_COLOR[grade],
+                  primary: PRIMARY_COLOR[widget.grade],
                   elevation: 0,
                 ),
                 onPressed: () {
@@ -57,11 +60,11 @@ class _AddRoutineState extends State<AddRoutine> {
                 child: Text(
                   '취소',
                   style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                    color: (widget.grade == 0 ||
+                        widget.grade == 1 ||
+                        widget.grade == 2 ||
+                        widget.grade == 4 ||
+                        widget.grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),
@@ -69,28 +72,28 @@ class _AddRoutineState extends State<AddRoutine> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: PRIMARY_COLOR[grade],
+                  primary: PRIMARY_COLOR[widget.grade],
                   elevation: 0,
                 ),
                 onPressed: () {
                   /*
-                  insert: loginID가 만든 루틴이름 만들기 (insert)
-                   */
+                      insert: loginID가 만든 루틴이름 만들기 (insert)
+                       */
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          SelectMyRoutine(loginID: widget.loginID),
+                      builder: (BuildContext context) => SelectMyRoutine(
+                          loginID: widget.loginID, grade: widget.grade),
                     ),
                   );
                 },
                 child: Text(
                   '확인',
                   style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                    color: (widget.grade == 0 ||
+                        widget.grade == 1 ||
+                        widget.grade == 2 ||
+                        widget.grade == 4 ||
+                        widget.grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),

@@ -10,11 +10,13 @@ class EquipmentFilter extends StatelessWidget {
   final loginID;
   final level;
   final muscle;
+  final grade;
 
   EquipmentFilter({
     required this.level,
     required this.loginID,
     required this.muscle,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -67,7 +69,7 @@ class EquipmentFilter extends StatelessWidget {
                     "difficulty": level.toString(),
                   });
                   var jsondata =
-                      jsonDecode(json.decode(json.encode(response.body)));
+                  jsonDecode(json.decode(json.encode(response.body)));
 
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -77,6 +79,7 @@ class EquipmentFilter extends StatelessWidget {
                         muscle: muscle,
                         equipment: equipment,
                         loginID: loginID,
+                        grade: grade,
                       ),
                     ),
                   );

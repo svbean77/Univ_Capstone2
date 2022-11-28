@@ -45,7 +45,7 @@ class _FriendsMainState extends State<FriendsMain> {
 
     return Scaffold(
       appBar: MyAppBar(grade: widget.grade),
-      drawer: MyDrawer(loginID: widget.loginID),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -66,7 +66,8 @@ class _FriendsMainState extends State<FriendsMain> {
                       child: TextField(
                         controller: controller,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                          contentPadding:
+                          EdgeInsets.symmetric(horizontal: 10.0),
                           hintText: '닉네임으로 사용자 검색',
                           border: InputBorder.none,
                         ),
@@ -96,8 +97,11 @@ class _FriendsMainState extends State<FriendsMain> {
                          */
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                UserInfo(nickname: find, loginID: widget.loginID),
+                            builder: (BuildContext context) => UserInfo(
+                              nickname: find,
+                              loginID: widget.loginID,
+                              grade: widget.grade,
+                            ),
                           ),
                         );
                       } else {
@@ -132,29 +136,29 @@ class _FriendsMainState extends State<FriendsMain> {
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: friendN.length == 0
                             ? Container(
-                                width: double.infinity,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: PRIMARY_COLOR[widget.grade],
-                                  ),
-                                ),
-                                child: Text('친구 목록이 없습니다.',
-                                    style: TextStyle(fontSize: 20.0)),
-                              )
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: PRIMARY_COLOR[widget.grade],
+                            ),
+                          ),
+                          child: Text('친구 목록이 없습니다.',
+                              style: TextStyle(fontSize: 20.0)),
+                        )
                             : ListView(
-                                children: [
-                                  for (int i = 0; i < friendN.length; i++)
-                                    /*
+                          children: [
+                            for (int i = 0; i < friendN.length; i++)
+                            /*
                                     class로 보내줘야 함 ([i]가 들어가니까)
                                      */
-                                    FriendCard(
-                                        nickname: friendN[i],
-                                        rating: friendR[i],
-                                        grade: widget.grade,
-                                        loginID: widget.loginID)
-                                ],
-                              ),
+                              FriendCard(
+                                  nickname: friendN[i],
+                                  rating: friendR[i],
+                                  grade: widget.grade,
+                                  loginID: widget.loginID)
+                          ],
+                        ),
                       ),
                     ),
                     Text('친구요청', style: TextStyle(fontSize: 25.0)),
@@ -163,29 +167,29 @@ class _FriendsMainState extends State<FriendsMain> {
                       padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: requestN.length == 0
                           ? Container(
-                              width: double.infinity,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: PRIMARY_COLOR[widget.grade],
-                                ),
-                              ),
-                              child: Text('친구 요청이 없습니다.',
-                                  style: TextStyle(fontSize: 20.0)),
-                            )
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: PRIMARY_COLOR[widget.grade],
+                          ),
+                        ),
+                        child: Text('친구 요청이 없습니다.',
+                            style: TextStyle(fontSize: 20.0)),
+                      )
                           : ListView(
-                              children: [
-                                for (int i = 0; i < requestN.length; i++)
-                                  /*
+                        children: [
+                          for (int i = 0; i < requestN.length; i++)
+                          /*
                                     class로 보내줘야 함 ([i]가 들어가니까)
                                      */
-                                  RequestCard(
-                                      nickname: requestN[i],
-                                      rating: requestR[i],
-                                      grade: widget.grade,
-                                      loginID: widget.loginID)
-                              ],
-                            ),
+                            RequestCard(
+                                nickname: requestN[i],
+                                rating: requestR[i],
+                                grade: widget.grade,
+                                loginID: widget.loginID)
+                        ],
+                      ),
                     ),
                   ],
                 ),

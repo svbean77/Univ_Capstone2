@@ -40,7 +40,7 @@ class SelectRoutineContainer extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) =>
-                  ListRoutine(title: title, loginID: loginID),
+                  ListRoutine(title: title, loginID: loginID, grade: grade),
             ),
           );
         },

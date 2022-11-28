@@ -11,21 +11,15 @@ import 'grade_colors.dart';
 
 class MyDrawer extends StatelessWidget {
   final loginID;
+  final grade;
   const MyDrawer({
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int grade = 0;
-    if (loginID != "") {
-      /*
-      select: 사용자의 테마 선택 가져오기
-       */
-      grade = 5;
-    }
-
     return Drawer(
       backgroundColor: PRIMARY_COLOR[grade],
       child: ListView(
@@ -45,10 +39,10 @@ class MyDrawer extends StatelessWidget {
                       '로그인',
                       style: TextStyle(
                           color: (grade == 0 ||
-                                  grade == 1 ||
-                                  grade == 2 ||
-                                  grade == 4 ||
-                                  grade == 8)
+                              grade == 1 ||
+                              grade == 2 ||
+                              grade == 4 ||
+                              grade == 8)
                               ? Colors.black
                               : Colors.white),
                     )
@@ -57,10 +51,10 @@ class MyDrawer extends StatelessWidget {
                       '마이페이지',
                       style: TextStyle(
                           color: (grade == 0 ||
-                                  grade == 1 ||
-                                  grade == 2 ||
-                                  grade == 4 ||
-                                  grade == 8)
+                              grade == 1 ||
+                              grade == 2 ||
+                              grade == 4 ||
+                              grade == 8)
                               ? Colors.black
                               : Colors.white),
                     ),
@@ -90,10 +84,10 @@ class MyDrawer extends StatelessWidget {
                 '친구',
                 style: TextStyle(
                     color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),
@@ -103,7 +97,7 @@ class MyDrawer extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (BuildContext context) => Scaffold(
                         appBar: MyAppBar(grade: 0),
-                        drawer: MyDrawer(loginID: ""),
+                        drawer: MyDrawer(loginID: "", grade: grade),
                         body: AfterLogin(),
                       ),
                     ),
@@ -126,10 +120,10 @@ class MyDrawer extends StatelessWidget {
                 '커뮤니티',
                 style: TextStyle(
                     color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),
@@ -139,7 +133,7 @@ class MyDrawer extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (BuildContext context) => Scaffold(
                         appBar: MyAppBar(grade: 0),
-                        drawer: MyDrawer(loginID: ""),
+                        drawer: MyDrawer(loginID: "", grade: grade),
                         body: AfterLogin(),
                       ),
                     ),
@@ -148,7 +142,7 @@ class MyDrawer extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          CommunityMain(loginID: loginID),
+                          CommunityMain(loginID: loginID, grade: grade),
                     ),
                   );
               },
@@ -162,10 +156,10 @@ class MyDrawer extends StatelessWidget {
                 '저작권출처',
                 style: TextStyle(
                     color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
+                        grade == 1 ||
+                        grade == 2 ||
+                        grade == 4 ||
+                        grade == 8)
                         ? Colors.black
                         : Colors.white),
               ),
