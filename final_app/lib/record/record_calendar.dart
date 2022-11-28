@@ -30,8 +30,8 @@ class _RecordCalendarState extends State<RecordCalendar> {
   Timer? _timer;
 
   Future getDatas() async {
-    var url =
-        Uri.http(IP_ADDRESS, '/test_select_exercise_record.php', {'q': '{http}'});
+    var url = Uri.http(
+        IP_ADDRESS, '/test_select_exercise_record.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
       "nickname": widget.loginID.toString(),
     });
@@ -56,19 +56,6 @@ class _RecordCalendarState extends State<RecordCalendar> {
 
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 해당 날짜의 운동 기록
-    (이거는 그냥 다 불러와서 해당 날짜의 기록들만 따로 list로 만들까..)
-    (달력이 class로 빠져서 다 불러와 따로 만드는 게 더 좋을 것 같다)
-     */
-
-    List<String> contents = [
-      '내용1\n엄ㅊ청\n\n\n\n길어\n짱',
-      '내용2',
-      '내용3',
-      'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    ];
-
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         elevation: 0,
@@ -98,66 +85,86 @@ class _RecordCalendarState extends State<RecordCalendar> {
                 : Colors.white),
       ),
       body: StreamBuilder(
-        stream: controller.stream,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if(snapshot.hasData){
-            print(snapshot.data);
-            print(snapshot.data.result!.length);
-            print(snapshot.data.result![0].comment);
-            print(snapshot.data.result![1].comment);
-            print(snapshot.data.result![2].comment);
-          }
-          return ListView(
-            children: [
-              Calendar(
-                selectedDay: selectedDay,
-                grade: widget.grade,
-                focusedDay: focusedDay,
-                onDaySelected: onDaySelected,
-              ),
-              SizedBox(height: 8.0),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                height: 30.0,
-                color: PRIMARY_COLOR[widget.grade],
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
-                      style: TextStyle(
-                          color: (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white),
-                    ),
-                    Text(
-                      '${contents.length}개',
-                      style: TextStyle(
-                          color: (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white),
-                    ),
-                  ],
+          stream: controller.stream,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            List<List<String>> today_record = [];
+            if (snapshot.hasData) {
+              for (int i = 0; i < snapshot.data.result!.length; i++) {
+                int today = int.parse(snapshot.data.result![i].writeDate);
+                int year = today ~/ 10000;
+                int month = (today % 10000) ~/ 100;
+                int day = today % 100;
+
+                if (selectedDay.year.toString() == year.toString() &&
+                    selectedDay.month.toString() == month.toString() &&
+                    selectedDay.day.toString() == day.toString()) {
+                  today_record.add([
+                    snapshot.data.result![i].comment,
+                    snapshot.data.result![i].writeDate
+                  ]);
+                }
+              }
+            }
+            return ListView(
+              children: [
+                Calendar(
+                  selectedDay: selectedDay,
+                  grade: widget.grade,
+                  focusedDay: focusedDay,
+                  onDaySelected: onDaySelected,
                 ),
-              ),
-              SizedBox(height: 8.0),
-              for (int i = 0; i < contents.length; i++)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: RecordCard(grade: widget.grade, content: contents[i]),
-                )
-            ],
-          );
-        }
-      ),
+                SizedBox(height: 8.0),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  height: 30.0,
+                  color: PRIMARY_COLOR[widget.grade],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
+                        style: TextStyle(
+                            color: (widget.grade == 0 ||
+                                    widget.grade == 1 ||
+                                    widget.grade == 2 ||
+                                    widget.grade == 4 ||
+                                    widget.grade == 8)
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                      Text(
+                        '${today_record.length}개',
+                        style: TextStyle(
+                            color: (widget.grade == 0 ||
+                                    widget.grade == 1 ||
+                                    widget.grade == 2 ||
+                                    widget.grade == 4 ||
+                                    widget.grade == 8)
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 8.0),
+                if (today_record.length != 0)
+                  for (int i = 0; i < today_record.length; i++)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: RecordCard(
+                          grade: widget.grade, content: today_record[i][0]),
+                    )
+                else
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 32.0),
+                    child: Center(
+                      child: Text('운동 기록이 없습니다'),
+                    ),
+                  ),
+              ],
+            );
+          }),
     );
   }
 
