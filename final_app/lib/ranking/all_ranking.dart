@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:final_app/ranking/const/ranking_card.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../screen/const/db_class.dart';
+import '../screen/const/ip_address.dart';
 
-class AllRanking extends StatelessWidget {
+class AllRanking extends StatefulWidget {
   final loginID;
   final grade;
   const AllRanking({
@@ -11,53 +16,66 @@ class AllRanking extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    /*
-    select: 모든 사용자 정보
-     */
-    List<String> nickname = [
-      '유저1',
-      '유저2',
-      '유저3',
-      '유저4',
-      '유저5',
-      '유저6',
-      '유저7',
-      '유저8',
-      '유저9'
-    ];
-    List<String> rating = [
-      '챌린저',
-      '그랜드마스터',
-      '마스터',
-      '다이아몬드',
-      '플래티넘',
-      '골드',
-      '실버',
-      '브론즈',
-      '아이언'
-    ];
-    List<int> total3th = [450, 400, 350, 300, 250, 200, 150, 100, 50];
+  State<AllRanking> createState() => _AllRankingState();
+}
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-        child: ListView.separated(
-            itemBuilder: (context, index) {
-              return RankingCard(
-                grade: grade,
-                nickname: nickname[index],
-                rating: rating[index],
-                ranking: index + 1,
-                total3th: total3th[index],
-                loginID: loginID,
-              );
-            },
-            separatorBuilder: (context, index) {
-              return SizedBox(height: 8.0);
-            },
-            itemCount: nickname.length),
-      ),
-    );
+class _AllRankingState extends State<AllRanking> {
+  Future getDatas() async {
+    var url =
+        Uri.http(IP_ADDRESS, '/test_select_all_user.php', {'q': '{http}'});
+    var response = await http.post(url, body: <String, String>{});
+    var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+    USERDATA data = USERDATA.fromJson(jsondata);
+    return data;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: getDatas(),
+        builder: (context, snapshot) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Container(
+              child: ListView(
+                children: [
+                  if (snapshot.hasData)
+                    for (int i = 0; i < snapshot.data.result!.length; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: RankingCard(
+                          grade: widget.grade,
+                          loginID: widget.loginID,
+                          nickname: snapshot.data.result![i].nickname,
+                          rating: snapshot.data.result![i].rating,
+                          ranking: i + 1,
+                          total3th: snapshot.data.result![i].total,
+                        ),
+                      )
+                  else
+                    Center(child: CircularProgressIndicator())
+                ],
+              ),
+              /*
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return RankingCard(
+                      grade: widget.grade,
+                      nickname: nickname[index],
+                      rating: rating[index],
+                      ranking: index + 1,
+                      total3th: total3th[index],
+                      loginID: widget.loginID,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(height: 8.0);
+                  },
+                  itemCount: nickname.length),
+
+               */
+            ),
+          );
+        });
   }
 }
