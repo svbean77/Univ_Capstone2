@@ -1,8 +1,14 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:final_app/record/const/add_record.dart';
 import 'package:final_app/record/const/record_card.dart';
+import 'package:final_app/screen/const/db_class.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:http/http.dart' as http;
+import '../screen/const/ip_address.dart';
 
 class RecordCalendar extends StatefulWidget {
   final loginID;
@@ -20,6 +26,33 @@ class RecordCalendar extends StatefulWidget {
 class _RecordCalendarState extends State<RecordCalendar> {
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
+  StreamController controller = StreamController();
+  Timer? _timer;
+
+  Future getDatas() async {
+    var url =
+        Uri.http(IP_ADDRESS, '/test_select_exercise_record.php', {'q': '{http}'});
+    var response = await http.post(url, body: <String, String>{
+      "nickname": widget.loginID.toString(),
+    });
+    var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+    MY_EXERCISE_RECORD data = MY_EXERCISE_RECORD.fromJson(jsondata);
+
+    controller.add(data);
+  }
+
+  @override
+  void initState() {
+    getDatas();
+    _timer = Timer.periodic(Duration(seconds: 3), (timer) => getDatas());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (_timer!.isActive) _timer!.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,61 +90,73 @@ class _RecordCalendarState extends State<RecordCalendar> {
         },
         child: Icon(Icons.add,
             color: (widget.grade == 0 ||
-                widget.grade == 1 ||
-                widget.grade == 2 ||
-                widget.grade == 4 ||
-                widget.grade == 8)
+                    widget.grade == 1 ||
+                    widget.grade == 2 ||
+                    widget.grade == 4 ||
+                    widget.grade == 8)
                 ? Colors.black
                 : Colors.white),
       ),
-      body: ListView(
-        children: [
-          Calendar(
-            selectedDay: selectedDay,
-            grade: widget.grade,
-            focusedDay: focusedDay,
-            onDaySelected: onDaySelected,
-          ),
-          SizedBox(height: 8.0),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            height: 30.0,
-            color: PRIMARY_COLOR[widget.grade],
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
-                  style: TextStyle(
-                      color: (widget.grade == 0 ||
-                          widget.grade == 1 ||
-                          widget.grade == 2 ||
-                          widget.grade == 4 ||
-                          widget.grade == 8)
-                          ? Colors.black
-                          : Colors.white),
+      body: StreamBuilder(
+        stream: controller.stream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if(snapshot.hasData){
+            print(snapshot.data);
+            print(snapshot.data.result!.length);
+            print(snapshot.data.result![0].comment);
+            print(snapshot.data.result![1].comment);
+            print(snapshot.data.result![2].comment);
+          }
+          return ListView(
+            children: [
+              Calendar(
+                selectedDay: selectedDay,
+                grade: widget.grade,
+                focusedDay: focusedDay,
+                onDaySelected: onDaySelected,
+              ),
+              SizedBox(height: 8.0),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                height: 30.0,
+                color: PRIMARY_COLOR[widget.grade],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
+                      style: TextStyle(
+                          color: (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white),
+                    ),
+                    Text(
+                      '${contents.length}개',
+                      style: TextStyle(
+                          color: (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white),
+                    ),
+                  ],
                 ),
-                Text(
-                  '${contents.length}개',
-                  style: TextStyle(
-                      color: (widget.grade == 0 ||
-                          widget.grade == 1 ||
-                          widget.grade == 2 ||
-                          widget.grade == 4 ||
-                          widget.grade == 8)
-                          ? Colors.black
-                          : Colors.white),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 8.0),
-          for (int i = 0; i < contents.length; i++)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: RecordCard(grade: widget.grade, content: contents[i]),
-            )
-        ],
+              ),
+              SizedBox(height: 8.0),
+              for (int i = 0; i < contents.length; i++)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: RecordCard(grade: widget.grade, content: contents[i]),
+                )
+            ],
+          );
+        }
       ),
     );
   }

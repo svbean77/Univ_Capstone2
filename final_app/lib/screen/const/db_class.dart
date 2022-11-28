@@ -294,3 +294,33 @@ class classMY_ROUTINE_DETAIL {
     step = jsondata['step'];
   }
 }
+
+/*
+select my exercise record (on selected date)
+ */
+class MY_EXERCISE_RECORD {
+  List<classMY_EXERCISE_RECORD>? result;
+
+  MY_EXERCISE_RECORD({this.result});
+
+  MY_EXERCISE_RECORD.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classMY_EXERCISE_RECORD>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classMY_EXERCISE_RECORD.fromJson(v));
+      });
+    }
+  }
+}
+
+class classMY_EXERCISE_RECORD {
+  String? comment;
+
+  classMY_EXERCISE_RECORD({
+    this.comment,
+  });
+
+  classMY_EXERCISE_RECORD.fromJson(Map<String, dynamic> jsondata) {
+    comment = jsondata['comment'];
+  }
+}
