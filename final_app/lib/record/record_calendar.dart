@@ -44,7 +44,7 @@ class _RecordCalendarState extends State<RecordCalendar> {
   @override
   void initState() {
     getDatas();
-    _timer = Timer.periodic(Duration(seconds: 3), (timer) => getDatas());
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) => getDatas());
     super.initState();
   }
 
@@ -162,6 +162,7 @@ class _RecordCalendarState extends State<RecordCalendar> {
                       child: Text('운동 기록이 없습니다'),
                     ),
                   ),
+                SizedBox(height: 60.0),
               ],
             );
           }),

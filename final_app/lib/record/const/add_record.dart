@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../../screen/const/ip_address.dart';
 
 class AddRecord extends StatelessWidget {
   final loginID;
@@ -57,10 +61,10 @@ class AddRecord extends StatelessWidget {
                   '취소',
                   style: TextStyle(
                     color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),
@@ -71,24 +75,29 @@ class AddRecord extends StatelessWidget {
                   primary: PRIMARY_COLOR[grade],
                   elevation: 0,
                 ),
-                onPressed: () {
-                  /*
-                  insert: 해당 날짜에 기록 추가
-                   */
-                  /*
-                  지금은 pop이지만 homescreen index 해결되면 push로 변경!
-                  (tapbar도 해결되면 더더 좋아!)
-                   */
-                  Navigator.of(context).pop();
+                onPressed: () async {
+                  String date = year + month + day;
+                  print(date);
+
+                  var url = Uri.http(IP_ADDRESS,
+                      '/test_add_exercise_record.php', {'q': '{http}'});
+                  var response = await http.post(url, body: <String, String>{
+                    "nickname": loginID.toString(),
+                    "writeDate": date.toString(),
+                    "comment": controller.text.toString(),
+                  });
+                  var jsondata =
+                      jsonDecode(json.decode(json.encode(response.body)));
+                  if (jsondata == "Success") Navigator.of(context).pop();
                 },
                 child: Text(
                   '확인',
                   style: TextStyle(
                     color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),
