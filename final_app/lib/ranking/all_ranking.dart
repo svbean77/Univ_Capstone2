@@ -56,24 +56,6 @@ class _AllRankingState extends State<AllRanking> {
                     Center(child: CircularProgressIndicator())
                 ],
               ),
-              /*
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return RankingCard(
-                      grade: widget.grade,
-                      nickname: nickname[index],
-                      rating: rating[index],
-                      ranking: index + 1,
-                      total3th: total3th[index],
-                      loginID: widget.loginID,
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 8.0);
-                  },
-                  itemCount: nickname.length),
-
-               */
             ),
           );
         });
