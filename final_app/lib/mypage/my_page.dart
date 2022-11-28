@@ -145,8 +145,13 @@ class _MyPageState extends State<MyPage> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (BuildContext context) => EditMyInfo(
-                                    loginID: snapshot.data.result![0].username,
-                                    grade: widget.grade),
+                                  grade: widget.grade,
+                                  username: snapshot.data.result![0].username,
+                                  password: snapshot.data.result![0].password,
+                                  nickname: snapshot.data.result![0].nickname,
+                                  userage: snapshot.data.result![0].userage,
+                                  sex: snapshot.data.result![0].sex == 'male' ? [true, false] : [false, true],
+                                ),
                               ),
                             );
                           },

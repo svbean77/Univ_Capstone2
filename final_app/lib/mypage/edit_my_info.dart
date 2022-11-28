@@ -1,16 +1,28 @@
+import 'dart:convert';
+
 import 'package:final_app/mypage/my_page.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 import '../screen/const/grade_colors.dart';
+import '../screen/const/ip_address.dart';
 
 class EditMyInfo extends StatefulWidget {
-  final loginID;
+  String username;
+  String password;
+  String nickname;
+  int userage;
+  List<bool> sex;
   final grade;
-  const EditMyInfo({
-    required this.loginID,
+  EditMyInfo({
     required this.grade,
+    required this.nickname,
+    required this.username,
+    required this.password,
+    required this.sex,
+    required this.userage,
     Key? key,
   }) : super(key: key);
 
@@ -19,17 +31,16 @@ class EditMyInfo extends StatefulWidget {
 }
 
 class _EditMyInfoState extends State<EditMyInfo> {
-  final TextEditingController _pwController = TextEditingController();
-  final TextEditingController _nicknameController = TextEditingController();
-  final TextEditingController _userageController = TextEditingController();
+  final GlobalKey<FormState> pwFormKey = GlobalKey();
+  final GlobalKey<FormState> nicknameFormKey = GlobalKey();
+  final GlobalKey<FormState> userageFormKey = GlobalKey();
 
   bool isPasswordVisible = false;
-  List<bool> sex = [true, false];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
+      drawer: MyDrawer(loginID: widget.nickname, grade: widget.grade),
       appBar: MyAppBar(grade: widget.grade),
       body: Container(
         height: double.infinity,
@@ -59,7 +70,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                       child: Text('아이디', style: TextStyle(fontSize: 16.0)),
                     ),
                     SizedBox(width: 16.0),
-                    Text(widget.loginID),
+                    Text(widget.username),
                   ],
                 ),
                 SizedBox(
@@ -83,26 +94,32 @@ class _EditMyInfoState extends State<EditMyInfo> {
                                 : PRIMARY_COLOR[widget.grade],
                           ),
                         ),
-                        child: TextField(
-                          controller: _pwController,
-                          obscureText: isPasswordVisible ? false : true,
-                          decoration: InputDecoration(
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isPasswordVisible = !isPasswordVisible;
-                                  });
-                                },
-                                child: Icon(
-                                  isPasswordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: widget.grade == 0
-                                      ? Colors.grey
-                                      : PRIMARY_COLOR[widget.grade],
+                        child: Form(
+                          key: pwFormKey,
+                          child: TextFormField(
+                            obscureText: isPasswordVisible ? false : true,
+                            initialValue: widget.password,
+                            onChanged: (String? val) {
+                              widget.password = val!;
+                            },
+                            decoration: InputDecoration(
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      isPasswordVisible = !isPasswordVisible;
+                                    });
+                                  },
+                                  child: Icon(
+                                    isPasswordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: widget.grade == 0
+                                        ? Colors.grey
+                                        : PRIMARY_COLOR[widget.grade],
+                                  ),
                                 ),
-                              ),
-                              border: InputBorder.none),
+                                border: InputBorder.none),
+                          ),
                         ),
                       ),
                     ),
@@ -128,12 +145,18 @@ class _EditMyInfoState extends State<EditMyInfo> {
                                 : PRIMARY_COLOR[widget.grade],
                           ),
                         ),
-                        child: TextField(
-                          controller: _nicknameController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(horizontal: 10.0),
-                            border: InputBorder.none,
+                        child: Form(
+                          key: nicknameFormKey,
+                          child: TextFormField(
+                            initialValue: widget.nickname,
+                            onChanged: (String? val) {
+                              widget.nickname = val!;
+                            },
+                            decoration: InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 10.0),
+                              border: InputBorder.none,
+                            ),
                           ),
                         ),
                       ),
@@ -160,14 +183,20 @@ class _EditMyInfoState extends State<EditMyInfo> {
                                 : PRIMARY_COLOR[widget.grade],
                           ),
                         ),
-                        child: TextField(
-                          controller: _userageController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(horizontal: 10.0),
-                            border: InputBorder.none,
+                        child: Form(
+                          key: userageFormKey,
+                          child: TextFormField(
+                            initialValue: widget.userage.toString(),
+                            onChanged: (String? val) {
+                              widget.userage = int.parse(val!);
+                            },
+                            decoration: InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 10.0),
+                              border: InputBorder.none,
+                            ),
+                            keyboardType: TextInputType.number,
                           ),
-                          keyboardType: TextInputType.number,
                         ),
                       ),
                     ),
@@ -183,7 +212,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                           Text('남자'),
                           Text('여자'),
                         ],
-                        isSelected: sex,
+                        isSelected: widget.sex,
                         selectedColor: Colors.black,
                         fillColor: (widget.grade == 0 || widget.grade == 7)
                             ? Colors.black.withOpacity(0.1)
@@ -191,11 +220,11 @@ class _EditMyInfoState extends State<EditMyInfo> {
                         onPressed: (value) {
                           setState(() {
                             if (value == 0) {
-                              sex[0] = true;
-                              sex[1] = false;
+                              widget.sex![0] = true;
+                              widget.sex![1] = false;
                             } else {
-                              sex[0] = false;
-                              sex[1] = true;
+                              widget.sex![0] = false;
+                              widget.sex![1] = true;
                             }
                           });
                         },
@@ -207,16 +236,25 @@ class _EditMyInfoState extends State<EditMyInfo> {
                   height: 50.0,
                 ),
                 GestureDetector(
-                  onTap: () {
-                    /*
-                    update: 사용자 정보 수정
-                     */
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => MyPage(
-                            loginID: widget.loginID, grade: widget.grade),
-                      ),
-                    );
+                  onTap: () async {
+                    var url = Uri.http(
+                        IP_ADDRESS, '/test_change_user.php', {'q': '{http}'});
+                    var response = await http.post(url, body: <String, String>{
+                      "username": widget.username.toString(),
+                      "password": widget.password.toString(),
+                      "nickname": widget.nickname.toString(),
+                      "userage": widget.userage.toString(),
+                      "sex": widget.sex[0] == true ? 'male' : 'female',
+                    });
+                    var jsondata =
+                        jsonDecode(json.decode(json.encode(response.body)));
+                    if (jsondata == 'Success')
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => MyPage(
+                              loginID: widget.nickname, grade: widget.grade),
+                        ),
+                      );
                   },
                   child: Container(
                     height: 50.0,
