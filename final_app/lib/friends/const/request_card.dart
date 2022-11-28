@@ -54,7 +54,8 @@ class RequestCard extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (BuildContext context) => UserInfo(
                             loginID: loginID,
-                            nickname: nickname,
+                            userdata: null,
+                            recorddata: null,
                             grade: grade,
                           ),
                         ),

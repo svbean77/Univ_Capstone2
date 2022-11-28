@@ -98,7 +98,8 @@ class _FriendsMainState extends State<FriendsMain> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) => UserInfo(
-                              nickname: find,
+                              userdata: null,
+                              recorddata: null,
                               loginID: widget.loginID,
                               grade: widget.grade,
                             ),
