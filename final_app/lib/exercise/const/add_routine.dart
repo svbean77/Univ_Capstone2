@@ -4,7 +4,6 @@ import 'package:final_app/exercise/select_my_routine.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../../screen/const/db_class.dart';
 import '../../screen/const/ip_address.dart';
 
 class AddRoutine extends StatefulWidget {
@@ -84,9 +83,6 @@ class _AddRoutineState extends State<AddRoutine> {
                   });
                   var jsondata =
                       jsonDecode(json.decode(json.encode(response.body)));
-                  /*
-                      insert: loginID가 만든 루틴이름 만들기 (insert)
-                       */
                   if (jsondata == "Success")
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(

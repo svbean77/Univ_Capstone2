@@ -211,3 +211,36 @@ class classROUTINE_DETAIL {
     step = jsondata['step'];
   }
 }
+
+/*
+select my routinelist
+ */
+
+class MY_ROUTINE_LIST {
+  List<classMY_ROUTINE_LIST>? result;
+
+  MY_ROUTINE_LIST({this.result});
+
+  MY_ROUTINE_LIST.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classMY_ROUTINE_LIST>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classMY_ROUTINE_LIST.fromJson(v));
+      });
+    }
+  }
+}
+
+class classMY_ROUTINE_LIST {
+  int? id;
+  String? routineName;
+  String? nickname;
+
+  classMY_ROUTINE_LIST({this.id, this.routineName, this.nickname});
+
+  classMY_ROUTINE_LIST.fromJson(Map<String, dynamic> jsondata) {
+    id = jsondata['id'];
+    routineName = jsondata['routineName'];
+    nickname = jsondata['nickname'];
+  }
+}
