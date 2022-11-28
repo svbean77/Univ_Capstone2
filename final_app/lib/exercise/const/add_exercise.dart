@@ -11,12 +11,12 @@ import '../../screen/const/ip_address.dart';
 class AddExercise extends StatefulWidget {
   final loginID;
   final jsonlst;
-  final routineName;
+  final routine;
   final grade;
   const AddExercise({
     required this.loginID,
     required this.jsonlst,
-    required this.routineName,
+    required this.routine,
     required this.grade,
     Key? key,
   }) : super(key: key);
@@ -30,8 +30,6 @@ enum UnitItems { numbers, times }
 class _AddExerciseState extends State<AddExercise> {
   String? selectedMuscle;
   String? selectedExercise;
-  UnitItems? selectedUnit = UnitItems.numbers;
-  List<bool> units = <bool>[true, false];
   int jsonIdx = -1;
   TextEditingController _controller = TextEditingController();
 
@@ -121,7 +119,7 @@ class _AddExerciseState extends State<AddExercise> {
               ),
             );
           }),
-          Text('횟수 및 시간 선택', style: TextStyle(fontSize: 20.0)),
+          Text('횟수 및 시간', style: TextStyle(fontSize: 20.0)),
           Container(
             width: MediaQuery.of(context).size.width,
             height: 50.0,
@@ -131,36 +129,13 @@ class _AddExerciseState extends State<AddExercise> {
                 Container(
                   child: TextField(
                     controller: _controller,
-                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
-                      hintText: '횟수 및 시간',
+                      hintText: 'ex. 10~12회',
                     ),
                   ),
                   height: 50.0,
-                  width: MediaQuery.of(context).size.width / 3,
-                ),
-                ToggleButtons(
-                  children: [
-                    Text('횟수'),
-                    Text('시간'),
-                  ],
-                  isSelected: units,
-                  selectedColor: Colors.black,
-                  fillColor: (widget.grade == 0 || widget.grade == 7)
-                      ? Colors.black.withOpacity(0.1)
-                      : PRIMARY_COLOR[widget.grade].withOpacity(0.3),
-                  onPressed: (value) {
-                    setState(() {
-                      if (value == 0) {
-                        units[0] = true;
-                        units[1] = false;
-                      } else {
-                        units[0] = false;
-                        units[1] = true;
-                      }
-                    });
-                  },
+                  width: MediaQuery.of(context).size.width / 1.5,
                 ),
               ],
             ),
@@ -180,10 +155,10 @@ class _AddExerciseState extends State<AddExercise> {
                   '취소',
                   style: TextStyle(
                     color: (widget.grade == 0 ||
-                        widget.grade == 1 ||
-                        widget.grade == 2 ||
-                        widget.grade == 4 ||
-                        widget.grade == 8)
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),
@@ -194,38 +169,35 @@ class _AddExerciseState extends State<AddExercise> {
                   primary: PRIMARY_COLOR[widget.grade],
                   elevation: 0,
                 ),
-                onPressed: () {
-                  print(widget.routineName);
-                  print(selectedMuscle);
-                  print(selectedExercise);
-                  if (units[1] == true) {
-                    /*
-                        insert: 시간이냐?를 t로 db에 저장
-                        db는 loginID, 루틴이름을 이용해 선택 (where절 조건)
-                         */
-                  } else if (units[0] == true) {
-                    /*
-                        insert: 시간이냐?를 f로 db에 저장
-                        db는 loginID, 루틴이름을 이용해 선택 (where절 조건)
-                         */
-                  }
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => ListMyExercise(
-                          loginID: widget.loginID,
-                          routineName: widget.routineName,
-                          grade: widget.grade),
-                    ),
-                  );
+                onPressed: () async {
+                  var url = Uri.http(
+                      IP_ADDRESS, '/test_add_exercise.php', {'q': '{http}'});
+                  var response = await http.post(url, body: <String, String>{
+                    "nickname": widget.loginID.toString(),
+                    "routine": widget.routine.toString(),
+                    "exercise": selectedExercise.toString(),
+                    "num": _controller.text.toString(),
+                  });
+                  var jsondata =
+                      jsonDecode(json.decode(json.encode(response.body)));
+                  if (jsondata == "Success")
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => ListMyExercise(
+                            loginID: widget.loginID,
+                            routine: widget.routine,
+                            grade: widget.grade),
+                      ),
+                    );
                 },
                 child: Text(
                   '추가',
                   style: TextStyle(
                     color: (widget.grade == 0 ||
-                        widget.grade == 1 ||
-                        widget.grade == 2 ||
-                        widget.grade == 4 ||
-                        widget.grade == 8)
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                         ? Colors.black
                         : Colors.white,
                   ),

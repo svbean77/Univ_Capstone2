@@ -213,7 +213,7 @@ class classROUTINE_DETAIL {
 }
 
 /*
-select my routinelist
+select my routine list
  */
 
 class MY_ROUTINE_LIST {
@@ -233,14 +233,64 @@ class MY_ROUTINE_LIST {
 
 class classMY_ROUTINE_LIST {
   int? id;
-  String? routineName;
+  String? routine;
   String? nickname;
 
-  classMY_ROUTINE_LIST({this.id, this.routineName, this.nickname});
+  classMY_ROUTINE_LIST({this.id, this.routine, this.nickname});
 
   classMY_ROUTINE_LIST.fromJson(Map<String, dynamic> jsondata) {
     id = jsondata['id'];
-    routineName = jsondata['routineName'];
+    routine = jsondata['routine'];
     nickname = jsondata['nickname'];
+  }
+}
+
+/*
+select my routine detail
+ */
+class MY_ROUTINE_DETAIL {
+  List<classMY_ROUTINE_DETAIL>? result;
+
+  MY_ROUTINE_DETAIL({this.result});
+
+  MY_ROUTINE_DETAIL.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classMY_ROUTINE_DETAIL>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classMY_ROUTINE_DETAIL.fromJson(v));
+      });
+    }
+  }
+}
+
+class classMY_ROUTINE_DETAIL {
+  int? id;
+  String? nickname;
+  String? routine;
+  String? exercise;
+  String? num;
+  String? image1;
+  String? image2;
+  String? step;
+
+  classMY_ROUTINE_DETAIL(
+      {this.nickname,
+      this.id,
+      this.routine,
+      this.exercise,
+      this.num,
+      this.image1,
+      this.image2,
+      this.step});
+
+  classMY_ROUTINE_DETAIL.fromJson(Map<String, dynamic> jsondata) {
+    id = jsondata['id'];
+    nickname = jsondata['nickname'];
+    routine = jsondata['routine'];
+    exercise = jsondata['exercise'];
+    num = jsondata['num'];
+    image1 = jsondata['image1'];
+    image2 = jsondata['image2'];
+    step = jsondata['step'];
   }
 }

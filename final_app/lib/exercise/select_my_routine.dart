@@ -143,7 +143,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                               var response =
                                   await http.post(url, body: <String, String>{
                                 "nickname": widget.loginID.toString(),
-                                "id": snapshot.data.result![i].id.toString(),
+                                "routine": snapshot.data.result![i].routine.toString(),
                               });
                               var jsondata = jsonDecode(
                                   json.decode(json.encode(response.body)));
@@ -172,31 +172,24 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                   ),
                                   child: IntrinsicHeight(
                                     child: Text(
-                                      snapshot.data!.result![i]!.routineName!,
+                                      snapshot.data!.result![i]!.routine,
                                       style: TextStyle(fontSize: 20.0),
                                     ),
                                   ),
                                 ),
                               ),
                               onTap: () {
-                                /*
-                        위에서 구한 json->class를 이용해 루틴 상세를 select, class 형태로? 전달
-                        ## 위의 json: 루틴번호 생성아이디 루틴이름
-                        ## 여기 json: 운동번호 생성아이디 루틴이름 운동이름 횟수 시간이냐 사진1 사진2 운동단계
-                         */
-                                /*
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         ListMyExercise(
-                                      routineName: routineName[i],
+                                      routine: snapshot
+                                          .data!.result![i]!.routine,
                                       loginID: widget.loginID,
                                       grade: widget.grade,
                                     ),
                                   ),
                                 );
-
-                                 */
                               },
                             ),
                           ),
