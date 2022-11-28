@@ -57,30 +57,38 @@ class _RecordGraphState extends State<RecordGraph> {
       child: StreamBuilder(
           stream: controller.stream,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            int dif = 0;
+            int dif = 1;
             List<WeightData> record_date = [];
             double minWeight = 100000;
             double maxWeight = -1;
             if (snapshot.hasData) {
-              for (int i = 0; i < snapshot.data.result!.length; i++) {
-                int today = int.parse(snapshot.data.result![i].writeDate);
-                int year = today ~/ 10000;
-                int month = (today % 10000) ~/ 100;
-                int day = today % 100;
+              if (snapshot.data.result!.length == 0) {
+                DateTime now = DateTime.now();
+                record_date.add(WeightData(
+                    DateTime(now.year, now.month, now.day), double.parse("0")));
+              } else {
+                for (int i = 0; i < snapshot.data.result!.length; i++) {
+                  int today = int.parse(snapshot.data.result![i].writeDate);
+                  int year = today ~/ 10000;
+                  int month = (today % 10000) ~/ 100;
+                  int day = today % 100;
 
-                if (minWeight > snapshot.data.result![i].weight)
-                  minWeight = snapshot.data.result![i].weight;
-                if (maxWeight < snapshot.data.result![i].weight)
-                  maxWeight = snapshot.data.result![i].weight;
+                  if (minWeight > snapshot.data.result![i].weight)
+                    minWeight = snapshot.data.result![i].weight;
+                  if (maxWeight < snapshot.data.result![i].weight)
+                    maxWeight = snapshot.data.result![i].weight;
 
-                record_date.add(WeightData(DateTime(year, month, day),
-                    double.parse(snapshot.data.result![i].weight.toString())));
+                  record_date.add(WeightData(
+                      DateTime(year, month, day),
+                      double.parse(
+                          snapshot.data.result![i].weight.toString())));
+                }
+
+                dif = record_date[record_date.length - 1]
+                    .date
+                    .difference(record_date[0].date)
+                    .inDays;
               }
-
-              dif = record_date[record_date.length - 1]
-                  .date
-                  .difference(record_date[0].date)
-                  .inDays;
             }
 
             return ListView(
