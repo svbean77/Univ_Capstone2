@@ -41,6 +41,11 @@ class _ListRoutineState extends State<ListRoutine> {
               style: TextStyle(fontSize: 25.0),
             ),
             SizedBox(height: 16.0),
+            widget.data.result!.length == 0
+                ? Center(
+                    child: Text('루틴이 없습니다.'),
+                  )
+                : Container(),
             for (int i = 0; i < widget.data.result!.length; i++)
               GestureDetector(
                 child: Padding(

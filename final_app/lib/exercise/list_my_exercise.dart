@@ -174,6 +174,11 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                 ),
                               ),
                               SizedBox(height: 16.0),
+                              snapshot.data.result!.length == 0
+                                  ? Center(
+                                      child: Text('운동이 없습니다.'),
+                                    )
+                                  : Container(),
                               for (int i = 0;
                                   i < snapshot.data.result!.length;
                                   i++)
@@ -191,8 +196,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                       "nickname": widget.loginID.toString(),
                                       "id": snapshot.data.result![i].id
                                           .toString(),
-                                      "routine":
-                                          widget.routine.toString(),
+                                      "routine": widget.routine.toString(),
                                     });
                                     var jsondata = jsonDecode(json
                                         .decode(json.encode(response.body)));

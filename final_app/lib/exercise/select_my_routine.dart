@@ -133,6 +133,11 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                           ],
                         ),
                         SizedBox(height: 16.0),
+                        snapshot.data.result!.length == 0
+                            ? Center(
+                                child: Text('루틴이 없습니다.'),
+                              )
+                            : Container(),
                         for (int i = 0; i < snapshot.data.result!.length; i++)
                           Dismissible(
                             key: ObjectKey(snapshot.data.result![i].id),
@@ -143,7 +148,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                               var response =
                                   await http.post(url, body: <String, String>{
                                 "nickname": widget.loginID.toString(),
-                                "routine": snapshot.data.result![i].routine.toString(),
+                                "routine":
+                                    snapshot.data.result![i].routine.toString(),
                               });
                               var jsondata = jsonDecode(
                                   json.decode(json.encode(response.body)));
@@ -183,8 +189,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                   MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         ListMyExercise(
-                                      routine: snapshot
-                                          .data!.result![i]!.routine,
+                                      routine:
+                                          snapshot.data!.result![i]!.routine,
                                       loginID: widget.loginID,
                                       grade: widget.grade,
                                     ),

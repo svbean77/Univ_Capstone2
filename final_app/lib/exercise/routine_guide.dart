@@ -33,10 +33,10 @@ class _RoutineGuideState extends State<RoutineGuide> {
         heroTag: 'memo',
         child: Icon(Icons.edit_calendar,
             color: (widget.grade == 0 ||
-                widget.grade == 1 ||
-                widget.grade == 2 ||
-                widget.grade == 4 ||
-                widget.grade == 8)
+                    widget.grade == 1 ||
+                    widget.grade == 2 ||
+                    widget.grade == 4 ||
+                    widget.grade == 8)
                 ? Colors.black
                 : Colors.white),
         onPressed: () {
@@ -57,26 +57,30 @@ class _RoutineGuideState extends State<RoutineGuide> {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            Text(
-              '${widget.data[0].routine}',
-              style: TextStyle(
-                fontSize: 25.0,
+        child: widget.data.length != 0
+            ? ListView(
+                children: [
+                  Text(
+                    '${widget.data[0].routine}',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  for (int i = 0; i < widget.data.length; i++)
+                    RoutineCard(
+                      exerciseName: widget.data[i].exercise,
+                      number: widget.data[i].num,
+                      exerciseImage1: widget.data[i].image1,
+                      exerciseImage2: widget.data[i].image2,
+                      exerciseStep: widget.data[i].step,
+                      idx: i + 1,
+                    ),
+                ],
+              )
+            : Center(
+                child: Text('운동이 없습니다.'),
               ),
-            ),
-            SizedBox(height: 16.0),
-            for (int i = 0; i < widget.data.length; i++)
-              RoutineCard(
-                exerciseName: widget.data[i].exercise,
-                number: widget.data[i].num,
-                exerciseImage1: widget.data[i].image1,
-                exerciseImage2: widget.data[i].image2,
-                exerciseStep: widget.data[i].step,
-                idx: i + 1,
-              ),
-          ],
-        ),
       ),
     );
   }
