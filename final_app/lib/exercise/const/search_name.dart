@@ -28,7 +28,7 @@ class SearchName extends StatelessWidget {
           var url = Uri.http(IP_ADDRESS, '/exersice_guide.php', {'q': '{http}'});
           var response = await http.post(url, body: <String, String>{
             "muscle": name.toString(),
-            "equipment": '맨몸'.toString(),
+            "equipment": '덤벨'.toString(),
             "difficulty": level.toString(),
           });
           var jsondata = jsonDecode(json.decode(json.encode(response.body)));
@@ -38,7 +38,7 @@ class SearchName extends StatelessWidget {
                 level: level,
                 jsondata: jsondata,
                 muscle: name,
-                equipment: '맨몸',
+                equipment: '덤벨',
                 loginID: loginID,
                 grade: grade,
               ),
