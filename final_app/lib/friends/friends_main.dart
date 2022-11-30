@@ -86,29 +86,37 @@ class _FriendsMainState extends State<FriendsMain> {
                   SizedBox(width: 8.0),
                   GestureDetector(
                     child: Icon(Icons.search),
-                    onTap: () {
-                      /*
-                      select: 닉네임이 find인 사용자 select -> class
-                      (지금처럼 모든 사용자 불러오지 말고 find인 사람만 불러와서 길이가 1이면 이동, 0이면 토스트)
-                       */
-                      String find = controller.text.toString();
-                      List<String> allUser = [
-                        'user1',
-                        'user2',
-                        'user3',
-                        'friend3',
-                        'friend2',
-                        'friend1'
-                      ];
-                      if (allUser.contains(find)) {
-                        /*
-                        class 형태로 전달
-                         */
+                    onTap: () async {
+                      var url = Uri.http(IP_ADDRESS,
+                          '/test_select_userdata.php', {'q': '{http}'});
+                      var response =
+                          await http.post(url, body: <String, String>{
+                        "username": controller.text.toString(),
+                        "mode": "Nickname".toString(),
+                      });
+                      var jsondata =
+                          jsonDecode(json.decode(json.encode(response.body)));
+                      USERDATA data = USERDATA.fromJson(jsondata);
+
+                      if (data.result!.length != 0) {
+                        var url2 = Uri.http(
+                            IP_ADDRESS,
+                            '/test_select_exercise_record.php',
+                            {'q': '{http}'});
+                        var response2 =
+                            await http.post(url2, body: <String, String>{
+                          "nickname": controller.text.toString(),
+                        });
+                        var jsondata2 = jsonDecode(
+                            json.decode(json.encode(response2.body)));
+                        MY_EXERCISE_RECORD data2 =
+                            MY_EXERCISE_RECORD.fromJson(jsondata2);
+
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) => UserInfo(
-                              userdata: null,
-                              recorddata: null,
+                              userdata: data.result!,
+                              recorddata: data2.result!,
                               loginID: widget.loginID,
                               grade: widget.grade,
                             ),
