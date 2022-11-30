@@ -158,7 +158,7 @@ class _FriendsMainState extends State<FriendsMain> {
                                         2.5,
                                     padding:
                                         EdgeInsets.symmetric(vertical: 8.0),
-                                    child: snapshot.data[0].result!.length == 0
+                                    child: snapshot.data[0].result!.length == 1
                                         ? Container(
                                             width: double.infinity,
                                             alignment: Alignment.center,
@@ -179,13 +179,16 @@ class _FriendsMainState extends State<FriendsMain> {
                                                       snapshot.data[0].result!
                                                           .length;
                                                   i++)
-                                                FriendCard(
-                                                    nickname: snapshot.data[0]
-                                                        .result![i].friends,
-                                                    rating: snapshot.data[0]
-                                                        .result![i].rating,
-                                                    grade: widget.grade,
-                                                    loginID: widget.loginID)
+                                                if (snapshot.data[0].result![i]
+                                                        .friends !=
+                                                    widget.loginID)
+                                                  FriendCard(
+                                                      nickname: snapshot.data[0]
+                                                          .result![i].friends,
+                                                      rating: snapshot.data[0]
+                                                          .result![i].rating,
+                                                      grade: widget.grade,
+                                                      loginID: widget.loginID)
                                             ],
                                           ),
                                   ),
