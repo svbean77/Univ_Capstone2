@@ -62,7 +62,7 @@ class EquipmentFilter extends StatelessWidget {
                     equipment = '스트레칭';
                   }
                   var url = Uri.http(
-                      IP_ADDRESS, '/exersice_guide.php', {'q': '{http}'});
+                      IP_ADDRESS, '/exercise_guide.php', {'q': '{http}'});
                   var response = await http.post(url, body: <String, String>{
                     "muscle": muscle.toString(),
                     "equipment": equipment.toString(),
