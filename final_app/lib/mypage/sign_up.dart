@@ -67,7 +67,7 @@ class _SignUpState extends State<SignUp> {
                           controller: _idController,
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(horizontal: 10.0),
+                                EdgeInsets.symmetric(horizontal: 10.0),
                           ),
                         ),
                       ),
@@ -133,7 +133,7 @@ class _SignUpState extends State<SignUp> {
                           controller: _nicknameController,
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(horizontal: 10.0),
+                                EdgeInsets.symmetric(horizontal: 10.0),
                           ),
                         ),
                       ),
@@ -159,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                           controller: _userageController,
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(horizontal: 10.0),
+                                EdgeInsets.symmetric(horizontal: 10.0),
                           ),
                           keyboardType: TextInputType.number,
                         ),
@@ -264,7 +264,7 @@ class _SignUpState extends State<SignUp> {
       "username": _idController.text.toString(),
       "password": _pwController.text.toString(),
       "nickname": _nicknameController.text.toString(),
-      if (sex[0] == true) "sex": 'male' else "sex": 'female',
+      if (sex[0] == true) "sex": '남자' else "sex": '여자',
       "userage": _userageController.text.toString(),
     });
     var data = json.decode(json.encode(response.body));
