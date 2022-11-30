@@ -49,5 +49,16 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>사진첩 권한을 허가해주세요.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>카메라 권한을 허가해주세요.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>마이크 권한을 허가해주세요.</string>
+		<key>LSApplicationQueriesSchemes</key>
+        <array>
+          <string>sms</string>
+          <string>tel</string>
+        </array>
 	</dict>
 </plist>
