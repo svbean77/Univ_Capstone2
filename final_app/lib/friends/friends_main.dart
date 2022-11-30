@@ -35,20 +35,20 @@ class _FriendsMainState extends State<FriendsMain> {
     });
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     FRIENDS data = FRIENDS.fromJson(jsondata);
-    return data;
+
+    var url2 =
+        Uri.http(IP_ADDRESS, '/test_select_request.php', {'q': '{http}'});
+    var response2 = await http.post(url2, body: <String, String>{
+      "nickname": widget.loginID.toString(),
+    });
+    var jsondata2 = jsonDecode(json.decode(json.encode(response2.body)));
+    REQUESTED data2 = REQUESTED.fromJson(jsondata2);
+
+    return [data, data2];
   }
 
   @override
   Widget build(BuildContext context) {
-    /*
-    친구 요청 목록 select
-    select: 1) 내가 신청한 사용자 (join)
-    select: 2) 나한테 신청한 사용자 (join)
-    => 2개의 결과가 있어야 함 (같은 db를 바탕으로 2번 select)
-     */
-    /*
-    => 얘네들을 각각 목록으로 불러오지 말고 친구목록에 있는 사용자들, 요청목록에 있는 사용자들 등등 sql에서 사람으로 만들어 select하자!
-     */
     List<String> requestN = ['요청1', '요청2', '요청3'];
     List<String> requestR = ['실버', '플래티넘', '그랜드마스터'];
 
@@ -150,7 +150,7 @@ class _FriendsMainState extends State<FriendsMain> {
                                         2.5,
                                     padding:
                                         EdgeInsets.symmetric(vertical: 8.0),
-                                    child: snapshot.data.result!.length == 0
+                                    child: snapshot.data[0].result!.length == 0
                                         ? Container(
                                             width: double.infinity,
                                             alignment: Alignment.center,
@@ -168,14 +168,14 @@ class _FriendsMainState extends State<FriendsMain> {
                                             children: [
                                               for (int i = 0;
                                                   i <
-                                                      snapshot
-                                                          .data.result!.length;
+                                                      snapshot.data[0].result!
+                                                          .length;
                                                   i++)
                                                 FriendCard(
-                                                    nickname: snapshot.data
+                                                    nickname: snapshot.data[0]
                                                         .result![i].friends,
-                                                    rating: snapshot
-                                                        .data.result![i].rating,
+                                                    rating: snapshot.data[0]
+                                                        .result![i].rating,
                                                     grade: widget.grade,
                                                     loginID: widget.loginID)
                                             ],
@@ -187,7 +187,7 @@ class _FriendsMainState extends State<FriendsMain> {
                                   height:
                                       MediaQuery.of(context).size.height / 5,
                                   padding: EdgeInsets.symmetric(vertical: 8.0),
-                                  child: requestN.length == 0
+                                  child: snapshot.data[1].result!.length == 0
                                       ? Container(
                                           width: double.infinity,
                                           alignment: Alignment.center,
@@ -203,14 +203,15 @@ class _FriendsMainState extends State<FriendsMain> {
                                       : ListView(
                                           children: [
                                             for (int i = 0;
-                                                i < requestN.length;
+                                                i <
+                                                    snapshot
+                                                        .data[1].result!.length;
                                                 i++)
-                                              /*
-                                        class로 보내줘야 함 ([i]가 들어가니까)
-                                         */
                                               RequestCard(
-                                                  nickname: requestN[i],
-                                                  rating: requestR[i],
+                                                  nickname: snapshot.data[1]
+                                                      .result![i].request,
+                                                  rating: snapshot.data[1]
+                                                      .result![i].rating,
                                                   grade: widget.grade,
                                                   loginID: widget.loginID)
                                           ],

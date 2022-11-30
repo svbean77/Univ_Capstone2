@@ -390,3 +390,33 @@ class classFRIENDS {
     rating = jsondata['rating'];
   }
 }
+
+/*
+select request friends
+ */
+class REQUESTED {
+  List<classREQUESTED>? result;
+
+  REQUESTED({this.result});
+
+  REQUESTED.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classREQUESTED>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classREQUESTED.fromJson(v));
+      });
+    }
+  }
+}
+
+class classREQUESTED {
+  String? request;
+  String? rating;
+
+  classREQUESTED({this.request, this.rating});
+
+  classREQUESTED.fromJson(Map<String, dynamic> jsondata) {
+    request = jsondata['request'];
+    rating = jsondata['rating'];
+  }
+}
