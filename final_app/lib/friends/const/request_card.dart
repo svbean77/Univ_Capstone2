@@ -1,12 +1,14 @@
+import 'dart:convert';
+
 import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/ranking/const/user_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import '../../screen/const/db_class.dart';
+import '../../screen/const/ip_address.dart';
 
 class RequestCard extends StatelessWidget {
-  /*
-  class로 넘겼다고 가정
-   */
   final loginID;
   final nickname;
   final rating;
@@ -49,13 +51,34 @@ class RequestCard extends StatelessWidget {
                 children: [
                   GestureDetector(
                     child: Icon(Icons.person_search),
-                    onTap: () {
+                    onTap: () async {
+                      var url = Uri.http(IP_ADDRESS,
+                          '/test_select_userdata.php', {'q': '{http}'});
+                      var response =
+                          await http.post(url, body: <String, String>{
+                        "username": nickname.toString(),
+                        "mode": "Nickname".toString(),
+                      });
+                      var jsondata =
+                          jsonDecode(json.decode(json.encode(response.body)));
+                      USERDATA data = USERDATA.fromJson(jsondata);
+
+                      var url2 = Uri.http(IP_ADDRESS,
+                          '/test_select_exercise_record.php', {'q': '{http}'});
+                      var response2 =
+                          await http.post(url2, body: <String, String>{
+                        "nickname": nickname.toString(),
+                      });
+                      var jsondata2 =
+                          jsonDecode(json.decode(json.encode(response2.body)));
+                      MY_EXERCISE_RECORD data2 =
+                          MY_EXERCISE_RECORD.fromJson(jsondata2);
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) => UserInfo(
                             loginID: loginID,
-                            userdata: null,
-                            recorddata: null,
+                            userdata: data.result!,
+                            recorddata: data2.result!,
                             grade: grade,
                           ),
                         ),
@@ -74,12 +97,12 @@ class RequestCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('친구추가 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -93,10 +116,10 @@ class RequestCard extends StatelessWidget {
                                           '취소',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                grade == 1 ||
-                                                grade == 2 ||
-                                                grade == 4 ||
-                                                grade == 8)
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
@@ -107,30 +130,52 @@ class RequestCard extends StatelessWidget {
                                           primary: PRIMARY_COLOR[grade],
                                           elevation: 0,
                                         ),
-                                        onPressed: () {
-                                          /*
-                                          insert: 친구 추가하는 코드
-                                           */
-                                          /*
-                                          delete: 친구요청 삭제하는 코드
-                                           */
-                                          Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                    FriendsMain(
-                                                        loginID: loginID,
-                                                        grade: grade)),
-                                          );
+                                        onPressed: () async {
+                                          var url = Uri.http(
+                                              IP_ADDRESS,
+                                              '/test_remove_request.php',
+                                              {'q': '{http}'});
+                                          var response = await http
+                                              .post(url, body: <String, String>{
+                                            "nickname": loginID.toString(),
+                                            "request": nickname.toString(),
+                                          });
+                                          var jsondata = jsonDecode(json.decode(
+                                              json.encode(response.body)));
+
+                                          var url2 = Uri.http(
+                                              IP_ADDRESS,
+                                              '/test_add_friends.php',
+                                              {'q': '{http}'});
+                                          var response2 = await http.post(url2,
+                                              body: <String, String>{
+                                                "nickname": loginID.toString(),
+                                                "request": nickname.toString(),
+                                              });
+                                          var jsondata2 = jsonDecode(
+                                              json.decode(
+                                                  json.encode(response2.body)));
+
+                                          if (jsondata == "Success" &&
+                                              jsondata2 == "Success")
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          FriendsMain(
+                                                              loginID: loginID,
+                                                              grade: grade)),
+                                            );
                                         },
                                         child: Text(
                                           '확인',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                grade == 1 ||
-                                                grade == 2 ||
-                                                grade == 4 ||
-                                                grade == 8)
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
@@ -158,12 +203,12 @@ class RequestCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('요청삭제 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -177,10 +222,10 @@ class RequestCard extends StatelessWidget {
                                           '취소',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                grade == 1 ||
-                                                grade == 2 ||
-                                                grade == 4 ||
-                                                grade == 8)
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
@@ -191,27 +236,37 @@ class RequestCard extends StatelessWidget {
                                           primary: PRIMARY_COLOR[grade],
                                           elevation: 0,
                                         ),
-                                        onPressed: () {
-                                          /*
-                                          delete: 친구요청 삭제하는 코드
-                                           */
-                                          Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                    FriendsMain(
-                                                        loginID: loginID,
-                                                        grade: grade)),
-                                          );
+                                        onPressed: () async {
+                                          var url = Uri.http(
+                                              IP_ADDRESS,
+                                              '/test_remove_request.php',
+                                              {'q': '{http}'});
+                                          var response = await http
+                                              .post(url, body: <String, String>{
+                                            "nickname": loginID.toString(),
+                                            "request": nickname.toString(),
+                                          });
+                                          var jsondata = jsonDecode(json.decode(
+                                              json.encode(response.body)));
+                                          if (jsondata == "Success")
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          FriendsMain(
+                                                              loginID: loginID,
+                                                              grade: grade)),
+                                            );
                                         },
                                         child: Text(
                                           '확인',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                grade == 1 ||
-                                                grade == 2 ||
-                                                grade == 4 ||
-                                                grade == 8)
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
