@@ -1,12 +1,16 @@
+import 'dart:convert';
+
 import 'package:final_app/friends/const/friend_card.dart';
 import 'package:final_app/friends/const/request_card.dart';
 import 'package:final_app/ranking/const/user_info.dart';
 import 'package:final_app/screen/const/app_bar.dart';
+import 'package:final_app/screen/const/db_class.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:http/http.dart' as http;
 import '../screen/const/grade_colors.dart';
+import '../screen/const/ip_address.dart';
 
 class FriendsMain extends StatefulWidget {
   final loginID;
@@ -24,11 +28,18 @@ class FriendsMain extends StatefulWidget {
 class _FriendsMainState extends State<FriendsMain> {
   final TextEditingController controller = TextEditingController();
 
+  Future getDatas() async {
+    var url = Uri.http(IP_ADDRESS, '/test_select_friend.php', {'q': '{http}'});
+    var response = await http.post(url, body: <String, String>{
+      "nickname": widget.loginID.toString(),
+    });
+    var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+    FRIENDS data = FRIENDS.fromJson(jsondata);
+    return data;
+  }
+
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 친구인 사용자 (join)
-     */
     /*
     친구 요청 목록 select
     select: 1) 내가 신청한 사용자 (join)
@@ -67,7 +78,7 @@ class _FriendsMainState extends State<FriendsMain> {
                         controller: controller,
                         decoration: InputDecoration(
                           contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10.0),
+                              EdgeInsets.symmetric(horizontal: 10.0),
                           hintText: '닉네임으로 사용자 검색',
                           border: InputBorder.none,
                         ),
@@ -110,10 +121,10 @@ class _FriendsMainState extends State<FriendsMain> {
                           msg: '존재하지 않는 닉네임입니다.',
                           backgroundColor: PRIMARY_COLOR[widget.grade],
                           textColor: (widget.grade == 0 ||
-                              widget.grade == 1 ||
-                              widget.grade == 2 ||
-                              widget.grade == 4 ||
-                              widget.grade == 8)
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
                               ? Colors.black
                               : Colors.white,
                           toastLength: Toast.LENGTH_SHORT,
@@ -127,73 +138,80 @@ class _FriendsMainState extends State<FriendsMain> {
             SizedBox(height: 8.0),
             Expanded(
               child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('친구목록', style: TextStyle(fontSize: 25.0)),
-                    Expanded(
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 2.5,
-                        padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: friendN.length == 0
-                            ? Container(
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: PRIMARY_COLOR[widget.grade],
+                child: FutureBuilder(
+                    future: getDatas(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        print(snapshot.data.result!);
+                      }
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('친구목록', style: TextStyle(fontSize: 25.0)),
+                          Expanded(
+                            child: Container(
+                              height: MediaQuery.of(context).size.height / 2.5,
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              child: snapshot.data.result!.length == 0
+                                  ? Container(
+                                      width: double.infinity,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: PRIMARY_COLOR[widget.grade],
+                                        ),
+                                      ),
+                                      child: Text('친구 목록이 없습니다.',
+                                          style: TextStyle(fontSize: 20.0)),
+                                    )
+                                  : ListView(
+                                      children: [
+                                        for (int i = 0; i < snapshot.data.result!.length; i++)
+                                          /*
+                                        class로 보내줘야 함 ([i]가 들어가니까)
+                                         */
+                                          FriendCard(
+                                              nickname: snapshot.data.result![i].friends,
+                                              rating: snapshot.data.result![i].rating,
+                                              grade: widget.grade,
+                                              loginID: widget.loginID)
+                                      ],
+                                    ),
                             ),
                           ),
-                          child: Text('친구 목록이 없습니다.',
-                              style: TextStyle(fontSize: 20.0)),
-                        )
-                            : ListView(
-                          children: [
-                            for (int i = 0; i < friendN.length; i++)
-                            /*
-                                    class로 보내줘야 함 ([i]가 들어가니까)
-                                     */
-                              FriendCard(
-                                  nickname: friendN[i],
-                                  rating: friendR[i],
-                                  grade: widget.grade,
-                                  loginID: widget.loginID)
-                          ],
-                        ),
-                      ),
-                    ),
-                    Text('친구요청', style: TextStyle(fontSize: 25.0)),
-                    Container(
-                      height: MediaQuery.of(context).size.height / 5,
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: requestN.length == 0
-                          ? Container(
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: PRIMARY_COLOR[widget.grade],
+                          Text('친구요청', style: TextStyle(fontSize: 25.0)),
+                          Container(
+                            height: MediaQuery.of(context).size.height / 5,
+                            padding: EdgeInsets.symmetric(vertical: 8.0),
+                            child: requestN.length == 0
+                                ? Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: PRIMARY_COLOR[widget.grade],
+                                      ),
+                                    ),
+                                    child: Text('친구 요청이 없습니다.',
+                                        style: TextStyle(fontSize: 20.0)),
+                                  )
+                                : ListView(
+                                    children: [
+                                      for (int i = 0; i < requestN.length; i++)
+                                        /*
+                                        class로 보내줘야 함 ([i]가 들어가니까)
+                                         */
+                                        RequestCard(
+                                            nickname: requestN[i],
+                                            rating: requestR[i],
+                                            grade: widget.grade,
+                                            loginID: widget.loginID)
+                                    ],
+                                  ),
                           ),
-                        ),
-                        child: Text('친구 요청이 없습니다.',
-                            style: TextStyle(fontSize: 20.0)),
-                      )
-                          : ListView(
-                        children: [
-                          for (int i = 0; i < requestN.length; i++)
-                          /*
-                                    class로 보내줘야 함 ([i]가 들어가니까)
-                                     */
-                            RequestCard(
-                                nickname: requestN[i],
-                                rating: requestR[i],
-                                grade: widget.grade,
-                                loginID: widget.loginID)
                         ],
-                      ),
-                    ),
-                  ],
-                ),
+                      );
+                    }),
               ),
             ),
           ],

@@ -357,3 +357,36 @@ class classWEIGHT {
     writeDate = jsondata['writeDate'];
   }
 }
+
+/*
+select friends
+ */
+class FRIENDS {
+  List<classFRIENDS>? result;
+
+  FRIENDS({this.result});
+
+  FRIENDS.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classFRIENDS>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classFRIENDS.fromJson(v));
+      });
+    }
+  }
+}
+
+class classFRIENDS {
+  String? friends;
+  String? rating;
+
+  classFRIENDS({
+    this.friends,
+    this.rating,
+  });
+
+  classFRIENDS.fromJson(Map<String, dynamic> jsondata) {
+    friends = jsondata['friends'];
+    rating = jsondata['rating'];
+  }
+}
