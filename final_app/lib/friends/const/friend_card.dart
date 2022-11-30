@@ -56,22 +56,27 @@ class FriendCard extends StatelessWidget {
                   GestureDetector(
                     child: Icon(Icons.person_search),
                     onTap: () async {
-                      var url =
-                      Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
-                      var response = await http.post(url, body: <String, String>{
+                      var url = Uri.http(IP_ADDRESS,
+                          '/test_select_userdata.php', {'q': '{http}'});
+                      var response =
+                          await http.post(url, body: <String, String>{
                         "username": nickname.toString(),
                         "mode": "Nickname".toString(),
                       });
-                      var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+                      var jsondata =
+                          jsonDecode(json.decode(json.encode(response.body)));
                       USERDATA data = USERDATA.fromJson(jsondata);
 
-                      var url2 = Uri.http(
-                          IP_ADDRESS, '/test_select_exercise_record.php', {'q': '{http}'});
-                      var response2 = await http.post(url2, body: <String, String>{
+                      var url2 = Uri.http(IP_ADDRESS,
+                          '/test_select_exercise_record.php', {'q': '{http}'});
+                      var response2 =
+                          await http.post(url2, body: <String, String>{
                         "nickname": nickname.toString(),
                       });
-                      var jsondata2 = jsonDecode(json.decode(json.encode(response2.body)));
-                      MY_EXERCISE_RECORD data2 = MY_EXERCISE_RECORD.fromJson(jsondata2);
+                      var jsondata2 =
+                          jsonDecode(json.decode(json.encode(response2.body)));
+                      MY_EXERCISE_RECORD data2 =
+                          MY_EXERCISE_RECORD.fromJson(jsondata2);
 
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -97,12 +102,12 @@ class FriendCard extends StatelessWidget {
                               height: 100.0,
                               child: Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Text('친구삭제 하시겠습니까?'),
                                   Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -116,10 +121,10 @@ class FriendCard extends StatelessWidget {
                                           '취소',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                grade == 1 ||
-                                                grade == 2 ||
-                                                grade == 4 ||
-                                                grade == 8)
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
@@ -130,27 +135,40 @@ class FriendCard extends StatelessWidget {
                                           primary: PRIMARY_COLOR[grade],
                                           elevation: 0,
                                         ),
-                                        onPressed: () {
+                                        onPressed: () async {
+                                          var url = Uri.http(
+                                              IP_ADDRESS,
+                                              '/test_remove_friends.php',
+                                              {'q': '{http}'});
+                                          var response = await http
+                                              .post(url, body: <String, String>{
+                                            "nickname": loginID.toString(),
+                                            "friends": nickname.toString(),
+                                          });
+                                          var jsondata = jsonDecode(json.decode(
+                                              json.encode(response.body)));
                                           /*
                                           delete: db에 친구 삭제하는 코드
                                            */
-                                          Navigator.of(context).pushReplacement(
-                                            MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                    FriendsMain(
-                                                        loginID: loginID,
-                                                        grade: grade)),
-                                          );
+                                          if (jsondata == "Success")
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          FriendsMain(
+                                                              loginID: loginID,
+                                                              grade: grade)),
+                                            );
                                         },
                                         child: Text(
                                           '확인',
                                           style: TextStyle(
                                             color: (grade == 0 ||
-                                                grade == 1 ||
-                                                grade == 2 ||
-                                                grade == 4 ||
-                                                grade == 8)
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
                                                 ? Colors.black
                                                 : Colors.white,
                                           ),
