@@ -13,7 +13,7 @@ class LoadVideo extends StatefulWidget {
 }
 
 class _LoadVideoState extends State<LoadVideo> {
-  List<File> files = [];
+  List<File> videoFiles = [];
   final TextEditingController contentsController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   @override
@@ -69,13 +69,13 @@ class _LoadVideoState extends State<LoadVideo> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () async {
-                if (files.length == 0) {
+                if (videoFiles.length == 0) {
                   PickedFile? pickedFile =
                       await ImagePicker().getVideo(source: ImageSource.gallery);
                   setState(() {
-                    files.add(File(pickedFile!.path));
+                    videoFiles.add(File(pickedFile!.path));
                   });
-                  print(files[0]);
+                  print(videoFiles[0]);
                 } else {
                   print("동영상은 한 개만 가능이여ㅠㅠ");
                 }
@@ -89,8 +89,8 @@ class _LoadVideoState extends State<LoadVideo> {
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: [
-                  for (int i = 0; i < files.length; i++)
-                    Text(files[i].toString()),
+                  for (int i = 0; i < videoFiles.length; i++)
+                    Text(videoFiles[i].toString()),
                 ],
               ),
             ),
@@ -98,13 +98,13 @@ class _LoadVideoState extends State<LoadVideo> {
               onPressed: () async {
                 print(titleController.text.toString());
                 print(contentsController.text.toString());
-                if (files.length != 0) {
-                  if (files.length != 0) print(files[0]);
+                if (videoFiles.length != 0) {
+                  if (videoFiles.length != 0) print(videoFiles[0]);
                   var url = Uri.http("아이피주소", '/파일이름.php', {'q': '{http}'});
                   var response = await http.post(url, body: <String, String>{
                     "title": titleController.text.toString(),
                     "content": contentsController.text.toString(),
-                    "filepath": files[0].toString(),
+                    "filepath": videoFiles[0].toString(),
                     "writer": "작성자",
                   });
                   var jsondata =

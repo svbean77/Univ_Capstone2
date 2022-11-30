@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -15,7 +17,7 @@ class LoadImage extends StatefulWidget {
 }
 
 class _LoadImageState extends State<LoadImage> {
-  List<File> files = [];
+  List<File> imageFile = [];
   final GlobalKey<FormState> titleFormKey = GlobalKey();
   final GlobalKey<FormState> contentFormKey = GlobalKey();
   String title = "";
@@ -94,13 +96,13 @@ class _LoadImageState extends State<LoadImage> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    if (files.length == 0) {
+                    if (imageFile.length == 0) {
                       PickedFile? pickedFile = await ImagePicker()
                           .getImage(source: ImageSource.gallery);
                       setState(() {
-                        files.add(File(pickedFile!.path));
+                        imageFile.add(File(pickedFile!.path));
                       });
-                      print(files[0]);
+                      print(imageFile[0]);
                     } else {
                       print("사진은 한 장만 가능이야!");
                     }
@@ -112,11 +114,11 @@ class _LoadImageState extends State<LoadImage> {
                 SizedBox(width: 8.0),
                 ElevatedButton(
                   onPressed: () async {
-                    if (files.length == 0) {
+                    if (imageFile.length == 0) {
                       PickedFile? pickedFile = await ImagePicker()
                           .getImage(source: ImageSource.camera);
                       setState(() {
-                        files.add(File(pickedFile!.path));
+                        imageFile.add(File(pickedFile!.path));
                       });
                     } else {
                       print("사진은 한 장만 가능이야!");
@@ -134,7 +136,7 @@ class _LoadImageState extends State<LoadImage> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  for (int i = 0; i < files.length; i++)
+                  for (int i = 0; i < imageFile.length; i++)
                     Padding(
                       padding: EdgeInsets.only(right: 8.0),
                       child: Container(
@@ -142,7 +144,7 @@ class _LoadImageState extends State<LoadImage> {
                         width: 100.0,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: FileImage(files[i]), //File Image를 삽입
+                              image: FileImage(imageFile[i]), //File Image를 삽입
                               fit: BoxFit.cover),
                         ),
                       ),
@@ -153,25 +155,34 @@ class _LoadImageState extends State<LoadImage> {
             SizedBox(height: 8.0),
             ElevatedButton(
               onPressed: () async {
-                print(title);
-                print(content);
-                if (files.length != 0) print(files[0]);
-                var url = Uri.http("아이피주소", '/파일이름.php', {'q': '{http}'});
-                var response = await http.post(url, body: <String, String>{
-                  "title": title.toString(),
-                  "content": content.toString(),
-                  "filepath": files.length == 0 ? "no" : files[0].toString(),
-                  "writer": "작성자",
-                });
-                var jsondata =
-                    jsonDecode(json.decode(json.encode(response.body)));
+                var stream = new http.ByteStream(
+                    DelegatingStream.typed(imageFile[0].openRead()));
+                var length = await imageFile[0].length();
 
-                if (jsondata == "Success")
+                if (imageFile.length != 0) print(imageFile[0]);
+                var url = Uri.http("아이피주소", '/파일이름.php', {'q': '{http}'});
+
+                var request = new http.MultipartRequest("POST", url);
+
+                var multipartFile = new http.MultipartFile(
+                    "freefilename", stream, length,
+                    filename: basename(imageFile[0].path));
+
+                request.files.add(multipartFile);
+                request.fields['freetitle'] = title.toString();
+                request.fields['freecontent'] = content.toString();
+                request.fields['freefilepath'] = imageFile[0].path.toString();
+                request.fields['freewriter'] = "작성자".toString();
+
+                var respond = await request.send();
+                if (respond.statusCode == 200)
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (BuildContext context) => HomeScreen(),
                     ),
                   );
+                else
+                  print("이미지 업로드 실패..");
               },
               child: Text(
                 '저장',
