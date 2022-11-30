@@ -21,53 +21,99 @@ class MyRanking extends StatefulWidget {
 
 class _MyRankingState extends State<MyRanking> {
   Future getDatas() async {
+    int ranking = 0;
+    List<String> friendsLst = [];
+    List<String> requestLst = [];
+    List<String> requestedLst = [];
+
+    // 모든 사용자: 순위를 구하기 위해 사용
     var url =
         Uri.http(IP_ADDRESS, '/test_select_all_user.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{});
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     USERDATA data = USERDATA.fromJson(jsondata);
-    return [data];
+
+    //친구: 친구이면 아이콘을 보이지 않음
+    var url2 =
+        Uri.http(IP_ADDRESS, '/test_select_all_friends.php', {'q': '{http}'});
+    var response2 = await http.post(url2, body: <String, String>{
+      "nickname": widget.loginID.toString(),
+    });
+    var jsondata2 = jsonDecode(json.decode(json.encode(response2.body)));
+    USERDATA data2 = USERDATA.fromJson(jsondata2);
+
+    //내가 한 요청: 대기중 아이콘을 보임
+    var url3 =
+        Uri.http(IP_ADDRESS, '/test_select_requested.php', {'q': '{http}'});
+    var response3 = await http.post(url3, body: <String, String>{
+      "nickname": widget.loginID.toString(),
+    });
+    var jsondata3 = jsonDecode(json.decode(json.encode(response3.body)));
+    REQUESTED data3 = REQUESTED.fromJson(jsondata3);
+
+    //내가 받은 요청: 수락 아이콘을 보임
+    var url4 =
+        Uri.http(IP_ADDRESS, '/test_select_request.php', {'q': '{http}'});
+    var response4 = await http.post(url4, body: <String, String>{
+      "nickname": widget.loginID.toString(),
+    });
+    var jsondata4 = jsonDecode(json.decode(json.encode(response4.body)));
+    REQUESTED data4 = REQUESTED.fromJson(jsondata4);
+
+    for(int i = 0; i < data.result!.length; i++){
+      if (data.result![i].nickname == widget.nickname)
+        ranking = i;
+    }
+    for (int i = 0; i < data2.result!.length; i++) {
+      friendsLst.add(data2.result![i].nickname!);
+    }
+    for (int i = 0; i < data3.result!.length; i++) {
+      requestedLst.add(data3.result![i].request!);
+    }
+    for (int i = 0; i < data4.result!.length; i++) {
+      requestLst.add(data4.result![i].request!);
+    }
+    return [data, data2, data3, data4];
   }
 
-  String friends = '';
+  String friends = 'no';
   @override
   Widget build(BuildContext context) {
     /*
-    select: loginID의 친구정보, 나의요청정보, 내게요청정보
-     */
-    List<String> myFriends = ['친구1', '친구2', '친구3'];
-    List<String> myRequests = ['유저1', '유저2']; //내가 요청함
-    List<String> myRequested = ['요청1', '요청2']; //나한테 요청함
-
-    /*
     조건문 순서: 나야 -> 요청받았어 -> 요청했어 -> 친구가 아니야 -> 친구야
      */
-
-    if (widget.nickname == widget.loginID) {
-      friends = 'me';
-    } else if (myRequested.contains(widget.nickname)) {
-      //나한테 요청함
-      friends = 'requested';
-    } else if (myRequests.contains(widget.nickname)) {
-      //내가 요청함
-      friends = 'request';
-    } else if (!myFriends.contains(widget.nickname)) {
-      friends = 'no';
-    } else {
-      friends = 'friend';
-    }
-
     return FutureBuilder(
         future: getDatas(),
         builder: (context, snapshot) {
           int ranking = 0;
+          List<String> friendsLst = [];
+          List<String> requestLst = [];
+          List<String> requestedLst = [];
 
           if (snapshot.hasData) {
             for (int i = 0; i < snapshot.data[0].result!.length; i++) {
               if (snapshot.data[0].result![i].nickname == widget.nickname)
                 ranking = i;
             }
+            for (int i = 0; i < snapshot.data[1].result!.length; i++) {
+              friendsLst.add(snapshot.data[1].result![i].nickname);
+            }
+            for (int i = 0; i < snapshot.data[2].result!.length; i++) {
+              requestedLst.add(snapshot.data[2].result![i].request);
+            }
+            for (int i = 0; i < snapshot.data[3].result!.length; i++) {
+              requestLst.add(snapshot.data[3].result![i].request);
+            }
+
+            if (widget.loginID == widget.nickname)
+              friends = "me";
+            else if (friendsLst.contains(widget.nickname))
+              friends = "friend";
+            else if (requestedLst.contains(widget.nickname))
+              friends = "requested";
+            else if (requestLst.contains(widget.nickname)) friends = "request";
           }
+          print(friends);
           return Container(
             height: 200.0,
             child: snapshot.hasData
@@ -125,7 +171,7 @@ class _MyRankingState extends State<MyRanking> {
                                         delete: 친구 요청 목록에서 삭제
                                          */
                                                 setState(() {
-                                                  friends = 'friend';
+                                                  friends = 'request';
                                                 });
                                               },
                                               child: Icon(

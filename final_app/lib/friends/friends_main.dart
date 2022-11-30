@@ -37,7 +37,7 @@ class _FriendsMainState extends State<FriendsMain> {
     FRIENDS data = FRIENDS.fromJson(jsondata);
 
     var url2 =
-        Uri.http(IP_ADDRESS, '/test_select_request.php', {'q': '{http}'});
+        Uri.http(IP_ADDRESS, '/test_select_requested.php', {'q': '{http}'});
     var response2 = await http.post(url2, body: <String, String>{
       "nickname": widget.loginID.toString(),
     });
@@ -49,9 +49,6 @@ class _FriendsMainState extends State<FriendsMain> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> requestN = ['요청1', '요청2', '요청3'];
-    List<String> requestR = ['실버', '플래티넘', '그랜드마스터'];
-
     return Scaffold(
       appBar: MyAppBar(grade: widget.grade),
       drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),

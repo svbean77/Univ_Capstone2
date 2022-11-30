@@ -392,7 +392,7 @@ class classFRIENDS {
 }
 
 /*
-select request friends
+select request friends: 내가 요청 받음
  */
 class REQUESTED {
   List<classREQUESTED>? result;
