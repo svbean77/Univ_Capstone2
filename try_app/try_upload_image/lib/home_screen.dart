@@ -18,7 +18,9 @@ class _ImageUpload extends State<ImageUpload> {
   File? uploadimage; //variable for choosed file
 
   Future<void> chooseImage() async {
-    var choosedimage = await ImagePicker().pickImage(source: ImageSource.gallery);
+    var choosedimage =
+        await ImagePicker().pickVideo(source: ImageSource.gallery);
+    //pickImage를 이용하면 이미지를 올릴 수 있음!!!
 
     //set source: ImageSource.camera to get image from camera
     setState(() {
@@ -29,7 +31,7 @@ class _ImageUpload extends State<ImageUpload> {
   Future<void> uploadImage() async {
     //show your own loading or progressing code here
 
-    String uploadurl = "http://${IP_ADDRESS}/test_php/image_upload.php";
+    String uploadurl = "http://${IP_ADDRESS}/test_php/image_display.php";
     //dont use http://localhost , because emulator don't get that address
     //insted use your local IP address or use live URL
     //hit "ipconfig" in windows or "ip a" in linux to get you local IP
@@ -48,7 +50,6 @@ class _ImageUpload extends State<ImageUpload> {
           print(jsondata["msg"]);
           //if error return from server, show message from server
         } else {
-
           print("Upload successful");
         }
       } else {
@@ -82,12 +83,14 @@ class _ImageUpload extends State<ImageUpload> {
                     ? Container()
                     : //if uploadimage is null then show empty container
                     Container(
+                        /*
                         //elese show image here
                         child: SizedBox(
                             height: 150,
                             child:
                                 Image.file(uploadimage!) //load image from file
-                            ))),
+                            )*/
+                        )),
             Container(
                 //show upload button after choosing image
                 child: uploadimage == null
