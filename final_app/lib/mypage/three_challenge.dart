@@ -23,7 +23,10 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
 
     return Column(
       children: [
-        MyRanking(nickname: widget.loginID, loginID: widget.loginID),
+        MyRanking(
+            nickname: widget.loginID,
+            loginID: widget.loginID,
+            grade: widget.grade),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

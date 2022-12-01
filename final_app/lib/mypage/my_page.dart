@@ -70,7 +70,9 @@ class _MyPageState extends State<MyPage> {
                   ? ListView(
                       children: [
                         MyRanking(
-                            nickname: widget.loginID, loginID: widget.loginID),
+                            nickname: widget.loginID,
+                            loginID: widget.loginID,
+                            grade: widget.grade),
                         SizedBox(height: 16.0),
                         Text('앱 테마 선택', style: TextStyle(fontSize: 25.0)),
                         Container(
@@ -150,7 +152,9 @@ class _MyPageState extends State<MyPage> {
                                   password: snapshot.data.result![0].password,
                                   nickname: snapshot.data.result![0].nickname,
                                   userage: snapshot.data.result![0].userage,
-                                  sex: snapshot.data.result![0].sex == 'male' ? [true, false] : [false, true],
+                                  sex: snapshot.data.result![0].sex == 'male'
+                                      ? [true, false]
+                                      : [false, true],
                                 ),
                               ),
                             );

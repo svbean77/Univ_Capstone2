@@ -3,16 +3,20 @@ import 'dart:convert';
 
 import 'package:final_app/ranking/const/user_info.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import '../../screen/const/db_class.dart';
+import '../../screen/const/grade_colors.dart';
 import '../../screen/const/ip_address.dart';
 
 class MyRanking extends StatefulWidget {
   final loginID;
   final nickname;
+  final grade;
   const MyRanking({
     required this.nickname,
     required this.loginID,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -104,10 +108,6 @@ class _MyRankingState extends State<MyRanking> {
         stream: controller.stream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
-            print(snapshot.data[0]);
-            print(snapshot.data[1]);
-            print(snapshot.data[2]);
-            print(snapshot.data[3]);
             if (snapshot.data[0].contains(widget.nickname))
               friends = "friend";
             else if (snapshot.data[1].contains(widget.nickname))
@@ -159,6 +159,19 @@ class _MyRankingState extends State<MyRanking> {
                                           "requested":
                                               widget.nickname.toString(),
                                         });
+                                        Fluttertoast.showToast(
+                                          msg: '친구 요청을 보냈습니다.',
+                                          backgroundColor:
+                                              PRIMARY_COLOR[widget.grade],
+                                          textColor: (widget.grade == 0 ||
+                                                  widget.grade == 1 ||
+                                                  widget.grade == 2 ||
+                                                  widget.grade == 4 ||
+                                                  widget.grade == 8)
+                                              ? Colors.black
+                                              : Colors.white,
+                                          toastLength: Toast.LENGTH_SHORT,
+                                        );
                                       },
                                       child: Icon(Icons.person_add, size: 25.0),
                                     )
@@ -166,20 +179,30 @@ class _MyRankingState extends State<MyRanking> {
                                   : friends == 'request'
                                       ? GestureDetector(
                                           onTap: () async {
-                                            /*
-                                            var url = Uri.http(
+                                            var url2 = Uri.http(
                                                 IP_ADDRESS,
-                                                '/test_delete_request.php',
+                                                '/test_remove_request.php',
                                                 {'q': '{http}'});
-                                            var response = await http.post(url,
+                                            var response = await http.post(url2,
                                                 body: <String, String>{
-                                                  "nickname":
-                                                      widget.loginID.toString(),
-                                                  "requested": widget.nickname
+                                                  "nickname": widget.nickname
                                                       .toString(),
+                                                  "request":
+                                                      widget.loginID.toString(),
                                                 });
-
-                                             */
+                                            Fluttertoast.showToast(
+                                              msg: '친구 요청을 취소했습니다.',
+                                              backgroundColor:
+                                              PRIMARY_COLOR[widget.grade],
+                                              textColor: (widget.grade == 0 ||
+                                                  widget.grade == 1 ||
+                                                  widget.grade == 2 ||
+                                                  widget.grade == 4 ||
+                                                  widget.grade == 8)
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                              toastLength: Toast.LENGTH_SHORT,
+                                            );
                                           },
                                           child: Icon(Icons.schedule_send,
                                               size: 25.0),
@@ -187,16 +210,45 @@ class _MyRankingState extends State<MyRanking> {
                                       //친구 요청을 받음
                                       : friends == 'requested'
                                           ? GestureDetector(
-                                              onTap: () {
-                                                /*
-                                        insert: 친구 목록에 추가
-                                         */
-                                                /*
-                                        delete: 친구 요청 목록에서 삭제
-                                         */
-                                                setState(() {
-                                                  friends = 'request';
-                                                });
+                                              onTap: () async {
+                                                var url = Uri.http(
+                                                    IP_ADDRESS,
+                                                    '/test_add_friends.php',
+                                                    {'q': '{http}'});
+                                                var response = await http.post(
+                                                    url,
+                                                    body: <String, String>{
+                                                      "nickname": widget.loginID
+                                                          .toString(),
+                                                      "request": widget.nickname
+                                                          .toString(),
+                                                    });
+
+                                                var url2 = Uri.http(
+                                                    IP_ADDRESS,
+                                                    '/test_remove_request.php',
+                                                    {'q': '{http}'});
+                                                var response2 = await http.post(
+                                                    url2,
+                                                    body: <String, String>{
+                                                      "nickname": widget.loginID
+                                                          .toString(),
+                                                      "request": widget.nickname
+                                                          .toString(),
+                                                    });
+                                                Fluttertoast.showToast(
+                                                  msg: '친구 요청을 수락하였습니다.',
+                                                  backgroundColor:
+                                                  PRIMARY_COLOR[widget.grade],
+                                                  textColor: (widget.grade == 0 ||
+                                                      widget.grade == 1 ||
+                                                      widget.grade == 2 ||
+                                                      widget.grade == 4 ||
+                                                      widget.grade == 8)
+                                                      ? Colors.black
+                                                      : Colors.white,
+                                                  toastLength: Toast.LENGTH_SHORT,
+                                                );
                                               },
                                               child: Icon(
                                                   Icons.check_circle_outline,

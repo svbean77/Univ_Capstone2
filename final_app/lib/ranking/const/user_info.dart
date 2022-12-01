@@ -27,7 +27,8 @@ class UserInfo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyRanking(nickname: userdata[0].nickname, loginID: loginID),
+          MyRanking(
+              nickname: userdata[0].nickname, loginID: loginID, grade: grade),
           SizedBox(height: 8.0),
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
@@ -120,7 +121,7 @@ class UserInfo extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Text(
-                                          '${recorddata[i].writeDate.substring(0,4)}.${recorddata[i].writeDate.substring(4,6)}.${recorddata[i].writeDate.substring(6,8)}',
+                                          '${recorddata[i].writeDate.substring(0, 4)}.${recorddata[i].writeDate.substring(4, 6)}.${recorddata[i].writeDate.substring(6, 8)}',
                                           style: TextStyle(fontSize: 15.0)),
                                     ],
                                   ),

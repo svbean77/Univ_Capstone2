@@ -35,6 +35,7 @@ class _RankingMainState extends State<RankingMain>
         MyRanking(
           nickname: widget.loginID,
           loginID: widget.loginID,
+          grade: widget.grade,
         ),
         Container(
           decoration: BoxDecoration(border: Border.all()),
