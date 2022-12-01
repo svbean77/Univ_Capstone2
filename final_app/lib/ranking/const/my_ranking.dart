@@ -114,6 +114,8 @@ class _MyRankingState extends State<MyRanking> {
               friends = "requested";
             else if (snapshot.data[2].contains(widget.nickname))
               friends = "request";
+            else
+              friends = "no";
           }
 
           print(friends);
@@ -163,6 +165,22 @@ class _MyRankingState extends State<MyRanking> {
                                   //친구 요청을 누름
                                   : friends == 'request'
                                       ? GestureDetector(
+                                          onTap: () async {
+                                            /*
+                                            var url = Uri.http(
+                                                IP_ADDRESS,
+                                                '/test_delete_request.php',
+                                                {'q': '{http}'});
+                                            var response = await http.post(url,
+                                                body: <String, String>{
+                                                  "nickname":
+                                                      widget.loginID.toString(),
+                                                  "requested": widget.nickname
+                                                      .toString(),
+                                                });
+
+                                             */
+                                          },
                                           child: Icon(Icons.schedule_send,
                                               size: 25.0),
                                         )

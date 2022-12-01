@@ -1,21 +1,18 @@
-import 'dart:convert';
+/*
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
-import 'package:try_upload_image/ip_address.dart';
-//import http package manually
 
-class ImageUpload extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class HomeScreen3 extends StatefulWidget {
+  const HomeScreen3({Key? key}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() {
-    return _ImageUpload();
-  }
+  State<HomeScreen3> createState() => _HomeScreen3State();
 }
 
-class _ImageUpload extends State<ImageUpload> {
-  File? uploadimage; //variable for choosed file
+class _HomeScreen3State extends State<HomeScreen3> {
+  var uploadimage; //variable for choosed file
 
   Future<void> chooseImage() async {
     var choosedimage = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -29,14 +26,14 @@ class _ImageUpload extends State<ImageUpload> {
   Future<void> uploadImage() async {
     //show your own loading or progressing code here
 
-    String uploadurl = "http://${IP_ADDRESS}/test_php/image_upload.php";
+    String uploadurl = "http://192.168.35.115/test_php/image_upload.php";
     //dont use http://localhost , because emulator don't get that address
     //insted use your local IP address or use live URL
     //hit "ipconfig" in windows or "ip a" in linux to get you local IP
 
     try {
       List<int> imageBytes = uploadimage!.readAsBytesSync();
-      String baseimage = base64Encode(imageBytes);
+      final baseimage = base64Encode(imageBytes);
       //convert file image to Base64 encoding
       var response = await http.post(Uri.parse(uploadurl), body: {
         'image': baseimage,
@@ -48,7 +45,6 @@ class _ImageUpload extends State<ImageUpload> {
           print(jsondata["msg"]);
           //if error return from server, show message from server
         } else {
-
           print("Upload successful");
         }
       } else {
@@ -74,37 +70,37 @@ class _ImageUpload extends State<ImageUpload> {
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment:
-              MainAxisAlignment.center, //content alignment to center
+          MainAxisAlignment.center, //content alignment to center
           children: <Widget>[
             Container(
-                //show image here after choosing image
+              //show image here after choosing image
                 child: uploadimage == null
                     ? Container()
                     : //if uploadimage is null then show empty container
-                    Container(
-                        //elese show image here
-                        child: SizedBox(
-                            height: 150,
-                            child:
-                                Image.file(uploadimage!) //load image from file
-                            ))),
+                Container(
+                  //elese show image here
+                    child: SizedBox(
+                        height: 150,
+                        child:
+                        Image.file(uploadimage!) //load image from file
+                    ))),
             Container(
-                //show upload button after choosing image
+              //show upload button after choosing image
                 child: uploadimage == null
                     ? Container()
                     : //if uploadimage is null then show empty container
-                    Container(
-                        //elese show uplaod button
-                        child: ElevatedButton.icon(
-                        onPressed: () {
-                          uploadImage();
-                          //start uploading image
-                        },
-                        icon: Icon(Icons.file_upload),
-                        label: Text("UPLOAD IMAGE"),
-                        //set brghtness to dark, because deepOrangeAccent is darker coler
-                        //so that its text color is light
-                      ))),
+                Container(
+                  //elese show uplaod button
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        uploadImage();
+                        //start uploading image
+                      },
+                      icon: Icon(Icons.file_upload),
+                      label: Text("UPLOAD IMAGE"),
+                      //set brghtness to dark, because deepOrangeAccent is darker coler
+                      //so that its text color is light
+                    ))),
             Container(
               child: ElevatedButton.icon(
                 onPressed: () {
@@ -120,3 +116,5 @@ class _ImageUpload extends State<ImageUpload> {
     );
   }
 }
+
+ */
