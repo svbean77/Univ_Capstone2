@@ -62,10 +62,7 @@ class _QnABoardState extends State<QnABoard> {
                   MaterialPageRoute(
                     builder: (BuildContext context) => WriteBoard(
                       board: 'qna',
-                      mode: 'write',
-                      content: "",
                       loginID: widget.loginID,
-                      title: "",
                       grade: widget.grade,
                     ),
                   ),

@@ -62,10 +62,7 @@ class _FreeBoardState extends State<FreeBoard> {
                   MaterialPageRoute(
                     builder: (BuildContext context) => WriteBoard(
                       board: 'free',
-                      mode: 'write',
-                      content: "",
                       loginID: widget.loginID,
-                      title: "",
                       grade: widget.grade,
                     ),
                   ),

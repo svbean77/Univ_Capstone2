@@ -41,7 +41,7 @@ class _ContentsState extends State<Contents> {
   TextEditingController controller = TextEditingController();
   Future getDatas(String username) async {
     var url =
-    Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
+        Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
       "username": username.toString(),
       "mode": "Nickname".toString(),
@@ -143,10 +143,10 @@ class _ContentsState extends State<Contents> {
                           '목록',
                           style: TextStyle(
                               color: (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
+                                      widget.grade == 1 ||
+                                      widget.grade == 2 ||
+                                      widget.grade == 4 ||
+                                      widget.grade == 8)
                                   ? Colors.black
                                   : Colors.white),
                         ),
@@ -161,28 +161,18 @@ class _ContentsState extends State<Contents> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        WriteBoard(
-                                          loginID: widget.loginID,
-                                          board: widget.board,
-                                          mode: 'edit',
-                                          content: widget.contents,
-                                          title: widget.title,
-                                          grade: widget.grade,
-                                        ),
-                                  ),
-                                );
+                                /*
+                                editpost 페이지로 이동~!!!
+                              */
                               },
                               child: Text(
                                 '수정',
                                 style: TextStyle(
                                     color: (widget.grade == 0 ||
-                                        widget.grade == 1 ||
-                                        widget.grade == 2 ||
-                                        widget.grade == 4 ||
-                                        widget.grade == 8)
+                                            widget.grade == 1 ||
+                                            widget.grade == 2 ||
+                                            widget.grade == 4 ||
+                                            widget.grade == 8)
                                         ? Colors.black
                                         : Colors.white),
                               ),
@@ -202,18 +192,18 @@ class _ContentsState extends State<Contents> {
                                         height: 100.0,
                                         child: Column(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text('삭제하시겠습니까?'),
                                             Row(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                                  MainAxisAlignment.spaceAround,
                                               children: [
                                                 ElevatedButton(
                                                   style:
-                                                  ElevatedButton.styleFrom(
+                                                      ElevatedButton.styleFrom(
                                                     primary: PRIMARY_COLOR[
-                                                    widget.grade],
+                                                        widget.grade],
                                                     elevation: 0,
                                                   ),
                                                   onPressed: () {
@@ -223,13 +213,13 @@ class _ContentsState extends State<Contents> {
                                                     '취소',
                                                     style: TextStyle(
                                                       color: (widget.grade == 0 ||
-                                                          widget.grade ==
-                                                              1 ||
-                                                          widget.grade ==
-                                                              2 ||
-                                                          widget.grade ==
-                                                              4 ||
-                                                          widget.grade == 8)
+                                                              widget.grade ==
+                                                                  1 ||
+                                                              widget.grade ==
+                                                                  2 ||
+                                                              widget.grade ==
+                                                                  4 ||
+                                                              widget.grade == 8)
                                                           ? Colors.black
                                                           : Colors.white,
                                                     ),
@@ -237,9 +227,9 @@ class _ContentsState extends State<Contents> {
                                                 ),
                                                 ElevatedButton(
                                                   style:
-                                                  ElevatedButton.styleFrom(
+                                                      ElevatedButton.styleFrom(
                                                     primary: PRIMARY_COLOR[
-                                                    widget.grade],
+                                                        widget.grade],
                                                     elevation: 0,
                                                   ),
                                                   onPressed: () {
@@ -251,12 +241,12 @@ class _ContentsState extends State<Contents> {
                                                         .pushReplacement(
                                                       MaterialPageRoute(
                                                         builder: (BuildContext
-                                                        context) =>
+                                                                context) =>
                                                             CommunityMain(
-                                                              loginID:
+                                                          loginID:
                                                               widget.loginID,
-                                                              grade: widget.grade,
-                                                            ),
+                                                          grade: widget.grade,
+                                                        ),
                                                       ),
                                                     );
                                                   },
@@ -264,13 +254,13 @@ class _ContentsState extends State<Contents> {
                                                     '확인',
                                                     style: TextStyle(
                                                       color: (widget.grade == 0 ||
-                                                          widget.grade ==
-                                                              1 ||
-                                                          widget.grade ==
-                                                              2 ||
-                                                          widget.grade ==
-                                                              4 ||
-                                                          widget.grade == 8)
+                                                              widget.grade ==
+                                                                  1 ||
+                                                              widget.grade ==
+                                                                  2 ||
+                                                              widget.grade ==
+                                                                  4 ||
+                                                              widget.grade == 8)
                                                           ? Colors.black
                                                           : Colors.white,
                                                     ),
@@ -289,10 +279,10 @@ class _ContentsState extends State<Contents> {
                                 '삭제',
                                 style: TextStyle(
                                     color: (widget.grade == 0 ||
-                                        widget.grade == 1 ||
-                                        widget.grade == 2 ||
-                                        widget.grade == 4 ||
-                                        widget.grade == 8)
+                                            widget.grade == 1 ||
+                                            widget.grade == 2 ||
+                                            widget.grade == 4 ||
+                                            widget.grade == 8)
                                         ? Colors.black
                                         : Colors.white),
                               ),
@@ -326,113 +316,113 @@ class _ContentsState extends State<Contents> {
                                 style: TextStyle(fontSize: 20.0)),
                             commentWriter[i] == widget.loginID
                                 ? GestureDetector(
-                              child: Icon(Icons.cancel_outlined),
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      content: Container(
-                                        height: 100.0,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
-                                          children: [
-                                            Text('삭제하시겠습니까?'),
-                                            Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceAround,
-                                              children: [
-                                                ElevatedButton(
-                                                  style: ElevatedButton
-                                                      .styleFrom(
-                                                    primary:
-                                                    PRIMARY_COLOR[
-                                                    widget.grade],
-                                                    elevation: 0,
-                                                  ),
-                                                  onPressed: () {
-                                                    Navigator.of(context)
-                                                        .pop();
-                                                  },
-                                                  child: Text(
-                                                    '취소',
-                                                    style: TextStyle(
-                                                      color: (widget.grade == 0 ||
-                                                          widget.grade ==
-                                                              1 ||
-                                                          widget.grade ==
-                                                              2 ||
-                                                          widget.grade ==
-                                                              4 ||
-                                                          widget.grade ==
-                                                              8)
-                                                          ? Colors.black
-                                                          : Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                                ElevatedButton(
-                                                  style: ElevatedButton
-                                                      .styleFrom(
-                                                    primary:
-                                                    PRIMARY_COLOR[
-                                                    widget.grade],
-                                                    elevation: 0,
-                                                  ),
-                                                  onPressed: () {
-                                                    /*
+                                    child: Icon(Icons.cancel_outlined),
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            content: Container(
+                                              height: 100.0,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text('삭제하시겠습니까?'),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary:
+                                                              PRIMARY_COLOR[
+                                                                  widget.grade],
+                                                          elevation: 0,
+                                                        ),
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text(
+                                                          '취소',
+                                                          style: TextStyle(
+                                                            color: (widget.grade == 0 ||
+                                                                    widget.grade ==
+                                                                        1 ||
+                                                                    widget.grade ==
+                                                                        2 ||
+                                                                    widget.grade ==
+                                                                        4 ||
+                                                                    widget.grade ==
+                                                                        8)
+                                                                ? Colors.black
+                                                                : Colors.white,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary:
+                                                              PRIMARY_COLOR[
+                                                                  widget.grade],
+                                                          elevation: 0,
+                                                        ),
+                                                        onPressed: () {
+                                                          /*
                                                         delete: 댓글 삭제하는 코드
                                                          */
-                                                    Navigator.of(context)
-                                                        .pushReplacement(
-                                                      MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                        context) =>
-                                                            Contents(
-                                                              loginID: widget
-                                                                  .loginID,
-                                                              board: widget
-                                                                  .board,
-                                                              title: widget
-                                                                  .title,
-                                                              contents: widget
-                                                                  .contents,
-                                                              grade: widget
-                                                                  .grade,
+                                                          Navigator.of(context)
+                                                              .pushReplacement(
+                                                            MaterialPageRoute(
+                                                              builder: (BuildContext
+                                                                      context) =>
+                                                                  Contents(
+                                                                loginID: widget
+                                                                    .loginID,
+                                                                board: widget
+                                                                    .board,
+                                                                title: widget
+                                                                    .title,
+                                                                contents: widget
+                                                                    .contents,
+                                                                grade: widget
+                                                                    .grade,
+                                                              ),
                                                             ),
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          '확인',
+                                                          style: TextStyle(
+                                                            color: (widget.grade == 0 ||
+                                                                    widget.grade ==
+                                                                        1 ||
+                                                                    widget.grade ==
+                                                                        2 ||
+                                                                    widget.grade ==
+                                                                        4 ||
+                                                                    widget.grade ==
+                                                                        8)
+                                                                ? Colors.black
+                                                                : Colors.white,
+                                                          ),
+                                                        ),
                                                       ),
-                                                    );
-                                                  },
-                                                  child: Text(
-                                                    '확인',
-                                                    style: TextStyle(
-                                                      color: (widget.grade == 0 ||
-                                                          widget.grade ==
-                                                              1 ||
-                                                          widget.grade ==
-                                                              2 ||
-                                                          widget.grade ==
-                                                              4 ||
-                                                          widget.grade ==
-                                                              8)
-                                                          ? Colors.black
-                                                          : Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  )
                                 : SizedBox()
                           ],
                         ),
@@ -460,7 +450,7 @@ class _ContentsState extends State<Contents> {
                               controller: controller,
                               decoration: InputDecoration(
                                 contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
+                                    EdgeInsets.symmetric(horizontal: 10.0),
                                 border: InputBorder.none,
                               ),
                               maxLines: 5,
