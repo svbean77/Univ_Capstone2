@@ -26,6 +26,7 @@ class MyText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
             fontSize: double.parse(size),
             color: (grade == 0 ||

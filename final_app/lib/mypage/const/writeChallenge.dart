@@ -12,10 +12,8 @@ import '../../screen/const/ip_address.dart';
 
 class WriteChallenge extends StatefulWidget {
   final loginID;
-  final exercise;
   final grade;
   const WriteChallenge({
-    required this.exercise,
     required this.loginID,
     required this.grade,
     Key? key,
@@ -148,24 +146,8 @@ class _WriteChallengeState extends State<WriteChallenge> {
                     });
                     data = json.decode(json.encode(response.body));
                   }
-                  print(data.toString());
 
-                  /*
-                insert: 오늘 날짜, loginID, 내용, 영상 저장 (영상은 항상 있어야하는데!!)
-                 */
-                  /*
-                pop으로 바꾸고 StreamBuilder로 바꿔라! (메인페이지를)
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => ChallengeMain(
-                      exercise: widget.exercise,
-                      loginID: widget.loginID,
-                      grade: widget.grade,
-                    ),
-                  ),
-                );
-
-                 */
+                  Navigator.of(context).pop();
                 } else {
                   /*
                   토스트

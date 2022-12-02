@@ -1,3 +1,14 @@
+/*
+*
+*
+*
+페이지 삭제
+*
+*
+*
+ */
+
+
 import 'package:final_app/mypage/const/challenge_detail.dart';
 import 'package:final_app/mypage/const/challenge_list.dart';
 import 'package:final_app/mypage/const/writeChallenge.dart';
@@ -41,29 +52,7 @@ class ChallengeMain extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(grade: grade),
       drawer: MyDrawer(loginID: loginID, grade: grade),
-      floatingActionButton: FloatingActionButton(
-        elevation: 0,
-        backgroundColor: PRIMARY_COLOR[grade],
-        onPressed: () {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (BuildContext context) => WriteChallenge(
-                exercise: exercise,
-                loginID: loginID,
-                grade: grade,
-              ),
-            ),
-          );
-        },
-        child: Icon(Icons.create,
-            color: (grade == 0 ||
-                    grade == 1 ||
-                    grade == 2 ||
-                    grade == 4 ||
-                    grade == 8)
-                ? Colors.black
-                : Colors.white),
-      ),
+
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: ListView(
@@ -78,17 +67,7 @@ class ChallengeMain extends StatelessWidget {
                     /*
                     class로 전달 (사진 등도 다 가는거임, [i]로 전달하니까 하나씩)
                      */
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => ChallengeDetail(
-                          date: date[i],
-                          exercise: exercise,
-                          num: num[i],
-                          loginID: loginID,
-                          grade: grade,
-                        ),
-                      ),
-                    );
+
                   },
                   child: ChallengeList(
                     grade: grade,
