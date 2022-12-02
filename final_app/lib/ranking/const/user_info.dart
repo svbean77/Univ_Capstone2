@@ -68,16 +68,20 @@ class UserInfo extends StatelessWidget {
                                       return AlertDialog(
                                         content: Column(
                                           children: [
-                                            MyContainer(
-                                              height: 200.0,
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              grade: grade,
-                                              child:
-                                                  Text(recorddata[i].comment),
+                                            Container(
+                                              padding: EdgeInsets.all(8.0),
+                                              width: MediaQuery.of(context).size.width,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: PRIMARY_COLOR[grade],
+                                                ),
+                                              ),
+                                              child: IntrinsicHeight(
+                                                child: Text(recorddata[i].comment),
+                                              ),
+
                                             ),
-                                            SizedBox(height: 8.0),
+                                            SizedBox(height: 16.0),
                                             ElevatedButton(
                                               style: ElevatedButton.styleFrom(
                                                 primary: PRIMARY_COLOR[grade],
