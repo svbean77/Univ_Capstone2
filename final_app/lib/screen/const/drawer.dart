@@ -36,29 +36,9 @@ class MyDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (loginID == "")
-                    Text(
-                      '로그인',
-                      style: TextStyle(
-                          color: (grade == 0 ||
-                              grade == 1 ||
-                              grade == 2 ||
-                              grade == 4 ||
-                              grade == 8)
-                              ? Colors.black
-                              : Colors.white),
-                    )
+                    MyText(text: '로그인', grade: grade)
                   else
-                    Text(
-                      '마이페이지',
-                      style: TextStyle(
-                          color: (grade == 0 ||
-                              grade == 1 ||
-                              grade == 2 ||
-                              grade == 4 ||
-                              grade == 8)
-                              ? Colors.black
-                              : Colors.white),
-                    ),
+                    MyText(text: '마이페이지', grade: grade),
                 ],
               ),
               onTap: () {
@@ -81,17 +61,7 @@ class MyDrawer extends StatelessWidget {
           Card(
             color: PRIMARY_COLOR[grade],
             child: ListTile(
-              title: Text(
-                '3대챌린지',
-                style: TextStyle(
-                    color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
-                        ? Colors.black
-                        : Colors.white),
-              ),
+              title: MyText(text: '3대챌린지', grade: grade),
               onTap: () {
                 if (loginID == '')
                   Navigator.of(context).push(
@@ -117,17 +87,7 @@ class MyDrawer extends StatelessWidget {
           Card(
             color: PRIMARY_COLOR[grade],
             child: ListTile(
-              title: Text(
-                '커뮤니티',
-                style: TextStyle(
-                    color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
-                        ? Colors.black
-                        : Colors.white),
-              ),
+              title: MyText(text: '커뮤니티', grade: grade),
               onTap: () {
                 if (loginID == '')
                   Navigator.of(context).push(
@@ -153,17 +113,7 @@ class MyDrawer extends StatelessWidget {
           Card(
             color: PRIMARY_COLOR[grade],
             child: ListTile(
-              title: Text(
-                '저작권출처',
-                style: TextStyle(
-                    color: (grade == 0 ||
-                        grade == 1 ||
-                        grade == 2 ||
-                        grade == 4 ||
-                        grade == 8)
-                        ? Colors.black
-                        : Colors.white),
-              ),
+              title: MyText(text: '저작권출처', grade: grade),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

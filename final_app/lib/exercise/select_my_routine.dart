@@ -105,17 +105,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text(
-                                                '확인',
-                                                style: TextStyle(
-                                                    color: (widget.grade == 0 ||
-                                                            widget.grade == 1 ||
-                                                            widget.grade == 2 ||
-                                                            widget.grade == 4 ||
-                                                            widget.grade == 8)
-                                                        ? Colors.black
-                                                        : Colors.white),
-                                              ),
+                                              child: MyText(text: "확인", grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
                                                 primary:
                                                     PRIMARY_COLOR[widget.grade],

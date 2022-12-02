@@ -139,17 +139,7 @@ class _EditPostState extends State<EditPost> {
                     });
                     print(files[0]);
                   },
-                  child: Text(
-                    '갤러리',
-                    style: TextStyle(
-                        color: (widget.grade == 0 ||
-                                widget.grade == 1 ||
-                                widget.grade == 2 ||
-                                widget.grade == 4 ||
-                                widget.grade == 8)
-                            ? Colors.black
-                            : Colors.white),
-                  ),
+                  child: MyText(text: "갤러리", grade: widget.grade),
                   style: ElevatedButton.styleFrom(
                       primary: PRIMARY_COLOR[widget.grade], elevation: 0),
                 ),
@@ -162,17 +152,7 @@ class _EditPostState extends State<EditPost> {
                       files.add(File(pickedFile!.path));
                     });
                   },
-                  child: Text(
-                    '카메라',
-                    style: TextStyle(
-                        color: (widget.grade == 0 ||
-                                widget.grade == 1 ||
-                                widget.grade == 2 ||
-                                widget.grade == 4 ||
-                                widget.grade == 8)
-                            ? Colors.black
-                            : Colors.white),
-                  ),
+                  child: MyText(text: "카메라", grade: widget.grade),
                   style: ElevatedButton.styleFrom(
                       primary: PRIMARY_COLOR[widget.grade], elevation: 0),
                 ),
@@ -209,17 +189,7 @@ class _EditPostState extends State<EditPost> {
                       변경목록: 제목, 내용
                        */
               },
-              child: Text(
-                '수정',
-                style: TextStyle(
-                    color: (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
-                        ? Colors.black
-                        : Colors.white),
-              ),
+              child: MyText(text: "수정", grade: widget.grade),
               style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[widget.grade], elevation: 0),
             ),

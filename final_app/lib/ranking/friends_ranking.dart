@@ -33,13 +33,6 @@ class _FriendsRankingState extends State<FriendsRanking> {
 
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 친구인 사용자 정보
-     */
-    List<String> nickname = ['친구1', '친구2', '친구3', '친구4', '친구5'];
-    List<String> rating = ['챌린저', '다이아몬드', '골드', '브론즈', '아이언'];
-    List<int> total3th = [500, 380, 220, 190, 80];
-
     return FutureBuilder(
         future: getDatas(),
         builder: (context, snapshot) {

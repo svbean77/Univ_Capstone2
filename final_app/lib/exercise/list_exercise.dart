@@ -84,17 +84,7 @@ class _ListExerciseState extends State<ListExercise> {
                   ),
                 );
               },
-              child: Text(
-                '운동시작',
-                style: TextStyle(
-                    color: (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
-                        ? Colors.black
-                        : Colors.white),
-              ),
+              child: MyText(text: "운동 시작", grade: widget.grade),
             ),
           ],
         ),

@@ -121,28 +121,12 @@ class _RecordCalendarState extends State<RecordCalendar> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
-                        style: TextStyle(
-                            color: (widget.grade == 0 ||
-                                    widget.grade == 1 ||
-                                    widget.grade == 2 ||
-                                    widget.grade == 4 ||
-                                    widget.grade == 8)
-                                ? Colors.black
-                                : Colors.white),
-                      ),
-                      Text(
-                        '${today_record.length}개',
-                        style: TextStyle(
-                            color: (widget.grade == 0 ||
-                                    widget.grade == 1 ||
-                                    widget.grade == 2 ||
-                                    widget.grade == 4 ||
-                                    widget.grade == 8)
-                                ? Colors.black
-                                : Colors.white),
-                      ),
+                      MyText(
+                          text:
+                              '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
+                          grade: widget.grade),
+                      MyText(
+                          text: '${today_record.length}개', grade: widget.grade),
                     ],
                   ),
                 ),

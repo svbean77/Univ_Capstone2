@@ -56,18 +56,7 @@ class _AddRoutineState extends State<AddRoutine> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  '취소',
-                  style: TextStyle(
-                    color: (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
-                        ? Colors.black
-                        : Colors.white,
-                  ),
-                ),
+                child: MyText(text: "취소", grade: widget.grade),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -91,18 +80,7 @@ class _AddRoutineState extends State<AddRoutine> {
                       ),
                     );
                 },
-                child: Text(
-                  '확인',
-                  style: TextStyle(
-                    color: (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
-                        ? Colors.black
-                        : Colors.white,
-                  ),
-                ),
+                child: MyText(text: "확인", grade: widget.grade),
               ),
             ],
           ),

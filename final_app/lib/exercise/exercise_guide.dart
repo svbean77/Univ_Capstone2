@@ -47,10 +47,10 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             heroTag: 'memo',
             child: Icon(Icons.edit_calendar,
                 color: (widget.grade == 0 ||
-                    widget.grade == 1 ||
-                    widget.grade == 2 ||
-                    widget.grade == 4 ||
-                    widget.grade == 8)
+                        widget.grade == 1 ||
+                        widget.grade == 2 ||
+                        widget.grade == 4 ||
+                        widget.grade == 8)
                     ? Colors.black
                     : Colors.white),
             onPressed: () {
@@ -105,10 +105,10 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             heroTag: 'filter',
             child: Icon(Icons.filter_list_alt,
                 color: (widget.grade == 0 ||
-                    widget.grade == 1 ||
-                    widget.grade == 2 ||
-                    widget.grade == 4 ||
-                    widget.grade == 8)
+                        widget.grade == 1 ||
+                        widget.grade == 2 ||
+                        widget.grade == 4 ||
+                        widget.grade == 8)
                     ? Colors.black
                     : Colors.white),
             onPressed: () {
@@ -146,7 +146,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                 elevation: 0,
               ),
               onPressed: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (BuildContext context) => SelectMuscle(
                       loginID: widget.loginID,
@@ -156,18 +156,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                   ),
                 );
               },
-              child: Text(
-                '근육 선택',
-                style: TextStyle(
-                  color: (widget.grade == 0 ||
-                      widget.grade == 1 ||
-                      widget.grade == 2 ||
-                      widget.grade == 4 ||
-                      widget.grade == 8)
-                      ? Colors.black
-                      : Colors.white,
-                ),
-              ),
+              child: MyText(text: "근육 선택", grade: widget.grade),
             ),
             SizedBox(height: 16.0),
             if (cnt == 0)

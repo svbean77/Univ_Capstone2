@@ -39,6 +39,8 @@ class _EditMyInfoState extends State<EditMyInfo> {
 
   @override
   Widget build(BuildContext context) {
+    final origin = widget.nickname;
+
     return Scaffold(
       drawer: MyDrawer(loginID: widget.nickname, grade: widget.grade),
       appBar: MyAppBar(grade: widget.grade),
@@ -237,6 +239,10 @@ class _EditMyInfoState extends State<EditMyInfo> {
                 ),
                 GestureDetector(
                   onTap: () async {
+                    print(widget.nickname);
+                    print(origin);
+                    //다른 테이블들은 origin을 이용해 바꿈!
+
                     var url = Uri.http(
                         IP_ADDRESS, '/test_change_user.php', {'q': '{http}'});
                     var response = await http.post(url, body: <String, String>{
@@ -255,6 +261,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                               loginID: widget.nickname, grade: widget.grade),
                         ),
                       );
+
                   },
                   child: Container(
                     height: 50.0,

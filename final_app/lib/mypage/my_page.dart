@@ -123,17 +123,7 @@ class _MyPageState extends State<MyPage> {
                                       ),
                                       (route) => false);
                               },
-                              child: Text(
-                                '테마 변경!',
-                                style: TextStyle(
-                                    color: (widget.grade == 0 ||
-                                            widget.grade == 1 ||
-                                            widget.grade == 2 ||
-                                            widget.grade == 4 ||
-                                            widget.grade == 8)
-                                        ? Colors.black
-                                        : Colors.white),
-                              ),
+                              child: MyText(text: "테마 변경", grade: widget.grade),
                               style: ElevatedButton.styleFrom(
                                 primary: PRIMARY_COLOR[widget.grade],
                                 elevation: 0,
@@ -197,18 +187,7 @@ class _MyPageState extends State<MyPage> {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text('취소',
-                                                  style: TextStyle(
-                                                      color: (widget.grade == 0 ||
-                                                              widget.grade ==
-                                                                  1 ||
-                                                              widget.grade ==
-                                                                  2 ||
-                                                              widget.grade ==
-                                                                  4 ||
-                                                              widget.grade == 8)
-                                                          ? Colors.black
-                                                          : Colors.white)),
+                                              child: MyText(text: "취소", grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
                                                   primary: PRIMARY_COLOR[
                                                       widget.grade],
@@ -226,18 +205,7 @@ class _MyPageState extends State<MyPage> {
                                                         ),
                                                         (route) => false);
                                               },
-                                              child: Text('확인',
-                                                  style: TextStyle(
-                                                      color: (widget.grade == 0 ||
-                                                              widget.grade ==
-                                                                  1 ||
-                                                              widget.grade ==
-                                                                  2 ||
-                                                              widget.grade ==
-                                                                  4 ||
-                                                              widget.grade == 8)
-                                                          ? Colors.black
-                                                          : Colors.white)),
+                                              child: MyText(text: "확인", grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
                                                   primary: PRIMARY_COLOR[
                                                       widget.grade],
@@ -252,17 +220,7 @@ class _MyPageState extends State<MyPage> {
                               },
                             );
                           },
-                          child: Text(
-                            '로그아웃',
-                            style: TextStyle(
-                                color: (widget.grade == 0 ||
-                                        widget.grade == 1 ||
-                                        widget.grade == 2 ||
-                                        widget.grade == 4 ||
-                                        widget.grade == 8)
-                                    ? Colors.black
-                                    : Colors.white),
-                          ),
+                          child: MyText(text: "로그아웃", grade: widget.grade),
                           style: ElevatedButton.styleFrom(
                             primary: PRIMARY_COLOR[widget.grade],
                             elevation: 0,
@@ -292,18 +250,9 @@ class _MyPageState extends State<MyPage> {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text('취소',
-                                                  style: TextStyle(
-                                                      color: (widget.grade == 0 ||
-                                                              widget.grade ==
-                                                                  1 ||
-                                                              widget.grade ==
-                                                                  2 ||
-                                                              widget.grade ==
-                                                                  4 ||
-                                                              widget.grade == 8)
-                                                          ? Colors.black
-                                                          : Colors.white)),
+                                              child: MyText(
+                                                  text: "취소",
+                                                  grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
                                                   primary: PRIMARY_COLOR[
                                                       widget.grade],
@@ -336,18 +285,9 @@ class _MyPageState extends State<MyPage> {
                                                           (route) => false);
                                                 }
                                               },
-                                              child: Text('확인',
-                                                  style: TextStyle(
-                                                      color: (widget.grade == 0 ||
-                                                              widget.grade ==
-                                                                  1 ||
-                                                              widget.grade ==
-                                                                  2 ||
-                                                              widget.grade ==
-                                                                  4 ||
-                                                              widget.grade == 8)
-                                                          ? Colors.black
-                                                          : Colors.white)),
+                                              child: MyText(
+                                                  text: "확인",
+                                                  grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
                                                   primary: PRIMARY_COLOR[
                                                       widget.grade],

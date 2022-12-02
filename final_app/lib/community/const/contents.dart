@@ -12,13 +12,9 @@ import '../../screen/const/db_class.dart';
 import '../../screen/const/ip_address.dart';
 
 class Contents extends StatefulWidget {
-  //contents에게 제목, 내용, 작성자, 작성일자, 조회수, 사진이름, 사진경로 다 보내야 함!
-  //작성하고 바로 홈으로 이동하면 여기서 게시글 번호만 이동하면 되는데.. 어디로 이동할지는 회의 후 결정!
-  //작성 후 게시글로 이동이면 하나씩 풀어서, 게시판으로 이동이면 Future 내부에서 게시글 번호를 통해 정보 구하기!
-  //게시판으로 이동: select 테마, 게시글, 댓글
-  //게시글로 이동: select 테마, 댓글
-
-  //nono 어차피 게시글 번호, 제목 등을 다 알아야 하기 때문에 이전에 class로 만듦! 따라서 게시글 정보를 class로 전달받으면 됨!
+  /*
+  게시글 번호, 게시글 종류 받아와서 이 안에서 불러오기! FutureBuilder 사용
+   */
   final loginID;
   final board;
   final title;
@@ -139,17 +135,7 @@ class _ContentsState extends State<Contents> {
                             ),
                           );
                         },
-                        child: Text(
-                          '목록',
-                          style: TextStyle(
-                              color: (widget.grade == 0 ||
-                                      widget.grade == 1 ||
-                                      widget.grade == 2 ||
-                                      widget.grade == 4 ||
-                                      widget.grade == 8)
-                                  ? Colors.black
-                                  : Colors.white),
-                        ),
+                        child: MyText(text: "목록", grade: widget.grade),
                         style: ElevatedButton.styleFrom(
                           primary: PRIMARY_COLOR[widget.grade],
                           elevation: 0,
@@ -165,17 +151,7 @@ class _ContentsState extends State<Contents> {
                                 editpost 페이지로 이동~!!!
                               */
                               },
-                              child: Text(
-                                '수정',
-                                style: TextStyle(
-                                    color: (widget.grade == 0 ||
-                                            widget.grade == 1 ||
-                                            widget.grade == 2 ||
-                                            widget.grade == 4 ||
-                                            widget.grade == 8)
-                                        ? Colors.black
-                                        : Colors.white),
-                              ),
+                              child: MyText(text: "수정", grade: widget.grade),
                               style: ElevatedButton.styleFrom(
                                 primary: PRIMARY_COLOR[widget.grade],
                                 elevation: 0,
@@ -209,21 +185,9 @@ class _ContentsState extends State<Contents> {
                                                   onPressed: () {
                                                     Navigator.of(context).pop();
                                                   },
-                                                  child: Text(
-                                                    '취소',
-                                                    style: TextStyle(
-                                                      color: (widget.grade == 0 ||
-                                                              widget.grade ==
-                                                                  1 ||
-                                                              widget.grade ==
-                                                                  2 ||
-                                                              widget.grade ==
-                                                                  4 ||
-                                                              widget.grade == 8)
-                                                          ? Colors.black
-                                                          : Colors.white,
-                                                    ),
-                                                  ),
+                                                  child: MyText(
+                                                      text: "취소",
+                                                      grade: widget.grade),
                                                 ),
                                                 ElevatedButton(
                                                   style:
@@ -250,21 +214,9 @@ class _ContentsState extends State<Contents> {
                                                       ),
                                                     );
                                                   },
-                                                  child: Text(
-                                                    '확인',
-                                                    style: TextStyle(
-                                                      color: (widget.grade == 0 ||
-                                                              widget.grade ==
-                                                                  1 ||
-                                                              widget.grade ==
-                                                                  2 ||
-                                                              widget.grade ==
-                                                                  4 ||
-                                                              widget.grade == 8)
-                                                          ? Colors.black
-                                                          : Colors.white,
-                                                    ),
-                                                  ),
+                                                  child: MyText(
+                                                      text: "확인",
+                                                      grade: widget.grade),
                                                 ),
                                               ],
                                             )
@@ -275,17 +227,7 @@ class _ContentsState extends State<Contents> {
                                   },
                                 );
                               },
-                              child: Text(
-                                '삭제',
-                                style: TextStyle(
-                                    color: (widget.grade == 0 ||
-                                            widget.grade == 1 ||
-                                            widget.grade == 2 ||
-                                            widget.grade == 4 ||
-                                            widget.grade == 8)
-                                        ? Colors.black
-                                        : Colors.white),
-                              ),
+                              child: MyText(text: "삭제", grade: widget.grade),
                               style: ElevatedButton.styleFrom(
                                 primary: PRIMARY_COLOR[widget.grade],
                                 elevation: 0,
@@ -296,204 +238,6 @@ class _ContentsState extends State<Contents> {
                     ],
                   ),
                   SizedBox(height: 16.0),
-                  /*
-                json->class->list로 바꾼 댓글 list를 이용해 구함 (길이 등등)
-                list로 안바꾸고 그냥 class에서 사용해도 될 것 같은데! 굳이 list로 안바꿔도 되는 애들은 바꾸지 마!
-                그냥 class 그대로 result[i].comment 이런식으로 사용해도 될 것 같음!
-                 */
-                  Text('댓글 (${commentWriter.length})',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.w600)),
-                  SizedBox(height: 8.0),
-                  for (int i = 0; i < commentWriter.length; i++)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(commentWriter[i],
-                                style: TextStyle(fontSize: 20.0)),
-                            commentWriter[i] == widget.loginID
-                                ? GestureDetector(
-                                    child: Icon(Icons.cancel_outlined),
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            content: Container(
-                                              height: 100.0,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text('삭제하시겠습니까?'),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          primary:
-                                                              PRIMARY_COLOR[
-                                                                  widget.grade],
-                                                          elevation: 0,
-                                                        ),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                        child: Text(
-                                                          '취소',
-                                                          style: TextStyle(
-                                                            color: (widget.grade == 0 ||
-                                                                    widget.grade ==
-                                                                        1 ||
-                                                                    widget.grade ==
-                                                                        2 ||
-                                                                    widget.grade ==
-                                                                        4 ||
-                                                                    widget.grade ==
-                                                                        8)
-                                                                ? Colors.black
-                                                                : Colors.white,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          primary:
-                                                              PRIMARY_COLOR[
-                                                                  widget.grade],
-                                                          elevation: 0,
-                                                        ),
-                                                        onPressed: () {
-                                                          /*
-                                                        delete: 댓글 삭제하는 코드
-                                                         */
-                                                          Navigator.of(context)
-                                                              .pushReplacement(
-                                                            MaterialPageRoute(
-                                                              builder: (BuildContext
-                                                                      context) =>
-                                                                  Contents(
-                                                                loginID: widget
-                                                                    .loginID,
-                                                                board: widget
-                                                                    .board,
-                                                                title: widget
-                                                                    .title,
-                                                                contents: widget
-                                                                    .contents,
-                                                                grade: widget
-                                                                    .grade,
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                        child: Text(
-                                                          '확인',
-                                                          style: TextStyle(
-                                                            color: (widget.grade == 0 ||
-                                                                    widget.grade ==
-                                                                        1 ||
-                                                                    widget.grade ==
-                                                                        2 ||
-                                                                    widget.grade ==
-                                                                        4 ||
-                                                                    widget.grade ==
-                                                                        8)
-                                                                ? Colors.black
-                                                                : Colors.white,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                  )
-                                : SizedBox()
-                          ],
-                        ),
-                        SizedBox(height: 8.0),
-                        Text(comment[i]),
-                        SizedBox(height: 16.0),
-                      ],
-                    ),
-                  SizedBox(height: 16.0),
-                  Container(
-                    height: 100.0,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: widget.grade == 0
-                                    ? Colors.grey.withOpacity(0.2)
-                                    : PRIMARY_COLOR[widget.grade],
-                              ),
-                            ),
-                            child: TextField(
-                              controller: controller,
-                              decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10.0),
-                                border: InputBorder.none,
-                              ),
-                              maxLines: 5,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 8.0),
-                        Container(
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: widget.grade == 0
-                                  ? Colors.grey.withOpacity(0.2)
-                                  : PRIMARY_COLOR[widget.grade],
-                            ),
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              /*
-                            insert: 해당 게시글에 댓글을 추가하는 코드
-                             */
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) => Contents(
-                                    loginID: widget.loginID,
-                                    board: widget.board,
-                                    title: widget.title,
-                                    contents: widget.contents,
-                                    grade: widget.grade,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              '댓글쓰기',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 40.0),
                 ],
               ),
             ),

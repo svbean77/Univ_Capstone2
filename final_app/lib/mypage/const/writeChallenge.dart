@@ -101,17 +101,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
                   });
                 }
               },
-              child: Text(
-                '갤러리',
-                style: TextStyle(
-                    color: (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
-                        ? Colors.black
-                        : Colors.white),
-              ),
+              child: MyText(text: "갤러리", grade: widget.grade),
               style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[widget.grade], elevation: 0),
             ),
@@ -174,17 +164,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
 
                  */
               },
-              child: Text(
-                '저장',
-                style: TextStyle(
-                    color: (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
-                        ? Colors.black
-                        : Colors.white),
-              ),
+              child: MyText(text: "저장", grade: widget.grade),
               style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[widget.grade], elevation: 0),
             ),

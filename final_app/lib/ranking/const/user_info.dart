@@ -91,17 +91,7 @@ class UserInfo extends StatelessWidget {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text(
-                                                '확인',
-                                                style: TextStyle(
-                                                    color: (grade == 0 ||
-                                                            grade == 1 ||
-                                                            grade == 2 ||
-                                                            grade == 4 ||
-                                                            grade == 8)
-                                                        ? Colors.black
-                                                        : Colors.white),
-                                              ),
+                                              child: MyText(text: "확인", grade: grade),
                                             ),
                                           ],
                                         ),

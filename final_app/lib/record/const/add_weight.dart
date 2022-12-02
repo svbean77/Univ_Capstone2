@@ -70,18 +70,7 @@ class AddWeight extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  '취소',
-                  style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
-                        ? Colors.black
-                        : Colors.white,
-                  ),
-                ),
+                child: MyText(text: "취소", grade: grade),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -115,18 +104,7 @@ class AddWeight extends StatelessWidget {
                     if (jsondata == "Success") Navigator.of(context).pop();
                   }
                 },
-                child: Text(
-                  '확인',
-                  style: TextStyle(
-                    color: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
-                        ? Colors.black
-                        : Colors.white,
-                  ),
-                ),
+                child: MyText(text: "확인", grade: grade),
               ),
             ],
           ),

@@ -24,7 +24,7 @@ class _SelectRoutineState extends State<SelectRoutine> {
     (보류)select: 여기서 각 루틴을 다 구해준 후 json으로 넘겨줄까? 이거는 list_routine에서 안되면 해보기로
      */
 
-    List<String> timeLst = ['15분', '30분', '60분', '90분', '120분'];
+    List<String> timeLst = ['15분', '30분', '60분', '90분'];
     List<String> divisionLst = ['무분할', '2분할', '3분할', '4분할'];
 
     return Scaffold(
