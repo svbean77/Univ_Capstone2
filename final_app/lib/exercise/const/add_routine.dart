@@ -74,12 +74,7 @@ class _AddRoutineState extends State<AddRoutine> {
                     });
                     var jsondata = json.decode(json.encode(response.body));
                     if (jsondata.toString() == "Success")
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => SelectMyRoutine(
-                              loginID: widget.loginID, grade: widget.grade),
-                        ),
-                      );
+                      Navigator.of(context).pop();
                   }
                   else{
                     /*

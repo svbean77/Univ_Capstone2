@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:final_app/exercise/const/add_exercise.dart';
@@ -26,6 +27,9 @@ class ListMyExercise extends StatefulWidget {
 }
 
 class _ListMyExerciseState extends State<ListMyExercise> {
+  StreamController controller = StreamController();
+  Timer? _timer;
+
   Future getDatas() async {
     var url = Uri.http(
         IP_ADDRESS, '/test_select_my_routine_detail.php', {'q': '{http}'});
@@ -35,7 +39,20 @@ class _ListMyExerciseState extends State<ListMyExercise> {
     });
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     MY_ROUTINE_DETAIL data = MY_ROUTINE_DETAIL.fromJson(jsondata);
-    return data;
+    controller.add(data);
+  }
+
+  @override
+  void initState() {
+    getDatas();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) => getDatas());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (_timer!.isActive) _timer!.cancel();
+    super.dispose();
   }
 
   @override
@@ -57,9 +74,9 @@ class _ListMyExerciseState extends State<ListMyExercise> {
       14: '등 중앙부',
       15: '복사근'
     };
-    return FutureBuilder(
-        future: getDatas(),
-        builder: (context, snapshot) {
+    return StreamBuilder(
+        stream: controller.stream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
           return Scaffold(
             drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
             appBar: MyAppBar(grade: widget.grade),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:final_app/exercise/const/add_routine.dart';
@@ -24,6 +25,9 @@ class SelectMyRoutine extends StatefulWidget {
 }
 
 class _SelectMyRoutineState extends State<SelectMyRoutine> {
+  StreamController controller = StreamController();
+  Timer? _timer;
+
   Future getDatas() async {
     var url =
         Uri.http(IP_ADDRESS, '/test_select_my_routine.php', {'q': '{http}'});
@@ -33,14 +37,26 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     MY_ROUTINE_LIST data = MY_ROUTINE_LIST.fromJson(jsondata);
 
-    return data;
+    controller.add(data);
+  }
+  @override
+  void initState() {
+    getDatas();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) => getDatas());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (_timer!.isActive) _timer!.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: getDatas(),
-        builder: (context, snapshot) {
+    return StreamBuilder(
+        stream: controller.stream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             print(snapshot.data.result!);
           }

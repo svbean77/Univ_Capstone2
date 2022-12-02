@@ -174,14 +174,7 @@ class _AddExerciseState extends State<AddExercise> {
                     });
                     var jsondata = json.decode(json.encode(response.body));
                     if (jsondata.toString() == "Success")
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => ListMyExercise(
-                              loginID: widget.loginID,
-                              routine: widget.routine,
-                              grade: widget.grade),
-                        ),
-                      );
+                      Navigator.of(context).pop();
                   } else {
                     /*
                     토스트 띄우기
