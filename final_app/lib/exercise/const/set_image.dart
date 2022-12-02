@@ -88,7 +88,7 @@ class SetImage extends StatelessWidget {
                   "difficulty": level.toString(),
                 });
                 var jsondata = jsonDecode(json.decode(json.encode(response.body)));
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) => ExerciseGuide(
                         level: level,

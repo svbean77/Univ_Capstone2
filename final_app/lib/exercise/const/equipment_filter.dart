@@ -70,7 +70,7 @@ class EquipmentFilter extends StatelessWidget {
                   });
                   var jsondata = jsonDecode(json.decode(json.encode(response.body)));
 
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (BuildContext context) => ExerciseGuide(
                           level: level,
