@@ -43,7 +43,27 @@ class _ListExerciseState extends State<ListExercise> {
                   for (int i = 0; i < widget.data.length; i++)
                     Padding(
                       padding: EdgeInsets.only(bottom: 8.0),
-                      child: MyContainer(
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: PRIMARY_COLOR[widget.grade],
+                          ),
+                        ),
+                        child: IntrinsicHeight(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(widget.data[i].exercise,
+                                style: TextStyle(fontSize: 20.0),),
+                              Text('X${widget.data[i].num}'),
+                            ],
+                          ),
+                        ),
+                      ),
+                        /*
+                        MyContainer(
                         height: 70.0,
                         width: double.infinity,
                         grade: widget.grade,
@@ -58,6 +78,7 @@ class _ListExerciseState extends State<ListExercise> {
                           ],
                         ),
                       ),
+                         */
                     ),
                 ],
               ),

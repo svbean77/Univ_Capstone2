@@ -219,7 +219,27 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(bottom: 8.0),
-                                    child: MyContainer(
+                                    child: Container(
+                                      width: double.infinity,
+                                      padding: EdgeInsets.all(8.0),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: PRIMARY_COLOR[widget.grade],
+                                        ),
+                                      ),
+                                      child: IntrinsicHeight(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(snapshot.data.result![i].exercise,
+                                              style: TextStyle(fontSize: 20.0),),
+                                            Text('X${snapshot.data.result![i].num}'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                      /*
+                                      MyContainer(
                                       height: 70.0,
                                       width: double.infinity,
                                       grade: widget.grade,
@@ -235,6 +255,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                         ],
                                       ),
                                     ),
+                                       */
                                   ),
                                 ),
                             ],
