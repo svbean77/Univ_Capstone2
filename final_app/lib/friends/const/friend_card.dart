@@ -151,15 +151,7 @@ class FriendCard extends StatelessWidget {
                                           delete: db에 친구 삭제하는 코드
                                            */
                                           if (jsondata == "Success")
-                                            Navigator.of(context)
-                                                .pushReplacement(
-                                              MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          FriendsMain(
-                                                              loginID: loginID,
-                                                              grade: grade)),
-                                            );
+                                            Navigator.of(context).pop();
                                         },
                                         child: Text(
                                           '확인',

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:final_app/exercise/const/exercise_main.dart';
+import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/mypage/three_challenge.dart';
 import 'package:final_app/ranking/const/ranking_main.dart';
 import 'package:final_app/record/const/record_main.dart';
@@ -94,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (loginID == '')
                     AfterLogin()
                   else
-                    ThreeChallenge(loginID: loginID, grade: grade),
+                    FriendsMain(loginID: loginID, grade: grade),
                 ],
               ),
             ),
@@ -125,9 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(color: Colors.black.withOpacity(0.5))),
                 ),
                 BottomNavyBarItem(
-                  icon: Icon(Icons.category,
+                  icon: Icon(Icons.people,
                       color: Colors.black.withOpacity(0.5)),
-                  title: Text('3대챌린지',
+                  title: Text('친구',
                       style: TextStyle(color: Colors.black.withOpacity(0.5))),
                 ),
               ],

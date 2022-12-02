@@ -158,15 +158,7 @@ class RequestCard extends StatelessWidget {
 
                                           if (jsondata == "Success" &&
                                               jsondata2 == "Success")
-                                            Navigator.of(context)
-                                                .pushReplacement(
-                                              MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          FriendsMain(
-                                                              loginID: loginID,
-                                                              grade: grade)),
-                                            );
+                                            Navigator.of(context).pop();
                                         },
                                         child: Text(
                                           '확인',
@@ -249,15 +241,7 @@ class RequestCard extends StatelessWidget {
                                           var jsondata = jsonDecode(json.decode(
                                               json.encode(response.body)));
                                           if (jsondata == "Success")
-                                            Navigator.of(context)
-                                                .pushReplacement(
-                                              MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          FriendsMain(
-                                                              loginID: loginID,
-                                                              grade: grade)),
-                                            );
+                                            Navigator.of(context).pop();
                                         },
                                         child: Text(
                                           '확인',

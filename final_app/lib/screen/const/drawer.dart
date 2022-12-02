@@ -2,6 +2,7 @@ import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/friends/friends_main.dart';
 import 'package:final_app/mypage/my_page.dart';
 import 'package:final_app/mypage/sign_in.dart';
+import 'package:final_app/mypage/three_challenge.dart';
 import 'package:final_app/screen/const/after_login.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ class MyDrawer extends StatelessWidget {
             color: PRIMARY_COLOR[grade],
             child: ListTile(
               title: Text(
-                '친구',
+                '3대챌린지',
                 style: TextStyle(
                     color: (grade == 0 ||
                         grade == 1 ||
@@ -106,7 +107,7 @@ class MyDrawer extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          FriendsMain(loginID: loginID, grade: grade),
+                          ThreeChallenge(loginID: loginID, grade: grade),
                     ),
                   );
               },
