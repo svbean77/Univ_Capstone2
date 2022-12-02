@@ -112,10 +112,10 @@ class _MyPageState extends State<MyPage> {
                                   "nickname": widget.loginID.toString(),
                                   "apptheme": widget.grade.toString(),
                                 });
-                                var jsondata = jsonDecode(
-                                    json.decode(json.encode(response.body)));
+                                var jsondata =
+                                    json.decode(json.encode(response.body));
 
-                                if (jsondata == "Success")
+                                if (jsondata.toString() == "Success")
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
@@ -270,10 +270,10 @@ class _MyPageState extends State<MyPage> {
                                                       "nickname":
                                                           widget.loginID,
                                                     });
-                                                var jsondata = jsonDecode(
-                                                    json.decode(json.encode(
-                                                        response.body)));
-                                                if (jsondata == 'Success') {
+                                                var jsondata = json.decode(
+                                                    json.encode(response.body));
+                                                if (jsondata.toString() ==
+                                                    "Success") {
                                                   LOGIN_BOX.remove('id');
                                                   Navigator.of(context)
                                                       .pushAndRemoveUntil(

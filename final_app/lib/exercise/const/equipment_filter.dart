@@ -68,21 +68,21 @@ class EquipmentFilter extends StatelessWidget {
                     "equipment": equipment.toString(),
                     "difficulty": level.toString(),
                   });
-                  var jsondata =
-                  jsonDecode(json.decode(json.encode(response.body)));
+                  var jsondata = json.decode(json.encode(response.body));
 
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => ExerciseGuide(
-                        level: level,
-                        jsondata: jsondata,
-                        muscle: muscle,
-                        equipment: equipment,
-                        loginID: loginID,
-                        grade: grade,
+                  if (jsondata.toString() == "Success")
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => ExerciseGuide(
+                          level: level,
+                          jsondata: jsondata,
+                          muscle: muscle,
+                          equipment: equipment,
+                          loginID: loginID,
+                          grade: grade,
+                        ),
                       ),
-                    ),
-                  );
+                    );
                 },
               ),
             ),

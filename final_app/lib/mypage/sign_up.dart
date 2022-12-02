@@ -267,16 +267,16 @@ class _SignUpState extends State<SignUp> {
       if (sex[0] == true) "sex": '남자' else "sex": '여자',
       "userage": _userageController.text.toString(),
     });
-    var data = json.decode(json.encode(response.body));
+    var jsondata = json.decode(json.encode(response.body));
 
-    if (data == "Error1") {
+    if (jsondata.toString() == "Error1") {
       Fluttertoast.showToast(
         backgroundColor: Colors.grey,
         textColor: Colors.black,
         msg: '아이디가 중복됩니다.',
         toastLength: Toast.LENGTH_SHORT,
       );
-    } else if (data == "Error2") {
+    } else if (jsondata.toString() == "Error2") {
       Fluttertoast.showToast(
         backgroundColor: Colors.grey,
         textColor: Colors.black,

@@ -133,9 +133,8 @@ class AddWeight extends StatelessWidget {
                         "writeDate": dateController.text.toString(),
                         "weight": weightController.text.toString(),
                       });
-                      var jsondata =
-                          jsonDecode(json.decode(json.encode(response.body)));
-                      if (jsondata == "Success") Navigator.of(context).pop();
+                      var jsondata =json.decode(json.encode(response.body));
+                      if (jsondata.toString() == "Success") Navigator.of(context).pop();
                     }
                   }
                 },

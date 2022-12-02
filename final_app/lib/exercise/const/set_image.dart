@@ -87,21 +87,20 @@ class SetImage extends StatelessWidget {
                   "equipment": '덤벨'.toString(),
                   "difficulty": level.toString(),
                 });
-                var jsondata =
-                jsonDecode(json.decode(json.encode(response.body)));
-
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => ExerciseGuide(
-                      level: level,
-                      jsondata: jsondata,
-                      muscle: muscle,
-                      equipment: '덤벨',
-                      loginID: loginID,
-                      grade: grade,
+                var jsondata = json.decode(json.encode(response.body));
+                if (jsondata.toString() == "Success")
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ExerciseGuide(
+                        level: level,
+                        jsondata: jsondata,
+                        muscle: muscle,
+                        equipment: '덤벨',
+                        loginID: loginID,
+                        grade: grade,
+                      ),
                     ),
-                  ),
-                );
+                  );
               }
             },
             dir: dir,

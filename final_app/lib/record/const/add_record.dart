@@ -27,20 +27,18 @@ class AddRecord extends StatelessWidget {
     if (day.length == 1) day = "0" + day;
 
     return Container(
-      height: 250,
+      height: 120,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('$year.$month.$day 기록 추가', style: TextStyle(fontSize: 20.0)),
-          SizedBox(height: 8.0),
           Container(
             child: TextField(
               controller: controller,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 border: InputBorder.none,
+                hintText: '$year.$month.$day 기록 추가',
               ),
-              maxLines: 7,
             ),
             decoration: BoxDecoration(
               border: Border.all(
@@ -70,17 +68,18 @@ class AddRecord extends StatelessWidget {
                 onPressed: () async {
                   String date = year + month + day;
                   print(date);
+                  if (controller.text.toString() != "") {
+                    var url = Uri.http(IP_ADDRESS,
+                        '/test_add_exercise_record.php', {'q': '{http}'});
+                    var response = await http.post(url, body: <String, String>{
+                      "nickname": loginID.toString(),
+                      "writeDate": date.toString(),
+                      "comment": controller.text.toString(),
+                    });
+                    var jsondata =json.decode(json.encode(response.body));
 
-                  var url = Uri.http(IP_ADDRESS,
-                      '/test_add_exercise_record.php', {'q': '{http}'});
-                  var response = await http.post(url, body: <String, String>{
-                    "nickname": loginID.toString(),
-                    "writeDate": date.toString(),
-                    "comment": controller.text.toString(),
-                  });
-                  var jsondata =
-                      jsonDecode(json.decode(json.encode(response.body)));
-                  if (jsondata == "Success") Navigator.of(context).pop();
+                    if (jsondata.toString() == "Success") Navigator.of(context).pop();
+                  }
                 },
                 child: MyText(text: "확인", grade: grade),
               ),

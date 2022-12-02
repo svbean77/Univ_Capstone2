@@ -168,7 +168,7 @@ class _WriteBoardState extends State<WriteBoard> {
                         files[0].toString().indexOf("image_picker"),
                         files[0].toString().length - 1);
                   else
-                    filename = Random().nextInt(4294967296).toString()+".jpg";
+                    filename = Random().nextInt(4294967296).toString() + ".jpg";
 
                   List<int> imgByte = files[0]!.readAsBytesSync();
                   String img = base64Encode(imgByte);
@@ -191,7 +191,7 @@ class _WriteBoardState extends State<WriteBoard> {
                   });
                   data = json.decode(json.encode(response.body));
                 }
-                if (data.toString().substring(1, data.toString().length - 1) == "Success")
+                if (data.toString() == "Success")
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (BuildContext context) => CommunityMain(

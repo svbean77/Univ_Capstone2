@@ -105,7 +105,9 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: MyText(text: "확인", grade: widget.grade),
+                                              child: MyText(
+                                                  text: "확인",
+                                                  grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
                                                 primary:
                                                     PRIMARY_COLOR[widget.grade],
@@ -141,9 +143,9 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                 "routine":
                                     snapshot.data.result![i].routine.toString(),
                               });
-                              var jsondata = jsonDecode(
-                                  json.decode(json.encode(response.body)));
-                              if (jsondata == "Success")
+                              var jsondata =
+                                  json.decode(json.encode(response.body));
+                              if (jsondata.toString() == "Success")
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) =>

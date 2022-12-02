@@ -25,25 +25,27 @@ class SearchName extends StatelessWidget {
       child: ListTile(
         title: Text(name),
         onTap: () async {
-          var url = Uri.http(IP_ADDRESS, '/exercise_guide.php', {'q': '{http}'});
+          var url =
+              Uri.http(IP_ADDRESS, '/exercise_guide.php', {'q': '{http}'});
           var response = await http.post(url, body: <String, String>{
             "muscle": name.toString(),
             "equipment": '덤벨'.toString(),
             "difficulty": level.toString(),
           });
-          var jsondata = jsonDecode(json.decode(json.encode(response.body)));
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => ExerciseGuide(
-                level: level,
-                jsondata: jsondata,
-                muscle: name,
-                equipment: '덤벨',
-                loginID: loginID,
-                grade: grade,
+          var jsondata = json.decode(json.encode(response.body));
+          if (jsondata.toString() == "Success")
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) => ExerciseGuide(
+                  level: level,
+                  jsondata: jsondata,
+                  muscle: name,
+                  equipment: '덤벨',
+                  loginID: loginID,
+                  grade: grade,
+                ),
               ),
-            ),
-          );
+            );
         },
       ),
     );

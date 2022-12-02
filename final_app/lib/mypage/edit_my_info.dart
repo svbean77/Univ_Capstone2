@@ -250,11 +250,11 @@ class _EditMyInfoState extends State<EditMyInfo> {
                       "password": widget.password.toString(),
                       "nickname": widget.nickname.toString(),
                       "userage": widget.userage.toString(),
-                      "sex": widget.sex[0] == true ? 'male' : 'female',
+                      "sex": widget.sex[0] == true ? '남자' : '여자',
+                      "origin": origin.toString(),
                     });
-                    var jsondata =
-                        jsonDecode(json.decode(json.encode(response.body)));
-                    if (jsondata == 'Success')
+                    var jsondata = json.decode(json.encode(response.body));
+                    if (jsondata.toString() == "Success")
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) => MyPage(

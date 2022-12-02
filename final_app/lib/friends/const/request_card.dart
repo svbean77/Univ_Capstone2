@@ -123,8 +123,8 @@ class RequestCard extends StatelessWidget {
                                             "nickname": loginID.toString(),
                                             "request": nickname.toString(),
                                           });
-                                          var jsondata = jsonDecode(json.decode(
-                                              json.encode(response.body)));
+                                          var jsondata = json.decode(
+                                              json.encode(response.body));
 
                                           var url2 = Uri.http(
                                               IP_ADDRESS,
@@ -135,12 +135,12 @@ class RequestCard extends StatelessWidget {
                                                 "nickname": loginID.toString(),
                                                 "request": nickname.toString(),
                                               });
-                                          var jsondata2 = jsonDecode(
-                                              json.decode(
-                                                  json.encode(response2.body)));
+                                          var jsondata2 = json.decode(
+                                              json.encode(response2.body));
 
-                                          if (jsondata == "Success" &&
-                                              jsondata2 == "Success")
+                                          if (jsondata.toString() ==
+                                                  "Success" &&
+                                              jsondata2.toString() == "Success")
                                             Navigator.of(context).pop();
                                         },
                                         child: MyText(text: "확인", grade: grade),

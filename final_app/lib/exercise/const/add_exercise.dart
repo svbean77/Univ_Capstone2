@@ -167,9 +167,8 @@ class _AddExerciseState extends State<AddExercise> {
                     "exercise": selectedExercise.toString(),
                     "num": _controller.text.toString(),
                   });
-                  var jsondata =
-                      jsonDecode(json.decode(json.encode(response.body)));
-                  if (jsondata == "Success")
+                  var jsondata = json.decode(json.encode(response.body));
+                  if (jsondata.toString() == "Success")
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (BuildContext context) => ListMyExercise(
