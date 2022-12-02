@@ -166,6 +166,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                                       ElevatedButton.styleFrom(
                                                     primary: PRIMARY_COLOR[
                                                         widget.grade],
+                                                        elevation: 0
                                                   ),
                                                 ),
                                               ],

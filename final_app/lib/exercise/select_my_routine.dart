@@ -127,6 +127,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                               style: ElevatedButton.styleFrom(
                                                 primary:
                                                     PRIMARY_COLOR[widget.grade],
+                                                elevation: 0
                                               ),
                                             ),
                                           ],
@@ -161,15 +162,6 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                               });
                               var jsondata =
                                   json.decode(json.encode(response.body));
-                              if (jsondata.toString() == "Success")
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        SelectMyRoutine(
-                                            loginID: widget.loginID,
-                                            grade: widget.grade),
-                                  ),
-                                );
                             },
                             child: GestureDetector(
                               child: Padding(
