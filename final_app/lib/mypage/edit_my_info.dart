@@ -241,26 +241,34 @@ class _EditMyInfoState extends State<EditMyInfo> {
                   onTap: () async {
                     print(widget.nickname);
                     print(origin);
-                    //다른 테이블들은 origin을 이용해 바꿈!
-
-                    var url = Uri.http(
-                        IP_ADDRESS, '/test_change_user.php', {'q': '{http}'});
-                    var response = await http.post(url, body: <String, String>{
-                      "username": widget.username.toString(),
-                      "password": widget.password.toString(),
-                      "nickname": widget.nickname.toString(),
-                      "userage": widget.userage.toString(),
-                      "sex": widget.sex[0] == true ? '남자' : '여자',
-                      "origin": origin.toString(),
-                    });
-                    var jsondata = json.decode(json.encode(response.body));
-                    if (jsondata.toString() == "Success")
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => MyPage(
-                              loginID: widget.nickname, grade: widget.grade),
-                        ),
-                      );
+                    if (widget.password.length != 0 &&
+                        widget.nickname.length != 0 &&
+                        widget.userage != null) {
+                      var url = Uri.http(
+                          IP_ADDRESS, '/test_change_user.php', {'q': '{http}'});
+                      var response =
+                          await http.post(url, body: <String, String>{
+                        "username": widget.username.toString(),
+                        "password": widget.password.toString(),
+                        "nickname": widget.nickname.toString(),
+                        "userage": widget.userage.toString(),
+                        "sex": widget.sex[0] == true ? '남자' : '여자',
+                        "origin": origin.toString(),
+                      });
+                      var jsondata = json.decode(json.encode(response.body));
+                      if (jsondata.toString() == "Success")
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => MyPage(
+                                loginID: widget.nickname, grade: widget.grade),
+                          ),
+                        );
+                    } else {
+                      /*
+                      토스트 메시지
+                       */
+                      print("데이터가 비었어");
+                    }
                   },
                   child: Container(
                     height: 50.0,

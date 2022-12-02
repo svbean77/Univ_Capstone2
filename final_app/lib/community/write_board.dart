@@ -153,51 +153,59 @@ class _WriteBoardState extends State<WriteBoard> {
               onPressed: () async {
                 print(titleController.text.toString());
                 print(contentController.text.toString().length);
-
-                var url;
-                var data;
-                if (widget.board == 'free')
-                  url = "http://${IP_ADDRESS}/test_add_freeboard.php";
-                else
-                  url = "http://${IP_ADDRESS}/test_add_qnaboard.php";
-
-                if (files.length != 0) {
-                  String filename;
-                  if (files[0].toString().contains("image_picker"))
-                    filename = files[0].toString().substring(
-                        files[0].toString().indexOf("image_picker"),
-                        files[0].toString().length - 1);
+                if (titleController.text.toString() != "" &&
+                    contentController.text.toString() != "") {
+                  var url;
+                  var data;
+                  if (widget.board == 'free')
+                    url = "http://${IP_ADDRESS}/test_add_freeboard.php";
                   else
-                    filename = Random().nextInt(4294967296).toString() + ".jpg";
+                    url = "http://${IP_ADDRESS}/test_add_qnaboard.php";
 
-                  List<int> imgByte = files[0]!.readAsBytesSync();
-                  String img = base64Encode(imgByte);
+                  if (files.length != 0) {
+                    String filename;
+                    if (files[0].toString().contains("image_picker"))
+                      filename = files[0].toString().substring(
+                          files[0].toString().indexOf("image_picker"),
+                          files[0].toString().length - 1);
+                    else
+                      filename =
+                          Random().nextInt(4294967296).toString() + ".jpg";
 
-                  var response = await http.post(Uri.parse(url), body: {
-                    'image': img,
-                    'title': titleController.text.toString(),
-                    'content': contentController.text.toString(),
-                    'filename': filename.toString(),
-                    'writer': widget.loginID.toString(),
-                  });
-                  data = json.decode(json.encode(response.body));
+                    List<int> imgByte = files[0]!.readAsBytesSync();
+                    String img = base64Encode(imgByte);
+
+                    var response = await http.post(Uri.parse(url), body: {
+                      'image': img,
+                      'title': titleController.text.toString(),
+                      'content': contentController.text.toString(),
+                      'filename': filename.toString(),
+                      'writer': widget.loginID.toString(),
+                    });
+                    data = json.decode(json.encode(response.body));
+                  } else {
+                    var response = await http.post(Uri.parse(url), body: {
+                      'image': "no",
+                      'title': titleController.text.toString(),
+                      'content': contentController.text.toString(),
+                      'filename': "no",
+                      'writer': widget.loginID.toString(),
+                    });
+                    data = json.decode(json.encode(response.body));
+                  }
+                  if (data.toString() == "Success")
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => CommunityMain(
+                            loginID: widget.loginID, grade: widget.grade),
+                      ),
+                    );
                 } else {
-                  var response = await http.post(Uri.parse(url), body: {
-                    'image': "no",
-                    'title': titleController.text.toString(),
-                    'content': contentController.text.toString(),
-                    'filename': "no",
-                    'writer': widget.loginID.toString(),
-                  });
-                  data = json.decode(json.encode(response.body));
+                  /*
+                    토스트 메시지를 띄울 것!!!!!
+                   */
+                  print("비었어!");
                 }
-                if (data.toString() == "Success")
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => CommunityMain(
-                          loginID: widget.loginID, grade: widget.grade),
-                    ),
-                  );
               },
               child: MyText(text: "저장", grade: widget.grade),
               style: ElevatedButton.styleFrom(

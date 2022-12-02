@@ -76,9 +76,15 @@ class AddRecord extends StatelessWidget {
                       "writeDate": date.toString(),
                       "comment": controller.text.toString(),
                     });
-                    var jsondata =json.decode(json.encode(response.body));
+                    var jsondata = json.decode(json.encode(response.body));
 
-                    if (jsondata.toString() == "Success") Navigator.of(context).pop();
+                    if (jsondata.toString() == "Success")
+                      Navigator.of(context).pop();
+                  } else {
+                    /*
+                  토스트 메시지
+                   */
+                    print("채워라");
                   }
                 },
                 child: MyText(text: "확인", grade: grade),

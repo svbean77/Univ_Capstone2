@@ -78,64 +78,72 @@ class AddWeight extends StatelessWidget {
                   elevation: 0,
                 ),
                 onPressed: () async {
-                  if (dateController.text.toString().length != 8) {
-                    Fluttertoast.showToast(
-                      msg: '입력 양식을 맞춰주세요: YYYYMMDD',
-                      backgroundColor: PRIMARY_COLOR[grade],
-                      textColor: (grade == 0 ||
-                              grade == 1 ||
-                              grade == 2 ||
-                              grade == 4 ||
-                              grade == 8)
-                          ? Colors.black
-                          : Colors.white,
-                      toastLength: Toast.LENGTH_SHORT,
-                    );
-                  } else {
-                    String year =
-                        (int.parse(dateController.text.toString()) ~/ 10000)
-                            .toString();
-                    String month =
-                        ((int.parse(dateController.text.toString()) % 10000) ~/
-                                100)
-                            .toString();
-                    if (month.length == 1) month = "0" + month;
-                    String day =
-                        (int.parse(dateController.text.toString()) % 100)
-                            .toString();
-                    if (day.length == 1) day = "0" + day;
-                    bool isDate = true;
+                  if(dateController.text.toString() != "" && weightController.text.toString() != ""){
 
-                    if (1 > int.parse(month) || int.parse(month) > 12) {
-                      isDate = false;
-                    } else if ([1, 3, 5, 7, 8, 10, 12]
-                        .contains(int.parse(month))) {
-                      if (1 > int.parse(day) || int.parse(day) > 31)
-                        isDate = false;
-                    } else if ([4, 6, 9, 11].contains(int.parse(month))) {
-                      if (1 > int.parse(day) || int.parse(day) > 30)
-                        isDate = false;
+                    if (dateController.text.toString().length != 8) {
+                      Fluttertoast.showToast(
+                        msg: '입력 양식을 맞춰주세요: YYYYMMDD',
+                        backgroundColor: PRIMARY_COLOR[grade],
+                        textColor: (grade == 0 ||
+                            grade == 1 ||
+                            grade == 2 ||
+                            grade == 4 ||
+                            grade == 8)
+                            ? Colors.black
+                            : Colors.white,
+                        toastLength: Toast.LENGTH_SHORT,
+                      );
                     } else {
-                      int leapday = 28;
-                      if ((int.parse(year) % 4 == 0) &&
-                              (int.parse(year) % 100 != 0) ||
-                          (int.parse(year) % 400 == 0)) leapday = 29;
+                      String year =
+                      (int.parse(dateController.text.toString()) ~/ 10000)
+                          .toString();
+                      String month =
+                      ((int.parse(dateController.text.toString()) % 10000) ~/
+                          100)
+                          .toString();
+                      if (month.length == 1) month = "0" + month;
+                      String day =
+                      (int.parse(dateController.text.toString()) % 100)
+                          .toString();
+                      if (day.length == 1) day = "0" + day;
+                      bool isDate = true;
 
-                      if (1 > int.parse(day) || int.parse(day) > leapday)
+                      if (1 > int.parse(month) || int.parse(month) > 12) {
                         isDate = false;
+                      } else if ([1, 3, 5, 7, 8, 10, 12]
+                          .contains(int.parse(month))) {
+                        if (1 > int.parse(day) || int.parse(day) > 31)
+                          isDate = false;
+                      } else if ([4, 6, 9, 11].contains(int.parse(month))) {
+                        if (1 > int.parse(day) || int.parse(day) > 30)
+                          isDate = false;
+                      } else {
+                        int leapday = 28;
+                        if ((int.parse(year) % 4 == 0) &&
+                            (int.parse(year) % 100 != 0) ||
+                            (int.parse(year) % 400 == 0)) leapday = 29;
+
+                        if (1 > int.parse(day) || int.parse(day) > leapday)
+                          isDate = false;
+                      }
+                      if (isDate) {
+                        var url = Uri.http(IP_ADDRESS,
+                            '/test_add_weight_record.php', {'q': '{http}'});
+                        var response =
+                        await http.post(url, body: <String, String>{
+                          "nickname": loginID.toString(),
+                          "writeDate": dateController.text.toString(),
+                          "weight": weightController.text.toString(),
+                        });
+                        var jsondata =json.decode(json.encode(response.body));
+                        if (jsondata.toString() == "Success") Navigator.of(context).pop();
+                      }
                     }
-                    if (isDate) {
-                      var url = Uri.http(IP_ADDRESS,
-                          '/test_add_weight_record.php', {'q': '{http}'});
-                      var response =
-                          await http.post(url, body: <String, String>{
-                        "nickname": loginID.toString(),
-                        "writeDate": dateController.text.toString(),
-                        "weight": weightController.text.toString(),
-                      });
-                      var jsondata =json.decode(json.encode(response.body));
-                      if (jsondata.toString() == "Success") Navigator.of(context).pop();
-                    }
+                  }else{
+                    /*
+                    토스트
+                     */
+                    print("모든 빈칸 채우기");
                   }
                 },
                 child: MyText(text: "확인", grade: grade),

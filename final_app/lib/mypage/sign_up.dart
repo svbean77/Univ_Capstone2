@@ -259,43 +259,53 @@ class _SignUpState extends State<SignUp> {
   }
 
   Future register() async {
-    var url = Uri.http(IP_ADDRESS, '/test_register.php', {'q': '{http}'});
-    var response = await http.post(url, body: <String, String>{
-      "username": _idController.text.toString(),
-      "password": _pwController.text.toString(),
-      "nickname": _nicknameController.text.toString(),
-      if (sex[0] == true) "sex": '남자' else "sex": '여자',
-      "userage": _userageController.text.toString(),
-    });
-    var jsondata = json.decode(json.encode(response.body));
+    if (_idController.text.toString() != "" &&
+        _pwController.text.toString() != "" &&
+        _userageController.text.toString() != "" &&
+        _userageController.text.toString() != "") {
+      var url = Uri.http(IP_ADDRESS, '/test_register.php', {'q': '{http}'});
+      var response = await http.post(url, body: <String, String>{
+        "username": _idController.text.toString(),
+        "password": _pwController.text.toString(),
+        "nickname": _nicknameController.text.toString(),
+        if (sex[0] == true) "sex": '남자' else "sex": '여자',
+        "userage": _userageController.text.toString(),
+      });
+      var jsondata = json.decode(json.encode(response.body));
 
-    if (jsondata.toString() == "Error1") {
-      Fluttertoast.showToast(
-        backgroundColor: Colors.grey,
-        textColor: Colors.black,
-        msg: '아이디가 중복됩니다.',
-        toastLength: Toast.LENGTH_SHORT,
-      );
-    } else if (jsondata.toString() == "Error2") {
-      Fluttertoast.showToast(
-        backgroundColor: Colors.grey,
-        textColor: Colors.black,
-        msg: '닉네임이 중복됩니다.',
-        toastLength: Toast.LENGTH_SHORT,
-      );
+      if (jsondata.toString() == "Error1") {
+        Fluttertoast.showToast(
+          backgroundColor: Colors.grey,
+          textColor: Colors.black,
+          msg: '아이디가 중복됩니다.',
+          toastLength: Toast.LENGTH_SHORT,
+        );
+      } else if (jsondata.toString() == "Error2") {
+        Fluttertoast.showToast(
+          backgroundColor: Colors.grey,
+          textColor: Colors.black,
+          msg: '닉네임이 중복됩니다.',
+          toastLength: Toast.LENGTH_SHORT,
+        );
+      } else {
+        Fluttertoast.showToast(
+          backgroundColor: Colors.grey,
+          textColor: Colors.black,
+          msg: '회원가입이 완료되었습니다.',
+          toastLength: Toast.LENGTH_SHORT,
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SignIn(),
+          ),
+        );
+      }
     } else {
-      Fluttertoast.showToast(
-        backgroundColor: Colors.grey,
-        textColor: Colors.black,
-        msg: '회원가입이 완료되었습니다.',
-        toastLength: Toast.LENGTH_SHORT,
-      );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => SignIn(),
-        ),
-      );
+      /*
+      토스트메시지
+       */
+      print("모든 칸을 채줘줘");
     }
   }
 }

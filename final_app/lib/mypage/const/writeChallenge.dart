@@ -117,40 +117,43 @@ class _WriteChallengeState extends State<WriteChallenge> {
             ),
             ElevatedButton(
               onPressed: () async {
-                var data;
-                var url = "http://${IP_ADDRESS}/test_add_threeboard.php";
+                if (titleController.text.toString().length != 0 &&
+                    contentsController.text.toString() != "") {
+                  var data;
+                  var url = "http://${IP_ADDRESS}/test_add_threeboard.php";
 
-                if (files.length != 0) {
-                  String filename = files[0].toString().substring(
-                      files[0].toString().indexOf("image_picker"),
-                      files[0].toString().length - 1);
+                  if (files.length != 0) {
+                    String filename = files[0].toString().substring(
+                        files[0].toString().indexOf("image_picker"),
+                        files[0].toString().length - 1);
 
-                  List<int> imgByte = files[0]!.readAsBytesSync();
-                  String img = base64Encode(imgByte);
+                    List<int> imgByte = files[0]!.readAsBytesSync();
+                    String img = base64Encode(imgByte);
 
-                  var response = await http.post(Uri.parse(url), body: {
-                    'image': img,
-                    'title': titleController.text.toString(),
-                    'content': contentsController.text.toString(),
-                    'filename': filename.toString(),
-                    'writer': widget.loginID.toString(),
-                  });
-                  data = json.decode(json.encode(response.body));
-                } else {
-                  var response = await http.post(Uri.parse(url), body: {
-                    'image': "no",
-                    'title': titleController.text.toString(),
-                    'content': contentsController.text.toString(),
-                    'filename': "no",
-                    'writer': widget.loginID.toString(),
-                  });
-                  data = json.decode(json.encode(response.body));
-                }
-                print(data.toString());
-                /*
+                    var response = await http.post(Uri.parse(url), body: {
+                      'image': img,
+                      'title': titleController.text.toString(),
+                      'content': contentsController.text.toString(),
+                      'filename': filename.toString(),
+                      'writer': widget.loginID.toString(),
+                    });
+                    data = json.decode(json.encode(response.body));
+                  } else {
+                    var response = await http.post(Uri.parse(url), body: {
+                      'image': "no",
+                      'title': titleController.text.toString(),
+                      'content': contentsController.text.toString(),
+                      'filename': "no",
+                      'writer': widget.loginID.toString(),
+                    });
+                    data = json.decode(json.encode(response.body));
+                  }
+                  print(data.toString());
+
+                  /*
                 insert: 오늘 날짜, loginID, 내용, 영상 저장 (영상은 항상 있어야하는데!!)
                  */
-                /*
+                  /*
                 pop으로 바꾸고 StreamBuilder로 바꿔라! (메인페이지를)
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
@@ -163,6 +166,12 @@ class _WriteChallengeState extends State<WriteChallenge> {
                 );
 
                  */
+                } else {
+                  /*
+                  토스트
+                   */
+                  print("비어있네~");
+                }
               },
               child: MyText(text: "저장", grade: widget.grade),
               style: ElevatedButton.styleFrom(

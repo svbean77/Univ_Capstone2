@@ -159,24 +159,35 @@ class _AddExerciseState extends State<AddExercise> {
                   elevation: 0,
                 ),
                 onPressed: () async {
-                  var url = Uri.http(
-                      IP_ADDRESS, '/test_add_exercise.php', {'q': '{http}'});
-                  var response = await http.post(url, body: <String, String>{
-                    "nickname": widget.loginID.toString(),
-                    "routine": widget.routine.toString(),
-                    "exercise": selectedExercise.toString(),
-                    "num": _controller.text.toString(),
-                  });
-                  var jsondata = json.decode(json.encode(response.body));
-                  if (jsondata.toString() == "Success")
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => ListMyExercise(
-                            loginID: widget.loginID,
-                            routine: widget.routine,
-                            grade: widget.grade),
-                      ),
-                    );
+                  print(_controller.text.toString());
+                  print(_controller.text.toString().length);
+                  print(selectedExercise);
+                  if (_controller.text.toString() != "" &&
+                      selectedExercise != null) {
+                    var url = Uri.http(
+                        IP_ADDRESS, '/test_add_exercise.php', {'q': '{http}'});
+                    var response = await http.post(url, body: <String, String>{
+                      "nickname": widget.loginID.toString(),
+                      "routine": widget.routine.toString(),
+                      "exercise": selectedExercise.toString(),
+                      "num": _controller.text.toString(),
+                    });
+                    var jsondata = json.decode(json.encode(response.body));
+                    if (jsondata.toString() == "Success")
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => ListMyExercise(
+                              loginID: widget.loginID,
+                              routine: widget.routine,
+                              grade: widget.grade),
+                        ),
+                      );
+                  } else {
+                    /*
+                    토스트 띄우기
+                     */
+                    print("비었어!");
+                  }
                 },
                 child: MyText(text: "확인", grade: widget.grade),
               ),

@@ -64,20 +64,29 @@ class _AddRoutineState extends State<AddRoutine> {
                   elevation: 0,
                 ),
                 onPressed: () async {
-                  var url = Uri.http(
-                      IP_ADDRESS, '/test_add_routine.php', {'q': '{http}'});
-                  var response = await http.post(url, body: <String, String>{
-                    "nickname": widget.loginID.toString(),
-                    "routineName": _controller.text.toString(),
-                  });
-                  var jsondata = json.decode(json.encode(response.body));
-                  if (jsondata.toString() == "Success")
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => SelectMyRoutine(
-                            loginID: widget.loginID, grade: widget.grade),
-                      ),
-                    );
+                  if(_controller.text.toString() != ""){
+
+                    var url = Uri.http(
+                        IP_ADDRESS, '/test_add_routine.php', {'q': '{http}'});
+                    var response = await http.post(url, body: <String, String>{
+                      "nickname": widget.loginID.toString(),
+                      "routineName": _controller.text.toString(),
+                    });
+                    var jsondata = json.decode(json.encode(response.body));
+                    if (jsondata.toString() == "Success")
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => SelectMyRoutine(
+                              loginID: widget.loginID, grade: widget.grade),
+                        ),
+                      );
+                  }
+                  else{
+                    /*
+                    토스트 메시지
+                     */
+                    print("비었어!");
+                  }
                 },
                 child: MyText(text: "확인", grade: widget.grade),
               ),
