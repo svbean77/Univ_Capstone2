@@ -261,7 +261,6 @@ class _EditMyInfoState extends State<EditMyInfo> {
                               loginID: widget.nickname, grade: widget.grade),
                         ),
                       );
-
                   },
                   child: Container(
                     height: 50.0,

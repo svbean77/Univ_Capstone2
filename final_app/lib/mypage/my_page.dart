@@ -149,17 +149,13 @@ class _MyPageState extends State<MyPage> {
                               ),
                             );
                           },
-                          child: Container(
+                          child: MyContainer(
                             height: 50.0,
                             width: double.infinity,
+                            grade: widget.grade,
                             child: Center(
                               child: Text('내 정보 수정',
                                   style: TextStyle(fontSize: 20.0)),
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: PRIMARY_COLOR[widget.grade],
-                              ),
                             ),
                           ),
                         ),
@@ -187,7 +183,9 @@ class _MyPageState extends State<MyPage> {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: MyText(text: "취소", grade: widget.grade),
+                                              child: MyText(
+                                                  text: "취소",
+                                                  grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
                                                   primary: PRIMARY_COLOR[
                                                       widget.grade],
@@ -205,7 +203,9 @@ class _MyPageState extends State<MyPage> {
                                                         ),
                                                         (route) => false);
                                               },
-                                              child: MyText(text: "확인", grade: widget.grade),
+                                              child: MyText(
+                                                  text: "확인",
+                                                  grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
                                                   primary: PRIMARY_COLOR[
                                                       widget.grade],

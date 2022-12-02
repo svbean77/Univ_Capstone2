@@ -25,14 +25,10 @@ class SelectRoutineContainer extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: 8.0, top: 10.0, bottom: 10.0),
       child: GestureDetector(
-        child: Container(
-          width: 100.0,
+        child: MyContainer(
           height: 100.0,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: PRIMARY_COLOR[grade],
-            ),
-          ),
+          width: 100.0,
+          grade: grade,
           child: Center(
             child: Text(
               title,

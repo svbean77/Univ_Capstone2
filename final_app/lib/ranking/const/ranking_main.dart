@@ -38,7 +38,9 @@ class _RankingMainState extends State<RankingMain>
           grade: widget.grade,
         ),
         Container(
-          decoration: BoxDecoration(border: Border.all()),
+          decoration: BoxDecoration(border: Border.all(
+            color: PRIMARY_COLOR[widget.grade],
+          )),
           child: TabBar(
             tabs: [
               Container(

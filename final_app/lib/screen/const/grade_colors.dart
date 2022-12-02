@@ -15,7 +15,7 @@ const List<Color> PRIMARY_COLOR = [
 class MyText extends StatelessWidget {
   final text;
   final size;
-  final grade ;
+  final grade;
   const MyText({
     required this.text,
     required this.grade,
@@ -35,5 +35,34 @@ class MyText extends StatelessWidget {
                     grade == 8)
                 ? Colors.black
                 : Colors.white));
+  }
+}
+
+class MyContainer extends StatelessWidget {
+  final height;
+  final width;
+  final grade;
+  final child;
+  const MyContainer({
+    required this.height,
+    required this.width,
+    required this.grade,
+    required this.child,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      height: height,
+      width: width,
+      child: child,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: PRIMARY_COLOR[grade],
+        ),
+      ),
+    );
   }
 }

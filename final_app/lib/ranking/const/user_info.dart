@@ -68,17 +68,12 @@ class UserInfo extends StatelessWidget {
                                       return AlertDialog(
                                         content: Column(
                                           children: [
-                                            Container(
+                                            MyContainer(
                                               height: 200.0,
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
-                                              padding: EdgeInsets.all(8.0),
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                  color: PRIMARY_COLOR[grade],
-                                                ),
-                                              ),
+                                              grade: grade,
                                               child:
                                                   Text(recorddata[i].comment),
                                             ),
@@ -91,7 +86,8 @@ class UserInfo extends StatelessWidget {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: MyText(text: "확인", grade: grade),
+                                              child: MyText(
+                                                  text: "확인", grade: grade),
                                             ),
                                           ],
                                         ),
@@ -100,14 +96,10 @@ class UserInfo extends StatelessWidget {
                                     },
                                   );
                                 },
-                                child: Container(
+                                child: MyContainer(
                                   height: 70.0,
                                   width: MediaQuery.of(context).size.width,
-                                  padding: EdgeInsets.all(8.0),
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: PRIMARY_COLOR[grade]),
-                                  ),
+                                  grade: grade,
                                   child: Row(
                                     children: [
                                       Text(

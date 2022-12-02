@@ -30,7 +30,9 @@ class _RecordMainState extends State<RecordMain> with TickerProviderStateMixin {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(border: Border.all()),
+          decoration: BoxDecoration(border: Border.all(
+            color: PRIMARY_COLOR[widget.grade],
+          )),
           child: TabBar(
             tabs: [
               Container(

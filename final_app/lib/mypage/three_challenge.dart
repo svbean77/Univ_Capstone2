@@ -53,18 +53,12 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                             ),
                           );
                         },
-                        child: Container(
-                          padding: EdgeInsets.all(8.0),
-                          alignment: Alignment.centerLeft,
-                          height: 100.0,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: PRIMARY_COLOR[widget.grade],
-                            ),
-                          ),
-                          child: Text(three[i], style: TextStyle(fontSize: 20.0)),
-                        ),
+                        child: MyContainer(
+                            height: 100.0,
+                            width: MediaQuery.of(context).size.width,
+                            grade: widget.grade,
+                            child: Text(three[i],
+                                style: TextStyle(fontSize: 20.0))),
                       ),
                       SizedBox(height: 8.0),
                     ],

@@ -13,7 +13,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: MyText(
-          text: '득근득근', grade: grade),
+          text: '득근득근', grade: grade, size: "20.0"),
       actions: [
         GestureDetector(
           onTap: () {

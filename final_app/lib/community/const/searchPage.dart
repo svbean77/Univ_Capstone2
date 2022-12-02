@@ -64,7 +64,7 @@ class _SearchPageState extends State<SearchPage> {
                         controller: controller,
                         decoration: InputDecoration(
                           contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10.0),
+                              EdgeInsets.symmetric(horizontal: 10.0),
                           hintText: '제목으로 검색',
                           border: InputBorder.none,
                         ),
@@ -104,41 +104,39 @@ class _SearchPageState extends State<SearchPage> {
               child: Container(
                 child: widget.boardLst.length == 0
                     ? Container(
-                  child: Center(
-                    child: Text('게시글이 없습니다.'),
-                  ),
-                )
+                        child: Center(
+                          child: Text('게시글이 없습니다.'),
+                        ),
+                      )
                     : ListView(
-                  children: [
-                    for (int i = 0; i < widget.boardLst.length; i++)
-                      GestureDetector(
-                        child: ContentsList(
-                            boardnum: widget.boardLst[i],
-                            grade: widget.grade),
-                        onTap: () {
-                          /*
-                                    json->class->list로 구한 길이만큼 반복, 각 내용의 하나씩을 contents로 보내기
-                                    ex) result.title[i]
-                                    contents에게 제목, 내용, 작성자, 작성일자, 조회수, 사진이름, 사진경로 다 보내야 함!
+                        children: [
+                          for (int i = 0; i < widget.boardLst.length; i++)
+                            GestureDetector(
+                              child: ContentsList(
+                                  boardnum: widget.boardLst[i],
+                                  grade: widget.grade),
+                              onTap: () {
+                                /*
+                                    위에서 게시글 번호를 통해 클래스 구하고 그 클래스를 그대로 보내면 되겠다
                                      */
-                          String title = '게시판 제목';
-                          String contents = '게시판 내용${i}';
+                                String title = '게시판 제목';
+                                String contents = '게시판 내용${i}';
 
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => Contents(
-                                loginID: widget.loginID,
-                                board: widget.board,
-                                title: title,
-                                contents: contents,
-                                grade: widget.grade,
-                              ),
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) => Contents(
+                                      loginID: widget.loginID,
+                                      board: widget.board,
+                                      title: title,
+                                      contents: contents,
+                                      grade: widget.grade,
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
+                        ],
                       ),
-                  ],
-                ),
               ),
             )
           ],

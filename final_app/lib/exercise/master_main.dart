@@ -40,16 +40,10 @@ class MasterMain extends StatelessWidget {
               ),
             );
           },
-          child: Container(
+          child: MyContainer(
             height: 100.0,
             width: MediaQuery.of(context).size.width / 1.3,
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: PRIMARY_COLOR[grade],
-              ),
-            ),
+            grade: grade,
             child: Text(
               '근육 부위별 운동',
               style: TextStyle(fontSize: 20.0),
@@ -62,24 +56,18 @@ class MasterMain extends StatelessWidget {
               MaterialPageRoute(
                 builder: (BuildContext ccontext) => loginID == ""
                     ? Scaffold(
-                  appBar: MyAppBar(grade: grade),
-                  drawer: MyDrawer(loginID: loginID, grade: grade),
-                  body: AfterLogin(),
-                )
+                        appBar: MyAppBar(grade: grade),
+                        drawer: MyDrawer(loginID: loginID, grade: grade),
+                        body: AfterLogin(),
+                      )
                     : SelectRoutine(loginID: loginID, grade: grade),
               ),
             );
           },
-          child: Container(
+          child: MyContainer(
             height: 100.0,
             width: MediaQuery.of(context).size.width / 1.3,
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: PRIMARY_COLOR[grade],
-              ),
-            ),
+            grade: grade,
             child: Text(
               '루틴',
               style: TextStyle(fontSize: 20.0),
@@ -92,24 +80,18 @@ class MasterMain extends StatelessWidget {
               MaterialPageRoute(
                 builder: (BuildContext ccontext) => loginID == ""
                     ? Scaffold(
-                  appBar: MyAppBar(grade: grade),
-                  drawer: MyDrawer(loginID: loginID, grade: grade),
-                  body: AfterLogin(),
-                )
+                        appBar: MyAppBar(grade: grade),
+                        drawer: MyDrawer(loginID: loginID, grade: grade),
+                        body: AfterLogin(),
+                      )
                     : SelectMyRoutine(loginID: loginID, grade: grade),
               ),
             );
           },
-          child: Container(
+          child: MyContainer(
             height: 100.0,
             width: MediaQuery.of(context).size.width / 1.3,
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: PRIMARY_COLOR[grade],
-              ),
-            ),
+            grade: grade,
             child: Text(
               '내 루틴 만들기',
               style: TextStyle(fontSize: 20.0),

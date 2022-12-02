@@ -28,7 +28,7 @@ class _FreeBoardState extends State<FreeBoard> {
 
   Future getDatas(String username) async {
     var url =
-    Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
+        Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
       "username": username.toString(),
       "mode": "Nickname".toString(),
@@ -70,10 +70,10 @@ class _FreeBoardState extends State<FreeBoard> {
               },
               child: Icon(Icons.create,
                   color: (widget.grade == 0 ||
-                      widget.grade == 1 ||
-                      widget.grade == 2 ||
-                      widget.grade == 4 ||
-                      widget.grade == 8)
+                          widget.grade == 1 ||
+                          widget.grade == 2 ||
+                          widget.grade == 4 ||
+                          widget.grade == 8)
                       ? Colors.black
                       : Colors.white),
             ),
@@ -98,7 +98,7 @@ class _FreeBoardState extends State<FreeBoard> {
                               controller: controller,
                               decoration: InputDecoration(
                                 contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10.0),
+                                    EdgeInsets.symmetric(horizontal: 10.0),
                                 hintText: '제목으로 검색',
                                 border: InputBorder.none,
                               ),
@@ -138,44 +138,44 @@ class _FreeBoardState extends State<FreeBoard> {
                     child: Container(
                       child: boardLst.length == 0
                           ? Container(
-                        child: Center(
-                          child: Text('게시글이 없습니다.'),
-                        ),
-                      )
+                              child: Center(
+                                child: Text('게시글이 없습니다.'),
+                              ),
+                            )
                           : ListView(
-                        children: [
-                          for (int i = 0; i < boardLst.length; i++)
-                            GestureDetector(
-                              child: ContentsList(
-                                  boardnum: boardLst[i],
-                                  grade: widget.grade),
-                              onTap: () {
-                                /*
+                              children: [
+                                for (int i = 0; i < boardLst.length; i++)
+                                  GestureDetector(
+                                    child: ContentsList(
+                                        boardnum: boardLst[i],
+                                        grade: widget.grade),
+                                    onTap: () {
+                                      /*
                                     위에서 구한 json에서 각 내용들을 클래스로 매핑하는걸 여기서 해도 되나?
                                     여기는 이미 for문 내부라서 안될 것 같은데
                                     각각의 내용을 보냄!!
                                     ex) result.title[i]
                                     contents에게 제목, 내용, 작성자, 작성일자, 조회수, 사진이름, 사진경로 다 보내야 함!
                                     */
-                                String title = '게시판 제목';
-                                String contents = '게시판 내용${i}';
+                                      String title = '게시판 제목';
+                                      String contents = '게시판 내용${i}';
 
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        Contents(
-                                          loginID: widget.loginID,
-                                          board: 'free',
-                                          title: title,
-                                          contents: contents,
-                                          grade: widget.grade,
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              Contents(
+                                            loginID: widget.loginID,
+                                            board: 'free',
+                                            title: title,
+                                            contents: contents,
+                                            grade: widget.grade,
+                                          ),
                                         ),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
+                              ],
                             ),
-                        ],
-                      ),
                     ),
                   ),
                 ],

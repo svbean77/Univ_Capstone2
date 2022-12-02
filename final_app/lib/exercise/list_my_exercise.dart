@@ -142,7 +142,9 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                                   onPressed: () {
                                                     Navigator.of(context).pop();
                                                   },
-                                                  child: MyText(text: "확인", grade: widget.grade),
+                                                  child: MyText(
+                                                      text: "확인",
+                                                      grade: widget.grade),
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                     primary: PRIMARY_COLOR[
@@ -200,16 +202,10 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(bottom: 8.0),
-                                    child: Container(
-                                      width: double.infinity,
+                                    child: MyContainer(
                                       height: 70.0,
-                                      padding: EdgeInsets.all(8.0),
-                                      alignment: Alignment.centerLeft,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: PRIMARY_COLOR[widget.grade],
-                                        ),
-                                      ),
+                                      width: double.infinity,
+                                      grade: widget.grade,
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,

@@ -53,18 +53,12 @@ class _ContentsState extends State<Contents> {
   @override
   Widget build(BuildContext context) {
     /*
-    여기서 구한 댓글을 제외한 모든 내용들은 final로 받아오는 내용들!
-    (내 아이디, 작성자, 날짜, 사진 등등 게시물 관련 내용들!)
-     */
-    /*
     select: 이 게시글에 대한 댓글 json 구하기 -> class -> list
     (board로 db 선택, 게시글 번호로 select)
      */
     String myName = '작성자이름';
     String writer = '작성자이름';
     String date = '2022.11.11';
-    List<String> commentWriter = ['유저1', widget.loginID, '유저33'];
-    List<String> comment = ['이거는이렇게해야죠', '댓글내용입니다이건느', '하..\n댓글줄바꿈은뭐..'];
 
     return FutureBuilder(
         future: getDatas(widget.loginID),
@@ -87,14 +81,12 @@ class _ContentsState extends State<Contents> {
                   Text(widget.title),
                   SizedBox(height: 8.0),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                     children: [
                       Text('작성자',
                           style: TextStyle(fontWeight: FontWeight.w600)),
-                      Text(writer),
-                      Text('작성일자',
-                          style: TextStyle(fontWeight: FontWeight.w600)),
-                      Text(date),
+                      SizedBox(width: 8.0),
+                      Text(writer)
                     ],
                   ),
                   SizedBox(height: 16.0),
