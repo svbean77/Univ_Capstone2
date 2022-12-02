@@ -32,9 +32,9 @@ class SearchName extends StatelessWidget {
             "equipment": '덤벨'.toString(),
             "difficulty": level.toString(),
           });
-          var jsondata = json.decode(json.encode(response.body));
-          if (jsondata.toString() == "Success")
-            Navigator.of(context).push(
+          var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (BuildContext context) => ExerciseGuide(
                   level: level,

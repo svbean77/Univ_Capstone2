@@ -68,9 +68,8 @@ class EquipmentFilter extends StatelessWidget {
                     "equipment": equipment.toString(),
                     "difficulty": level.toString(),
                   });
-                  var jsondata = json.decode(json.encode(response.body));
+                  var jsondata = jsonDecode(json.decode(json.encode(response.body)));
 
-                  if (jsondata.toString() == "Success")
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => ExerciseGuide(
