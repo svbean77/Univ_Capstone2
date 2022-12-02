@@ -199,8 +199,8 @@ class RequestCard extends StatelessWidget {
                                             "nickname": loginID.toString(),
                                             "request": nickname.toString(),
                                           });
-                                          var jsondata = jsonDecode(json.decode(
-                                              json.encode(response.body)));
+                                          var jsondata = json.decode(
+                                              json.encode(response.body));
                                           if (jsondata == "Success")
                                             Navigator.of(context).pop();
                                         },

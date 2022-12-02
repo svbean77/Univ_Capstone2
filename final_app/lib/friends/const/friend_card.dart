@@ -128,11 +128,12 @@ class FriendCard extends StatelessWidget {
                                             "nickname": loginID.toString(),
                                             "friends": nickname.toString(),
                                           });
-                                          var jsondata =
-                                              (json.encode(response.body));
+                                          var jsondata = json.decode(
+                                              json.encode(response.body));
                                           /*
                                           delete: db에 친구 삭제하는 코드
                                            */
+                                          print(jsondata.toString());
                                           if (jsondata.toString() == "Success")
                                             Navigator.of(context).pop();
                                         },
