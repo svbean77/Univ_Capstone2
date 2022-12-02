@@ -101,26 +101,38 @@ class _QnABoardState extends State<QnABoard> {
                         SizedBox(width: 8.0),
                         GestureDetector(
                           child: Icon(Icons.search),
-                          onTap: () {
-                            /*
-                          select: qna 게시판 목록에서 제목에 검색어를 포함하는 게시글만 불러오기
-                          (json으로 보내기)
-                          */
-                            List<int> findLst = [];
-                            String find = controller.text.toString();
+                          onTap: () async {
+                            if (controller.text.toString() != "") {
+                              var url = Uri.http(
+                                  IP_ADDRESS,
+                                  '/test_select_search_board.php',
+                                  {'q': '{http}'});
+                              var response =
+                                  await http.post(url, body: <String, String>{
+                                "board": "free".toString(),
+                                "search": controller.text.toString(),
+                              });
+                              var jsondata = jsonDecode(
+                                  json.decode(json.encode(response.body)));
+                              ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
 
-                            findLst = [1, 4, 5];
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (BuildContext context) => SearchPage(
-                                  boardLst: findLst,
-                                  searchfor: find,
-                                  loginID: widget.loginID,
-                                  board: 'qna',
-                                  grade: widget.grade,
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => SearchPage(
+                                    data: data.result!,
+                                    searchfor: controller.text.toString(),
+                                    loginID: widget.loginID,
+                                    board: 'qna',
+                                    grade: widget.grade,
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
+                            } else {
+                              /*
+                              토스트 메시지
+                               */
+                              print("검색어");
+                            }
                           },
                         ),
                       ],
@@ -146,27 +158,17 @@ class _QnABoardState extends State<QnABoard> {
                                               data: snapshot.data.result![i],
                                               grade: widget.grade),
                                           onTap: () {
-                                            /*
-                                    위에서 구한 json에서 각 내용들을 클래스로 매핑하는걸 여기서 해도 되나?
-                                    여기는 이미 for문 내부라서 안될 것 같은데
-                                    각각의 내용을 보냄!!
-                                    ex) result.title[i]
-                                    contents에게 제목, 내용, 작성자, 작성일자, 조회수, 사진이름, 사진경로 다 보내야 함!
-                                    */
-                                            String title = '게시판 제목';
-                                            String contents = '게시판 내용${i}';
-
                                             Navigator.of(context).push(
                                               MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                        Contents(
-                                                  loginID: widget.loginID,
-                                                  board: 'qna',
-                                                  title: title,
-                                                  contents: contents,
-                                                  grade: widget.grade,
-                                                ),
+                                                    Contents(
+                                                      loginID: widget.loginID,
+                                                      board: 'qna',
+                                                      data:
+                                                      snapshot.data.result![i],
+                                                      grade: widget.grade,
+                                                    ),
                                               ),
                                             );
                                           },

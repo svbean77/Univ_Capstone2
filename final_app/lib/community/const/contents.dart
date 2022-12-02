@@ -17,14 +17,12 @@ class Contents extends StatefulWidget {
    */
   final loginID;
   final board;
-  final title;
-  final contents;
+  final data;
   final grade;
   const Contents({
     required this.loginID,
     required this.board,
-    required this.title,
-    required this.contents,
+    required this.data,
     required this.grade,
     Key? key,
   }) : super(key: key);
@@ -35,37 +33,10 @@ class Contents extends StatefulWidget {
 
 class _ContentsState extends State<Contents> {
   TextEditingController controller = TextEditingController();
-  Future getDatas(String username) async {
-    var url =
-        Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
-    var response = await http.post(url, body: <String, String>{
-      "username": username.toString(),
-      "mode": "Nickname".toString(),
-    });
-    var jsondata = jsonDecode(json.decode(json.encode(response.body)));
-    USERDATA data = USERDATA.fromJson(jsondata);
-    /*
-    여러개인 곳들은 여기서 또 구해 리스트로 retrun하면 되는거 아니야?
-     */
-    return [data];
-  }
+
 
   @override
   Widget build(BuildContext context) {
-    /*
-    select: 이 게시글에 대한 댓글 json 구하기 -> class -> list
-    (board로 db 선택, 게시글 번호로 select)
-     */
-    String myName = '작성자이름';
-    String writer = '작성자이름';
-
-    return FutureBuilder(
-        future: getDatas(widget.loginID),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            //snapshot.data[0].result![i];
-          }
-
           return Scaffold(
             appBar: MyAppBar(grade: widget.grade),
             drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
@@ -77,7 +48,7 @@ class _ContentsState extends State<Contents> {
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.w600)),
                   SizedBox(height: 8.0),
-                  Text(widget.title),
+                  Text('widget.data.title'),
                   SizedBox(height: 8.0),
                   Row(
 
@@ -85,7 +56,7 @@ class _ContentsState extends State<Contents> {
                       Text('작성자',
                           style: TextStyle(fontWeight: FontWeight.w600)),
                       SizedBox(width: 8.0),
-                      Text(writer)
+                      Text('widget.data.writer')
                     ],
                   ),
                   SizedBox(height: 16.0),
@@ -93,7 +64,7 @@ class _ContentsState extends State<Contents> {
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.w600)),
                   SizedBox(height: 8.0),
-                  Text(widget.contents),
+                  Text('widget.data.contents'),
                   SizedBox(height: 8.0),
                   /*
                 for (int i = 0; i < images.length; i++)
@@ -133,7 +104,7 @@ class _ContentsState extends State<Contents> {
                         ),
                       ),
                       SizedBox(width: 8.0),
-                      if (myName == writer)
+                      if (widget.loginID == 'widget.data.writer')
                         Row(
                           children: [
                             ElevatedButton(
@@ -233,6 +204,6 @@ class _ContentsState extends State<Contents> {
               ),
             ),
           );
-        });
+
   }
 }
