@@ -26,33 +26,22 @@ class FreeBoard extends StatefulWidget {
 class _FreeBoardState extends State<FreeBoard> {
   final TextEditingController controller = TextEditingController();
 
-  Future getDatas(String username) async {
+  Future getDatas() async {
     var url =
-        Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
+        Uri.http(IP_ADDRESS, '/test_select_all_board.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
-      "username": username.toString(),
-      "mode": "Nickname".toString(),
+      "board": "free".toString(),
     });
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
-    USERDATA data = USERDATA.fromJson(jsondata);
-    return [data];
+    ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
+    return data;
   }
 
   @override
   Widget build(BuildContext context) {
-    /*
-      select: 자유게시판 게시글들 불러오기
-      (게시글번호, 제목, 작성자, 작성일자, 내용, 사진주소를 리스트로 변경)
-       */
-    List<int> boardLst = [1, 3, 4, 5, 6];
-
     return FutureBuilder(
-        future: getDatas(widget.loginID),
+        future: getDatas(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            //snapshot.data[0].result![0].apptheme;
-          }
-
           return Scaffold(
             floatingActionButton: FloatingActionButton(
               elevation: 0,
@@ -135,48 +124,55 @@ class _FreeBoardState extends State<FreeBoard> {
                   ),
                   SizedBox(height: 16.0),
                   Expanded(
-                    child: Container(
-                      child: boardLst.length == 0
-                          ? Container(
-                              child: Center(
-                                child: Text('게시글이 없습니다.'),
-                              ),
-                            )
-                          : ListView(
-                              children: [
-                                for (int i = 0; i < boardLst.length; i++)
-                                  GestureDetector(
-                                    child: ContentsList(
-                                        boardnum: boardLst[i],
-                                        grade: widget.grade),
-                                    onTap: () {
-                                      /*
+                    child: snapshot.hasData
+                        ? Container(
+                            child: snapshot.data.result!.length == 0
+                                ? Container(
+                                    child: Center(
+                                      child: Text('게시글이 없습니다.'),
+                                    ),
+                                  )
+                                : ListView(
+                                    children: [
+                                      for (int i = 0;
+                                          i < snapshot.data.result!.length;
+                                          i++)
+                                        GestureDetector(
+                                          child: ContentsList(
+                                              data: snapshot.data.result![i],
+                                              grade: widget.grade),
+                                          onTap: () {
+                                            /*
                                     위에서 구한 json에서 각 내용들을 클래스로 매핑하는걸 여기서 해도 되나?
                                     여기는 이미 for문 내부라서 안될 것 같은데
                                     각각의 내용을 보냄!!
                                     ex) result.title[i]
                                     contents에게 제목, 내용, 작성자, 작성일자, 조회수, 사진이름, 사진경로 다 보내야 함!
                                     */
-                                      String title = '게시판 제목';
-                                      String contents = '게시판 내용${i}';
+                                            String title = '게시판 제목';
+                                            String contents = '게시판 내용${i}';
 
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              Contents(
-                                            loginID: widget.loginID,
-                                            board: 'free',
-                                            title: title,
-                                            contents: contents,
-                                            grade: widget.grade,
-                                          ),
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        Contents(
+                                                  loginID: widget.loginID,
+                                                  board: 'free',
+                                                  title: title,
+                                                  contents: contents,
+                                                  grade: widget.grade,
+                                                ),
+                                              ),
+                                            );
+                                          },
                                         ),
-                                      );
-                                    },
+                                    ],
                                   ),
-                              ],
-                            ),
-                    ),
+                          )
+                        : Center(
+                            child: CircularProgressIndicator(),
+                          ),
                   ),
                 ],
               ),

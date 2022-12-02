@@ -392,7 +392,7 @@ class classFRIENDS {
 }
 
 /*
-select request friends: 내가 요청 받음
+select request friends
  */
 class REQUESTED {
   List<classREQUESTED>? result;
@@ -418,5 +418,49 @@ class classREQUESTED {
   classREQUESTED.fromJson(Map<String, dynamic> jsondata) {
     request = jsondata['request'];
     rating = jsondata['rating'];
+  }
+}
+
+/*
+select all contents in board
+ */
+class ALLCONTENTS {
+  List<classALLCONTENTS>? result;
+
+  ALLCONTENTS({this.result});
+
+  ALLCONTENTS.fromJson(Map<String, dynamic> jsondata) {
+    if (jsondata['result'] != null) {
+      result = <classALLCONTENTS>[];
+      jsondata['result'].forEach((v) {
+        result!.add(new classALLCONTENTS.fromJson(v));
+      });
+    }
+  }
+}
+
+class classALLCONTENTS {
+  int? id;
+  String? title;
+  String? content;
+  String? filename;
+  String? filepath;
+  String? writer;
+
+  classALLCONTENTS(
+      {this.id,
+      this.title,
+      this.content,
+      this.filename,
+      this.filepath,
+      this.writer});
+
+  classALLCONTENTS.fromJson(Map<String, dynamic> jsondata) {
+    id = jsondata['id'];
+    title = jsondata['title'];
+    content = jsondata['content'];
+    filename = jsondata['filename'];
+    filepath = jsondata['filepath'];
+    writer = jsondata['writer'];
   }
 }
