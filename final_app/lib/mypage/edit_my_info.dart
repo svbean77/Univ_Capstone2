@@ -190,7 +190,11 @@ class _EditMyInfoState extends State<EditMyInfo> {
                           child: TextFormField(
                             initialValue: widget.userage.toString(),
                             onChanged: (String? val) {
-                              widget.userage = int.parse(val!);
+                              try{
+                                widget.userage = int.parse(val!);
+                              }catch(e){
+                                widget.userage = -1;
+                              }
                             },
                             decoration: InputDecoration(
                               contentPadding:
@@ -239,11 +243,11 @@ class _EditMyInfoState extends State<EditMyInfo> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    print(widget.nickname);
+                    print(widget.userage);
                     print(origin);
                     if (widget.password.length != 0 &&
                         widget.nickname.length != 0 &&
-                        widget.userage != null) {
+                        widget.userage != -1) {
                       var url = Uri.http(
                           IP_ADDRESS, '/test_change_user.php', {'q': '{http}'});
                       var response =
