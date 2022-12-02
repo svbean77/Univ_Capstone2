@@ -22,7 +22,9 @@ class AddRecord extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     String year = selectedDate.year.toString();
     String month = selectedDate.month.toString();
+    if (month.length == 1) month = "0" + month;
     String day = selectedDate.day.toString();
+    if (day.length == 1) day = "0" + day;
 
     return Container(
       height: 250,

@@ -18,7 +18,7 @@ class ChallengeList extends StatelessWidget {
       width: double.infinity,
       grade: grade,
       child: Text(
-        '${date.year}.${date.month}.${date.day}',
+        '${date[0]}.${date[1]}.${date[2]}',
         style: TextStyle(fontSize: 20.0),
       ),
     );

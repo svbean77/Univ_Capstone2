@@ -87,6 +87,12 @@ class _RecordCalendarState extends State<RecordCalendar> {
       body: StreamBuilder(
           stream: controller.stream,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
+            String toyear = selectedDay.year.toString();
+            String tomonth = selectedDay.month.toString();
+            if (tomonth.length == 1) tomonth = "0" + tomonth;
+            String todayday = selectedDay.day.toString();
+            if (todayday.length == 1) todayday = "0" + todayday;
+
             List<List<String>> today_record = [];
             if (snapshot.hasData) {
               for (int i = 0; i < snapshot.data.result!.length; i++) {
@@ -123,7 +129,7 @@ class _RecordCalendarState extends State<RecordCalendar> {
                     children: [
                       MyText(
                           text:
-                              '${selectedDay.year}.${selectedDay.month}.${selectedDay.day}',
+                              '${toyear}.${tomonth}.${todayday}',
                           grade: widget.grade),
                       MyText(
                           text: '${today_record.length}개', grade: widget.grade),

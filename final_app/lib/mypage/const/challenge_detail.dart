@@ -36,7 +36,7 @@ class ChallengeDetail extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Text('${exercise} ${date.year}.${date.month}.${date.day} 기록',
+            Text('${exercise} ${date[0]}.${date[1]}.${date[2]} 기록',
                 style: TextStyle(fontSize: 20.0)),
             SizedBox(height: 16.0),
             Text(contents),

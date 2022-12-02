@@ -25,15 +25,17 @@ class ChallengeMain extends StatelessWidget {
      */
 
     List<int> num = [1, 4, 5];
-    List<int> recordDate = [20221010, 20220202, 20221111];
-    List<DateTime> date = [];
+    List<String> recordDate = ["20221010", "20220202", "20221111"];
+    List<List<String>> date = [];
 
     for (int i = 0; i < recordDate.length; i++) {
-      int year = recordDate[i] ~/ 10000;
-      int month = (recordDate[i] % 10000) ~/ 100;
-      int day = recordDate[i] % 100;
+      String year = (int.parse(recordDate[i]) ~/ 10000).toString();
+      String month = ((int.parse(recordDate[i]) % 10000) ~/ 100).toString();
+      if (month.length == 1) month = "0" + month;
+      String day = (int.parse(recordDate[i]) % 100).toString();
+      if (day.length == 1) day = "0" + day;
 
-      date.add(DateTime(year, month, day));
+      date.add([year, month, day]);
     }
 
     return Scaffold(
@@ -55,10 +57,10 @@ class ChallengeMain extends StatelessWidget {
         },
         child: Icon(Icons.create,
             color: (grade == 0 ||
-                grade == 1 ||
-                grade == 2 ||
-                grade == 4 ||
-                grade == 8)
+                    grade == 1 ||
+                    grade == 2 ||
+                    grade == 4 ||
+                    grade == 8)
                 ? Colors.black
                 : Colors.white),
       ),

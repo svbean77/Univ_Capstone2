@@ -58,7 +58,6 @@ class _ContentsState extends State<Contents> {
      */
     String myName = '작성자이름';
     String writer = '작성자이름';
-    String date = '2022.11.11';
 
     return FutureBuilder(
         future: getDatas(widget.loginID),

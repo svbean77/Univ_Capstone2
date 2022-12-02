@@ -92,16 +92,51 @@ class AddWeight extends StatelessWidget {
                       toastLength: Toast.LENGTH_SHORT,
                     );
                   } else {
-                    var url = Uri.http(IP_ADDRESS,
-                        '/test_add_weight_record.php', {'q': '{http}'});
-                    var response = await http.post(url, body: <String, String>{
-                      "nickname": loginID.toString(),
-                      "writeDate": dateController.text.toString(),
-                      "weight": weightController.text.toString(),
-                    });
-                    var jsondata =
-                        jsonDecode(json.decode(json.encode(response.body)));
-                    if (jsondata == "Success") Navigator.of(context).pop();
+                    String year =
+                        (int.parse(dateController.text.toString()) ~/ 10000)
+                            .toString();
+                    String month =
+                        ((int.parse(dateController.text.toString()) % 10000) ~/
+                                100)
+                            .toString();
+                    if (month.length == 1) month = "0" + month;
+                    String day =
+                        (int.parse(dateController.text.toString()) % 100)
+                            .toString();
+                    if (day.length == 1) day = "0" + day;
+                    bool isDate = true;
+
+                    if (1 > int.parse(month) || int.parse(month) > 12) {
+                      isDate = false;
+                    } else if ([1, 3, 5, 7, 8, 10, 12]
+                        .contains(int.parse(month))) {
+                      if (1 > int.parse(day) || int.parse(day) > 31)
+                        isDate = false;
+                    } else if ([4, 6, 9, 11].contains(int.parse(month))) {
+                      if (1 > int.parse(day) || int.parse(day) > 30)
+                        isDate = false;
+                    } else {
+                      int leapday = 28;
+                      if ((int.parse(year) % 4 == 0) &&
+                              (int.parse(year) % 100 != 0) ||
+                          (int.parse(year) % 400 == 0)) leapday = 29;
+
+                      if (1 > int.parse(day) || int.parse(day) > leapday)
+                        isDate = false;
+                    }
+                    if (isDate) {
+                      var url = Uri.http(IP_ADDRESS,
+                          '/test_add_weight_record.php', {'q': '{http}'});
+                      var response =
+                          await http.post(url, body: <String, String>{
+                        "nickname": loginID.toString(),
+                        "writeDate": dateController.text.toString(),
+                        "weight": weightController.text.toString(),
+                      });
+                      var jsondata =
+                          jsonDecode(json.decode(json.encode(response.body)));
+                      if (jsondata == "Success") Navigator.of(context).pop();
+                    }
                   }
                 },
                 child: MyText(text: "확인", grade: grade),
