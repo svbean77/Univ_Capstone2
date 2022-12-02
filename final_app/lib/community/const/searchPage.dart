@@ -61,7 +61,7 @@ class _SearchPageState extends State<SearchPage> {
                           for (int i = 0; i < widget.data.length; i++)
                             GestureDetector(
                               child: ContentsList(
-                                  data: widget.data,
+                                  data: widget.data[i],
                                   grade: widget.grade),
                               onTap: () {
                                 /*

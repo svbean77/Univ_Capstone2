@@ -101,19 +101,16 @@ class _FreeBoardState extends State<FreeBoard> {
                             if (controller.text.toString() != "") {
                               var url = Uri.http(
                                   IP_ADDRESS,
-                                  '/test_select_all_board.php',
+                                  '/test_select_search_board.php',
                                   {'q': '{http}'});
                               var response =
                                   await http.post(url, body: <String, String>{
                                 "board": "free".toString(),
+                                "search": controller.text.toString(),
                               });
                               var jsondata = jsonDecode(
                                   json.decode(json.encode(response.body)));
                               ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
-                              print(data.result!);
-/*
-
-
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (BuildContext context) => SearchPage(
@@ -125,8 +122,6 @@ class _FreeBoardState extends State<FreeBoard> {
                                   ),
                                 ),
                               );
-
- */
                             } else {
                               /*
                               토스트 메시지

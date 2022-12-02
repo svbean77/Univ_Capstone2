@@ -108,14 +108,13 @@ class _QnABoardState extends State<QnABoard> {
                                   '/test_select_search_board.php',
                                   {'q': '{http}'});
                               var response =
-                                  await http.post(url, body: <String, String>{
-                                "board": "free".toString(),
+                              await http.post(url, body: <String, String>{
+                                "board": "qna".toString(),
                                 "search": controller.text.toString(),
                               });
                               var jsondata = jsonDecode(
                                   json.decode(json.encode(response.body)));
                               ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
-
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (BuildContext context) => SearchPage(
