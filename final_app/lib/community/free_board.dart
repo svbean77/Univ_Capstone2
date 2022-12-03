@@ -74,121 +74,126 @@ class _FreeBoardState extends State<FreeBoard> {
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height / 15,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: widget.grade == 0
-                                    ? Colors.grey.withOpacity(0.2)
-                                    : PRIMARY_COLOR[widget.grade],
-                              ),
-                            ),
-                            child: TextField(
-                              controller: controller,
-                              decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10.0),
-                                hintText: '제목으로 검색',
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 8.0),
-                        GestureDetector(
-                          child: Icon(Icons.search),
-                          onTap: () async {
-                            if (controller.text.toString() != "") {
-                              var url = Uri.parse(
-                                  "http://${IP_ADDRESS}/test_select_search_board.php");
-                              /*
+                  children: snapshot.hasData
+                      ? [
+                          Container(
+                            height: MediaQuery.of(context).size.height / 15,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: widget.grade == 0
+                                            ? Colors.grey.withOpacity(0.2)
+                                            : PRIMARY_COLOR[widget.grade],
+                                      ),
+                                    ),
+                                    child: TextField(
+                                      controller: controller,
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            horizontal: 10.0),
+                                        hintText: '제목으로 검색',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 8.0),
+                                GestureDetector(
+                                  child: Icon(Icons.search),
+                                  onTap: () async {
+                                    if (controller.text.toString() != "") {
+                                      var url = Uri.parse(
+                                          "http://${IP_ADDRESS}/test_select_search_board.php");
+                                      /*
                               var url = Uri.http(
                                   IP_ADDRESS,
                                   '/test_select_search_board.php',
                                   {'q': '{http}'});
 
                                */
-                              var response =
-                                  await http.post(url, body: <String, String>{
-                                "board": "free".toString(),
-                                "search": controller.text.toString(),
-                              });
-                              var jsondata = jsonDecode(
-                                  json.decode(json.encode(response.body)));
-                              ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) => SearchPage(
-                                    data: data.result!,
-                                    searchfor: controller.text.toString(),
-                                    loginID: widget.loginID,
-                                    directory: snapshot.data[1],
-                                    board: 'free',
-                                    grade: widget.grade,
-                                  ),
-                                ),
-                              );
-                            } else {
-                              /*
+                                      var response = await http
+                                          .post(url, body: <String, String>{
+                                        "board": "free".toString(),
+                                        "search": controller.text.toString(),
+                                      });
+                                      var jsondata = jsonDecode(json
+                                          .decode(json.encode(response.body)));
+                                      ALLCONTENTS data =
+                                          ALLCONTENTS.fromJson(jsondata);
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              SearchPage(
+                                            data: data.result!,
+                                            searchfor:
+                                                controller.text.toString(),
+                                            loginID: widget.loginID,
+                                            directory: snapshot.data[1],
+                                            board: 'free',
+                                            grade: widget.grade,
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      /*
                               토스트 메시지
                                */
-                              print("검색어");
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 16.0),
-                  Expanded(
-                    child: snapshot.hasData
-                        ? Container(
-                            child: snapshot.data[0].result!.length == 0
-                                ? Container(
-                                    child: Center(
-                                      child: Text('게시글이 없습니다.'),
-                                    ),
-                                  )
-                                : ListView(
-                                    children: [
-                                      for (int i = 0;
-                                          i < snapshot.data[0].result!.length;
-                                          i++)
-                                        GestureDetector(
-                                          child: ContentsList(
-                                              data: snapshot.data[0].result![i],
-                                              grade: widget.grade),
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        Contents(
-                                                  loginID: widget.loginID,
-                                                  board: 'free',
-                                                  data: snapshot
-                                                      .data[0].result![i],
-                                                  directory: snapshot.data[1],
-                                                  grade: widget.grade,
+                                      print("검색어");
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 16.0),
+                          Expanded(
+                            child: Container(
+                              child: snapshot.data[0].result!.length == 0
+                                  ? Container(
+                                      child: Center(
+                                        child: Text('게시글이 없습니다.'),
+                                      ),
+                                    )
+                                  : ListView(
+                                      children: [
+                                        for (int i = 0;
+                                            i < snapshot.data[0].result!.length;
+                                            i++)
+                                          GestureDetector(
+                                            child: ContentsList(
+                                                data:
+                                                    snapshot.data[0].result![i],
+                                                grade: widget.grade),
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          Contents(
+                                                    loginID: widget.loginID,
+                                                    board: 'free',
+                                                    data: snapshot
+                                                        .data[0].result![i],
+                                                    directory: snapshot.data[1],
+                                                    grade: widget.grade,
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                    ],
-                                  ),
-                          )
-                        : Center(
+                                              );
+                                            },
+                                          ),
+                                      ],
+                                    ),
+                            ),
+                          ),
+                        ]
+                      : [
+                          Center(
                             child: CircularProgressIndicator(),
                           ),
-                  ),
-                ],
-              ),
+                        ]),
             ),
           );
         });
