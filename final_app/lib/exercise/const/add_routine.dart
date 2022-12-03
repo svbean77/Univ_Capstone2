@@ -66,8 +66,12 @@ class _AddRoutineState extends State<AddRoutine> {
                 onPressed: () async {
                   if(_controller.text.toString() != ""){
 
+                    var url = Uri.parse("http://${IP_ADDRESS}/test_add_routine.php");
+                    /*
                     var url = Uri.http(
                         IP_ADDRESS, '/test_add_routine.php', {'q': '{http}'});
+
+                     */
                     var response = await http.post(url, body: <String, String>{
                       "nickname": widget.loginID.toString(),
                       "routineName": _controller.text.toString(),

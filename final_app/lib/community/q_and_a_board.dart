@@ -27,8 +27,12 @@ class _QnABoardState extends State<QnABoard> {
   final TextEditingController controller = TextEditingController();
 
   Future getDatas() async {
+    /*
     var url =
         Uri.http(IP_ADDRESS, '/test_select_qnaboard.php', {'q': '{http}'});
+
+     */
+    var url = Uri.parse("http://${IP_ADDRESS}/test_select_qnaboard.php");
     var response = await http.post(url, body: <String, String>{});
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
@@ -99,10 +103,14 @@ class _QnABoardState extends State<QnABoard> {
                           child: Icon(Icons.search),
                           onTap: () async {
                             if (controller.text.toString() != "") {
+                              var url = Uri.parse("http://${IP_ADDRESS}/test_select_search_board.php");
+                              /*
                               var url = Uri.http(
                                   IP_ADDRESS,
                                   '/test_select_search_board.php',
                                   {'q': '{http}'});
+
+                               */
                               var response =
                                   await http.post(url, body: <String, String>{
                                 "board": "qna".toString(),

@@ -50,8 +50,12 @@ class FriendCard extends StatelessWidget {
                   GestureDetector(
                     child: Icon(Icons.person_search),
                     onTap: () async {
+                      var url = Uri.parse("http://${IP_ADDRESS}/test_select_userdata.php");
+                      /*
                       var url = Uri.http(IP_ADDRESS,
                           '/test_select_userdata.php', {'q': '{http}'});
+
+                       */
                       var response =
                           await http.post(url, body: <String, String>{
                         "username": nickname.toString(),
@@ -61,8 +65,12 @@ class FriendCard extends StatelessWidget {
                           jsonDecode(json.decode(json.encode(response.body)));
                       USERDATA data = USERDATA.fromJson(jsondata);
 
+                      var url2 = Uri.parse("http://${IP_ADDRESS}/test_select_exercise_record.php");
+                      /*
                       var url2 = Uri.http(IP_ADDRESS,
                           '/test_select_exercise_record.php', {'q': '{http}'});
+
+                       */
                       var response2 =
                           await http.post(url2, body: <String, String>{
                         "nickname": nickname.toString(),
@@ -119,10 +127,14 @@ class FriendCard extends StatelessWidget {
                                           elevation: 0,
                                         ),
                                         onPressed: () async {
+                                          var url = Uri.parse("http://${IP_ADDRESS}/test_remove_friends.php");
+                                          /*
                                           var url = Uri.http(
                                               IP_ADDRESS,
                                               '/test_remove_friends.php',
                                               {'q': '{http}'});
+
+                                           */
                                           var response = await http
                                               .post(url, body: <String, String>{
                                             "nickname": loginID.toString(),

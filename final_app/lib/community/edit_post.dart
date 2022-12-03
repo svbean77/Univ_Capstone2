@@ -205,6 +205,7 @@ class _EditPostState extends State<EditPost> {
                   var data;
                   if (widget.board == 'free')
                     url = "http://${IP_ADDRESS}/test_change_freeboard.php";
+
                   else
                     url = "http://${IP_ADDRESS}/test_change_qnaboard.php";
 

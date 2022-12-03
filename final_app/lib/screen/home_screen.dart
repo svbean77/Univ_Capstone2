@@ -43,8 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Future getDatas(String username) async {
     if (username != "") {
       //    var url = Uri.parse("http://IP주소:포트번호/test_login.php");
+      var url = Uri.parse("http://${IP_ADDRESS}/test_select_userdata.php");
+      /*
       var url =
       Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
+
+       */
       var response = await http.post(url, body: <String, String>{
         "username": username.toString(),
         "mode": "ID".toString(),

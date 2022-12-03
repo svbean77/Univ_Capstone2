@@ -40,8 +40,12 @@ class _MyPageState extends State<MyPage> {
   };
 
   Future getDatas(String nickname) async {
+    var url = Uri.parse("http://${IP_ADDRESS}/test_select_userdata.php");
+    /*
     var url =
         Uri.http(IP_ADDRESS, '/test_select_userdata.php', {'q': '{http}'});
+
+     */
     var response = await http.post(url, body: <String, String>{
       "username": widget.loginID.toString(),
       "mode": "Nickname".toString(),
@@ -105,8 +109,12 @@ class _MyPageState extends State<MyPage> {
                             SizedBox(),
                             ElevatedButton(
                               onPressed: () async {
+                                var url = Uri.parse("http://${IP_ADDRESS}/test_change_theme.php");
+                                /*
                                 var url = Uri.http(IP_ADDRESS,
                                     '/test_change_theme.php', {'q': '{http}'});
+
+                                 */
                                 var response =
                                     await http.post(url, body: <String, String>{
                                   "nickname": widget.loginID.toString(),
@@ -260,10 +268,14 @@ class _MyPageState extends State<MyPage> {
                                             ),
                                             ElevatedButton(
                                               onPressed: () async {
+                                                var url = Uri.parse("http://${IP_ADDRESS}/test_remove_user.php");
+                                                /*
                                                 var url = Uri.http(
                                                     IP_ADDRESS,
                                                     '/test_remove_user.php',
                                                     {'q': '{http}'});
+
+                                                 */
                                                 var response = await http.post(
                                                     url,
                                                     body: <String, String>{

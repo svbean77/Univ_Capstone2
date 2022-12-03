@@ -21,8 +21,12 @@ class AllRanking extends StatefulWidget {
 
 class _AllRankingState extends State<AllRanking> {
   Future getDatas() async {
+    var url = Uri.parse("http://${IP_ADDRESS}/test_select_all_user.php");
+    /*
     var url =
         Uri.http(IP_ADDRESS, '/test_select_all_user.php', {'q': '{http}'});
+
+     */
     var response = await http.post(url, body: <String, String>{});
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     USERDATA data = USERDATA.fromJson(jsondata);

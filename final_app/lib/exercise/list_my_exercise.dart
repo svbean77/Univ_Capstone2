@@ -31,8 +31,12 @@ class _ListMyExerciseState extends State<ListMyExercise> {
   Timer? _timer;
 
   Future getDatas() async {
+    var url = Uri.parse("http://${IP_ADDRESS}/test_select_my_routine_detail.php");
+    /*
     var url = Uri.http(
         IP_ADDRESS, '/test_select_my_routine_detail.php', {'q': '{http}'});
+
+     */
     var response = await http.post(url, body: <String, String>{
       "nickname": widget.loginID.toString(),
       "routine": widget.routine.toString(),
@@ -92,8 +96,12 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                       : Colors.white),
               onPressed: () async {
                 List<dynamic> jsonlst = [];
+                var url = Uri.parse("http://${IP_ADDRESS}/all_exercise.php");
+                /*
                 var url =
                     Uri.http(IP_ADDRESS, '/all_exercise.php', {'q': '{http}'});
+
+                 */
                 for (int i = 1; i <= 15; i++) {
                   var response = await http.post(url, body: <String, String>{
                     "muscle": mapExNum[i].toString(),
@@ -193,10 +201,14 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                   direction: DismissDirection.endToStart,
                                   onDismissed:
                                       (DismissDirection direction) async {
+                                        var url = Uri.parse("http://${IP_ADDRESS}/test_remove_exercise.php");
+                                        /*
                                     var url = Uri.http(
                                         IP_ADDRESS,
                                         '/test_remove_exercise.php',
                                         {'q': '{http}'});
+
+                                         */
                                     var response = await http
                                         .post(url, body: <String, String>{
                                       "nickname": widget.loginID.toString(),

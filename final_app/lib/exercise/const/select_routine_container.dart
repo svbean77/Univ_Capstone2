@@ -36,8 +36,12 @@ class SelectRoutineContainer extends StatelessWidget {
           ),
         ),
         onTap: () async {
+          var url = Uri.parse("http://${IP_ADDRESS}/test_select_routine.php");
+          /*
           var url =
               Uri.http(IP_ADDRESS, '/test_select_routine.php', {'q': '{http}'});
+
+           */
           var response = await http.post(url, body: <String, String>{
             "part": title.toString(),
             "time": time.toString(),

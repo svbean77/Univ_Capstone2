@@ -30,8 +30,12 @@ class _RecordCalendarState extends State<RecordCalendar> {
   Timer? _timer;
 
   Future getDatas() async {
+    var url = Uri.parse("http://${IP_ADDRESS}/test_select_exercise_record.php");
+    /*
     var url = Uri.http(
         IP_ADDRESS, '/test_select_exercise_record.php', {'q': '{http}'});
+
+     */
     var response = await http.post(url, body: <String, String>{
       "nickname": widget.loginID.toString(),
     });

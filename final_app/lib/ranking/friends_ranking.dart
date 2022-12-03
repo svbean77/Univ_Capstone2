@@ -21,8 +21,12 @@ class FriendsRanking extends StatefulWidget {
 
 class _FriendsRankingState extends State<FriendsRanking> {
   Future getDatas() async {
+    var url = Uri.parse("http://${IP_ADDRESS}/test_select_all_friends.php");
+    /*
     var url =
         Uri.http(IP_ADDRESS, '/test_select_all_friends.php', {'q': '{http}'});
+
+     */
     var response = await http.post(url, body: <String, String>{
       "nickname": widget.loginID.toString(),
     });

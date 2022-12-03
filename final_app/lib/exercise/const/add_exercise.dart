@@ -164,8 +164,12 @@ class _AddExerciseState extends State<AddExercise> {
                   print(selectedExercise);
                   if (_controller.text.toString() != "" &&
                       selectedExercise != null) {
+                    var url = Uri.parse("http://${IP_ADDRESS}/test_add_exercise.php");
+                    /*
                     var url = Uri.http(
                         IP_ADDRESS, '/test_add_exercise.php', {'q': '{http}'});
+
+                     */
                     var response = await http.post(url, body: <String, String>{
                       "nickname": widget.loginID.toString(),
                       "routine": widget.routine.toString(),

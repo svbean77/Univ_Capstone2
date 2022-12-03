@@ -69,8 +69,12 @@ class AddRecord extends StatelessWidget {
                   String date = year + month + day;
                   print(date);
                   if (controller.text.toString() != "") {
+                    var url = Uri.parse("http://${IP_ADDRESS}/test_add_exercise_record.php");
+                    /*
                     var url = Uri.http(IP_ADDRESS,
                         '/test_add_exercise_record.php', {'q': '{http}'});
+
+                     */
                     var response = await http.post(url, body: <String, String>{
                       "nickname": loginID.toString(),
                       "writeDate": date.toString(),

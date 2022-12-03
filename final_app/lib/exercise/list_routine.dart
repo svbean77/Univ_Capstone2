@@ -63,8 +63,12 @@ class _ListRoutineState extends State<ListRoutine> {
                   print(widget.data.result![i].time);
                   print(widget.data.result![i].routine);
 
+                  var url = Uri.parse("http://${IP_ADDRESS}/test_select_routine_detail.php");
+                  /*
                   var url = Uri.http(IP_ADDRESS,
                       '/test_select_routine_detail.php', {'q': '{http}'});
+
+                   */
                   var response = await http.post(url, body: <String, String>{
                     "routine": widget.data.result![i].routine.toString(),
                   });

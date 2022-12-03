@@ -174,7 +174,11 @@ class _SignInState extends State<SignIn> {
   }
 
   Future login() async {
+    var url = Uri.parse("http://${IP_ADDRESS}/test_login.php");
+    /*
     var url = Uri.http(IP_ADDRESS, '/test_login.php', {'q': '{http}'});
+
+     */
     var response = await http.post(url, body: <String, String>{
       'username': _idController.text.toString(),
       'password': _pwController.text.toString(),

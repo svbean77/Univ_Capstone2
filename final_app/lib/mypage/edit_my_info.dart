@@ -248,8 +248,12 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     if (widget.password.length != 0 &&
                         widget.nickname.length != 0 &&
                         widget.userage != -1) {
+                      var url = Uri.parse("http://${IP_ADDRESS}/test_change_user.php");
+                      /*
                       var url = Uri.http(
                           IP_ADDRESS, '/test_change_user.php', {'q': '{http}'});
+
+                       */
                       var response =
                           await http.post(url, body: <String, String>{
                         "username": widget.username.toString(),

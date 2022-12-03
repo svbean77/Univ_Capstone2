@@ -27,8 +27,12 @@ class _FreeBoardState extends State<FreeBoard> {
   final TextEditingController controller = TextEditingController();
 
   Future getDatas() async {
+    /*
     var url =
         Uri.http(IP_ADDRESS, '/test_select_freeboard.php', {'q': '{http}'});
+
+     */
+    var url = Uri.parse("http://${IP_ADDRESS}/test_select_freeboard.php");
     var response = await http.post(url, body: <String, String>{});
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
@@ -100,10 +104,15 @@ class _FreeBoardState extends State<FreeBoard> {
                           child: Icon(Icons.search),
                           onTap: () async {
                             if (controller.text.toString() != "") {
+                              var url = Uri.parse(
+                                  "http://${IP_ADDRESS}/test_select_search_board.php");
+                              /*
                               var url = Uri.http(
                                   IP_ADDRESS,
                                   '/test_select_search_board.php',
                                   {'q': '{http}'});
+
+                               */
                               var response =
                                   await http.post(url, body: <String, String>{
                                 "board": "free".toString(),
@@ -162,8 +171,8 @@ class _FreeBoardState extends State<FreeBoard> {
                                                         Contents(
                                                   loginID: widget.loginID,
                                                   board: 'free',
-                                                  data:
-                                                      snapshot.data[0].result![i],
+                                                  data: snapshot
+                                                      .data[0].result![i],
                                                   directory: snapshot.data[1],
                                                   grade: widget.grade,
                                                 ),

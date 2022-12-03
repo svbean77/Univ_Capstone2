@@ -263,7 +263,12 @@ class _SignUpState extends State<SignUp> {
         _pwController.text.toString() != "" &&
         _userageController.text.toString() != "" &&
         _userageController.text.toString() != "") {
+
+      var url = Uri.parse("http://${IP_ADDRESS}/test_register.php");
+      /*
       var url = Uri.http(IP_ADDRESS, '/test_register.php', {'q': '{http}'});
+
+       */
       var response = await http.post(url, body: <String, String>{
         "username": _idController.text.toString(),
         "password": _pwController.text.toString(),

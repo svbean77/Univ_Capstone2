@@ -29,8 +29,12 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
   Timer? _timer;
 
   Future getDatas() async {
+    var url = Uri.parse("http://${IP_ADDRESS}/test_select_my_routine.php");
+    /*
     var url =
         Uri.http(IP_ADDRESS, '/test_select_my_routine.php', {'q': '{http}'});
+
+     */
     var response = await http.post(url, body: <String, String>{
       "nickname": widget.loginID.toString(),
     });
@@ -152,8 +156,12 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                             key: ObjectKey(snapshot.data.result![i].id),
                             direction: DismissDirection.endToStart,
                             onDismissed: (DismissDirection direction) async {
+                              var url = Uri.parse("http://${IP_ADDRESS}/test_remove_routine.php");
+                              /*
                               var url = Uri.http(IP_ADDRESS,
                                   '/test_remove_routine.php', {'q': '{http}'});
+
+                               */
                               var response =
                                   await http.post(url, body: <String, String>{
                                 "nickname": widget.loginID.toString(),

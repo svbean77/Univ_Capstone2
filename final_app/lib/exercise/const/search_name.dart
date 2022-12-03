@@ -25,8 +25,12 @@ class SearchName extends StatelessWidget {
       child: ListTile(
         title: Text(name),
         onTap: () async {
+          var url = Uri.parse("http://${IP_ADDRESS}/exercise_guide.php");
+          /*
           var url =
               Uri.http(IP_ADDRESS, '/exercise_guide.php', {'q': '{http}'});
+
+           */
           var response = await http.post(url, body: <String, String>{
             "muscle": name.toString(),
             "equipment": '덤벨'.toString(),

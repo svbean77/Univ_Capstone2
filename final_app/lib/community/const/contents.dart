@@ -155,10 +155,15 @@ class _ContentsState extends State<Contents> {
                                               elevation: 0,
                                             ),
                                             onPressed: () async {
+                                              var url = Uri.parse(
+                                                  "http://${IP_ADDRESS}/test_remove_content.php");
+                                              /*
                                               var url = Uri.http(
                                                   IP_ADDRESS,
                                                   '/test_remove_content.php',
                                                   {'q': '{http}'});
+
+                                               */
                                               var response = await http.post(
                                                   url,
                                                   body: <String, String>{
