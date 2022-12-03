@@ -21,6 +21,8 @@ class ChallengeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(data.data.replaceAll("\n",""));
+    print(base64Decode(data.data.replaceAll("\n","")));
     return Scaffold(
       appBar: MyAppBar(grade: grade),
       drawer: MyDrawer(loginID: loginID, grade: grade),
@@ -34,7 +36,7 @@ class ChallengeDetail extends StatelessWidget {
             SizedBox(height: 8.0),
             data.filename == null
                 ? Container()
-                : myVideo(file: base64Decode(data.data)),
+                : myVideo(file: base64Decode(data.data.replaceAll("\n",""))),
           ],
         ),
       ),

@@ -131,7 +131,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                   },
                                 )
                             ]
-                          : [],
+                          : [CircularProgressIndicator()],
                     ),
                   ),
                 ],
