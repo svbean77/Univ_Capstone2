@@ -55,6 +55,9 @@ class _EditPostState extends State<EditPost> {
 
   @override
   Widget build(BuildContext context) {
+    if(widget.image != null){
+      //files에 사진을 추가 (사진으로 전달받음) File(사진)
+    }
     return Scaffold(
       appBar: MyAppBar(grade: widget.grade),
       drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),

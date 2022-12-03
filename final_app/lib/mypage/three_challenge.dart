@@ -32,9 +32,8 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
 
   Future getDatas() async {
     var url =
-        Uri.http(IP_ADDRESS, '/test_select_all_board.php', {'q': '{http}'});
+        Uri.http(IP_ADDRESS, '/test_select_threeboard.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
-      "board": "three".toString(),
       "nickname": widget.loginID.toString(),
     });
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));

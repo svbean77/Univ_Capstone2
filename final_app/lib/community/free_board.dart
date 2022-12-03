@@ -28,11 +28,8 @@ class _FreeBoardState extends State<FreeBoard> {
 
   Future getDatas() async {
     var url =
-        Uri.http(IP_ADDRESS, '/test_select_all_board.php', {'q': '{http}'});
-    var response = await http.post(url, body: <String, String>{
-      "board": "free".toString(),
-      "nickname": widget.loginID.toString(),
-    });
+        Uri.http(IP_ADDRESS, '/test_select_freeboard.php', {'q': '{http}'});
+    var response = await http.post(url, body: <String, String>{});
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
     return data;

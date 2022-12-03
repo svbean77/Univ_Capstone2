@@ -28,11 +28,8 @@ class _QnABoardState extends State<QnABoard> {
 
   Future getDatas() async {
     var url =
-        Uri.http(IP_ADDRESS, '/test_select_all_board.php', {'q': '{http}'});
-    var response = await http.post(url, body: <String, String>{
-      "board": "qna".toString(),
-      "nickname": widget.loginID.toString(),
-    });
+        Uri.http(IP_ADDRESS, '/test_select_qnaboard.php', {'q': '{http}'});
+    var response = await http.post(url, body: <String, String>{});
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
     return data;
@@ -109,7 +106,7 @@ class _QnABoardState extends State<QnABoard> {
                                   '/test_select_search_board.php',
                                   {'q': '{http}'});
                               var response =
-                              await http.post(url, body: <String, String>{
+                                  await http.post(url, body: <String, String>{
                                 "board": "qna".toString(),
                                 "search": controller.text.toString(),
                               });
@@ -162,13 +159,13 @@ class _QnABoardState extends State<QnABoard> {
                                               MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                    Contents(
-                                                      loginID: widget.loginID,
-                                                      board: 'qna',
-                                                      data:
+                                                        Contents(
+                                                  loginID: widget.loginID,
+                                                  board: 'qna',
+                                                  data:
                                                       snapshot.data.result![i],
-                                                      grade: widget.grade,
-                                                    ),
+                                                  grade: widget.grade,
+                                                ),
                                               ),
                                             );
                                           },
