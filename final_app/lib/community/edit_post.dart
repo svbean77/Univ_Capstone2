@@ -26,7 +26,7 @@ class EditPost extends StatefulWidget {
   /*
   여기 사진도 보내서 가장 처음에 file에 추가해야겠다 (수정도 있으니까)
    */
-  String? image;
+  final image;
   final loginID;
   String content;
   String title;
@@ -57,7 +57,7 @@ class _EditPostState extends State<EditPost> {
   Widget build(BuildContext context) {
     if (widget.image != null) {
       //files에 사진을 추가 (사진으로 전달받음) File(사진)
-      files.add(File.fromRawPath(base64Decode(widget.image!)));
+      files.add(widget.image);
     }
     return Scaffold(
       appBar: MyAppBar(grade: widget.grade),

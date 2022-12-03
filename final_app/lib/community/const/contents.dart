@@ -117,7 +117,7 @@ class _ContentsState extends State<Contents> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (BuildContext context) => EditPost(
-                                  image: widget.data.data,
+                                  image: imgFile,
                                   board: widget.board,
                                   grade: widget.grade,
                                   id: widget.data.id,
