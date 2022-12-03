@@ -118,6 +118,7 @@ class _QnABoardState extends State<QnABoard> {
                                     searchfor: controller.text.toString(),
                                     loginID: widget.loginID,
                                     board: 'qna',
+                                    directory: snapshot.data[1],
                                     grade: widget.grade,
                                   ),
                                 ),
@@ -161,8 +162,8 @@ class _QnABoardState extends State<QnABoard> {
                                                   loginID: widget.loginID,
                                                   board: 'qna',
                                                   directory: snapshot.data[1],
-                                                  data:
-                                                      snapshot.data[0].result![i],
+                                                  data: snapshot
+                                                      .data[0].result![i],
                                                   grade: widget.grade,
                                                 ),
                                               ),

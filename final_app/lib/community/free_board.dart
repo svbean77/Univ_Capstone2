@@ -118,6 +118,7 @@ class _FreeBoardState extends State<FreeBoard> {
                                     data: data.result!,
                                     searchfor: controller.text.toString(),
                                     loginID: widget.loginID,
+                                    directory: snapshot.data[1],
                                     board: 'free',
                                     grade: widget.grade,
                                   ),

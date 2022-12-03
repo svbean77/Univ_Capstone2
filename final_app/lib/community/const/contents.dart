@@ -78,35 +78,7 @@ class _ContentsState extends State<Contents> {
             widget.data.filename == null
                 ? Container()
                 : Image.memory(base64Decode(widget.data.data)),
-            /*
-                : Container(
-              width: double.infinity,
-                  child: IntrinsicHeight(
-                    child: Image.file(
-                        imgFile!,
-                        fit: BoxFit.contain,
-                      ),
-                  ),
-                ),
 
-             */
-            /*
-                for (int i = 0; i < images.length; i++)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Image.file(images[i]),
-                  ),
-                for (int i = 0; i < files.length; i++)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Image.file(File(files[i])),
-                  ),
-                for (int i = 0; i < imagefiles.length; i++)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Image.file(File(imagefiles[i])),
-                  ),
-                 */
             SizedBox(height: 8.0),
             Row(
               children: [

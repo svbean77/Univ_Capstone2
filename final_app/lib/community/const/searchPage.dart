@@ -17,11 +17,13 @@ class SearchPage extends StatefulWidget {
   final loginID;
   final data;
   final searchfor;
+  final directory;
   final grade;
   final board;
   const SearchPage({
     required this.searchfor,
     required this.data,
+    required this.directory,
     required this.grade,
     required this.loginID,
     required this.board,
@@ -64,15 +66,12 @@ class _SearchPageState extends State<SearchPage> {
                                   data: widget.data[i],
                                   grade: widget.grade),
                               onTap: () {
-                                /*
-                                    위에서 게시글 번호를 통해 클래스 구하고 그 클래스를 그대로 보내면 되겠다
-                                     */
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) => Contents(
                                       loginID: widget.loginID,
                                       board: widget.board,
-                                      directory: null,
+                                      directory: widget.directory,
                                       data: widget.data[i],
                                       grade: widget.grade,
                                     ),
