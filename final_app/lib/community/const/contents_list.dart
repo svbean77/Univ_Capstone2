@@ -27,7 +27,11 @@ class ContentsList extends StatelessWidget {
           children: [
             Container(width: 30.0, child: Text(data.id.toString())),
             SizedBox(width: 16.0),
-            Expanded(child: Container(child: MyText(text: data.title, grade: grade, size: "20"))),
+            Expanded(
+              child: Container(
+                child: Text(data.title, style: TextStyle(fontSize: 20.0)),
+              ),
+            )
           ],
         ),
       ),

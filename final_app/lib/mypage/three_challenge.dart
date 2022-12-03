@@ -93,7 +93,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MyText(text: "3대 챌린지 기록", grade: widget.grade, size: "25"),
+                  Text('3대 챌린지 기록', style: TextStyle(fontSize: 25.0)),
                   SizedBox(height: 16.0),
                   Expanded(
                     child: ListView(
@@ -114,11 +114,9 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                       height: 70.0,
                                       width: double.infinity,
                                       grade: widget.grade,
-                                      child: MyText(
-                                        text: snapshot.data.result![i].title,
-                                        grade: widget.grade,
-                                        size: "20",
-                                      ),
+                                      child: Text(
+                                          snapshot.data.result![i].title,
+                                          style: TextStyle(fontSize: 20.0)),
                                     ),
                                   ),
                                   onTap: () {

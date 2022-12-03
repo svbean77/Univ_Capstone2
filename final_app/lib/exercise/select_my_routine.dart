@@ -170,10 +170,9 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                   height: 70.0,
                                   width: double.infinity,
                                   grade: widget.grade,
-                                  child: MyText(
-                                      text: snapshot.data!.result![i]!.routine,
-                                      size: "20",
-                                      grade: widget.grade),
+                                  child: Text(
+                                      snapshot.data!.result![i]!.routine,
+                                      style: TextStyle(fontSize: 20.0)),
                                 ),
                               ),
                               onTap: () {

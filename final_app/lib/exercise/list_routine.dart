@@ -54,11 +54,9 @@ class _ListRoutineState extends State<ListRoutine> {
                     height: 70.0,
                     width: double.infinity,
                     grade: widget.grade,
-                    child: MyText(
-                        text:
-                            '(${widget.data.result![i].time}분) ${widget.data.result![i].routine}',
-                        grade: widget.grade,
-                        size: "20"),
+                    child: Text(
+                        '(${widget.data.result![i].time}분) ${widget.data.result![i].routine}',
+                        style: TextStyle(fontSize: 20.0)),
                   ),
                 ),
                 onTap: () async {
