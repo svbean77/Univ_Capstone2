@@ -9,8 +9,10 @@
  */
 
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/community/const/contents.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
@@ -188,7 +190,60 @@ class _EditPostState extends State<EditPost> {
             ),
             SizedBox(height: 8.0),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                if (widget.title.toString() != "" &&
+                    widget.content.toString() != "") {
+                  var url;
+                  var data;
+                  if (widget.board == 'free')
+                    url = "http://${IP_ADDRESS}/test_change_freeboard.php";
+                  else
+                    url = "http://${IP_ADDRESS}/test_change_qnaboard.php";
+
+                  if (files.length != 0) {
+                    String filename;
+                    if (files[0].toString().contains("image_picker"))
+                      filename = files[0].toString().substring(
+                          files[0].toString().indexOf("image_picker"),
+                          files[0].toString().length - 1);
+                    else
+                      filename =
+                          Random().nextInt(4294967296).toString() + ".jpg";
+
+                    List<int> imgByte = files[0]!.readAsBytesSync();
+                    String img = base64Encode(imgByte);
+
+                    var response = await http.post(Uri.parse(url), body: {
+                      'image': img,
+                      'title': widget.title.toString(),
+                      'content': widget.content.toString(),
+                      'filename': filename.toString(),
+                      'id':widget.id.toString(),
+                    });
+                    data = json.decode(json.encode(response.body));
+                  } else {
+                    var response = await http.post(Uri.parse(url), body: {
+                      'image': "no",
+                      'title': widget.title..toString(),
+                      'content': widget.content.toString(),
+                      'filename': "no",
+                      'id':widget.id.toString(),
+                    });
+                    data = json.decode(json.encode(response.body));
+                  }
+                  if (data.toString() == "Success")
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => CommunityMain(
+                            loginID: widget.loginID, grade: widget.grade),
+                      ),
+                    );
+                } else {
+                  /*
+                    토스트 메시지를 띄울 것!!!!!
+                   */
+                  print("비었어!");
+                }
                 /*
                       board == free: 자유게시판, board == qna: 질의응답게시판
                       update: 에 글을 수정(update)하는 코드

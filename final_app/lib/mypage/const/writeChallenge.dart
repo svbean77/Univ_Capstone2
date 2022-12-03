@@ -147,12 +147,13 @@ class _WriteChallengeState extends State<WriteChallenge> {
                     data = json.decode(json.encode(response.body));
                   }
 
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => ThreeChallenge(
-                          loginID: widget.loginID, grade: widget.grade),
-                    ),
-                  );
+                  if (data.toString() == "Success")
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => ThreeChallenge(
+                            loginID: widget.loginID, grade: widget.grade),
+                      ),
+                    );
                 } else {
                   /*
                   토스트
