@@ -2,6 +2,8 @@
 select user data join select theme index
  */
 
+import 'dart:io';
+
 class USERDATA {
   List<classUSERDATA>? result;
 
@@ -446,14 +448,17 @@ class classALLCONTENTS {
   String? filename;
   String? filepath;
   String? writer;
+  String? data;
 
-  classALLCONTENTS(
-      {this.id,
-      this.title,
-      this.content,
-      this.filename,
-      this.filepath,
-      this.writer});
+  classALLCONTENTS({
+    this.id,
+    this.title,
+    this.content,
+    this.filename,
+    this.filepath,
+    this.writer,
+    this.data,
+  });
 
   classALLCONTENTS.fromJson(Map<String, dynamic> jsondata) {
     id = jsondata['id'];
@@ -462,5 +467,6 @@ class classALLCONTENTS {
     filename = jsondata['filename'];
     filepath = jsondata['filepath'];
     writer = jsondata['writer'];
+    data = jsondata['data'];
   }
 }

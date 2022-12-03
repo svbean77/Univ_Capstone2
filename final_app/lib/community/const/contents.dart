@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+import 'dart:io' as Io;
 
 import 'package:final_app/community/const/community_main.dart';
 import 'package:final_app/community/write_board.dart';
@@ -61,6 +61,9 @@ class _ContentsState extends State<Contents> {
             SizedBox(height: 8.0),
             Text(widget.data.content),
             SizedBox(height: 8.0),
+            widget.data.filename == null
+                ? Container()
+                : Image.memory(base64Decode(widget.data.data)),
             /*
                 for (int i = 0; i < images.length; i++)
                   Padding(
