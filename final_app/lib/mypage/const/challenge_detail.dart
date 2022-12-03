@@ -21,13 +21,6 @@ class ChallengeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String video1 =
-        '/data/user/0/com.example.final_app/cache/image_picker3641971445983601714.mp4';
-
-    if (data.filename != null) {
-      //base64 to video
-    }
-
     return Scaffold(
       appBar: MyAppBar(grade: grade),
       drawer: MyDrawer(loginID: loginID, grade: grade),
@@ -39,7 +32,9 @@ class ChallengeDetail extends StatelessWidget {
             SizedBox(height: 16.0),
             Text(data.content),
             SizedBox(height: 8.0),
-            data.filename == null ? Container() : myVideo(file: data.data),
+            data.filename == null
+                ? Container()
+                : myVideo(file: base64Decode(data.data)),
           ],
         ),
       ),
