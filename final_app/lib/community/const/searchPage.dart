@@ -72,6 +72,7 @@ class _SearchPageState extends State<SearchPage> {
                                     builder: (BuildContext context) => Contents(
                                       loginID: widget.loginID,
                                       board: widget.board,
+                                      directory: null,
                                       data: widget.data[i],
                                       grade: widget.grade,
                                     ),

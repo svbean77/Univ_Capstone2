@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:io' as Io;
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:final_app/community/const/community_main.dart';
+import 'package:final_app/community/edit_post.dart';
 import 'package:final_app/community/write_board.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
@@ -18,10 +21,12 @@ class Contents extends StatefulWidget {
   final loginID;
   final board;
   final data;
+  final directory;
   final grade;
   const Contents({
     required this.loginID,
     required this.board,
+    required this.directory,
     required this.data,
     required this.grade,
     Key? key,
@@ -36,6 +41,14 @@ class _ContentsState extends State<Contents> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.directory);
+    print(widget.directory.path);
+
+    File imgFile = File("${widget.directory.path}/teamIcon.png");
+    if (widget.data.filename != null) {
+      imgFile.writeAsBytes(base64Decode(widget.data.data));
+    }
+
     return Scaffold(
       appBar: MyAppBar(grade: widget.grade),
       drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
@@ -63,7 +76,8 @@ class _ContentsState extends State<Contents> {
             SizedBox(height: 8.0),
             widget.data.filename == null
                 ? Container()
-                : Image.memory(base64Decode(widget.data.data)),
+                //: Image.memory(base64Decode(widget.data.data)),
+                : Image.file(imgFile),
             /*
                 for (int i = 0; i < images.length; i++)
                   Padding(
@@ -100,6 +114,19 @@ class _ContentsState extends State<Contents> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => EditPost(
+                                  image: widget.data.data,
+                                  board: widget.board,
+                                  grade: widget.grade,
+                                  id: widget.data.id,
+                                  loginID: widget.loginID,
+                                  content: widget.data.content,
+                                  title: widget.data.title),
+                            ),
+                          );
+
                           /*
                                 editpost 페이지로 이동~!!!
                               */

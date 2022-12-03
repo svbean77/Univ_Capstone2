@@ -1,4 +1,3 @@
-
 /*
 *
 *
@@ -9,9 +8,8 @@
 *
  */
 
-
-
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:final_app/community/const/contents.dart';
 import 'package:final_app/screen/const/app_bar.dart';
@@ -28,16 +26,18 @@ class EditPost extends StatefulWidget {
   /*
   여기 사진도 보내서 가장 처음에 file에 추가해야겠다 (수정도 있으니까)
    */
-  File? image;
+  String? image;
   final loginID;
   String content;
   String title;
+  final id;
   final board;
   final grade;
   EditPost({
     required this.image,
     required this.board,
     required this.grade,
+    required this.id,
     required this.loginID,
     required this.content,
     required this.title,
@@ -55,8 +55,9 @@ class _EditPostState extends State<EditPost> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.image != null){
+    if (widget.image != null) {
       //files에 사진을 추가 (사진으로 전달받음) File(사진)
+      files.add(File.fromRawPath(base64Decode(widget.image!)));
     }
     return Scaffold(
       appBar: MyAppBar(grade: widget.grade),

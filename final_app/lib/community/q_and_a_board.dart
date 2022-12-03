@@ -162,6 +162,7 @@ class _QnABoardState extends State<QnABoard> {
                                                         Contents(
                                                   loginID: widget.loginID,
                                                   board: 'qna',
+                                                  directory: null,
                                                   data:
                                                       snapshot.data.result![i],
                                                   grade: widget.grade,
