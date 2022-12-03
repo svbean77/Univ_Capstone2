@@ -32,7 +32,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
 
   Future getDatas() async {
     var url =
-        Uri.http(IP_ADDRESS, '/test_select_threeboard.php', {'q': '{http}'});
+    Uri.http(IP_ADDRESS, '/test_select_threeboard.php', {'q': '{http}'});
     var response = await http.post(url, body: <String, String>{
       "nickname": widget.loginID.toString(),
     });
@@ -118,14 +118,10 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                     ),
                                   ),
                                   onTap: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          ChallengeDetail(
-                                              loginID: widget.loginID,
-                                              data: snapshot.data.result![i],
-                                              grade: widget.grade),
-                                    ));
+                                    print(snapshot.data.result![i].data);
+                                    /*
+
+                                     */
                                   },
                                 )
                             ]

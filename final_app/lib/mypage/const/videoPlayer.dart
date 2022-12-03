@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -20,7 +21,9 @@ class _myVideoState extends State<myVideo> {
 
   @override
   void initState() {
-    controller = VideoPlayerController.file(File(widget.file));
+//    controller = VideoPlayerController.file(File(widget.file));
+    controller =
+        VideoPlayerController.file(File.fromRawPath(base64Decode(widget.file)));
     initializeVideoPlayerFuture = controller!.initialize();
     controller!.setLooping(true); //반복재생
     super.initState();
