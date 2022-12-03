@@ -29,7 +29,7 @@ class _ChallengeDetailState extends State<ChallengeDetail> {
     final _directory = await getTemporaryDirectory();
     File? imgFile;
     if (widget.data.filename != null) {
-      imgFile = File("${_directory.path}/${widget.data.filename}");
+      imgFile = new File("${_directory.path}/${widget.data.filename}");
       imgFile.writeAsBytes(base64Decode(widget.data.data));
     }
     return imgFile;

@@ -43,6 +43,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
     return data;
     //controller.add(data);
   }
+
 /*
   @override
   void initState() {
@@ -126,7 +127,6 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                         builder: (BuildContext context) =>
                                             ChallengeDetail(
                                           loginID: widget.loginID,
-
                                           data: snapshot.data.result![i],
                                           grade: widget.grade,
                                         ),
