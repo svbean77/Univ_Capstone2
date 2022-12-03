@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:final_app/mypage/const/challenge_detail.dart';
-import 'package:final_app/mypage/const/challenge_main.dart';
+
 import 'package:final_app/mypage/const/writeChallenge.dart';
 import 'package:final_app/ranking/const/my_ranking.dart';
 import 'package:final_app/screen/const/app_bar.dart';

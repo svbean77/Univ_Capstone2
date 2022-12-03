@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:final_app/mypage/const/challenge_main.dart';
+
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
