@@ -78,7 +78,15 @@ class _ContentsState extends State<Contents> {
             widget.data.filename == null
                 ? Container()
                 //: Image.memory(base64Decode(widget.data.data)),
-                : Image.file(imgFile!),
+                : Container(
+              width: double.infinity,
+                  child: IntrinsicHeight(
+                    child: Image.file(
+                        imgFile!,
+                        fit: BoxFit.contain,
+                      ),
+                  ),
+                ),
             /*
                 for (int i = 0; i < images.length; i++)
                   Padding(
