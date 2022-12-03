@@ -27,8 +27,8 @@ class ThreeChallenge extends StatefulWidget {
 }
 
 class _ThreeChallengeState extends State<ThreeChallenge> {
-  StreamController controller = StreamController();
-  Timer? _timer;
+  //StreamController controller = StreamController();
+  //Timer? _timer;
 
   Future getDatas() async {
     var url =
@@ -38,10 +38,12 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
     });
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
-    final _directory = await getTemporaryDirectory();
-    controller.add([data, _directory]);
-  }
+    //final _directory = await getTemporaryDirectory();
 
+    return data;
+    //controller.add(data);
+  }
+/*
   @override
   void initState() {
     getDatas();
@@ -54,7 +56,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
     if (_timer!.isActive) _timer!.cancel();
     super.dispose();
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,9 +84,9 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                 ? Colors.black
                 : Colors.white),
       ),
-      body: StreamBuilder(
-          stream: controller.stream,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
+      body: FutureBuilder(
+          future: getDatas(),
+          builder: (context, snapshot) {
             return Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -96,13 +98,13 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                     child: ListView(
                       children: snapshot.hasData
                           ? [
-                              snapshot.data[0].result!.length == 0
+                              snapshot.data.result!.length == 0
                                   ? Center(
                                       child: Text('챌린지 기록이 없습니다.'),
                                     )
                                   : Container(),
                               for (int i = 0;
-                                  i < snapshot.data[0].result!.length;
+                                  i < snapshot.data.result!.length;
                                   i++)
                                 GestureDetector(
                                   child: Padding(
@@ -112,7 +114,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                       width: double.infinity,
                                       grade: widget.grade,
                                       child: MyText(
-                                        text: snapshot.data[0].result![i].title,
+                                        text: snapshot.data.result![i].title,
                                         grade: widget.grade,
                                         size: "20",
                                       ),
@@ -124,8 +126,8 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                         builder: (BuildContext context) =>
                                             ChallengeDetail(
                                           loginID: widget.loginID,
-                                          directory: snapshot.data[1],
-                                          data: snapshot.data[0].result![i],
+
+                                          data: snapshot.data.result![i],
                                           grade: widget.grade,
                                         ),
                                       ),

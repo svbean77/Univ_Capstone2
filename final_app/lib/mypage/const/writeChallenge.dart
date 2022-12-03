@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-
+import 'package:final_app/mypage/three_challenge.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
@@ -147,7 +147,12 @@ class _WriteChallengeState extends State<WriteChallenge> {
                     data = json.decode(json.encode(response.body));
                   }
 
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ThreeChallenge(
+                          loginID: widget.loginID, grade: widget.grade),
+                    ),
+                  );
                 } else {
                   /*
                   토스트
