@@ -140,12 +140,16 @@ class _EditPostState extends State<EditPost> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    PickedFile? pickedFile = await ImagePicker()
-                        .getImage(source: ImageSource.gallery);
-                    setState(() {
-                      files.add(File(pickedFile!.path));
-                    });
-                    print(files[0]);
+                    if(files.length == 0){
+                      PickedFile? pickedFile = await ImagePicker()
+                          .getImage(source: ImageSource.gallery);
+                      setState(() {
+                        files.add(File(pickedFile!.path));
+                      });
+                    }
+                    else{
+                      print("한장만");
+                    }
                   },
                   child: MyText(text: "갤러리", grade: widget.grade),
                   style: ElevatedButton.styleFrom(
@@ -154,11 +158,15 @@ class _EditPostState extends State<EditPost> {
                 SizedBox(width: 8.0),
                 ElevatedButton(
                   onPressed: () async {
-                    PickedFile? pickedFile = await ImagePicker()
-                        .getImage(source: ImageSource.camera);
-                    setState(() {
-                      files.add(File(pickedFile!.path));
-                    });
+                    if (files.length == 0) {
+                      PickedFile? pickedFile = await ImagePicker()
+                          .getImage(source: ImageSource.camera);
+                      setState(() {
+                        files.add(File(pickedFile!.path));
+                      });
+                    }else{
+                      print("한장만");
+                    }
                   },
                   child: MyText(text: "카메라", grade: widget.grade),
                   style: ElevatedButton.styleFrom(
@@ -218,7 +226,7 @@ class _EditPostState extends State<EditPost> {
                       'title': widget.title.toString(),
                       'content': widget.content.toString(),
                       'filename': filename.toString(),
-                      'id':widget.id.toString(),
+                      'id': widget.id.toString(),
                     });
                     data = json.decode(json.encode(response.body));
                   } else {
@@ -227,7 +235,7 @@ class _EditPostState extends State<EditPost> {
                       'title': widget.title..toString(),
                       'content': widget.content.toString(),
                       'filename': "no",
-                      'id':widget.id.toString(),
+                      'id': widget.id.toString(),
                     });
                     data = json.decode(json.encode(response.body));
                   }

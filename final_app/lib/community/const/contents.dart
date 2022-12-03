@@ -111,10 +111,6 @@ class _ContentsState extends State<Contents> {
                                   title: widget.data.title),
                             ),
                           );
-
-                          /*
-                                editpost 페이지로 이동~!!!
-                              */
                         },
                         child: MyText(text: "수정", grade: widget.grade),
                         style: ElevatedButton.styleFrom(

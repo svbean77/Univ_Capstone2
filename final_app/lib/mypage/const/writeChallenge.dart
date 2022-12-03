@@ -97,6 +97,8 @@ class _WriteChallengeState extends State<WriteChallenge> {
                   setState(() {
                     files.add(File(chooseImage!.path));
                   });
+                }else{
+                  print("한장만");
                 }
               },
               child: MyText(text: "갤러리", grade: widget.grade),

@@ -109,6 +109,8 @@ class _WriteBoardState extends State<WriteBoard> {
                       setState(() {
                         files.add(File(chooseImage!.path));
                       });
+                    }else{
+                      print("한장만");
                     }
                   },
                   child: MyText(text: "갤러리", grade: widget.grade),
@@ -124,6 +126,8 @@ class _WriteBoardState extends State<WriteBoard> {
                       setState(() {
                         files.add(File(chooseImage!.path));
                       });
+                    }else{
+                      print("한장만");
                     }
                   },
                   child: MyText(text: "카메라", grade: widget.grade),
