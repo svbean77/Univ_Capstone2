@@ -11,9 +11,11 @@ import '../../screen/const/grade_colors.dart';
 class ChallengeDetail extends StatelessWidget {
   final loginID;
   final data;
+  final image;
   final grade;
   const ChallengeDetail({
     required this.loginID,
+    required this.image,
     required this.data,
     required this.grade,
     Key? key,

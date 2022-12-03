@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:final_app/mypage/const/challenge_detail.dart';
-
+import 'package:path_provider/path_provider.dart';
 import 'package:final_app/mypage/const/writeChallenge.dart';
 import 'package:final_app/ranking/const/my_ranking.dart';
 import 'package:final_app/screen/const/app_bar.dart';
@@ -38,7 +38,8 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
     });
     var jsondata = jsonDecode(json.decode(json.encode(response.body)));
     ALLCONTENTS data = ALLCONTENTS.fromJson(jsondata);
-    controller.add(data);
+    final _directory = await getTemporaryDirectory();
+    controller.add([data, _directory]);
   }
 
   @override
@@ -95,13 +96,13 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                     child: ListView(
                       children: snapshot.hasData
                           ? [
-                              snapshot.data.result!.length == 0
+                              snapshot.data[0].result!.length == 0
                                   ? Center(
                                       child: Text('챌린지 기록이 없습니다.'),
                                     )
                                   : Container(),
                               for (int i = 0;
-                                  i < snapshot.data.result!.length;
+                                  i < snapshot.data[0].result!.length;
                                   i++)
                                 GestureDetector(
                                   child: Padding(
@@ -111,7 +112,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                       width: double.infinity,
                                       grade: widget.grade,
                                       child: MyText(
-                                        text: snapshot.data.result![i].title,
+                                        text: snapshot.data[0].result![i].title,
                                         grade: widget.grade,
                                         size: "20",
                                       ),
@@ -123,7 +124,8 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                         builder: (BuildContext context) =>
                                             ChallengeDetail(
                                           loginID: widget.loginID,
-                                          data: snapshot.data.result![i],
+                                          image: null,
+                                          data: snapshot.data[0].result![i],
                                           grade: widget.grade,
                                         ),
                                       ),

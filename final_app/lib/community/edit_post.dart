@@ -30,6 +30,7 @@ class EditPost extends StatefulWidget {
   final loginID;
   String content;
   String title;
+  String? filename;
   final id;
   final board;
   final grade;
@@ -39,6 +40,7 @@ class EditPost extends StatefulWidget {
     required this.grade,
     required this.id,
     required this.loginID,
+    required this.filename,
     required this.content,
     required this.title,
     Key? key,
@@ -55,7 +57,7 @@ class _EditPostState extends State<EditPost> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.image != null) {
+    if (widget.filename != null) {
       //files에 사진을 추가 (사진으로 전달받음) File(사진)
       files.add(widget.image);
     }

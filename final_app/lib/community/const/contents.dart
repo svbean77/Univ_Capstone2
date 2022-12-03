@@ -43,9 +43,10 @@ class _ContentsState extends State<Contents> {
   Widget build(BuildContext context) {
     print(widget.directory);
     print(widget.directory.path);
-
-    File imgFile = File("${widget.directory.path}/teamIcon.png");
+    print(widget.data.filename == null);
+    File? imgFile;
     if (widget.data.filename != null) {
+      imgFile = File("${widget.directory.path}/${widget.data.filename}");
       imgFile.writeAsBytes(base64Decode(widget.data.data));
     }
 
@@ -77,7 +78,7 @@ class _ContentsState extends State<Contents> {
             widget.data.filename == null
                 ? Container()
                 //: Image.memory(base64Decode(widget.data.data)),
-                : Image.file(imgFile),
+                : Image.file(imgFile!),
             /*
                 for (int i = 0; i < images.length; i++)
                   Padding(
@@ -121,6 +122,7 @@ class _ContentsState extends State<Contents> {
                                   board: widget.board,
                                   grade: widget.grade,
                                   id: widget.data.id,
+                                  filename: widget.data.filename,
                                   loginID: widget.loginID,
                                   content: widget.data.content,
                                   title: widget.data.title),
