@@ -77,7 +77,8 @@ class _ContentsState extends State<Contents> {
             SizedBox(height: 8.0),
             widget.data.filename == null
                 ? Container()
-                //: Image.memory(base64Decode(widget.data.data)),
+                : Image.memory(base64Decode(widget.data.data)),
+            /*
                 : Container(
               width: double.infinity,
                   child: IntrinsicHeight(
@@ -87,6 +88,8 @@ class _ContentsState extends State<Contents> {
                       ),
                   ),
                 ),
+
+             */
             /*
                 for (int i = 0; i < images.length; i++)
                   Padding(

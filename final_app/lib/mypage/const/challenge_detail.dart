@@ -11,11 +11,11 @@ import '../../screen/const/grade_colors.dart';
 class ChallengeDetail extends StatelessWidget {
   final loginID;
   final data;
-  final image;
+  final directory;
   final grade;
   const ChallengeDetail({
     required this.loginID,
-    required this.image,
+    required this.directory,
     required this.data,
     required this.grade,
     Key? key,
@@ -23,6 +23,12 @@ class ChallengeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    File? imgFile;
+    if (data.filename != null) {
+      imgFile = File("${directory.path}/${data.filename}");
+      imgFile.writeAsBytes(base64Decode(data.data));
+    }
+
     print(data.data.replaceAll("\n",""));
     print(base64Decode(data.data.replaceAll("\n","")));
     return Scaffold(
@@ -38,7 +44,7 @@ class ChallengeDetail extends StatelessWidget {
             SizedBox(height: 8.0),
             data.filename == null
                 ? Container()
-                : myVideo(file: base64Decode(data.data.replaceAll("\n",""))),
+                : myVideo(file: imgFile!),
           ],
         ),
       ),

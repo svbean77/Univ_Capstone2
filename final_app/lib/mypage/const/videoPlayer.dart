@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class myVideo extends StatefulWidget {
-  final Uint8List file;
+  final file;
   const myVideo({
     required this.file,
     Key? key,
@@ -23,7 +23,7 @@ class _myVideoState extends State<myVideo> {
   @override
   void initState() {
     //controller = VideoPlayerController.file(File('/data/user/0/com.example.final_app/cache/image_picker3641971445983601714.mp4'));
-    controller = VideoPlayerController.file(File.fromRawPath(widget.file));
+    controller = VideoPlayerController.file(widget.file);
     initializeVideoPlayerFuture = controller!.initialize();
     controller!.setLooping(true); //반복재생
     super.initState();

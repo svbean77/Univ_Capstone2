@@ -124,7 +124,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                         builder: (BuildContext context) =>
                                             ChallengeDetail(
                                           loginID: widget.loginID,
-                                          image: null,
+                                          directory: snapshot.data[1],
                                           data: snapshot.data[0].result![i],
                                           grade: widget.grade,
                                         ),
