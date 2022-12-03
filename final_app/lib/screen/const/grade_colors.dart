@@ -59,6 +59,7 @@ class MyContainer extends StatelessWidget {
       height: height,
       width: width,
       child: child,
+      alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
         border: Border.all(
           color: PRIMARY_COLOR[grade],

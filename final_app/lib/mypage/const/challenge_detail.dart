@@ -62,8 +62,7 @@ class _ChallengeDetailState extends State<ChallengeDetail> {
                */
               return ListView(
                 children: [
-                  MyText(
-                      text: widget.data.title, grade: widget.grade, size: "20"),
+                  Text(widget.data.title, style: TextStyle(fontSize: 20.0)),
                   SizedBox(height: 16.0),
                   Text(widget.data.content),
                   SizedBox(height: 8.0),

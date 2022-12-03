@@ -60,7 +60,7 @@ class _ContentsState extends State<Contents> {
             Text('제목',
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
             SizedBox(height: 8.0),
-            MyText(text: widget.data.title, grade: widget.grade, size: "20"),
+            Text(widget.data.title, style: TextStyle(fontSize: 20.0)),
             SizedBox(height: 8.0),
             Row(
               children: [
@@ -78,7 +78,6 @@ class _ContentsState extends State<Contents> {
             widget.data.filename == null
                 ? Container()
                 : Image.memory(base64Decode(widget.data.data)),
-
             SizedBox(height: 8.0),
             Row(
               children: [

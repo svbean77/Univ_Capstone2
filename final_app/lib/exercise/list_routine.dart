@@ -50,22 +50,15 @@ class _ListRoutineState extends State<ListRoutine> {
               GestureDetector(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Container(
+                  child: MyContainer(
+                    height: 70.0,
                     width: double.infinity,
-                    padding:
-                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: PRIMARY_COLOR[widget.grade],
-                      ),
-                    ),
-                    child: IntrinsicHeight(
-                      child: Text(
-                        '(${widget.data.result![i].time}분) ${widget.data.result![i].routine}',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
+                    grade: widget.grade,
+                    child: MyText(
+                        text:
+                            '(${widget.data.result![i].time}분) ${widget.data.result![i].routine}',
+                        grade: widget.grade,
+                        size: "20"),
                   ),
                 ),
                 onTap: () async {

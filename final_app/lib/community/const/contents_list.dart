@@ -16,10 +16,6 @@ class ContentsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String title = data.title;
-    if (title.length >= 35) {
-      title = title.substring(0, 34) + '...';
-    }
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: MyContainer(
@@ -31,7 +27,7 @@ class ContentsList extends StatelessWidget {
           children: [
             Container(width: 30.0, child: Text(data.id.toString())),
             SizedBox(width: 16.0),
-            Expanded(child: Container(child: Text(title))),
+            Expanded(child: Container(child: MyText(text: data.title, grade: grade, size: "20"))),
           ],
         ),
       ),

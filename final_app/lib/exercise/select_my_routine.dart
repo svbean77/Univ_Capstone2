@@ -39,6 +39,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
 
     controller.add(data);
   }
+
   @override
   void initState() {
     getDatas();
@@ -125,10 +126,9 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                                   text: "확인",
                                                   grade: widget.grade),
                                               style: ElevatedButton.styleFrom(
-                                                primary:
-                                                    PRIMARY_COLOR[widget.grade],
-                                                elevation: 0
-                                              ),
+                                                  primary: PRIMARY_COLOR[
+                                                      widget.grade],
+                                                  elevation: 0),
                                             ),
                                           ],
                                         ),
@@ -166,22 +166,14 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                             child: GestureDetector(
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Container(
+                                child: MyContainer(
+                                  height: 70.0,
                                   width: double.infinity,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 8.0, vertical: 16.0),
-                                  alignment: Alignment.centerLeft,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: PRIMARY_COLOR[widget.grade],
-                                    ),
-                                  ),
-                                  child: IntrinsicHeight(
-                                    child: Text(
-                                      snapshot.data!.result![i]!.routine,
-                                      style: TextStyle(fontSize: 20.0),
-                                    ),
-                                  ),
+                                  grade: widget.grade,
+                                  child: MyText(
+                                      text: snapshot.data!.result![i]!.routine,
+                                      size: "20",
+                                      grade: widget.grade),
                                 ),
                               ),
                               onTap: () {
