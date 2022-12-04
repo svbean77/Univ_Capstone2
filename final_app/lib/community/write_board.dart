@@ -195,6 +195,18 @@ class _WriteBoardState extends State<WriteBoard> {
                 print(contentController.text.toString().length);
                 if (titleController.text.toString() != "" &&
                     contentController.text.toString() != "") {
+
+                  MyToast(
+                      '업로드!',
+                      PRIMARY_COLOR[widget.grade],
+                      (widget.grade == 0 ||
+                          widget.grade == 1 ||
+                          widget.grade == 2 ||
+                          widget.grade == 4 ||
+                          widget.grade == 8)
+                          ? Colors.black
+                          : Colors.white);
+
                   var url;
                   var data;
                   if (widget.board == 'free')

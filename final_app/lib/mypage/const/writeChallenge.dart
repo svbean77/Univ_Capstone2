@@ -109,7 +109,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
                   });
                 } else {
                   MyToast(
-                      '사진은 한 장만 가능합니다.',
+                      '동영상은 하나만 가능합니다.',
                       PRIMARY_COLOR[widget.grade],
                       (widget.grade == 0 ||
                               widget.grade == 1 ||
@@ -136,6 +136,17 @@ class _WriteChallengeState extends State<WriteChallenge> {
                     contentsController.text.toString() != "") {
                   var data;
                   var url = "http://${IP_ADDRESS}/test_add_threeboard.php";
+
+                  MyToast(
+                      '업로드!',
+                      PRIMARY_COLOR[widget.grade],
+                      (widget.grade == 0 ||
+                          widget.grade == 1 ||
+                          widget.grade == 2 ||
+                          widget.grade == 4 ||
+                          widget.grade == 8)
+                          ? Colors.black
+                          : Colors.white);
 
                   if (files.length != 0) {
                     String filename = files[0].toString().substring(
