@@ -41,25 +41,32 @@ class _AllRankingState extends State<AllRanking> {
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              child: ListView(
-                children: [
-                  if (snapshot.hasData)
-                    for (int i = 0; i < snapshot.data.result!.length; i++)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: RankingCard(
-                          grade: widget.grade,
-                          loginID: widget.loginID,
-                          nickname: snapshot.data.result![i].nickname,
-                          rating: snapshot.data.result![i].rating,
-                          ranking: i + 1,
-                          total3th: snapshot.data.result![i].total,
-                        ),
-                      )
-                  else
-                    Center(child: CircularProgressIndicator())
-                ],
-              ),
+              child: snapshot.hasData
+                  ? ListView(
+                      children: [
+                        for (int i = 0; i < snapshot.data.result!.length; i++)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: RankingCard(
+                              grade: widget.grade,
+                              loginID: widget.loginID,
+                              nickname: snapshot.data.result![i].nickname,
+                              rating: snapshot.data.result![i].rating,
+                              ranking: i + 1,
+                              total3th: snapshot.data.result![i].total,
+                            ),
+                          )
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 8.0),
+                        Text('데이터를 불러오고 있습니다..'),
+                      ],
+                    ),
             ),
           );
         });

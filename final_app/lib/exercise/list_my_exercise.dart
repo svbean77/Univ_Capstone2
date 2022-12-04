@@ -31,7 +31,8 @@ class _ListMyExerciseState extends State<ListMyExercise> {
   Timer? _timer;
 
   Future getDatas() async {
-    var url = Uri.parse("http://${IP_ADDRESS}/test_select_my_routine_detail.php");
+    var url =
+        Uri.parse("http://${IP_ADDRESS}/test_select_my_routine_detail.php");
     /*
     var url = Uri.http(
         IP_ADDRESS, '/test_select_my_routine_detail.php', {'q': '{http}'});
@@ -172,10 +173,10 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                                       grade: widget.grade),
                                                   style:
                                                       ElevatedButton.styleFrom(
-                                                    primary: PRIMARY_COLOR[
-                                                        widget.grade],
-                                                        elevation: 0
-                                                  ),
+                                                          primary:
+                                                              PRIMARY_COLOR[
+                                                                  widget.grade],
+                                                          elevation: 0),
                                                 ),
                                               ],
                                             ),
@@ -201,8 +202,9 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                   direction: DismissDirection.endToStart,
                                   onDismissed:
                                       (DismissDirection direction) async {
-                                        var url = Uri.parse("http://${IP_ADDRESS}/test_remove_exercise.php");
-                                        /*
+                                    var url = Uri.parse(
+                                        "http://${IP_ADDRESS}/test_remove_exercise.php");
+                                    /*
                                     var url = Uri.http(
                                         IP_ADDRESS,
                                         '/test_remove_exercise.php',
@@ -242,16 +244,20 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                       ),
                                       child: IntrinsicHeight(
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text(snapshot.data.result![i].exercise,
-                                              style: TextStyle(fontSize: 20.0),),
-                                            Text('X${snapshot.data.result![i].num}'),
+                                            Text(
+                                              snapshot.data.result![i].exercise,
+                                              style: TextStyle(fontSize: 20.0),
+                                            ),
+                                            Text(
+                                                'X${snapshot.data.result![i].num}'),
                                           ],
                                         ),
                                       ),
                                     ),
-                                      /*
+                                    /*
                                       MyContainer(
                                       height: 70.0,
                                       width: double.infinity,
@@ -295,8 +301,14 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                         ),
                       ],
                     )
-                  : Center(
-                      child: CircularProgressIndicator(),
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 8.0),
+                        Text('데이터를 불러오고 있습니다..'),
+                      ],
                     ),
             ),
           );

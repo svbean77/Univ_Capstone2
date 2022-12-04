@@ -94,54 +94,62 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
           builder: (context, snapshot) {
             return Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('3대 챌린지 기록', style: TextStyle(fontSize: 25.0)),
-                  SizedBox(height: 16.0),
-                  Expanded(
-                    child: ListView(
-                      children: snapshot.hasData
-                          ? [
-                              snapshot.data.result!.length == 0
-                                  ? Center(
-                                      child: Text('챌린지 기록이 없습니다.'),
-                                    )
-                                  : Container(),
-                              for (int i = 0;
-                                  i < snapshot.data.result!.length;
-                                  i++)
-                                GestureDetector(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                    child: MyContainer(
-                                      height: 70.0,
-                                      width: double.infinity,
+              child: snapshot.hasData
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('3대 챌린지 기록', style: TextStyle(fontSize: 25.0)),
+                        SizedBox(height: 16.0),
+                        Expanded(
+                            child: ListView(children: [
+                          snapshot.data.result!.length == 0
+                              ? Center(
+                                  child: Text('챌린지 기록이 없습니다.'),
+                                )
+                              : Container(),
+                          for (int i = 0; i < snapshot.data.result!.length; i++)
+                            GestureDetector(
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: MyContainer(
+                                  height: 70.0,
+                                  width: double.infinity,
+                                  grade: widget.grade,
+                                  child: Text(snapshot.data.result![i].title,
+                                      style: TextStyle(fontSize: 20.0)),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        ChallengeDetail(
+                                      loginID: widget.loginID,
+                                      data: snapshot.data.result![i],
                                       grade: widget.grade,
-                                      child: Text(
-                                          snapshot.data.result![i].title,
-                                          style: TextStyle(fontSize: 20.0)),
                                     ),
                                   ),
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            ChallengeDetail(
-                                          loginID: widget.loginID,
-                                          data: snapshot.data.result![i],
-                                          grade: widget.grade,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                )
-                            ]
-                          : [CircularProgressIndicator()],
+                                );
+                              },
+                            )
+                        ])),
+                      ],
+                    )
+                  : Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(height: 8.0),
+                          Text('데이터를 불러오고 있습니다..'),
+                          SizedBox(height: 8.0),
+                          Text('* 동영상을 불러오는 데 많은 시간이 소요됩니다. *'),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
             );
           }),
     );

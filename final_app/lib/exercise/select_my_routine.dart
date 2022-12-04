@@ -156,7 +156,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                             key: ObjectKey(snapshot.data.result![i].id),
                             direction: DismissDirection.endToStart,
                             onDismissed: (DismissDirection direction) async {
-                              var url = Uri.parse("http://${IP_ADDRESS}/test_remove_routine.php");
+                              var url = Uri.parse(
+                                  "http://${IP_ADDRESS}/test_remove_routine.php");
                               /*
                               var url = Uri.http(IP_ADDRESS,
                                   '/test_remove_routine.php', {'q': '{http}'});
@@ -200,8 +201,14 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                           ),
                       ],
                     )
-                  : Center(
-                      child: CircularProgressIndicator(),
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 8.0),
+                        Text('데이터를 불러오고 있습니다..'),
+                      ],
                     ),
             ),
           );

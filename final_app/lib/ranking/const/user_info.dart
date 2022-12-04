@@ -27,8 +27,10 @@ class UserInfo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyRanking(
-              nickname: userdata[0].nickname, loginID: loginID, grade: grade),
+          Center(
+            child: MyRanking(
+                nickname: userdata[0].nickname, loginID: loginID, grade: grade),
+          ),
           SizedBox(height: 8.0),
           Padding(
             padding: const EdgeInsets.only(left: 16.0),

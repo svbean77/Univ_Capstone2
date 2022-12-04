@@ -73,6 +73,8 @@ class _QnABoardState extends State<QnABoard> {
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: snapshot.hasData
                     ? [
                         Container(
@@ -194,7 +196,15 @@ class _QnABoardState extends State<QnABoard> {
                       ]
                     : [
                         Center(
-                          child: CircularProgressIndicator(),
+                          child: Column(
+                            children: [
+                              CircularProgressIndicator(),
+                              SizedBox(height: 8.0),
+                              Text('데이터를 불러오고 있습니다..'),
+                              SizedBox(height: 8.0),
+                              Text('* 사진을 불러오는 데 많은 시간이 소요됩니다. *'),
+                            ],
+                          ),
                         ),
                       ],
               ),

@@ -103,7 +103,8 @@ class _FriendsMainState extends State<FriendsMain> {
                 GestureDetector(
                   child: Icon(Icons.search),
                   onTap: () async {
-                    var url = Uri.parse("http://${IP_ADDRESS}/test_select_userdata.php");
+                    var url = Uri.parse(
+                        "http://${IP_ADDRESS}/test_select_userdata.php");
                     /*
                     var url = Uri.http(IP_ADDRESS, '/test_select_userdata.php',
                         {'q': '{http}'});
@@ -118,7 +119,8 @@ class _FriendsMainState extends State<FriendsMain> {
                     USERDATA data = USERDATA.fromJson(jsondata);
 
                     if (data.result!.length != 0) {
-                      var url2 = Uri.parse("http://${IP_ADDRESS}/test_select_exercise_record.php");
+                      var url2 = Uri.parse(
+                          "http://${IP_ADDRESS}/test_select_exercise_record.php");
                       /*
                       var url2 = Uri.http(IP_ADDRESS,
                           '/test_select_exercise_record.php', {'q': '{http}'});
@@ -143,16 +145,17 @@ class _FriendsMainState extends State<FriendsMain> {
                           ),
                         ),
                       );
-                    } else {MyToast(
-                        '존재하지 않는 닉네임입니다.',
-                        PRIMARY_COLOR[widget.grade],
-                        (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
-                            ? Colors.black
-                            : Colors.white);
+                    } else {
+                      MyToast(
+                          '존재하지 않는 닉네임입니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                     }
                   },
                 ),
@@ -167,6 +170,7 @@ class _FriendsMainState extends State<FriendsMain> {
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: snapshot.hasData
                           ? [
                               Text('친구목록', style: TextStyle(fontSize: 25.0)),
@@ -245,8 +249,13 @@ class _FriendsMainState extends State<FriendsMain> {
                             ]
                           : [
                               Center(
-                                child: CircularProgressIndicator(),
-                              ),
+                                  child: Column(
+                                children: [
+                                  CircularProgressIndicator(),
+                                  SizedBox(height: 8.0),
+                                  Text('데이터를 불러오고 있습니다..'),
+                                ],
+                              )),
                             ],
                     );
                   }),

@@ -300,8 +300,14 @@ class _MyRankingState extends State<MyRanking> {
                       ),
                     ],
                   )
-                : Center(
-                    child: CircularProgressIndicator(),
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(height: 8.0),
+                      Text('데이터를 불러오고 있습니다..'),
+                    ],
                   ),
           );
         });

@@ -43,28 +43,35 @@ class _FriendsRankingState extends State<FriendsRanking> {
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              child: ListView(
-                children: [
-                  if (snapshot.hasData)
-                    if (snapshot.data.result!.length != 0)
-                      for (int i = 0; i < snapshot.data.result!.length; i++)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: RankingCard(
-                            grade: widget.grade,
-                            loginID: widget.loginID,
-                            nickname: snapshot.data.result![i].nickname,
-                            rating: snapshot.data.result![i].rating,
-                            ranking: i + 1,
-                            total3th: snapshot.data.result![i].total,
-                          ),
-                        )
-                    else
-                      Center(child: Text('친구 목록 없습니다.'))
-                  else
-                    Center(child: CircularProgressIndicator())
-                ],
-              ),
+              child: snapshot.hasData
+                  ? ListView(
+                      children: [
+                        if (snapshot.data.result!.length != 0)
+                          for (int i = 0; i < snapshot.data.result!.length; i++)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: RankingCard(
+                                grade: widget.grade,
+                                loginID: widget.loginID,
+                                nickname: snapshot.data.result![i].nickname,
+                                rating: snapshot.data.result![i].rating,
+                                ranking: i + 1,
+                                total3th: snapshot.data.result![i].total,
+                              ),
+                            )
+                        else
+                          Center(child: Text('친구 목록 없습니다.'))
+                      ],
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 8.0),
+                        Text('데이터를 불러오고 있습니다..'),
+                      ],
+                    ),
             ),
           );
         });
