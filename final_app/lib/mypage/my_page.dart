@@ -350,8 +350,19 @@ class _MyPageState extends State<MyPage> {
                         ),
                       ],
                     )
-                  : Center(
-                      child: CircularProgressIndicator(),
+                  : Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(height: 8.0),
+                          Text('데이터를 불러오고 있습니다..'),
+                        ],
+                      ),
                     ),
             ),
           );

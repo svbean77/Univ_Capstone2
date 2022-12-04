@@ -48,7 +48,14 @@ class _myVideoState extends State<myVideo> {
                 child: VideoPlayer(controller!),
               );
             } else {
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                  child: Column(
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 8.0),
+                  Text('동영상 로딩중'),
+                ],
+              ));
             }
           },
         ),
