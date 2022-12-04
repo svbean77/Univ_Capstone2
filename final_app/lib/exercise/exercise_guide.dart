@@ -178,6 +178,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                           exerciseImage2: data.result![i].image2!,
                           equipment: data.result![i].equipment!,
                           muscleName: data.result![i].muscle!),
+                    SizedBox(height: 120.0),
                   ],
                 ),
               ),

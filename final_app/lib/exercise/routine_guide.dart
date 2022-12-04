@@ -76,6 +76,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
                       exerciseStep: widget.data[i].step,
                       idx: i + 1,
                     ),
+                  SizedBox(height: 60.0),
                 ],
               )
             : Center(
