@@ -45,7 +45,7 @@ class _ChallengeDetailState extends State<ChallengeDetail> {
         child: FutureBuilder(
             future: getDatas(),
             builder: (context, snapshot) {
-              if(snapshot.hasData){
+              if (snapshot.hasData) {
                 print(snapshot.data.path);
               }
               /*
@@ -62,8 +62,16 @@ class _ChallengeDetailState extends State<ChallengeDetail> {
                */
               return ListView(
                 children: [
+                  Text('제목',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.w600)),
+                  SizedBox(height: 8.0),
                   Text(widget.data.title, style: TextStyle(fontSize: 20.0)),
                   SizedBox(height: 16.0),
+                  Text('내용',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.w600)),
+                  SizedBox(height: 8.0),
                   Text(widget.data.content),
                   SizedBox(height: 8.0),
                   snapshot.hasData

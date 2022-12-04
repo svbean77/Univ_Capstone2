@@ -124,16 +124,12 @@ class _WriteChallengeState extends State<WriteChallenge> {
               style: ElevatedButton.styleFrom(
                   primary: PRIMARY_COLOR[widget.grade], elevation: 0),
             ),
-            Container(
-              height: 80.0,
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: [
-                  for (int i = 0; i < files.length; i++)
-                    Text(files[i].toString()),
-                ],
-              ),
-            ),
+            files.length != 0
+                ? Container(
+                    height: 50.0,
+                    child: Text(files[0].toString()),
+                  )
+                : Container(),
             ElevatedButton(
               onPressed: () async {
                 if (titleController.text.toString().length != 0 &&
