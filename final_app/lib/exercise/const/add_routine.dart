@@ -64,9 +64,9 @@ class _AddRoutineState extends State<AddRoutine> {
                   elevation: 0,
                 ),
                 onPressed: () async {
-                  if(_controller.text.toString() != ""){
-
-                    var url = Uri.parse("http://${IP_ADDRESS}/test_add_routine.php");
+                  if (_controller.text.toString() != "") {
+                    var url =
+                        Uri.parse("http://${IP_ADDRESS}/test_add_routine.php");
                     /*
                     var url = Uri.http(
                         IP_ADDRESS, '/test_add_routine.php', {'q': '{http}'});
@@ -79,12 +79,17 @@ class _AddRoutineState extends State<AddRoutine> {
                     var jsondata = json.decode(json.encode(response.body));
                     if (jsondata.toString() == "Success")
                       Navigator.of(context).pop();
-                  }
-                  else{
-                    /*
-                    토스트 메시지
-                     */
-                    print("비었어!");
+                  } else {
+                    MyToast(
+                        '모든 칸을 채워주세요.',
+                        PRIMARY_COLOR[widget.grade],
+                        (widget.grade == 0 ||
+                                widget.grade == 1 ||
+                                widget.grade == 2 ||
+                                widget.grade == 4 ||
+                                widget.grade == 8)
+                            ? Colors.black
+                            : Colors.white);
                   }
                 },
                 child: MyText(text: "확인", grade: widget.grade),

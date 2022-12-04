@@ -147,7 +147,20 @@ class FriendCard extends StatelessWidget {
                                            */
                                           print(jsondata.toString());
                                           if (jsondata.toString() == "Success")
-                                            Navigator.of(context).pop();
+                                            {
+                                              MyToast(
+                                                  '친구 삭제했습니다.',
+                                                  PRIMARY_COLOR[grade],
+                                                  (grade == 0 ||
+                                                      grade == 1 ||
+                                                      grade == 2 ||
+                                                      grade == 4 ||
+                                                      grade == 8)
+                                                      ? Colors.black
+                                                      : Colors.white);
+                                              Navigator.of(context).pop();
+                                            }
+                                            //Navigator.of(context).pop();
                                         },
                                         child: MyText(text: "확인", grade: grade),
                                       ),

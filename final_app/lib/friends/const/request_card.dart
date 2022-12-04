@@ -157,7 +157,20 @@ class RequestCard extends StatelessWidget {
                                           if (jsondata.toString() ==
                                                   "Success" &&
                                               jsondata2.toString() == "Success")
-                                            Navigator.of(context).pop();
+                                            {
+                                              MyToast(
+                                                  '친구 요청을 수락했습니다.',
+                                                  PRIMARY_COLOR[grade],
+                                                  (grade == 0 ||
+                                                      grade == 1 ||
+                                                      grade == 2 ||
+                                                      grade == 4 ||
+                                                      grade == 8)
+                                                      ? Colors.black
+                                                      : Colors.white);
+                                              Navigator.of(context).pop();
+                                            }
+                                            //Navigator.of(context).pop();
                                         },
                                         child: MyText(text: "확인", grade: grade),
                                       ),
@@ -221,8 +234,20 @@ class RequestCard extends StatelessWidget {
                                           });
                                           var jsondata = json.decode(
                                               json.encode(response.body));
-                                          if (jsondata == "Success")
+                                          if (jsondata == "Success"){
+                                            MyToast(
+                                                '친구 요청을 삭제했습니다.',
+                                                PRIMARY_COLOR[grade],
+                                                (grade == 0 ||
+                                                    grade == 1 ||
+                                                    grade == 2 ||
+                                                    grade == 4 ||
+                                                    grade == 8)
+                                                    ? Colors.black
+                                                    : Colors.white);
                                             Navigator.of(context).pop();
+                                          }
+                                            //Navigator.of(context).pop();
                                         },
                                         child: MyText(text: "확인", grade: grade),
                                       ),

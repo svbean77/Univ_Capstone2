@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:final_app/mypage/sign_in.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -263,7 +264,6 @@ class _SignUpState extends State<SignUp> {
         _pwController.text.toString() != "" &&
         _userageController.text.toString() != "" &&
         _userageController.text.toString() != "") {
-
       var url = Uri.parse("http://${IP_ADDRESS}/test_register.php");
       /*
       var url = Uri.http(IP_ADDRESS, '/test_register.php', {'q': '{http}'});
@@ -279,26 +279,11 @@ class _SignUpState extends State<SignUp> {
       var jsondata = json.decode(json.encode(response.body));
 
       if (jsondata.toString() == "Error1") {
-        Fluttertoast.showToast(
-          backgroundColor: Colors.grey,
-          textColor: Colors.black,
-          msg: '아이디가 중복됩니다.',
-          toastLength: Toast.LENGTH_SHORT,
-        );
+        MyToast('아이디가 중복됩니다.', Colors.grey, Colors.black);
       } else if (jsondata.toString() == "Error2") {
-        Fluttertoast.showToast(
-          backgroundColor: Colors.grey,
-          textColor: Colors.black,
-          msg: '닉네임이 중복됩니다.',
-          toastLength: Toast.LENGTH_SHORT,
-        );
+        MyToast('닉네임이 중복됩니다.', Colors.grey, Colors.black);
       } else {
-        Fluttertoast.showToast(
-          backgroundColor: Colors.grey,
-          textColor: Colors.black,
-          msg: '회원가입이 완료되었습니다.',
-          toastLength: Toast.LENGTH_SHORT,
-        );
+        MyToast('회원가입이 완료되었습니다.', Colors.grey, Colors.black);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -307,10 +292,7 @@ class _SignUpState extends State<SignUp> {
         );
       }
     } else {
-      /*
-      토스트메시지
-       */
-      print("모든 칸을 채줘줘");
+      MyToast('모든 칸을 채워주세요.', Colors.grey, Colors.black);
     }
   }
 }

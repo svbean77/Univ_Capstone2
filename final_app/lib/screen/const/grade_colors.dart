@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 const List<Color> PRIMARY_COLOR = [
   Color(0xFFFFFFFF),
@@ -67,4 +68,13 @@ class MyContainer extends StatelessWidget {
       ),
     );
   }
+}
+
+void MyToast(String text, Color bkColor, Color txtColor) {
+  Fluttertoast.showToast(
+    backgroundColor: bkColor,
+    textColor: txtColor,
+    msg: text,
+    toastLength: Toast.LENGTH_SHORT,
+  );
 }

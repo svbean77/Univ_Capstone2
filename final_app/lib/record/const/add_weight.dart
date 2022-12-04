@@ -78,33 +78,32 @@ class AddWeight extends StatelessWidget {
                   elevation: 0,
                 ),
                 onPressed: () async {
-                  if(dateController.text.toString() != "" && weightController.text.toString() != ""){
-
+                  if (dateController.text.toString() != "" &&
+                      weightController.text.toString() != "") {
                     if (dateController.text.toString().length != 8) {
-                      Fluttertoast.showToast(
-                        msg: '입력 양식을 맞춰주세요: YYYYMMDD',
-                        backgroundColor: PRIMARY_COLOR[grade],
-                        textColor: (grade == 0 ||
-                            grade == 1 ||
-                            grade == 2 ||
-                            grade == 4 ||
-                            grade == 8)
-                            ? Colors.black
-                            : Colors.white,
-                        toastLength: Toast.LENGTH_SHORT,
-                      );
+                      MyToast(
+                          '날짜 입력 양식을 맞춰주세요: YYYYMMDD',
+                          PRIMARY_COLOR[grade],
+                          (grade == 0 ||
+                                  grade == 1 ||
+                                  grade == 2 ||
+                                  grade == 4 ||
+                                  grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                     } else {
                       String year =
-                      (int.parse(dateController.text.toString()) ~/ 10000)
-                          .toString();
+                          (int.parse(dateController.text.toString()) ~/ 10000)
+                              .toString();
                       String month =
-                      ((int.parse(dateController.text.toString()) % 10000) ~/
-                          100)
-                          .toString();
+                          ((int.parse(dateController.text.toString()) %
+                                      10000) ~/
+                                  100)
+                              .toString();
                       if (month.length == 1) month = "0" + month;
                       String day =
-                      (int.parse(dateController.text.toString()) % 100)
-                          .toString();
+                          (int.parse(dateController.text.toString()) % 100)
+                              .toString();
                       if (day.length == 1) day = "0" + day;
                       bool isDate = true;
 
@@ -120,34 +119,53 @@ class AddWeight extends StatelessWidget {
                       } else {
                         int leapday = 28;
                         if ((int.parse(year) % 4 == 0) &&
-                            (int.parse(year) % 100 != 0) ||
+                                (int.parse(year) % 100 != 0) ||
                             (int.parse(year) % 400 == 0)) leapday = 29;
 
                         if (1 > int.parse(day) || int.parse(day) > leapday)
                           isDate = false;
                       }
                       if (isDate) {
-                        var url = Uri.parse("http://${IP_ADDRESS}/test_add_weight_record.php");
+                        var url = Uri.parse(
+                            "http://${IP_ADDRESS}/test_add_weight_record.php");
                         /*
                         var url = Uri.http(IP_ADDRESS,
                             '/test_add_weight_record.php', {'q': '{http}'});
 
                          */
                         var response =
-                        await http.post(url, body: <String, String>{
+                            await http.post(url, body: <String, String>{
                           "nickname": loginID.toString(),
                           "writeDate": dateController.text.toString(),
                           "weight": weightController.text.toString(),
                         });
-                        var jsondata =json.decode(json.encode(response.body));
-                        if (jsondata.toString() == "Success") Navigator.of(context).pop();
+                        var jsondata = json.decode(json.encode(response.body));
+                        if (jsondata.toString() == "Success")
+                          Navigator.of(context).pop();
+                      } else {
+                        MyToast(
+                            '유효하지 않은 날짜입니다.',
+                            PRIMARY_COLOR[grade],
+                            (grade == 0 ||
+                                    grade == 1 ||
+                                    grade == 2 ||
+                                    grade == 4 ||
+                                    grade == 8)
+                                ? Colors.black
+                                : Colors.white);
                       }
                     }
-                  }else{
-                    /*
-                    토스트
-                     */
-                    print("모든 빈칸 채우기");
+                  } else {
+                    MyToast(
+                        '모든 칸을 채워주세요.',
+                        PRIMARY_COLOR[grade],
+                        (grade == 0 ||
+                                grade == 1 ||
+                                grade == 2 ||
+                                grade == 4 ||
+                                grade == 8)
+                            ? Colors.black
+                            : Colors.white);
                   }
                 },
                 child: MyText(text: "확인", grade: grade),

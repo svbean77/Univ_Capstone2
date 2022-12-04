@@ -180,10 +180,16 @@ class _AddExerciseState extends State<AddExercise> {
                     if (jsondata.toString() == "Success")
                       Navigator.of(context).pop();
                   } else {
-                    /*
-                    토스트 띄우기
-                     */
-                    print("비었어!");
+                    MyToast(
+                        '모든 칸을 채워주세요.',
+                        PRIMARY_COLOR[widget.grade],
+                        (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
+                            ? Colors.black
+                            : Colors.white);
                   }
                 },
                 child: MyText(text: "확인", grade: widget.grade),

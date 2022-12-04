@@ -109,7 +109,8 @@ class _MyPageState extends State<MyPage> {
                             SizedBox(),
                             ElevatedButton(
                               onPressed: () async {
-                                var url = Uri.parse("http://${IP_ADDRESS}/test_change_theme.php");
+                                var url = Uri.parse(
+                                    "http://${IP_ADDRESS}/test_change_theme.php");
                                 /*
                                 var url = Uri.http(IP_ADDRESS,
                                     '/test_change_theme.php', {'q': '{http}'});
@@ -123,13 +124,24 @@ class _MyPageState extends State<MyPage> {
                                 var jsondata =
                                     json.decode(json.encode(response.body));
 
-                                if (jsondata.toString() == "Success")
+                                if (jsondata.toString() == "Success") {
+                                  MyToast(
+                                      '테마 색상을 변경했습니다.',
+                                      PRIMARY_COLOR[widget.grade],
+                                      (widget.grade == 0 ||
+                                              widget.grade == 1 ||
+                                              widget.grade == 2 ||
+                                              widget.grade == 4 ||
+                                              widget.grade == 8)
+                                          ? Colors.black
+                                          : Colors.white);
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
                                             HomeScreen(),
                                       ),
                                       (route) => false);
+                                }
                               },
                               child: MyText(text: "테마 변경", grade: widget.grade),
                               style: ElevatedButton.styleFrom(
@@ -150,7 +162,7 @@ class _MyPageState extends State<MyPage> {
                                   password: snapshot.data.result![0].password,
                                   nickname: snapshot.data.result![0].nickname,
                                   userage: snapshot.data.result![0].userage,
-                                  sex: snapshot.data.result![0].sex == 'male'
+                                  sex: snapshot.data.result![0].sex == '남자'
                                       ? [true, false]
                                       : [false, true],
                                 ),
@@ -202,6 +214,8 @@ class _MyPageState extends State<MyPage> {
                                             ElevatedButton(
                                               onPressed: () {
                                                 LOGIN_BOX.remove('id');
+                                                MyToast('로그아웃 했습니다.',
+                                                    Colors.grey, Colors.black);
                                                 Navigator.of(context)
                                                     .pushAndRemoveUntil(
                                                         MaterialPageRoute(
@@ -268,7 +282,8 @@ class _MyPageState extends State<MyPage> {
                                             ),
                                             ElevatedButton(
                                               onPressed: () async {
-                                                var url = Uri.parse("http://${IP_ADDRESS}/test_remove_user.php");
+                                                var url = Uri.parse(
+                                                    "http://${IP_ADDRESS}/test_remove_user.php");
                                                 /*
                                                 var url = Uri.http(
                                                     IP_ADDRESS,
@@ -287,6 +302,20 @@ class _MyPageState extends State<MyPage> {
                                                 if (jsondata.toString() ==
                                                     "Success") {
                                                   LOGIN_BOX.remove('id');
+                                                  MyToast(
+                                                      '탈퇴 하였습니다.',
+                                                      PRIMARY_COLOR[
+                                                          widget.grade],
+                                                      (widget.grade == 0 ||
+                                                              widget.grade ==
+                                                                  1 ||
+                                                              widget.grade ==
+                                                                  2 ||
+                                                              widget.grade ==
+                                                                  4 ||
+                                                              widget.grade == 8)
+                                                          ? Colors.black
+                                                          : Colors.white);
                                                   Navigator.of(context)
                                                       .pushAndRemoveUntil(
                                                           MaterialPageRoute(

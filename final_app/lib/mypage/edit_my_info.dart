@@ -190,9 +190,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                           child: TextFormField(
                             initialValue: widget.userage.toString(),
                             onChanged: (String? val) {
-                              try{
+                              try {
                                 widget.userage = int.parse(val!);
-                              }catch(e){
+                              } catch (e) {
                                 widget.userage = -1;
                               }
                             },
@@ -248,7 +248,8 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     if (widget.password.length != 0 &&
                         widget.nickname.length != 0 &&
                         widget.userage != -1) {
-                      var url = Uri.parse("http://${IP_ADDRESS}/test_change_user.php");
+                      var url = Uri.parse(
+                          "http://${IP_ADDRESS}/test_change_user.php");
                       /*
                       var url = Uri.http(
                           IP_ADDRESS, '/test_change_user.php', {'q': '{http}'});
@@ -264,18 +265,35 @@ class _EditMyInfoState extends State<EditMyInfo> {
                         "origin": origin.toString(),
                       });
                       var jsondata = json.decode(json.encode(response.body));
-                      if (jsondata.toString() == "Success")
+                      if (jsondata.toString() == "Success") {
+                        MyToast(
+                            '정보를 수정했습니다.',
+                            PRIMARY_COLOR[widget.grade],
+                            (widget.grade == 0 ||
+                                    widget.grade == 1 ||
+                                    widget.grade == 2 ||
+                                    widget.grade == 4 ||
+                                    widget.grade == 8)
+                                ? Colors.black
+                                : Colors.white);
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (BuildContext context) => MyPage(
                                 loginID: widget.nickname, grade: widget.grade),
                           ),
                         );
+                      }
                     } else {
-                      /*
-                      토스트 메시지
-                       */
-                      print("데이터가 비었어");
+                      MyToast(
+                          '모든 칸을 채워주세요.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                     }
                   },
                   child: Container(

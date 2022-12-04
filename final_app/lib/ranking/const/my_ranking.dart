@@ -165,7 +165,8 @@ class _MyRankingState extends State<MyRanking> {
                               friends == 'no'
                                   ? GestureDetector(
                                       onTap: () async {
-                                        var url = Uri.parse("http://${IP_ADDRESS}/test_add_request.php");
+                                        var url = Uri.parse(
+                                            "http://${IP_ADDRESS}/test_add_request.php");
                                         /*
                                         var url = Uri.http(
                                             IP_ADDRESS,
@@ -179,19 +180,16 @@ class _MyRankingState extends State<MyRanking> {
                                           "requested":
                                               widget.nickname.toString(),
                                         });
-                                        Fluttertoast.showToast(
-                                          msg: '친구 요청을 보냈습니다.',
-                                          backgroundColor:
-                                              PRIMARY_COLOR[widget.grade],
-                                          textColor: (widget.grade == 0 ||
-                                                  widget.grade == 1 ||
-                                                  widget.grade == 2 ||
-                                                  widget.grade == 4 ||
-                                                  widget.grade == 8)
-                                              ? Colors.black
-                                              : Colors.white,
-                                          toastLength: Toast.LENGTH_SHORT,
-                                        );
+                                        MyToast(
+                                            '친구 요청을 보냈습니다.',
+                                            PRIMARY_COLOR[widget.grade],
+                                            (widget.grade == 0 ||
+                                                    widget.grade == 1 ||
+                                                    widget.grade == 2 ||
+                                                    widget.grade == 4 ||
+                                                    widget.grade == 8)
+                                                ? Colors.black
+                                                : Colors.white);
                                       },
                                       child: Icon(Icons.person_add, size: 25.0),
                                     )
@@ -199,7 +197,8 @@ class _MyRankingState extends State<MyRanking> {
                                   : friends == 'request'
                                       ? GestureDetector(
                                           onTap: () async {
-                                            var url2 = Uri.parse("http://${IP_ADDRESS}/test_remove_request.php");
+                                            var url2 = Uri.parse(
+                                                "http://${IP_ADDRESS}/test_remove_request.php");
                                             /*
                                             var url2 = Uri.http(
                                                 IP_ADDRESS,
@@ -214,19 +213,16 @@ class _MyRankingState extends State<MyRanking> {
                                                   "request":
                                                       widget.loginID.toString(),
                                                 });
-                                            Fluttertoast.showToast(
-                                              msg: '친구 요청을 취소했습니다.',
-                                              backgroundColor:
-                                              PRIMARY_COLOR[widget.grade],
-                                              textColor: (widget.grade == 0 ||
-                                                  widget.grade == 1 ||
-                                                  widget.grade == 2 ||
-                                                  widget.grade == 4 ||
-                                                  widget.grade == 8)
-                                                  ? Colors.black
-                                                  : Colors.white,
-                                              toastLength: Toast.LENGTH_SHORT,
-                                            );
+                                            MyToast(
+                                                '친구 요청을 취소했습니다.',
+                                                PRIMARY_COLOR[widget.grade],
+                                                (widget.grade == 0 ||
+                                                        widget.grade == 1 ||
+                                                        widget.grade == 2 ||
+                                                        widget.grade == 4 ||
+                                                        widget.grade == 8)
+                                                    ? Colors.black
+                                                    : Colors.white);
                                           },
                                           child: Icon(Icons.schedule_send,
                                               size: 25.0),
@@ -235,7 +231,8 @@ class _MyRankingState extends State<MyRanking> {
                                       : friends == 'requested'
                                           ? GestureDetector(
                                               onTap: () async {
-                                                var url = Uri.parse("http://${IP_ADDRESS}/test_add_friends.php");
+                                                var url = Uri.parse(
+                                                    "http://${IP_ADDRESS}/test_add_friends.php");
                                                 /*
                                                 var url = Uri.http(
                                                     IP_ADDRESS,
@@ -252,7 +249,8 @@ class _MyRankingState extends State<MyRanking> {
                                                           .toString(),
                                                     });
 
-                                                var url2 = Uri.parse("http://${IP_ADDRESS}/test_remove_request.php");
+                                                var url2 = Uri.parse(
+                                                    "http://${IP_ADDRESS}/test_remove_request.php");
                                                 /*
                                                 var url2 = Uri.http(
                                                     IP_ADDRESS,
@@ -268,19 +266,16 @@ class _MyRankingState extends State<MyRanking> {
                                                       "request": widget.nickname
                                                           .toString(),
                                                     });
-                                                Fluttertoast.showToast(
-                                                  msg: '친구 요청을 수락하였습니다.',
-                                                  backgroundColor:
-                                                  PRIMARY_COLOR[widget.grade],
-                                                  textColor: (widget.grade == 0 ||
-                                                      widget.grade == 1 ||
-                                                      widget.grade == 2 ||
-                                                      widget.grade == 4 ||
-                                                      widget.grade == 8)
-                                                      ? Colors.black
-                                                      : Colors.white,
-                                                  toastLength: Toast.LENGTH_SHORT,
-                                                );
+                                                MyToast(
+                                                    '친구 요청을 수락했습니다.',
+                                                    PRIMARY_COLOR[widget.grade],
+                                                    (widget.grade == 0 ||
+                                                            widget.grade == 1 ||
+                                                            widget.grade == 2 ||
+                                                            widget.grade == 4 ||
+                                                            widget.grade == 8)
+                                                        ? Colors.black
+                                                        : Colors.white);
                                               },
                                               child: Icon(
                                                   Icons.check_circle_outline,

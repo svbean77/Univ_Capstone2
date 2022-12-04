@@ -143,19 +143,16 @@ class _FriendsMainState extends State<FriendsMain> {
                           ),
                         ),
                       );
-                    } else {
-                      Fluttertoast.showToast(
-                        msg: '존재하지 않는 닉네임입니다.',
-                        backgroundColor: PRIMARY_COLOR[widget.grade],
-                        textColor: (widget.grade == 0 ||
-                                widget.grade == 1 ||
-                                widget.grade == 2 ||
-                                widget.grade == 4 ||
-                                widget.grade == 8)
+                    } else {MyToast(
+                        '존재하지 않는 닉네임입니다.',
+                        PRIMARY_COLOR[widget.grade],
+                        (widget.grade == 0 ||
+                            widget.grade == 1 ||
+                            widget.grade == 2 ||
+                            widget.grade == 4 ||
+                            widget.grade == 8)
                             ? Colors.black
-                            : Colors.white,
-                        toastLength: Toast.LENGTH_SHORT,
-                      );
+                            : Colors.white);
                     }
                   },
                 ),

@@ -1,6 +1,7 @@
 import 'package:final_app/mypage/sign_up.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -52,7 +53,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 Container(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.white,
@@ -76,7 +77,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 Container(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.white,
@@ -186,28 +187,17 @@ class _SignInState extends State<SignIn> {
     var data = json.decode(json.encode(response.body));
 
     if (data.toString() == "Success") {
-      Fluttertoast.showToast(
-
-        msg: '로그인 성공',
-        backgroundColor: Colors.grey,
-        textColor: Colors.black,
-        toastLength: Toast.LENGTH_SHORT,
-      );
+      MyToast('로그인 성공', Colors.white, Colors.black);
 
       LOGIN_BOX.write('id', _idController.text.toString());
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => HomeScreen(),
           ),
-              (route) => false);
+          (route) => false);
     } else {
       print(data.toString());
-      Fluttertoast.showToast(
-        backgroundColor: Colors.grey,
-        textColor: Colors.black,
-        msg: '비밀번호 또는 아이디가 잘못되었습니다.',
-        toastLength: Toast.LENGTH_SHORT,
-      );
+      MyToast('아이디 또는 비밀번호가 잘못되었습니다.', Colors.grey, Colors.black);
     }
   }
 }

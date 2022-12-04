@@ -69,7 +69,8 @@ class AddRecord extends StatelessWidget {
                   String date = year + month + day;
                   print(date);
                   if (controller.text.toString() != "") {
-                    var url = Uri.parse("http://${IP_ADDRESS}/test_add_exercise_record.php");
+                    var url = Uri.parse(
+                        "http://${IP_ADDRESS}/test_add_exercise_record.php");
                     /*
                     var url = Uri.http(IP_ADDRESS,
                         '/test_add_exercise_record.php', {'q': '{http}'});
@@ -84,11 +85,29 @@ class AddRecord extends StatelessWidget {
 
                     if (jsondata.toString() == "Success")
                       Navigator.of(context).pop();
+                    else{
+                      MyToast(
+                          '작은 따옴표는 \\\'으로 작성해주세요.',
+                          PRIMARY_COLOR[grade],
+                          (grade == 0 ||
+                              grade == 1 ||
+                              grade == 2 ||
+                              grade == 4 ||
+                              grade == 8)
+                              ? Colors.black
+                              : Colors.white);
+                    }
                   } else {
-                    /*
-                  토스트 메시지
-                   */
-                    print("채워라");
+                    MyToast(
+                        '모든 칸을 채워주세요.',
+                        PRIMARY_COLOR[grade],
+                        (grade == 0 ||
+                                grade == 1 ||
+                                grade == 2 ||
+                                grade == 4 ||
+                                grade == 8)
+                            ? Colors.black
+                            : Colors.white);
                   }
                 },
                 child: MyText(text: "확인", grade: grade),
