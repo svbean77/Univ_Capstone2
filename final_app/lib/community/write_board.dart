@@ -97,20 +97,37 @@ class _WriteBoardState extends State<WriteBoard> {
               ),
             ),
             SizedBox(height: 8.0),
-            Text("% 사진은 한 장만 업로드 가능합니다ㅠㅠ"),
-            SizedBox(height: 8.0),
             Row(
               children: [
                 ElevatedButton(
                   onPressed: () async {
                     if (files.length == 0) {
+                      MyToast(
+                          '사진은 한 장만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                       var chooseImage = await ImagePicker()
                           .pickImage(source: ImageSource.gallery);
                       setState(() {
                         files.add(File(chooseImage!.path));
                       });
-                    }else{
-                      print("한장만");
+                    } else {
+                      MyToast(
+                          '사진은 한 장만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                     }
                   },
                   child: MyText(text: "갤러리", grade: widget.grade),
@@ -121,13 +138,32 @@ class _WriteBoardState extends State<WriteBoard> {
                 ElevatedButton(
                   onPressed: () async {
                     if (files.length == 0) {
+                      MyToast(
+                          '사진은 한 장만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                       var chooseImage = await ImagePicker()
                           .pickImage(source: ImageSource.camera);
                       setState(() {
                         files.add(File(chooseImage!.path));
                       });
-                    }else{
-                      print("한장만");
+                    } else {
+                      MyToast(
+                          '사진은 한 장만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                     }
                   },
                   child: MyText(text: "카메라", grade: widget.grade),
@@ -205,10 +241,16 @@ class _WriteBoardState extends State<WriteBoard> {
                       ),
                     );
                 } else {
-                  /*
-                    토스트 메시지를 띄울 것!!!!!
-                   */
-                  print("비었어!");
+                  MyToast(
+                      '모든 칸을 채워주세요.',
+                      PRIMARY_COLOR[widget.grade],
+                      (widget.grade == 0 ||
+                              widget.grade == 1 ||
+                              widget.grade == 2 ||
+                              widget.grade == 4 ||
+                              widget.grade == 8)
+                          ? Colors.black
+                          : Colors.white);
                 }
               },
               child: MyText(text: "저장", grade: widget.grade),

@@ -140,15 +140,33 @@ class _EditPostState extends State<EditPost> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    if(files.length == 0){
+                    if (files.length == 0) {
+                      MyToast(
+                          '사진은 한 장만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                       PickedFile? pickedFile = await ImagePicker()
                           .getImage(source: ImageSource.gallery);
                       setState(() {
                         files.add(File(pickedFile!.path));
                       });
-                    }
-                    else{
-                      print("한장만");
+                    } else {
+                      MyToast(
+                          '사진은 한 장만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                     }
                   },
                   child: MyText(text: "갤러리", grade: widget.grade),
@@ -159,13 +177,32 @@ class _EditPostState extends State<EditPost> {
                 ElevatedButton(
                   onPressed: () async {
                     if (files.length == 0) {
+                      MyToast(
+                          '사진은 한 장만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                       PickedFile? pickedFile = await ImagePicker()
                           .getImage(source: ImageSource.camera);
                       setState(() {
                         files.add(File(pickedFile!.path));
                       });
-                    }else{
-                      print("한장만");
+                    } else {
+                      MyToast(
+                          '사진은 한 장만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                     }
                   },
                   child: MyText(text: "카메라", grade: widget.grade),
@@ -175,27 +212,21 @@ class _EditPostState extends State<EditPost> {
               ],
             ),
             SizedBox(height: 8.0),
-            Container(
-              height: 100.0,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  for (int i = 0; i < files.length; i++)
-                    Padding(
-                      padding: EdgeInsets.only(right: 8.0),
-                      child: Container(
+            files.length != 0
+                ? Row(
+                    children: [
+                      Container(
                         height: 100.0,
                         width: 100.0,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: FileImage(files[i]), //File Image를 삽입
+                              image: FileImage(files[0]), //File Image를 삽입
                               fit: BoxFit.cover),
                         ),
                       ),
-                    ),
-                ],
-              ),
-            ),
+                    ],
+                  )
+                : Container(),
             SizedBox(height: 8.0),
             ElevatedButton(
               onPressed: () async {
@@ -205,7 +236,6 @@ class _EditPostState extends State<EditPost> {
                   var data;
                   if (widget.board == 'free')
                     url = "http://${IP_ADDRESS}/test_change_freeboard.php";
-
                   else
                     url = "http://${IP_ADDRESS}/test_change_qnaboard.php";
 
@@ -248,10 +278,16 @@ class _EditPostState extends State<EditPost> {
                       ),
                     );
                 } else {
-                  /*
-                    토스트 메시지를 띄울 것!!!!!
-                   */
-                  print("비었어!");
+                  MyToast(
+                      '모든 칸을 채워주세요.',
+                      PRIMARY_COLOR[widget.grade],
+                      (widget.grade == 0 ||
+                              widget.grade == 1 ||
+                              widget.grade == 2 ||
+                              widget.grade == 4 ||
+                              widget.grade == 8)
+                          ? Colors.black
+                          : Colors.white);
                 }
                 /*
                       board == free: 자유게시판, board == qna: 질의응답게시판

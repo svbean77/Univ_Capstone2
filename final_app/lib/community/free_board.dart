@@ -138,10 +138,16 @@ class _FreeBoardState extends State<FreeBoard> {
                                         ),
                                       );
                                     } else {
-                                      /*
-                              토스트 메시지
-                               */
-                                      print("검색어");
+                                      MyToast(
+                                          '검색어를 입력해주세요.',
+                                          PRIMARY_COLOR[widget.grade],
+                                          (widget.grade == 0 ||
+                                              widget.grade == 1 ||
+                                              widget.grade == 2 ||
+                                              widget.grade == 4 ||
+                                              widget.grade == 8)
+                                              ? Colors.black
+                                              : Colors.white);
                                     }
                                   },
                                 ),
