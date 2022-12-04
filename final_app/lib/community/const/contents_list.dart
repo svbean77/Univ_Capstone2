@@ -29,7 +29,11 @@ class ContentsList extends StatelessWidget {
             SizedBox(width: 16.0),
             Expanded(
               child: Container(
-                child: Text(data.title, style: TextStyle(fontSize: 20.0)),
+                child: Text(
+                  data.title,
+                  style: TextStyle(fontSize: 20.0),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             )
           ],

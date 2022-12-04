@@ -115,8 +115,11 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                   height: 70.0,
                                   width: double.infinity,
                                   grade: widget.grade,
-                                  child: Text(snapshot.data.result![i].title,
-                                      style: TextStyle(fontSize: 20.0)),
+                                  child: Text(
+                                    snapshot.data.result![i].title,
+                                    style: TextStyle(fontSize: 20.0),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
                               onTap: () {

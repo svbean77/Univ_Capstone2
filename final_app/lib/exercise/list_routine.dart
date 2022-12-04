@@ -55,15 +55,18 @@ class _ListRoutineState extends State<ListRoutine> {
                     width: double.infinity,
                     grade: widget.grade,
                     child: Text(
-                        '(${widget.data.result![i].time}분) ${widget.data.result![i].routine}',
-                        style: TextStyle(fontSize: 20.0)),
+                      '(${widget.data.result![i].time}분) ${widget.data.result![i].routine}',
+                      style: TextStyle(fontSize: 20.0),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
                 onTap: () async {
                   print(widget.data.result![i].time);
                   print(widget.data.result![i].routine);
 
-                  var url = Uri.parse("http://${IP_ADDRESS}/test_select_routine_detail.php");
+                  var url = Uri.parse(
+                      "http://${IP_ADDRESS}/test_select_routine_detail.php");
                   /*
                   var url = Uri.http(IP_ADDRESS,
                       '/test_select_routine_detail.php', {'q': '{http}'});
