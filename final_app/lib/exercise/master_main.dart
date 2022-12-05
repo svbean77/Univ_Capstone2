@@ -28,6 +28,89 @@ class MasterMain extends StatelessWidget {
           style: TextStyle(fontSize: 25.0),
           textAlign: TextAlign.center,
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => SelectMuscle(
+                      loginID: loginID,
+                      level: '숙련자',
+                      grade: grade,
+                    ),
+                  ),
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "asset/images/etc/routine.png",
+                    width: MediaQuery.of(context).size.width / 4,
+                  ),
+                  SizedBox(height: 8.0),
+                  Text("부위별 운동", style: TextStyle(fontSize: 20.0)),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext ccontext) => loginID == ""
+                        ? Scaffold(
+                            appBar: MyAppBar(grade: grade),
+                            drawer: MyDrawer(loginID: loginID, grade: grade),
+                            body: AfterLogin(),
+                          )
+                        : SelectRoutine(loginID: loginID, grade: grade),
+                  ),
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "asset/images/etc/routine.png",
+                    width: MediaQuery.of(context).size.width / 4,
+                  ),
+                  SizedBox(height: 8.0),
+                  Text("루틴", style: TextStyle(fontSize: 20.0)),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext ccontext) => loginID == ""
+                        ? Scaffold(
+                            appBar: MyAppBar(grade: grade),
+                            drawer: MyDrawer(loginID: loginID, grade: grade),
+                            body: AfterLogin(),
+                          )
+                        : SelectMyRoutine(loginID: loginID, grade: grade),
+                  ),
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "asset/images/etc/myroutine.png",
+                    width: MediaQuery.of(context).size.width / 4,
+                  ),
+                  SizedBox(height: 8.0),
+                  Text("내 루틴", style: TextStyle(fontSize: 20.0)),
+                ],
+              ),
+            ),
+          ],
+        ),
+
+        /*
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(
@@ -98,6 +181,8 @@ class MasterMain extends StatelessWidget {
             ),
           ),
         ),
+
+         */
       ],
     );
   }
