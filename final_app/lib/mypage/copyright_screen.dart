@@ -9,6 +9,7 @@ class CopyrightScreen extends StatelessWidget {
   final armUrl;
   final appleUrl;
   final ratingUrl;
+  final exerciseUrl;
   final routineUrl;
   final myroutineUrl;
   const CopyrightScreen({
@@ -24,6 +25,8 @@ class CopyrightScreen extends StatelessWidget {
         'https://www.flaticon.com/free-icon/dumbbell_3349694?related_id=3349694&origin=search',
     this.myroutineUrl =
         'https://www.flaticon.com/free-icon/plan_525866?term=exercise&page=1&position=76&page=1&position=76&related_id=525866&origin=search',
+    this.exerciseUrl =
+        'https://www.flaticon.com/kr/free-icon/gym_5114256?k=1670254259270&sign-up=google',
     Key? key,
   }) : super(key: key);
 
@@ -105,7 +108,6 @@ class CopyrightScreen extends StatelessWidget {
                 ],
               ),
             ),
-            /*
             Container(
               height: 50.0,
               width: double.infinity,
@@ -114,7 +116,7 @@ class CopyrightScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      launchBrowser(appleUrl);
+                      launchBrowser(exerciseUrl);
                     },
                     child: Icon(Icons.link),
                   ),
@@ -123,8 +125,6 @@ class CopyrightScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-             */
             Container(
               height: 50.0,
               width: double.infinity,

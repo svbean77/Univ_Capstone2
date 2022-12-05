@@ -48,7 +48,7 @@ class BeginnerMain extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "asset/images/etc/routine.png",
+                    "asset/images/etc/exercise.png",
                     width: MediaQuery.of(context).size.width / 4,
                   ),
                   SizedBox(height: 8.0),
