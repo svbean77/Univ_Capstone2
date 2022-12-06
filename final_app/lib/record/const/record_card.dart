@@ -23,7 +23,7 @@ class RecordCard extends StatelessWidget {
           ),
         ),
         child: IntrinsicHeight(
-          child: Text(content),
+          child: Text(content, style: TextStyle(fontSize: 23.0)),
         ),
       ),
     );

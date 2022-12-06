@@ -38,12 +38,12 @@ class _RecordMainState extends State<RecordMain> with TickerProviderStateMixin {
               Container(
                 height: 50.0,
                 alignment: Alignment.center,
-                child: Text('운동기록'),
+                child: Text('운동기록', style: TextStyle(fontSize: 18.0)),
               ),
               Container(
                 height: 50.0,
                 alignment: Alignment.center,
-                child: Text('체중기록'),
+                child: Text('체중기록', style: TextStyle(fontSize: 18.0)),
               ),
             ],
             indicator: BoxDecoration(

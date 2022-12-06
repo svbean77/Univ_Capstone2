@@ -99,7 +99,7 @@ class _RecordGraphState extends State<RecordGraph> {
               children: [
                 Text('체중',
                     style:
-                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
                 SizedBox(height: 16.0),
                 if (snapshot.hasData)
                   SingleChildScrollView(
@@ -116,6 +116,7 @@ class _RecordGraphState extends State<RecordGraph> {
                           intervalType: DateTimeIntervalType.days,
                           interval: 1,
                           rangePadding: ChartRangePadding.additional,
+                          labelStyle: TextStyle(fontSize: 18.0),
                         ),
                         primaryYAxis: NumericAxis(
                           minimum: minWeight - 5,
@@ -149,7 +150,8 @@ class _RecordGraphState extends State<RecordGraph> {
                             yValueMapper: (WeightData info, _) => info.weight,
                             dataLabelSettings: DataLabelSettings(
                               isVisible: true,
-                              textStyle: TextStyle(color: Colors.grey[700]),
+                              textStyle: TextStyle(
+                                  color: Colors.grey[700], fontSize: 18.0),
                             ),
                           ),
                         ],
@@ -174,7 +176,8 @@ class _RecordGraphState extends State<RecordGraph> {
                         },
                       );
                     },
-                    child: Text('체중입력', style: TextStyle(color: Colors.black)),
+                    child: Text('체중입력',
+                        style: TextStyle(color: Colors.black, fontSize: 18.8)),
                   ),
                 )
               ],

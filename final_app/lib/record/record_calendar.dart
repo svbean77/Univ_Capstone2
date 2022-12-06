@@ -126,14 +126,13 @@ class _RecordCalendarState extends State<RecordCalendar> {
                 SizedBox(height: 8.0),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  height: 30.0,
+                  height: 35.0,
                   color: PRIMARY_COLOR[widget.grade],
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MyText(
-                          text:
-                              '${toyear}.${tomonth}.${todayday}',
+                          text: '${toyear}.${tomonth}.${todayday}',
                           grade: widget.grade),
                       MyText(
                           text: '${today_record.length}개', grade: widget.grade),
@@ -153,7 +152,8 @@ class _RecordCalendarState extends State<RecordCalendar> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 32.0),
                     child: Center(
-                      child: Text('운동 기록이 없습니다'),
+                      child:
+                          Text('운동 기록이 없습니다', style: TextStyle(fontSize: 18.0)),
                     ),
                   ),
                 SizedBox(height: 60.0),
