@@ -37,11 +37,17 @@ class BeginnerMain extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SelectMuscle(
-                    loginID: loginID,
-                    level: '초보자',
-                    grade: grade,
-                  ),
+                  builder: (BuildContext context) => loginID == ""
+                      ? Scaffold(
+                          appBar: MyAppBar(grade: grade),
+                          drawer: MyDrawer(loginID: loginID, grade: grade),
+                          body: AfterLogin(),
+                        )
+                      : SelectMuscle(
+                          loginID: loginID,
+                          level: '초보자',
+                          grade: grade,
+                        ),
                 ));
               },
               child: Column(

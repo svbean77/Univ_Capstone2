@@ -35,11 +35,17 @@ class MasterMain extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) => SelectMuscle(
-                      loginID: loginID,
-                      level: '숙련자',
-                      grade: grade,
-                    ),
+                    builder: (BuildContext context) => loginID == ""
+                        ? Scaffold(
+                            appBar: MyAppBar(grade: grade),
+                            drawer: MyDrawer(loginID: loginID, grade: grade),
+                            body: AfterLogin(),
+                          )
+                        : SelectMuscle(
+                            loginID: loginID,
+                            level: '숙련자',
+                            grade: grade,
+                          ),
                   ),
                 );
               },
