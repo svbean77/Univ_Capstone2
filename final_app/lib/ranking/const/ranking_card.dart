@@ -42,7 +42,8 @@ class RankingCard extends StatelessWidget {
         var jsondata = jsonDecode(json.decode(json.encode(response.body)));
         USERDATA data = USERDATA.fromJson(jsondata);
 
-        var url2 = Uri.parse("http://${IP_ADDRESS}/test_select_exercise_record.php");
+        var url2 =
+            Uri.parse("http://${IP_ADDRESS}/test_select_exercise_record.php");
         /*
         var url2 = Uri.http(
             IP_ADDRESS, '/test_select_exercise_record.php', {'q': '{http}'});
@@ -75,7 +76,9 @@ class RankingCard extends StatelessWidget {
             Row(
               children: [
                 Image.asset('asset/images/ranking/$rating.png'),
-                Text(' $ranking위 $nickname'),
+                Text(' $ranking위 $nickname',
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
               ],
             ),
             Text('$rating  ${total3th}kg'),

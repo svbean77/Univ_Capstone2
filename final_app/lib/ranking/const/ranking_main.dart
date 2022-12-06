@@ -46,12 +46,12 @@ class _RankingMainState extends State<RankingMain>
               Container(
                 height: 50.0,
                 alignment: Alignment.center,
-                child: Text('전체 사용자'),
+                child: Text('전체 사용자', style: TextStyle(fontSize: 18.0)),
               ),
               Container(
                 height: 50.0,
                 alignment: Alignment.center,
-                child: Text('친구'),
+                child: Text('친구', style: TextStyle(fontSize: 18.0)),
               ),
             ],
             indicator: BoxDecoration(

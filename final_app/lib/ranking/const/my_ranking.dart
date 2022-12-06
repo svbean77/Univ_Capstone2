@@ -147,7 +147,8 @@ class _MyRankingState extends State<MyRanking> {
                           Image.asset(
                               'asset/images/ranking/${snapshot.data[4].result![snapshot.data[3]].rating}.png',
                               height: 150.0),
-                          Text('${snapshot.data[3] + 1}위'),
+                          Text('전체 랭킹: ${snapshot.data[3] + 1}위',
+                              style: TextStyle(fontSize: 18.0)),
                         ],
                       ),
                       Column(
@@ -158,9 +159,9 @@ class _MyRankingState extends State<MyRanking> {
                             children: [
                               Text(widget.nickname,
                                   style: TextStyle(
-                                      fontSize: 25.0,
+                                      fontSize: 27.0,
                                       fontWeight: FontWeight.bold)),
-                              SizedBox(width: 16.0),
+                              SizedBox(width: 8.0),
                               //친구가 아님
                               friends == 'no'
                                   ? GestureDetector(
@@ -289,13 +290,16 @@ class _MyRankingState extends State<MyRanking> {
                           Text(
                               '3대 총합: ${snapshot.data[4].result![snapshot.data[3]].total}kg',
                               style: TextStyle(
-                                  fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                  fontSize: 22.0, fontWeight: FontWeight.bold)),
                           Text(
-                              '데드리프트: ${snapshot.data[4].result![snapshot.data[3]].deadlift}kg'),
+                              '데드리프트: ${snapshot.data[4].result![snapshot.data[3]].deadlift}kg',
+                              style: TextStyle(fontSize: 18.0)),
                           Text(
-                              '벤치프레스: ${snapshot.data[4].result![snapshot.data[3]].benchpress}kg'),
+                              '벤치프레스: ${snapshot.data[4].result![snapshot.data[3]].benchpress}kg',
+                              style: TextStyle(fontSize: 18.0)),
                           Text(
-                              '스쿼트: ${snapshot.data[4].result![snapshot.data[3]].squat}kg'),
+                              '스쿼트: ${snapshot.data[4].result![snapshot.data[3]].squat}kg',
+                              style: TextStyle(fontSize: 18.0)),
                         ],
                       ),
                     ],

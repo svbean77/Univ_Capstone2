@@ -35,7 +35,7 @@ class UserInfo extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Text('운동기록',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
           ),
           Expanded(
             child: recorddata.length == 0
@@ -50,7 +50,7 @@ class UserInfo extends StatelessWidget {
                         ),
                       ),
                       child:
-                          Text('운동 기록이 없습니다', style: TextStyle(fontSize: 20.0)),
+                          Text('운동 기록이 없습니다', style: TextStyle(fontSize: 18.0)),
                     ),
                   )
                 : Padding(
@@ -82,8 +82,10 @@ class UserInfo extends StatelessWidget {
                                                 ),
                                               ),
                                               child: IntrinsicHeight(
-                                                child:
-                                                    Text(recorddata[i].comment),
+                                                child: Text(
+                                                    recorddata[i].comment,
+                                                    style: TextStyle(
+                                                        fontSize: 18.0)),
                                               ),
                                             ),
                                             SizedBox(height: 16.0),
@@ -113,7 +115,7 @@ class UserInfo extends StatelessWidget {
                                     children: [
                                       Text(
                                           '${recorddata[i].writeDate.substring(0, 4)}.${recorddata[i].writeDate.substring(4, 6)}.${recorddata[i].writeDate.substring(6, 8)}',
-                                          style: TextStyle(fontSize: 15.0)),
+                                          style: TextStyle(fontSize: 20.0)),
                                     ],
                                   ),
                                 ),
