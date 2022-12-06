@@ -105,3 +105,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: IM_Hyemin
+      fonts:
+        - asset: asset/font/IM_Hyemin-Bold.ttf
+          weight: 600
+        - asset: asset/font/IM_Hyemin-Regular.ttf
+          weight: 400
