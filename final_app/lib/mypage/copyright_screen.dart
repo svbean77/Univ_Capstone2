@@ -5,7 +5,6 @@ import '../screen/const/app_bar.dart';
 
 class CopyrightScreen extends StatelessWidget {
   final grade;
-  final muscleUrl;
   final armUrl;
   final appleUrl;
   final ratingUrl;
@@ -14,7 +13,6 @@ class CopyrightScreen extends StatelessWidget {
   final myroutineUrl;
   const CopyrightScreen({
     required this.grade,
-    this.muscleUrl = 'https://musclewiki.com/',
     this.armUrl =
         'https://www.flaticon.com/kr/free-icon/exercise_863646?term=%EC%9A%B4%EB%8F%99&page=1&position=32&page=1&position=32&related_id=863646&origin=search',
     this.appleUrl =
@@ -40,23 +38,6 @@ class CopyrightScreen extends StatelessWidget {
           children: [
             Text('저작권 출처', style: TextStyle(fontSize: 25.0)),
             SizedBox(height: 8.0),
-            Container(
-              height: 50.0,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      launchBrowser(muscleUrl);
-                    },
-                    child: Icon(Icons.link),
-                  ),
-                  SizedBox(width: 8.0),
-                  Text('운동 이미지 및 설명'),
-                ],
-              ),
-            ),
             Container(
               height: 50.0,
               width: double.infinity,
