@@ -20,7 +20,7 @@ class MyText extends StatelessWidget {
   const MyText({
     required this.text,
     required this.grade,
-    this.size = "15",
+    this.size = "18",
     Key? key,
   }) : super(key: key);
 

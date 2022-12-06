@@ -23,7 +23,7 @@ class SearchName extends StatelessWidget {
     return Card(
       elevation: 0,
       child: ListTile(
-        title: Text(name),
+        title: Text(name, style: TextStyle(fontSize: 18.0)),
         onTap: () async {
           var url = Uri.parse("http://${IP_ADDRESS}/exercise_guide.php");
           /*

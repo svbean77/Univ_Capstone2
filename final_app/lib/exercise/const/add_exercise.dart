@@ -61,7 +61,7 @@ class _AddExerciseState extends State<AddExercise> {
         children: [
           Text(
             '운동 추가하기',
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold),
           ),
           FormField(builder: (FormFieldState<String> state) {
             return InputDecorator(
@@ -119,7 +119,8 @@ class _AddExerciseState extends State<AddExercise> {
               ),
             );
           }),
-          Text('횟수 및 시간', style: TextStyle(fontSize: 20.0)),
+          Text('횟수 및 시간',
+              style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold)),
           Container(
             width: MediaQuery.of(context).size.width,
             height: 50.0,
@@ -164,7 +165,8 @@ class _AddExerciseState extends State<AddExercise> {
                   print(selectedExercise);
                   if (_controller.text.toString() != "" &&
                       selectedExercise != null) {
-                    var url = Uri.parse("http://${IP_ADDRESS}/test_add_exercise.php");
+                    var url =
+                        Uri.parse("http://${IP_ADDRESS}/test_add_exercise.php");
                     /*
                     var url = Uri.http(
                         IP_ADDRESS, '/test_add_exercise.php', {'q': '{http}'});
@@ -184,10 +186,10 @@ class _AddExerciseState extends State<AddExercise> {
                         '모든 칸을 채워주세요.',
                         PRIMARY_COLOR[widget.grade],
                         (widget.grade == 0 ||
-                            widget.grade == 1 ||
-                            widget.grade == 2 ||
-                            widget.grade == 4 ||
-                            widget.grade == 8)
+                                widget.grade == 1 ||
+                                widget.grade == 2 ||
+                                widget.grade == 4 ||
+                                widget.grade == 8)
                             ? Colors.black
                             : Colors.white);
                   }

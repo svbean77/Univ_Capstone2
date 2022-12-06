@@ -63,7 +63,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
                   Text(
                     '${widget.data[0].routine}',
                     style:
-                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 16.0),
                   for (int i = 0; i < widget.data.length; i++)
@@ -79,7 +79,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
                 ],
               )
             : Center(
-                child: Text('운동이 없습니다.'),
+                child: Text('운동이 없습니다.', style: TextStyle(fontSize: 18.0)),
               ),
       ),
     );

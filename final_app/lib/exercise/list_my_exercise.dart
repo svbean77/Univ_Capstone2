@@ -140,7 +140,7 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                               Text(
                                 widget.routine,
                                 style: TextStyle(
-                                    fontSize: 25.0,
+                                    fontSize: 28.0,
                                     fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 8.0),
@@ -163,8 +163,9 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                               children: [
                                                 Text(
                                                     '오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!',
-                                                    textAlign:
-                                                        TextAlign.center),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontSize: 18.0)),
                                                 SizedBox(height: 8.0),
                                                 ElevatedButton(
                                                   onPressed: () {
@@ -193,7 +194,8 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                               SizedBox(height: 16.0),
                               snapshot.data.result!.length == 0
                                   ? Center(
-                                      child: Text('운동이 없습니다.'),
+                                      child: Text('운동이 없습니다.',
+                                          style: TextStyle(fontSize: 18.0)),
                                     )
                                   : Container(),
                               for (int i = 0;
@@ -251,10 +253,12 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                           children: [
                                             Text(
                                               snapshot.data.result![i].exercise,
-                                              style: TextStyle(fontSize: 20.0),
+                                              style: TextStyle(fontSize: 23.0),
                                             ),
                                             Text(
-                                                'X${snapshot.data.result![i].num}'),
+                                                'X${snapshot.data.result![i].num}',
+                                                style:
+                                                    TextStyle(fontSize: 18.0)),
                                           ],
                                         ),
                                       ),

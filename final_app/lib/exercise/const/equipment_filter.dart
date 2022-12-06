@@ -32,7 +32,7 @@ class EquipmentFilter extends StatelessWidget {
             child: ListTile(
               title: Text(
                 '운동 도구로 고르기',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -40,7 +40,7 @@ class EquipmentFilter extends StatelessWidget {
             Card(
               elevation: 0,
               child: ListTile(
-                title: Text(equipmentLst[i]),
+                title: Text(equipmentLst[i], style: TextStyle(fontSize: 18.0)),
                 onTap: () async {
                   String equipment;
 

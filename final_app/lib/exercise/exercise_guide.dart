@@ -107,7 +107,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
           children: [
             Text(
               '${widget.level} ${widget.muscle} 운동 가이드\n> ${widget.equipment}',
-              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -131,7 +131,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
             if (cnt == 0)
               Expanded(
                 child: Center(
-                  child: Text('운동이 없습니다.'),
+                  child: Text('운동이 없습니다.', style: TextStyle(fontSize: 18.0)),
                 ),
               )
             else

@@ -41,7 +41,7 @@ class SelectMuscle extends StatelessWidget {
                         title: Text(
                           '근육 이름으로 검색',
                           style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                              fontSize: 23.0, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -75,13 +75,13 @@ class SelectMuscle extends StatelessWidget {
           children: [
             Text(
               '$level 근육 부위별 운동',
-              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
             Text(
               '앞모습',
               style: TextStyle(
-                fontSize: 20.0,
+                fontSize: 23.0,
               ),
             ),
             SizedBox(height: 8.0),
@@ -165,7 +165,7 @@ class SelectMuscle extends StatelessWidget {
             SizedBox(height: 50.0),
             Text('뒷모습',
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 23.0,
                 )),
             SizedBox(height: 8.0),
             Row(

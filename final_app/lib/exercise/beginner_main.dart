@@ -28,7 +28,7 @@ class BeginnerMain extends StatelessWidget {
       children: [
         Text(
           '원하는 운동 방법을 \n선택해주세요',
-          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         Row(
@@ -58,7 +58,7 @@ class BeginnerMain extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 4,
                   ),
                   SizedBox(height: 8.0),
-                  Text("부위별 운동", style: TextStyle(fontSize: 20.0)),
+                  Text("부위별 운동", style: TextStyle(fontSize: 23.0)),
                 ],
               ),
             ),
@@ -87,62 +87,12 @@ class BeginnerMain extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 4,
                   ),
                   SizedBox(height: 8.0),
-                  Text("루틴", style: TextStyle(fontSize: 20.0)),
+                  Text("루틴", style: TextStyle(fontSize: 23.0)),
                 ],
               ),
             ),
           ],
         ),
-        /*
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => SelectMuscle(
-                loginID: loginID,
-                level: '초보자',
-                grade: grade,
-              ),
-            ));
-          },
-          child: MyContainer(
-            height: 100.0,
-            width: MediaQuery.of(context).size.width / 1.3,
-            grade: grade,
-            child: Text(
-              '근육 부위별 운동',
-              style: TextStyle(fontSize: 20.0),
-            ),
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => loginID == ""
-                    ? Scaffold(
-                        appBar: MyAppBar(grade: grade),
-                        drawer: MyDrawer(
-                          loginID: loginID,
-                          grade: grade,
-                        ),
-                        body: AfterLogin(),
-                      )
-                    : SelectRoutine(loginID: loginID, grade: grade),
-              ),
-            );
-          },
-          child: MyContainer(
-            height: 100.0,
-            width: MediaQuery.of(context).size.width / 1.3,
-            grade: grade,
-            child: Text(
-              '루틴',
-              style: TextStyle(fontSize: 20.0),
-            ),
-          ),
-        ),
-
-         */
       ],
     );
   }

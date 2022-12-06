@@ -37,7 +37,8 @@ class _ListExerciseState extends State<ListExercise> {
                 children: [
                   Text(
                     widget.data[0].routine,
-                    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 16.0),
                   for (int i = 0; i < widget.data.length; i++)
@@ -51,34 +52,18 @@ class _ListExerciseState extends State<ListExercise> {
                             color: PRIMARY_COLOR[widget.grade],
                           ),
                         ),
-                        child: IntrinsicHeight(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(widget.data[i].exercise,
-                                style: TextStyle(fontSize: 20.0),),
-                              Text('X${widget.data[i].num}'),
-                            ],
-                          ),
-                        ),
-                      ),
-                        /*
-                        MyContainer(
-                        height: 70.0,
-                        width: double.infinity,
-                        grade: widget.grade,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               widget.data[i].exercise,
-                              style: TextStyle(fontSize: 20.0),
+                              style: TextStyle(fontSize: 23.0),
                             ),
-                            Text(widget.data[i].num),
+                            Text('X${widget.data[i].num}',
+                                style: TextStyle(fontSize: 18.0)),
                           ],
                         ),
                       ),
-                         */
                     ),
                 ],
               ),

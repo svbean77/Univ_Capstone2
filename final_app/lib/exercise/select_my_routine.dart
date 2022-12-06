@@ -103,7 +103,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                           children: [
                             Text(
                               '내 루틴 만들기',
-                              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 28.0, fontWeight: FontWeight.bold),
                             ),
                             GestureDetector(
                               child: Icon(Icons.question_mark),
@@ -120,7 +121,9 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text('오른쪽에서 왼쪽으로 밀면\n루틴이 삭제됩니다!',
-                                                textAlign: TextAlign.center),
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    TextStyle(fontSize: 18.0)),
                                             SizedBox(height: 8.0),
                                             ElevatedButton(
                                               onPressed: () {
@@ -148,7 +151,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                         SizedBox(height: 16.0),
                         snapshot.data.result!.length == 0
                             ? Center(
-                                child: Text('루틴이 없습니다.'),
+                                child: Text('루틴이 없습니다.', style: TextStyle(fontSize: 18.0)),
                               )
                             : Container(),
                         for (int i = 0; i < snapshot.data.result!.length; i++)
@@ -181,7 +184,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                   grade: widget.grade,
                                   child: Text(
                                     snapshot.data!.result![i]!.routine,
-                                    style: TextStyle(fontSize: 20.0),
+                                    style: TextStyle(fontSize: 23.0),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),

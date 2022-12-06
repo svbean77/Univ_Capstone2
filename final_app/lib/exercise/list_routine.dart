@@ -38,12 +38,12 @@ class _ListRoutineState extends State<ListRoutine> {
           children: [
             Text(
               '${widget.title} 루틴 선택',
-              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
             widget.data.result!.length == 0
                 ? Center(
-                    child: Text('루틴이 없습니다.'),
+                    child: Text('루틴이 없습니다.', style: TextStyle(fontSize: 18.0)),
                   )
                 : Container(),
             for (int i = 0; i < widget.data.result!.length; i++)
@@ -56,7 +56,7 @@ class _ListRoutineState extends State<ListRoutine> {
                     grade: widget.grade,
                     child: Text(
                       '(${widget.data.result![i].time}분) ${widget.data.result![i].routine}',
-                      style: TextStyle(fontSize: 20.0),
+                      style: TextStyle(fontSize: 23.0),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

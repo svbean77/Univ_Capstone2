@@ -30,9 +30,7 @@ class SelectRoutineContainer extends StatelessWidget {
           width: 100.0,
           grade: grade,
           child: Center(
-            child: Text(
-              title,
-            ),
+            child: Text(title, style: TextStyle(fontSize: 18.0)),
           ),
         ),
         onTap: () async {
