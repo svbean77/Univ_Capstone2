@@ -12,8 +12,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: MyText(
-          text: '득근득근', grade: grade, size: "20.0"),
+      title: Text("득근득근",
+          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
       actions: [
         GestureDetector(
           onTap: () {
@@ -21,7 +21,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 MaterialPageRoute(
                   builder: (BuildContext context) => HomeScreen(),
                 ),
-                    (route) => false);
+                (route) => false);
           },
           child: Icon(Icons.home),
         ),
@@ -33,10 +33,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       iconTheme: IconThemeData(
           color: (grade == 0 ||
-              grade == 1 ||
-              grade == 2 ||
-              grade == 4 ||
-              grade == 8)
+                  grade == 1 ||
+                  grade == 2 ||
+                  grade == 4 ||
+                  grade == 8)
               ? Colors.black
               : Colors.white),
     );
