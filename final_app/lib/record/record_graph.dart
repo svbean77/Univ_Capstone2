@@ -97,7 +97,9 @@ class _RecordGraphState extends State<RecordGraph> {
 
             return ListView(
               children: [
-                Text('체중', style: TextStyle(fontSize: 25.0)),
+                Text('체중',
+                    style:
+                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
                 SizedBox(height: 16.0),
                 if (snapshot.hasData)
                   SingleChildScrollView(

@@ -64,13 +64,13 @@ class _ChallengeDetailState extends State<ChallengeDetail> {
                 children: [
                   Text('제목',
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.w600)),
+                          fontSize: 20.0, fontWeight: FontWeight.bold)),
                   SizedBox(height: 8.0),
                   Text(widget.data.title, style: TextStyle(fontSize: 20.0)),
                   SizedBox(height: 16.0),
                   Text('내용',
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.w600)),
+                          fontSize: 20.0, fontWeight: FontWeight.bold)),
                   SizedBox(height: 8.0),
                   Text(widget.data.content),
                   SizedBox(height: 8.0),

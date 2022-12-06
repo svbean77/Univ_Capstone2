@@ -32,7 +32,7 @@ class EquipmentFilter extends StatelessWidget {
             child: ListTile(
               title: Text(
                 '운동 도구로 고르기',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -61,7 +61,8 @@ class EquipmentFilter extends StatelessWidget {
                   } else {
                     equipment = '스트레칭';
                   }
-                  var url = Uri.parse("http://${IP_ADDRESS}/exercise_guide.php");
+                  var url =
+                      Uri.parse("http://${IP_ADDRESS}/exercise_guide.php");
                   /*
                   var url = Uri.http(
                       IP_ADDRESS, '/exercise_guide.php', {'q': '{http}'});
@@ -72,20 +73,21 @@ class EquipmentFilter extends StatelessWidget {
                     "equipment": equipment.toString(),
                     "difficulty": level.toString(),
                   });
-                  var jsondata = jsonDecode(json.decode(json.encode(response.body)));
+                  var jsondata =
+                      jsonDecode(json.decode(json.encode(response.body)));
 
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => ExerciseGuide(
-                          level: level,
-                          jsondata: jsondata,
-                          muscle: muscle,
-                          equipment: equipment,
-                          loginID: loginID,
-                          grade: grade,
-                        ),
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ExerciseGuide(
+                        level: level,
+                        jsondata: jsondata,
+                        muscle: muscle,
+                        equipment: equipment,
+                        loginID: loginID,
+                        grade: grade,
                       ),
-                    );
+                    ),
+                  );
                 },
               ),
             ),

@@ -107,9 +107,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
           children: [
             Text(
               '${widget.level} ${widget.muscle} 운동 가이드\n> ${widget.equipment}',
-              style: TextStyle(
-                fontSize: 25.0,
-              ),
+              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(

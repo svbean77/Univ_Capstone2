@@ -173,7 +173,10 @@ class _FriendsMainState extends State<FriendsMain> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: snapshot.hasData
                           ? [
-                              Text('친구목록', style: TextStyle(fontSize: 25.0)),
+                              Text('친구목록',
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold)),
                               Expanded(
                                 child: Container(
                                   height:
@@ -213,7 +216,10 @@ class _FriendsMainState extends State<FriendsMain> {
                                         ),
                                 ),
                               ),
-                              Text('친구요청', style: TextStyle(fontSize: 25.0)),
+                              Text('친구요청',
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold)),
                               Container(
                                 height: MediaQuery.of(context).size.height / 5,
                                 padding: EdgeInsets.symmetric(vertical: 8.0),

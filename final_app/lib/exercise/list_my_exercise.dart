@@ -139,7 +139,9 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                             children: [
                               Text(
                                 widget.routine,
-                                style: TextStyle(fontSize: 25.0),
+                                style: TextStyle(
+                                    fontSize: 25.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 8.0),
                               Align(

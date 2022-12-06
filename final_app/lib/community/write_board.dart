@@ -49,7 +49,9 @@ class _WriteBoardState extends State<WriteBoard> {
               width: double.infinity,
               child: Row(
                 children: [
-                  Text('제목', style: TextStyle(fontSize: 20.0)),
+                  Text('제목',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold)),
                   SizedBox(width: 16.0),
                   Expanded(
                     child: Container(
@@ -73,7 +75,8 @@ class _WriteBoardState extends State<WriteBoard> {
               ),
             ),
             SizedBox(height: 16.0),
-            Text('내용', style: TextStyle(fontSize: 20.0)),
+            Text('내용',
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 8.0),
             Container(
               height: 300.0,
@@ -195,15 +198,14 @@ class _WriteBoardState extends State<WriteBoard> {
                 print(contentController.text.toString().length);
                 if (titleController.text.toString() != "" &&
                     contentController.text.toString() != "") {
-
                   MyToast(
                       '업로드!',
                       PRIMARY_COLOR[widget.grade],
                       (widget.grade == 0 ||
-                          widget.grade == 1 ||
-                          widget.grade == 2 ||
-                          widget.grade == 4 ||
-                          widget.grade == 8)
+                              widget.grade == 1 ||
+                              widget.grade == 2 ||
+                              widget.grade == 4 ||
+                              widget.grade == 8)
                           ? Colors.black
                           : Colors.white);
 

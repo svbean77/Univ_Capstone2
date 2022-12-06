@@ -36,12 +36,12 @@ class ExerciseCard extends StatelessWidget {
           SizedBox(height: 8.0),
           Text(
             '$exerciseName',
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 8.0),
-          Text('난이도: $difficulty',),
+          Text(
+            '난이도: $difficulty',
+          ),
           SizedBox(height: 8.0),
           Text(
             exerciseStep.replaceAll('@', '\n'),

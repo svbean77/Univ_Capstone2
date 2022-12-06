@@ -37,9 +37,12 @@ class SelectMuscle extends StatelessWidget {
                   children: [
                     Card(
                       elevation: 0,
-                      child: Text(
-                        '근육 이름으로 검색',
-                        style: TextStyle(fontSize: 20.0),
+                      child: ListTile(
+                        title: Text(
+                          '근육 이름으로 검색',
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                     for (int i = 0; i < muscleLst.length; i++)
@@ -58,10 +61,10 @@ class SelectMuscle extends StatelessWidget {
         child: Icon(
           Icons.search,
           color: (grade == 0 ||
-              grade == 1 ||
-              grade == 2 ||
-              grade == 4 ||
-              grade == 8)
+                  grade == 1 ||
+                  grade == 2 ||
+                  grade == 4 ||
+                  grade == 8)
               ? Colors.black
               : Colors.white,
         ),
@@ -72,9 +75,7 @@ class SelectMuscle extends StatelessWidget {
           children: [
             Text(
               '$level 근육 부위별 운동',
-              style: TextStyle(
-                fontSize: 25.0,
-              ),
+              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
             Text(

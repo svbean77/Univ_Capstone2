@@ -36,12 +36,12 @@ class _SelectRoutineState extends State<SelectRoutine> {
           children: [
             Text(
               '루틴 선택',
-              style: TextStyle(fontSize: 25.0),
+              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
             Text(
               '시간별 루틴 선택',
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             Container(
               height: 120.0,
@@ -61,7 +61,7 @@ class _SelectRoutineState extends State<SelectRoutine> {
             SizedBox(height: 16.0),
             Text(
               '부위별 루틴 선택',
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             Container(
               height: 360.0,
@@ -97,7 +97,7 @@ class _SelectRoutineState extends State<SelectRoutine> {
             SizedBox(height: 16.0),
             Text(
               '분할별 루틴 선택',
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             Container(
               height: 120.0,

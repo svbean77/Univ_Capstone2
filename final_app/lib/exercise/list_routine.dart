@@ -38,7 +38,7 @@ class _ListRoutineState extends State<ListRoutine> {
           children: [
             Text(
               '${widget.title} 루틴 선택',
-              style: TextStyle(fontSize: 25.0),
+              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
             widget.data.result!.length == 0

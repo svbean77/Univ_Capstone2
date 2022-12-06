@@ -98,7 +98,9 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('3대 챌린지 기록', style: TextStyle(fontSize: 25.0)),
+                        Text('3대 챌린지 기록',
+                            style: TextStyle(
+                                fontSize: 25.0, fontWeight: FontWeight.bold)),
                         SizedBox(height: 16.0),
                         Expanded(
                             child: ListView(children: [

@@ -59,7 +59,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                 Text(
                   '내 정보 수정',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 40.0,
@@ -69,7 +69,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('아이디', style: TextStyle(fontSize: 16.0)),
+                      child: Text('아이디', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Text(widget.username),
@@ -83,7 +83,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('비밀번호', style: TextStyle(fontSize: 16.0)),
+                      child: Text('비밀번호', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -135,7 +135,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('닉네임', style: TextStyle(fontSize: 16.0)),
+                      child: Text('닉네임', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -173,7 +173,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('나이', style: TextStyle(fontSize: 16.0)),
+                      child: Text('나이', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(

@@ -37,7 +37,7 @@ class _ListExerciseState extends State<ListExercise> {
                 children: [
                   Text(
                     widget.data[0].routine,
-                    style: TextStyle(fontSize: 25.0),
+                    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 16.0),
                   for (int i = 0; i < widget.data.length; i++)

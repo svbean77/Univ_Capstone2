@@ -28,7 +28,7 @@ class BeginnerMain extends StatelessWidget {
       children: [
         Text(
           '원하는 운동 방법을 \n선택해주세요',
-          style: TextStyle(fontSize: 25.0),
+          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         Row(

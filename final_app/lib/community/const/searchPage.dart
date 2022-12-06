@@ -47,9 +47,9 @@ class _SearchPageState extends State<SearchPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('${widget.searchfor} 검색 결과', style: TextStyle(fontSize: 25.0)),
+            Text('${widget.searchfor} 검색 결과',
+                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 16.0),
-
             Expanded(
               child: Container(
                 child: widget.data.length == 0
@@ -63,8 +63,7 @@ class _SearchPageState extends State<SearchPage> {
                           for (int i = 0; i < widget.data.length; i++)
                             GestureDetector(
                               child: ContentsList(
-                                  data: widget.data[i],
-                                  grade: widget.grade),
+                                  data: widget.data[i], grade: widget.grade),
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(

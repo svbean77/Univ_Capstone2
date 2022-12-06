@@ -34,7 +34,8 @@ class UserInfo extends StatelessWidget {
           SizedBox(height: 8.0),
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            child: Text('운동기록', style: TextStyle(fontSize: 25.0)),
+            child: Text('운동기록',
+                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
           ),
           Expanded(
             child: recorddata.length == 0
@@ -72,16 +73,18 @@ class UserInfo extends StatelessWidget {
                                           children: [
                                             Container(
                                               padding: EdgeInsets.all(8.0),
-                                              width: MediaQuery.of(context).size.width,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
                                                   color: PRIMARY_COLOR[grade],
                                                 ),
                                               ),
                                               child: IntrinsicHeight(
-                                                child: Text(recorddata[i].comment),
+                                                child:
+                                                    Text(recorddata[i].comment),
                                               ),
-
                                             ),
                                             SizedBox(height: 16.0),
                                             ElevatedButton(

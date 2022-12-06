@@ -78,7 +78,9 @@ class _MyPageState extends State<MyPage> {
                             loginID: widget.loginID,
                             grade: widget.grade),
                         SizedBox(height: 16.0),
-                        Text('앱 테마 선택', style: TextStyle(fontSize: 25.0)),
+                        Text('앱 테마 선택',
+                            style: TextStyle(
+                                fontSize: 25.0, fontWeight: FontWeight.bold)),
                         Container(
                           height: 70.0,
                           child: ListView(

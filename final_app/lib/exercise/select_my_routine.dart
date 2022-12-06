@@ -103,7 +103,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                           children: [
                             Text(
                               '내 루틴 만들기',
-                              style: TextStyle(fontSize: 25.0),
+                              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                             ),
                             GestureDetector(
                               child: Icon(Icons.question_mark),
