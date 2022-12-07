@@ -89,6 +89,7 @@ class _QnABoardState extends State<QnABoard> {
                                           ? Colors.grey.withOpacity(0.2)
                                           : PRIMARY_COLOR[widget.grade],
                                     ),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: TextField(
                                     controller: controller,

@@ -90,6 +90,7 @@ class _FreeBoardState extends State<FreeBoard> {
                                           ? Colors.grey.withOpacity(0.2)
                                           : PRIMARY_COLOR[widget.grade],
                                     ),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: TextField(
                                     controller: controller,

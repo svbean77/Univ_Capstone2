@@ -54,6 +54,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
                               ? Colors.grey.withOpacity(0.2)
                               : PRIMARY_COLOR[widget.grade],
                         ),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: TextFormField(
                         controller: titleController,
@@ -76,6 +77,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: widget.grade == 0
                         ? Colors.grey.withOpacity(0.2)

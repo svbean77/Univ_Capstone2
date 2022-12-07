@@ -114,10 +114,19 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                             GestureDetector(
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: MyContainer(
+                                child: Container(
                                   height: 70.0,
                                   width: double.infinity,
-                                  grade: widget.grade,
+                                  padding: EdgeInsets.all(8.0),
+                                  alignment: Alignment.centerLeft,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color: PRIMARY_COLOR[widget.grade]
+                                          .withOpacity(0.5),
+                                    ),
+                                    color: Colors.white,
+                                  ),
                                   child: Text(
                                     snapshot.data.result![i].title,
                                     style: TextStyle(fontSize: 23.0),
