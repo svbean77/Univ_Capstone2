@@ -45,20 +45,26 @@ class _ListExerciseState extends State<ListExercise> {
                     Padding(
                       padding: EdgeInsets.only(bottom: 8.0),
                       child: Container(
+                        height: 80.0,
                         width: double.infinity,
-                        padding: EdgeInsets.all(8.0),
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: PRIMARY_COLOR[widget.grade],
+                            color: PRIMARY_COLOR[widget.grade].withOpacity(0.5),
                           ),
+                          color: Colors.white,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               widget.data[i].exercise,
                               style: TextStyle(fontSize: 23.0),
                             ),
+                            SizedBox(height: 4.0),
                             Text('X${widget.data[i].num}',
                                 style: TextStyle(fontSize: 18.0)),
                           ],

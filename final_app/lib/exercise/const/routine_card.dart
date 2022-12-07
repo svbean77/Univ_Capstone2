@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screen/const/grade_colors.dart';
+
 class RoutineCard extends StatelessWidget {
   final exerciseName;
   final exerciseImage1;
@@ -7,6 +9,7 @@ class RoutineCard extends StatelessWidget {
   final exerciseStep;
   final number;
   final idx;
+  final grade;
 
   const RoutineCard({
     required this.exerciseName,
@@ -15,6 +18,7 @@ class RoutineCard extends StatelessWidget {
     required this.exerciseImage2,
     required this.exerciseStep,
     required this.idx,
+    required this.grade,
     Key? key,
   }) : super(key: key);
 
@@ -36,11 +40,26 @@ class RoutineCard extends StatelessWidget {
             '$idx. $exerciseName',
             style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold),
           ),
-          Text('X$number',
+          SizedBox(height: 4.0),
+          Text('X $number',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
           SizedBox(height: 16.0),
-          Text(exerciseStep.replaceAll("@", "\n\n"),
-              style: TextStyle(fontSize: 18.0)),
+          Container(
+            //color: Colors.grey,
+            padding: EdgeInsets.all(8.0),
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: PRIMARY_COLOR[grade].withOpacity(0.5),
+              ),
+              color: Colors.white,
+            ),
+            child: IntrinsicHeight(
+              child: Text(exerciseStep.replaceAll("@", "\n\n"),
+                  style: TextStyle(fontSize: 18.0)),
+            ),
+          ),
           SizedBox(height: 16.0),
         ],
       ),

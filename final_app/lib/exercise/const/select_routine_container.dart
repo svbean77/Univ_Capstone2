@@ -25,13 +25,18 @@ class SelectRoutineContainer extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: 8.0, top: 10.0, bottom: 10.0),
       child: GestureDetector(
-        child: MyContainer(
+        child: Container(
           height: 100.0,
           width: 100.0,
-          grade: grade,
-          child: Center(
-            child: Text(title, style: TextStyle(fontSize: 18.0)),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(
+              color: PRIMARY_COLOR[grade].withOpacity(0.5),
+            ),
+            color: PRIMARY_COLOR[grade].withOpacity(0.2),
           ),
+          child: Text(title, style: TextStyle(fontSize: 18.0)),
         ),
         onTap: () async {
           var url = Uri.parse("http://${IP_ADDRESS}/test_select_routine.php");

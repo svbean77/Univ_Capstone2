@@ -239,48 +239,36 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                   child: Padding(
                                     padding: EdgeInsets.only(bottom: 8.0),
                                     child: Container(
+                                      height: 80.0,
                                       width: double.infinity,
-                                      padding: EdgeInsets.all(8.0),
+                                      alignment: Alignment.centerLeft,
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 8.0),
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
-                                          color: PRIMARY_COLOR[widget.grade],
+                                          color: PRIMARY_COLOR[widget.grade]
+                                              .withOpacity(0.5),
                                         ),
+                                        color: Colors.white,
                                       ),
-                                      child: IntrinsicHeight(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              snapshot.data.result![i].exercise,
-                                              style: TextStyle(fontSize: 23.0),
-                                            ),
-                                            Text(
-                                                'X${snapshot.data.result![i].num}',
-                                                style:
-                                                    TextStyle(fontSize: 18.0)),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    /*
-                                      MyContainer(
-                                      height: 70.0,
-                                      width: double.infinity,
-                                      grade: widget.grade,
-                                      child: Row(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             snapshot.data.result![i].exercise,
-                                            style: TextStyle(fontSize: 20.0),
+                                            style: TextStyle(fontSize: 23.0),
                                           ),
-                                          Text(snapshot.data.result![i].num),
+                                          SizedBox(height: 4.0),
+                                          Text(
+                                              'X ${snapshot.data.result![i].num}',
+                                              style: TextStyle(fontSize: 18.0)),
                                         ],
                                       ),
                                     ),
-                                       */
                                   ),
                                 ),
                             ],

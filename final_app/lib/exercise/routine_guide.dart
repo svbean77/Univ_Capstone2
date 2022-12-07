@@ -74,6 +74,7 @@ class _RoutineGuideState extends State<RoutineGuide> {
                       exerciseImage2: widget.data[i].image2,
                       exerciseStep: widget.data[i].step,
                       idx: i + 1,
+                      grade: widget.grade,
                     ),
                   SizedBox(height: 60.0),
                 ],

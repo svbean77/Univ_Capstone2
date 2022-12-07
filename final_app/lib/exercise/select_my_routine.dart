@@ -151,7 +151,8 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                         SizedBox(height: 16.0),
                         snapshot.data.result!.length == 0
                             ? Center(
-                                child: Text('루틴이 없습니다.', style: TextStyle(fontSize: 18.0)),
+                                child: Text('루틴이 없습니다.',
+                                    style: TextStyle(fontSize: 18.0)),
                               )
                             : Container(),
                         for (int i = 0; i < snapshot.data.result!.length; i++)
@@ -178,10 +179,20 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                             child: GestureDetector(
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 8.0),
-                                child: MyContainer(
+                                child: Container(
                                   height: 70.0,
                                   width: double.infinity,
-                                  grade: widget.grade,
+                                  alignment: Alignment.centerLeft,
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 8.0),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color: PRIMARY_COLOR[widget.grade]
+                                          .withOpacity(0.5),
+                                    ),
+                                    color: Colors.white,
+                                  ),
                                   child: Text(
                                     snapshot.data!.result![i]!.routine,
                                     style: TextStyle(fontSize: 23.0),

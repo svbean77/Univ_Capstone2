@@ -140,13 +140,15 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
                   children: [
                     for (int i = 0; i < cnt; i++)
                       ExerciseCard(
-                          exerciseStep: data.result![i].step!,
-                          exerciseName: data.result![i].exercise!,
-                          exerciseImage1: data.result![i].image1!,
-                          difficulty: data.result![i].difficulty!,
-                          exerciseImage2: data.result![i].image2!,
-                          equipment: data.result![i].equipment!,
-                          muscleName: data.result![i].muscle!),
+                        exerciseStep: data.result![i].step!,
+                        exerciseName: data.result![i].exercise!,
+                        exerciseImage1: data.result![i].image1!,
+                        difficulty: data.result![i].difficulty!,
+                        exerciseImage2: data.result![i].image2!,
+                        equipment: data.result![i].equipment!,
+                        muscleName: data.result![i].muscle!,
+                        grade: widget.grade,
+                      ),
                     SizedBox(height: 120.0),
                   ],
                 ),
