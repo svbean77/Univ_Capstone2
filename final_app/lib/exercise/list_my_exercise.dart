@@ -309,15 +309,17 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                         ),
                       ],
                     )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(),
-                        SizedBox(height: 8.0),
-                        Text('데이터를 불러오고 있습니다..'),
-                      ],
-                    ),
+                  : Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(height: 8.0),
+                          Text('데이터를 불러오고 있습니다..'),
+                        ],
+                      ),
+                  ),
             ),
           );
         });

@@ -44,11 +44,6 @@ class UserInfo extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.center,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: PRIMARY_COLOR[grade],
-                        ),
-                      ),
                       child:
                           Text('운동 기록이 없습니다', style: TextStyle(fontSize: 18.0)),
                     ),
