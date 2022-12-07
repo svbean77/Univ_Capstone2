@@ -52,21 +52,16 @@ class _SignInState extends State<SignIn> {
                 Container(
                   padding:
                       EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white,
-                    ),
-                  ),
                   child: TextField(
                     controller: _idController,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
                       hintText: '아이디를 입력해주세요',
+                      hintStyle: TextStyle(fontSize: 18.0),
                       icon: Icon(
                         Icons.person,
                         color: Colors.grey,
                       ),
-                      border: InputBorder.none,
                     ),
                   ),
                 ),
@@ -76,36 +71,32 @@ class _SignInState extends State<SignIn> {
                 Container(
                   padding:
                       EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white,
-                    ),
-                  ),
                   child: TextField(
                     controller: _pwController,
                     obscureText: isPasswordVisible ? false : true,
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 10.0),
-                        hintText: '비밀번호를 입력해주세요',
-                        icon: Icon(
-                          Icons.lock,
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 10.0),
+                      hintText: '비밀번호를 입력해주세요',
+                      hintStyle: TextStyle(fontSize: 18.0),
+                      icon: Icon(
+                        Icons.lock,
+                        color: Colors.grey,
+                      ),
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
+                        },
+                        child: Icon(
+                          isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                           color: Colors.grey,
                         ),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isPasswordVisible = !isPasswordVisible;
-                            });
-                          },
-                          child: Icon(
-                            isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        border: InputBorder.none),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -118,11 +109,6 @@ class _SignInState extends State<SignIn> {
                   child: Container(
                     height: 50.0,
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.white,
-                      ),
-                    ),
                     child: Center(
                       child: Text(
                         '로그인',
@@ -150,11 +136,6 @@ class _SignInState extends State<SignIn> {
                     height: 50.0,
                     width: double.infinity,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.white,
-                      ),
-                    ),
                     child: Text(
                       '회원가입',
                       style: TextStyle(

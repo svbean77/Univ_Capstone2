@@ -216,11 +216,6 @@ class _SignUpState extends State<SignUp> {
                   child: Container(
                     height: 50.0,
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.white,
-                      ),
-                    ),
                     child: Center(
                       child: Text(
                         '회원가입',
@@ -247,11 +242,6 @@ class _SignUpState extends State<SignUp> {
                     height: 50.0,
                     width: double.infinity,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.white,
-                      ),
-                    ),
                     child: Text(
                       '로그인 하러 가기',
                       style: TextStyle(
