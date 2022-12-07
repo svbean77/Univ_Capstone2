@@ -98,6 +98,7 @@ class _FreeBoardState extends State<FreeBoard> {
                                       contentPadding: EdgeInsets.symmetric(
                                           horizontal: 10.0),
                                       hintText: '제목으로 검색',
+                                      hintStyle: TextStyle(fontSize: 18.0),
                                       border: InputBorder.none,
                                     ),
                                   ),

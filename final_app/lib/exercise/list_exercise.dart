@@ -31,16 +31,16 @@ class _ListExerciseState extends State<ListExercise> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              widget.data[0].routine,
+              style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16.0),
             Expanded(
               child: ListView(
                 children: [
-                  Text(
-                    widget.data[0].routine,
-                    style:
-                        TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 16.0),
                   for (int i = 0; i < widget.data.length; i++)
                     Padding(
                       padding: EdgeInsets.only(bottom: 8.0),
@@ -61,7 +61,7 @@ class _ListExerciseState extends State<ListExercise> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              widget.data[i].exercise,
+                              '${i + 1}. ${widget.data[i].exercise}',
                               style: TextStyle(fontSize: 23.0),
                             ),
                             SizedBox(height: 4.0),
@@ -74,23 +74,30 @@ class _ListExerciseState extends State<ListExercise> {
                 ],
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: PRIMARY_COLOR[widget.grade],
-                elevation: 0,
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => RoutineGuide(
-                      data: widget.data,
-                      loginID: widget.loginID,
-                      grade: widget.grade,
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(width: 10.0),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: PRIMARY_COLOR[widget.grade],
+                    elevation: 0,
                   ),
-                );
-              },
-              child: MyText(text: "운동 시작", grade: widget.grade),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => RoutineGuide(
+                          data: widget.data,
+                          loginID: widget.loginID,
+                          grade: widget.grade,
+                        ),
+                      ),
+                    );
+                  },
+                  child: MyText(text: "운동 시작", grade: widget.grade),
+                ),
+                SizedBox(width: 10.0),
+              ],
             ),
           ],
         ),

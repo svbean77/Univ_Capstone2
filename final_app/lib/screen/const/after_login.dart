@@ -12,7 +12,7 @@ class AfterLogin extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('로그인 후 사용 가능합니다.', style: TextStyle(fontSize: 20.0)),
+            Text('로그인 후 사용 가능합니다.', style: TextStyle(fontSize: 23.0)),
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
@@ -22,7 +22,8 @@ class AfterLogin extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('로그인 하러 가기', style: TextStyle(color: Colors.black)),
+              child: Text('로그인 하러 가기',
+                  style: TextStyle(color: Colors.black, fontSize: 18.0)),
               style: ElevatedButton.styleFrom(
                 primary: Colors.grey[200],
                 elevation: 0,

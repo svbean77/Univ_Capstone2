@@ -97,6 +97,7 @@ class _QnABoardState extends State<QnABoard> {
                                       contentPadding: EdgeInsets.symmetric(
                                           horizontal: 10.0),
                                       hintText: '제목으로 검색',
+                                      hintStyle: TextStyle(fontSize: 18.0),
                                       border: InputBorder.none,
                                     ),
                                   ),
@@ -161,7 +162,8 @@ class _QnABoardState extends State<QnABoard> {
                             child: snapshot.data[0].result!.length == 0
                                 ? Container(
                                     child: Center(
-                                      child: Text('게시글이 없습니다.',style: TextStyle(fontSize: 18.0)),
+                                      child: Text('게시글이 없습니다.',
+                                          style: TextStyle(fontSize: 18.0)),
                                     ),
                                   )
                                 : ListView(

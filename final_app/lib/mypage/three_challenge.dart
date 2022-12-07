@@ -103,51 +103,58 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                 fontSize: 28.0, fontWeight: FontWeight.bold)),
                         SizedBox(height: 16.0),
                         Expanded(
-                            child: ListView(children: [
-                          snapshot.data.result!.length == 0
+                          child: snapshot.data.result!.length == 0
                               ? Center(
-                                  child: Text('챌린지 기록이 없습니다.',
+                                  child: Text("챌린지 기록이 없습니다.",
                                       style: TextStyle(fontSize: 18.0)),
                                 )
-                              : Container(),
-                          for (int i = 0; i < snapshot.data.result!.length; i++)
-                            GestureDetector(
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Container(
-                                  height: 70.0,
-                                  width: double.infinity,
-                                  padding: EdgeInsets.all(8.0),
-                                  alignment: Alignment.centerLeft,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
-                                      color: PRIMARY_COLOR[widget.grade]
-                                          .withOpacity(0.5),
-                                    ),
-                                    color: Colors.white,
-                                  ),
-                                  child: Text(
-                                    snapshot.data.result![i].title,
-                                    style: TextStyle(fontSize: 23.0),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                              : ListView(
+                                  children: [
+                                    for (int i = 0;
+                                        i < snapshot.data.result!.length;
+                                        i++)
+                                      GestureDetector(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0),
+                                          child: Container(
+                                            height: 70.0,
+                                            width: double.infinity,
+                                            padding: EdgeInsets.all(8.0),
+                                            alignment: Alignment.centerLeft,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              border: Border.all(
+                                                color:
+                                                    PRIMARY_COLOR[widget.grade]
+                                                        .withOpacity(0.5),
+                                              ),
+                                              color: Colors.white,
+                                            ),
+                                            child: Text(
+                                              snapshot.data.result![i].title,
+                                              style: TextStyle(fontSize: 23.0),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  ChallengeDetail(
+                                                loginID: widget.loginID,
+                                                data: snapshot.data.result![i],
+                                                grade: widget.grade,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      )
+                                  ],
                                 ),
-                              ),
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ChallengeDetail(
-                                      loginID: widget.loginID,
-                                      data: snapshot.data.result![i],
-                                      grade: widget.grade,
-                                    ),
-                                  ),
-                                );
-                              },
-                            )
-                        ])),
+                        ),
                       ],
                     )
                   : Container(

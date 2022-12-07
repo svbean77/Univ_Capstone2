@@ -133,169 +133,179 @@ class _ListMyExerciseState extends State<ListMyExercise> {
               padding: const EdgeInsets.all(16.0),
               child: snapshot.hasData
                   ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: ListView(
-                            children: [
-                              Text(
-                                widget.routine,
-                                style: TextStyle(
-                                    fontSize: 28.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(height: 8.0),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: GestureDetector(
-                                  child: Icon(Icons.question_mark),
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      barrierDismissible: true,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          content: Container(
-                                            height: 110.0,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                    '오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontSize: 18.0)),
-                                                SizedBox(height: 8.0),
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: MyText(
-                                                      text: "확인",
-                                                      grade: widget.grade),
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          primary:
-                                                              PRIMARY_COLOR[
-                                                                  widget.grade],
-                                                          elevation: 0),
-                                                ),
-                                              ],
-                                            ),
+                        Text(
+                          widget.routine,
+                          style: TextStyle(
+                              fontSize: 28.0, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 8.0),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            child: Icon(Icons.question_mark),
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: Container(
+                                      height: 110.0,
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text('오른쪽에서 왼쪽으로 밀면\n운동이 삭제됩니다!',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(fontSize: 18.0)),
+                                          SizedBox(height: 8.0),
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: MyText(
+                                                text: "확인",
+                                                grade: widget.grade),
+                                            style: ElevatedButton.styleFrom(
+                                                primary:
+                                                    PRIMARY_COLOR[widget.grade],
+                                                elevation: 0),
                                           ),
-                                          scrollable: true,
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                              SizedBox(height: 16.0),
-                              snapshot.data.result!.length == 0
-                                  ? Center(
-                                      child: Text('운동이 없습니다.',
-                                          style: TextStyle(fontSize: 18.0)),
-                                    )
-                                  : Container(),
-                              for (int i = 0;
-                                  i < snapshot.data.result!.length;
-                                  i++)
-                                Dismissible(
-                                  key: ObjectKey(snapshot.data.result![i].id),
-                                  direction: DismissDirection.endToStart,
-                                  onDismissed:
-                                      (DismissDirection direction) async {
-                                    var url = Uri.parse(
-                                        "http://${IP_ADDRESS}/test_remove_exercise.php");
-                                    /*
+                                        ],
+                                      ),
+                                    ),
+                                    scrollable: true,
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        Expanded(
+                          child: snapshot.data.result!.length == 0
+                              ? Center(
+                                  child: Text("운동이 없습니다.",
+                                      style: TextStyle(fontSize: 18.0)),
+                                )
+                              : ListView(
+                                  children: [
+                                    for (int i = 0;
+                                        i < snapshot.data.result!.length;
+                                        i++)
+                                      Dismissible(
+                                        key: ObjectKey(
+                                            snapshot.data.result![i].id),
+                                        direction: DismissDirection.endToStart,
+                                        onDismissed:
+                                            (DismissDirection direction) async {
+                                          var url = Uri.parse(
+                                              "http://${IP_ADDRESS}/test_remove_exercise.php");
+                                          /*
                                     var url = Uri.http(
                                         IP_ADDRESS,
                                         '/test_remove_exercise.php',
                                         {'q': '{http}'});
 
                                          */
-                                    var response = await http
-                                        .post(url, body: <String, String>{
-                                      "nickname": widget.loginID.toString(),
-                                      "id": snapshot.data.result![i].id
-                                          .toString(),
-                                      "routine": widget.routine.toString(),
-                                    });
-                                    var jsondata = jsonDecode(json
-                                        .decode(json.encode(response.body)));
-                                    if (jsondata == "Success")
-                                      Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              ListMyExercise(
-                                            loginID: widget.loginID,
-                                            routine: widget.routine,
-                                            grade: widget.grade,
+                                          var response = await http
+                                              .post(url, body: <String, String>{
+                                            "nickname":
+                                                widget.loginID.toString(),
+                                            "id": snapshot.data.result![i].id
+                                                .toString(),
+                                            "routine":
+                                                widget.routine.toString(),
+                                          });
+                                          var jsondata = jsonDecode(json.decode(
+                                              json.encode(response.body)));
+                                          if (jsondata == "Success")
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        ListMyExercise(
+                                                  loginID: widget.loginID,
+                                                  routine: widget.routine,
+                                                  grade: widget.grade,
+                                                ),
+                                              ),
+                                            );
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.only(bottom: 8.0),
+                                          child: Container(
+                                            height: 80.0,
+                                            width: double.infinity,
+                                            alignment: Alignment.centerLeft,
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 8.0),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              border: Border.all(
+                                                color:
+                                                    PRIMARY_COLOR[widget.grade]
+                                                        .withOpacity(0.5),
+                                              ),
+                                              color: Colors.white,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  snapshot
+                                                      .data.result![i].exercise,
+                                                  style:
+                                                      TextStyle(fontSize: 23.0),
+                                                ),
+                                                SizedBox(height: 4.0),
+                                                Text(
+                                                    'X ${snapshot.data.result![i].num}',
+                                                    style: TextStyle(
+                                                        fontSize: 18.0)),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      );
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.only(bottom: 8.0),
-                                    child: Container(
-                                      height: 80.0,
-                                      width: double.infinity,
-                                      alignment: Alignment.centerLeft,
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 8.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                          color: PRIMARY_COLOR[widget.grade]
-                                              .withOpacity(0.5),
-                                        ),
-                                        color: Colors.white,
                                       ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            snapshot.data.result![i].exercise,
-                                            style: TextStyle(fontSize: 23.0),
-                                          ),
-                                          SizedBox(height: 4.0),
-                                          Text(
-                                              'X ${snapshot.data.result![i].num}',
-                                              style: TextStyle(fontSize: 18.0)),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  ],
                                 ),
-                            ],
-                          ),
                         ),
                         SizedBox(height: 8.0),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: PRIMARY_COLOR[widget.grade],
-                            elevation: 0,
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (BuildContext context) => RoutineGuide(
-                                  data: snapshot.data.result!,
-                                  loginID: widget.loginID,
-                                  grade: widget.grade,
-                                ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(width: 10.0),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: PRIMARY_COLOR[widget.grade],
+                                elevation: 0,
                               ),
-                            );
-                          },
-                          child: MyText(text: "운동 시작", grade: widget.grade),
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        RoutineGuide(
+                                      data: snapshot.data.result!,
+                                      loginID: widget.loginID,
+                                      grade: widget.grade,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: MyText(text: "운동 시작", grade: widget.grade),
+                            ),
+                            SizedBox(width: 10.0),
+                          ],
                         ),
                       ],
                     )

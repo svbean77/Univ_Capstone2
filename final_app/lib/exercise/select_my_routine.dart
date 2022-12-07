@@ -96,7 +96,7 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
             body: Padding(
               padding: EdgeInsets.all(16.0),
               child: snapshot.hasData
-                  ? ListView(
+                  ? Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,7 +116,9 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                                     return AlertDialog(
                                       content: Container(
                                         height: 110.0,
-                                        width: MediaQuery.of(context).size.width / 2,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                2,
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -150,72 +152,89 @@ class _SelectMyRoutineState extends State<SelectMyRoutine> {
                           ],
                         ),
                         SizedBox(height: 16.0),
-                        snapshot.data.result!.length == 0
-                            ? Center(
-                                child: Text('루틴이 없습니다.',
-                                    style: TextStyle(fontSize: 18.0)),
-                              )
-                            : Container(),
-                        for (int i = 0; i < snapshot.data.result!.length; i++)
-                          Dismissible(
-                            key: ObjectKey(snapshot.data.result![i].id),
-                            direction: DismissDirection.endToStart,
-                            onDismissed: (DismissDirection direction) async {
-                              var url = Uri.parse(
-                                  "http://${IP_ADDRESS}/test_remove_routine.php");
-                              /*
-                              var url = Uri.http(IP_ADDRESS,
-                                  '/test_remove_routine.php', {'q': '{http}'});
+                        Expanded(
+                          child: snapshot.data.result!.length == 0
+                              ? Center(
+                                  child: Text('루틴이 없습니다.',
+                                      style: TextStyle(fontSize: 18.0)),
+                                )
+                              : ListView(
+                                  children: [
+                                    for (int i = 0;
+                                        i < snapshot.data.result!.length;
+                                        i++)
+                                      Dismissible(
+                                        key: ObjectKey(
+                                            snapshot.data.result![i].id),
+                                        direction: DismissDirection.endToStart,
+                                        onDismissed:
+                                            (DismissDirection direction) async {
+                                          var url = Uri.parse(
+                                              "http://${IP_ADDRESS}/test_remove_routine.php");
+                                          /*
+                                    var url = Uri.http(IP_ADDRESS,
+                                        '/test_remove_routine.php', {'q': '{http}'});
 
-                               */
-                              var response =
-                                  await http.post(url, body: <String, String>{
-                                "nickname": widget.loginID.toString(),
-                                "routine":
-                                    snapshot.data.result![i].routine.toString(),
-                              });
-                              var jsondata =
-                                  json.decode(json.encode(response.body));
-                            },
-                            child: GestureDetector(
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Container(
-                                  height: 70.0,
-                                  width: double.infinity,
-                                  alignment: Alignment.centerLeft,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 8.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
-                                      color: PRIMARY_COLOR[widget.grade]
-                                          .withOpacity(0.5),
-                                    ),
-                                    color: Colors.white,
-                                  ),
-                                  child: Text(
-                                    snapshot.data!.result![i]!.routine,
-                                    style: TextStyle(fontSize: 23.0),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                                     */
+                                          var response = await http
+                                              .post(url, body: <String, String>{
+                                            "nickname":
+                                                widget.loginID.toString(),
+                                            "routine": snapshot
+                                                .data.result![i].routine
+                                                .toString(),
+                                          });
+                                          var jsondata = json.decode(
+                                              json.encode(response.body));
+                                        },
+                                        child: GestureDetector(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8.0),
+                                            child: Container(
+                                              height: 70.0,
+                                              width: double.infinity,
+                                              alignment: Alignment.centerLeft,
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8.0),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                border: Border.all(
+                                                  color: PRIMARY_COLOR[
+                                                          widget.grade]
+                                                      .withOpacity(0.5),
+                                                ),
+                                                color: Colors.white,
+                                              ),
+                                              child: Text(
+                                                snapshot
+                                                    .data!.result![i]!.routine,
+                                                style:
+                                                    TextStyle(fontSize: 23.0),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        ListMyExercise(
+                                                  routine: snapshot.data!
+                                                      .result![i]!.routine,
+                                                  loginID: widget.loginID,
+                                                  grade: widget.grade,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                  ],
                                 ),
-                              ),
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ListMyExercise(
-                                      routine:
-                                          snapshot.data!.result![i]!.routine,
-                                      loginID: widget.loginID,
-                                      grade: widget.grade,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
+                        ),
                       ],
                     )
                   : Column(

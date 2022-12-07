@@ -187,12 +187,6 @@ class _FriendsMainState extends State<FriendsMain> {
                                       ? Container(
                                           width: double.infinity,
                                           alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color:
-                                                  PRIMARY_COLOR[widget.grade],
-                                            ),
-                                          ),
                                           child: Text('친구 목록이 없습니다.',
                                               style: TextStyle(fontSize: 18.0)),
                                         )
@@ -228,11 +222,6 @@ class _FriendsMainState extends State<FriendsMain> {
                                     ? Container(
                                         width: double.infinity,
                                         alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: PRIMARY_COLOR[widget.grade],
-                                          ),
-                                        ),
                                         child: Text('친구 요청이 없습니다.',
                                             style: TextStyle(fontSize: 18.0)),
                                       )
