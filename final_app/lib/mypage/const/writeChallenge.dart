@@ -43,7 +43,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
                 children: [
                   Text('제목',
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold)),
+                          fontSize: 23.0, fontWeight: FontWeight.bold)),
                   SizedBox(width: 16.0),
                   Expanded(
                     child: Container(
@@ -68,7 +68,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
             ),
             SizedBox(height: 16.0),
             Text('내용',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 8.0),
             Container(
               height: 300.0,

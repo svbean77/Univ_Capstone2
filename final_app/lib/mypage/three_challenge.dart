@@ -100,13 +100,14 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                       children: [
                         Text('3대 챌린지 기록',
                             style: TextStyle(
-                                fontSize: 25.0, fontWeight: FontWeight.bold)),
+                                fontSize: 28.0, fontWeight: FontWeight.bold)),
                         SizedBox(height: 16.0),
                         Expanded(
                             child: ListView(children: [
                           snapshot.data.result!.length == 0
                               ? Center(
-                                  child: Text('챌린지 기록이 없습니다.'),
+                                  child: Text('챌린지 기록이 없습니다.',
+                                      style: TextStyle(fontSize: 18.0)),
                                 )
                               : Container(),
                           for (int i = 0; i < snapshot.data.result!.length; i++)
@@ -119,7 +120,7 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                                   grade: widget.grade,
                                   child: Text(
                                     snapshot.data.result![i].title,
-                                    style: TextStyle(fontSize: 20.0),
+                                    style: TextStyle(fontSize: 23.0),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),

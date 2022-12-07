@@ -36,7 +36,9 @@ class RequestCard extends StatelessWidget {
             Row(
               children: [
                 Image.asset('asset/images/ranking/$rating.png'),
-                Text(' $nickname', style: TextStyle(fontSize: 20.0)),
+                Text(' $nickname',
+                    style:
+                        TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold)),
               ],
             ),
             Container(
@@ -46,7 +48,8 @@ class RequestCard extends StatelessWidget {
                   GestureDetector(
                     child: Icon(Icons.person_search),
                     onTap: () async {
-                      var url = Uri.parse("http://${IP_ADDRESS}/test_select_userdata.php");
+                      var url = Uri.parse(
+                          "http://${IP_ADDRESS}/test_select_userdata.php");
                       /*
                       var url = Uri.http(IP_ADDRESS,
                           '/test_select_userdata.php', {'q': '{http}'});
@@ -61,7 +64,8 @@ class RequestCard extends StatelessWidget {
                           jsonDecode(json.decode(json.encode(response.body)));
                       USERDATA data = USERDATA.fromJson(jsondata);
 
-                      var url2 = Uri.parse("http://${IP_ADDRESS}/test_select_exercise_record.php");
+                      var url2 = Uri.parse(
+                          "http://${IP_ADDRESS}/test_select_exercise_record.php");
                       /*
                       var url2 = Uri.http(IP_ADDRESS,
                           '/test_select_exercise_record.php', {'q': '{http}'});
@@ -101,7 +105,8 @@ class RequestCard extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('친구추가 하시겠습니까?'),
+                                  Text('친구추가 하시겠습니까?',
+                                      style: TextStyle(fontSize: 18.0)),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -122,7 +127,8 @@ class RequestCard extends StatelessWidget {
                                           elevation: 0,
                                         ),
                                         onPressed: () async {
-                                          var url = Uri.parse("http://${IP_ADDRESS}/test_remove_request.php");
+                                          var url = Uri.parse(
+                                              "http://${IP_ADDRESS}/test_remove_request.php");
                                           /*
                                           var url = Uri.http(
                                               IP_ADDRESS,
@@ -138,7 +144,8 @@ class RequestCard extends StatelessWidget {
                                           var jsondata = json.decode(
                                               json.encode(response.body));
 
-                                          var url2 = Uri.parse("http://${IP_ADDRESS}/test_add_friends.php");
+                                          var url2 = Uri.parse(
+                                              "http://${IP_ADDRESS}/test_add_friends.php");
                                           /*
                                           var url2 = Uri.http(
                                               IP_ADDRESS,
@@ -156,21 +163,21 @@ class RequestCard extends StatelessWidget {
 
                                           if (jsondata.toString() ==
                                                   "Success" &&
-                                              jsondata2.toString() == "Success")
-                                            {
-                                              MyToast(
-                                                  '친구 요청을 수락했습니다.',
-                                                  PRIMARY_COLOR[grade],
-                                                  (grade == 0 ||
-                                                      grade == 1 ||
-                                                      grade == 2 ||
-                                                      grade == 4 ||
-                                                      grade == 8)
-                                                      ? Colors.black
-                                                      : Colors.white);
-                                              Navigator.of(context).pop();
-                                            }
-                                            //Navigator.of(context).pop();
+                                              jsondata2.toString() ==
+                                                  "Success") {
+                                            MyToast(
+                                                '친구 요청을 수락했습니다.',
+                                                PRIMARY_COLOR[grade],
+                                                (grade == 0 ||
+                                                        grade == 1 ||
+                                                        grade == 2 ||
+                                                        grade == 4 ||
+                                                        grade == 8)
+                                                    ? Colors.black
+                                                    : Colors.white);
+                                            Navigator.of(context).pop();
+                                          }
+                                          //Navigator.of(context).pop();
                                         },
                                         child: MyText(text: "확인", grade: grade),
                                       ),
@@ -198,7 +205,8 @@ class RequestCard extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('요청삭제 하시겠습니까?'),
+                                  Text('요청삭제 하시겠습니까?',
+                                      style: TextStyle(fontSize: 18.0)),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -219,7 +227,8 @@ class RequestCard extends StatelessWidget {
                                           elevation: 0,
                                         ),
                                         onPressed: () async {
-                                          var url = Uri.parse("http://${IP_ADDRESS}/test_remove_request.php");
+                                          var url = Uri.parse(
+                                              "http://${IP_ADDRESS}/test_remove_request.php");
                                           /*
                                           var url = Uri.http(
                                               IP_ADDRESS,
@@ -234,20 +243,20 @@ class RequestCard extends StatelessWidget {
                                           });
                                           var jsondata = json.decode(
                                               json.encode(response.body));
-                                          if (jsondata == "Success"){
+                                          if (jsondata == "Success") {
                                             MyToast(
                                                 '친구 요청을 삭제했습니다.',
                                                 PRIMARY_COLOR[grade],
                                                 (grade == 0 ||
-                                                    grade == 1 ||
-                                                    grade == 2 ||
-                                                    grade == 4 ||
-                                                    grade == 8)
+                                                        grade == 1 ||
+                                                        grade == 2 ||
+                                                        grade == 4 ||
+                                                        grade == 8)
                                                     ? Colors.black
                                                     : Colors.white);
                                             Navigator.of(context).pop();
                                           }
-                                            //Navigator.of(context).pop();
+                                          //Navigator.of(context).pop();
                                         },
                                         child: MyText(text: "확인", grade: grade),
                                       ),

@@ -47,7 +47,7 @@ class _SignUpState extends State<SignUp> {
                 Text(
                   '회원가입',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 28),
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 40.0,
@@ -57,7 +57,9 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('아이디', style: TextStyle(fontSize: 16.0)),
+                      child: Text('아이디',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -83,7 +85,9 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('비밀번호', style: TextStyle(fontSize: 16.0)),
+                      child: Text('비밀번호',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -123,7 +127,9 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('닉네임', style: TextStyle(fontSize: 16.0)),
+                      child: Text('닉네임',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -149,7 +155,9 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('나이', style: TextStyle(fontSize: 16.0)),
+                      child: Text('나이',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -169,14 +177,16 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('성별', style: TextStyle(fontSize: 16.0)),
+                      child: Text('성별',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
                       child: ToggleButtons(
                         children: [
-                          Text('남자'),
-                          Text('여자'),
+                          Text('남자', style: TextStyle(fontSize: 18.0)),
+                          Text('여자', style: TextStyle(fontSize: 18.0)),
                         ],
                         isSelected: sex,
                         selectedColor: Colors.black,
@@ -215,7 +225,7 @@ class _SignUpState extends State<SignUp> {
                       child: Text(
                         '회원가입',
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: 18.0,
                           color: Colors.black,
                         ),
                       ),
@@ -245,7 +255,7 @@ class _SignUpState extends State<SignUp> {
                     child: Text(
                       '로그인 하러 가기',
                       style: TextStyle(
-                        fontSize: 16.0,
+                        fontSize: 18.0,
                         color: Colors.black,
                       ),
                     ),

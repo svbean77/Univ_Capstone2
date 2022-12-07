@@ -115,25 +115,33 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icon(Icons.fitness_center,
                       color: Colors.black.withOpacity(0.5)),
                   title: Text('운동하기',
-                      style: TextStyle(color: Colors.black.withOpacity(0.5))),
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.5),
+                          fontSize: 18.0)),
                 ),
                 BottomNavyBarItem(
                   icon: Icon(Icons.calendar_month,
                       color: Colors.black.withOpacity(0.5)),
                   title: Text('운동기록',
-                      style: TextStyle(color: Colors.black.withOpacity(0.5))),
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.5),
+                          fontSize: 18.0)),
                 ),
                 BottomNavyBarItem(
                   icon: Icon(Icons.emoji_events,
                       color: Colors.black.withOpacity(0.5)),
                   title: Text('랭킹',
-                      style: TextStyle(color: Colors.black.withOpacity(0.5))),
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.5),
+                          fontSize: 18.0)),
                 ),
                 BottomNavyBarItem(
-                  icon: Icon(Icons.people,
-                      color: Colors.black.withOpacity(0.5)),
+                  icon:
+                      Icon(Icons.people, color: Colors.black.withOpacity(0.5)),
                   title: Text('친구',
-                      style: TextStyle(color: Colors.black.withOpacity(0.5))),
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.5),
+                          fontSize: 18.0)),
                 ),
               ],
             ),

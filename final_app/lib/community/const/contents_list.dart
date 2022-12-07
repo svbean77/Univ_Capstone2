@@ -25,13 +25,16 @@ class ContentsList extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(width: 30.0, child: Text(data.id.toString())),
+            Container(
+                width: 30.0,
+                child:
+                    Text(data.id.toString(), style: TextStyle(fontSize: 18.0))),
             SizedBox(width: 16.0),
             Expanded(
               child: Container(
                 child: Text(
                   data.title,
-                  style: TextStyle(fontSize: 20.0),
+                  style: TextStyle(fontSize: 23.0),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

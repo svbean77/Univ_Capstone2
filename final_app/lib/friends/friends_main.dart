@@ -175,7 +175,7 @@ class _FriendsMainState extends State<FriendsMain> {
                           ? [
                               Text('친구목록',
                                   style: TextStyle(
-                                      fontSize: 25.0,
+                                      fontSize: 28.0,
                                       fontWeight: FontWeight.bold)),
                               Expanded(
                                 child: Container(
@@ -193,7 +193,7 @@ class _FriendsMainState extends State<FriendsMain> {
                                             ),
                                           ),
                                           child: Text('친구 목록이 없습니다.',
-                                              style: TextStyle(fontSize: 20.0)),
+                                              style: TextStyle(fontSize: 18.0)),
                                         )
                                       : ListView(
                                           children: [
@@ -218,7 +218,7 @@ class _FriendsMainState extends State<FriendsMain> {
                               ),
                               Text('친구요청',
                                   style: TextStyle(
-                                      fontSize: 25.0,
+                                      fontSize: 28.0,
                                       fontWeight: FontWeight.bold)),
                               Container(
                                 height: MediaQuery.of(context).size.height / 5,
@@ -233,7 +233,7 @@ class _FriendsMainState extends State<FriendsMain> {
                                           ),
                                         ),
                                         child: Text('친구 요청이 없습니다.',
-                                            style: TextStyle(fontSize: 20.0)),
+                                            style: TextStyle(fontSize: 18.0)),
                                       )
                                     : ListView(
                                         children: [

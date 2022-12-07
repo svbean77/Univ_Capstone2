@@ -160,7 +160,7 @@ class _QnABoardState extends State<QnABoard> {
                             child: snapshot.data[0].result!.length == 0
                                 ? Container(
                                     child: Center(
-                                      child: Text('게시글이 없습니다.'),
+                                      child: Text('게시글이 없습니다.',style: TextStyle(fontSize: 18.0)),
                                     ),
                                   )
                                 : ListView(

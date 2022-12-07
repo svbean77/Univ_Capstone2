@@ -32,7 +32,7 @@ class _CommunityMainState extends State<CommunityMain>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(grade: widget.grade),
-      drawer: MyDrawer(loginID: widget.loginID,grade: widget.grade),
+      drawer: MyDrawer(loginID: widget.loginID, grade: widget.grade),
       body: Column(
         children: [
           Container(
@@ -42,12 +42,12 @@ class _CommunityMainState extends State<CommunityMain>
                 Container(
                   height: 50.0,
                   alignment: Alignment.center,
-                  child: Text('자유게시판'),
+                  child: Text('자유게시판', style: TextStyle(fontSize: 18.0)),
                 ),
                 Container(
                   height: 50.0,
                   alignment: Alignment.center,
-                  child: Text('QnA'),
+                  child: Text('QnA', style: TextStyle(fontSize: 18.0)),
                 ),
               ],
               indicator: BoxDecoration(

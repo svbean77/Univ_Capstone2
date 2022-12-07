@@ -44,9 +44,7 @@ class _SignInState extends State<SignIn> {
                 Text(
                   '로그인',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 28,
-                  ),
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 40.0,
@@ -129,7 +127,7 @@ class _SignInState extends State<SignIn> {
                       child: Text(
                         '로그인',
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: 18.0,
                           color: Colors.black,
                           //fontWeight: FontWeight.bold
                         ),
@@ -160,7 +158,7 @@ class _SignInState extends State<SignIn> {
                     child: Text(
                       '회원가입',
                       style: TextStyle(
-                        fontSize: 16.0,
+                        fontSize: 18.0,
                         color: Colors.black,
                       ),
                     ),

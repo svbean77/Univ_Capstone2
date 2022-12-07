@@ -64,15 +64,15 @@ class _ChallengeDetailState extends State<ChallengeDetail> {
                 children: [
                   Text('제목',
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold)),
+                          fontSize: 28.0, fontWeight: FontWeight.bold)),
                   SizedBox(height: 8.0),
-                  Text(widget.data.title, style: TextStyle(fontSize: 20.0)),
+                  Text(widget.data.title, style: TextStyle(fontSize: 23.0)),
                   SizedBox(height: 16.0),
                   Text('내용',
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold)),
+                          fontSize: 28.0, fontWeight: FontWeight.bold)),
                   SizedBox(height: 8.0),
-                  Text(widget.data.content),
+                  Text(widget.data.content, style: TextStyle(fontSize: 18.0)),
                   SizedBox(height: 8.0),
                   snapshot.hasData
                       ? myVideo(file: snapshot.data!)

@@ -59,7 +59,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                 Text(
                   '내 정보 수정',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 40.0,
@@ -69,10 +69,12 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('아이디', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                      child: Text('아이디',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
-                    Text(widget.username),
+                    Text(widget.username, style: TextStyle(fontSize: 18.0)),
                   ],
                 ),
                 SizedBox(
@@ -83,7 +85,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('비밀번호', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                      child: Text('비밀번호',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -135,7 +139,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('닉네임', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                      child: Text('닉네임',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -173,7 +179,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('나이', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                      child: Text('나이',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
@@ -209,14 +217,16 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     Container(
                       alignment: Alignment.center,
                       width: 70.0,
-                      child: Text('성별', style: TextStyle(fontSize: 16.0)),
+                      child: Text('성별',
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(width: 16.0),
                     Expanded(
                       child: ToggleButtons(
                         children: [
-                          Text('남자'),
-                          Text('여자'),
+                          Text('남자', style: TextStyle(fontSize: 18.0)),
+                          Text('여자', style: TextStyle(fontSize: 18.0)),
                         ],
                         isSelected: widget.sex,
                         selectedColor: Colors.black,
@@ -307,9 +317,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     child: Center(
                       child: Text(
                         '저장',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
+                        style: TextStyle(color: Colors.black, fontSize: 18.0),
                       ),
                     ),
                   ),

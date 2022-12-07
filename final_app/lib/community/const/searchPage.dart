@@ -48,7 +48,7 @@ class _SearchPageState extends State<SearchPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('${widget.searchfor} 검색 결과',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 16.0),
             Expanded(
               child: Container(

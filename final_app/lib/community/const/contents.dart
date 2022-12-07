@@ -58,22 +58,22 @@ class _ContentsState extends State<Contents> {
         child: ListView(
           children: [
             Text('제목',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 8.0),
-            Text(widget.data.title, style: TextStyle(fontSize: 20.0)),
+            Text(widget.data.title, style: TextStyle(fontSize: 23.0)),
             SizedBox(height: 8.0),
             Row(
               children: [
-                Text('작성자', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text('작성자', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
                 SizedBox(width: 8.0),
-                Text(widget.data.writer),
+                Text(widget.data.writer,style: TextStyle(fontSize: 18.0)),
               ],
             ),
             SizedBox(height: 16.0),
             Text('내용',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 8.0),
-            Text(widget.data.content),
+            Text(widget.data.content,style: TextStyle(fontSize: 18.0)),
             SizedBox(height: 8.0),
             widget.data.filename == null
                 ? Container()

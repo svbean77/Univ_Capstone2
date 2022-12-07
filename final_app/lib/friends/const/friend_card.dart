@@ -40,7 +40,7 @@ class FriendCard extends StatelessWidget {
               children: [
                 Image.asset('asset/images/ranking/$rating.png'),
                 SizedBox(width: 8.0),
-                Text(' $nickname', style: TextStyle(fontSize: 20.0)),
+                Text(' $nickname', style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold)),
               ],
             ),
             Container(
@@ -106,7 +106,7 @@ class FriendCard extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text('친구삭제 하시겠습니까?'),
+                                  Text('친구삭제 하시겠습니까?',style: TextStyle(fontSize: 18.0)),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
