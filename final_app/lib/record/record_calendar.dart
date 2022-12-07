@@ -212,12 +212,12 @@ class CalendarState extends State<Calendar> {
         selectedDecoration: BoxDecoration(
           border: Border.all(
             color: widget.grade == 0
-                ? Colors.grey.withOpacity(0.2)
-                : PRIMARY_COLOR[widget.grade],
+                ? Colors.grey.withOpacity(0.5)
+                : PRIMARY_COLOR[widget.grade].withOpacity(0.7),
           ),
-          color: widget.grade == 0
-              ? Colors.grey.withOpacity(0.2)
-              : PRIMARY_COLOR[widget.grade].withOpacity(0.2),
+          color: widget.grade == 7
+              ? PRIMARY_COLOR[widget.grade].withOpacity(0.2)
+              : PRIMARY_COLOR[widget.grade].withOpacity(0.4),
           borderRadius: BorderRadius.circular(100),
         ),
         outsideDecoration: BoxDecoration(

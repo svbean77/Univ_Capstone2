@@ -18,9 +18,11 @@ class RecordCard extends StatelessWidget {
         width: double.infinity,
         padding: EdgeInsets.all(8.0),
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: PRIMARY_COLOR[grade],
+            color: PRIMARY_COLOR[grade].withOpacity(0.5),
           ),
+          color: Colors.white,
         ),
         child: IntrinsicHeight(
           child: Text(content, style: TextStyle(fontSize: 23.0)),
