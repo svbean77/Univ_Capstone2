@@ -11,6 +11,7 @@ class CopyrightScreen extends StatelessWidget {
   final exerciseUrl;
   final routineUrl;
   final myroutineUrl;
+  final fontUrl;
   const CopyrightScreen({
     required this.grade,
     this.armUrl =
@@ -25,6 +26,7 @@ class CopyrightScreen extends StatelessWidget {
         'https://www.flaticon.com/free-icon/plan_525866?term=exercise&page=1&position=76&page=1&position=76&related_id=525866&origin=search',
     this.exerciseUrl =
         'https://www.flaticon.com/kr/free-icon/gym_5114256?k=1670254259270&sign-up=google',
+    this.fontUrl = 'https://www.dgb.co.kr/cms/imhyemin/',
     Key? key,
   }) : super(key: key);
 
@@ -138,6 +140,23 @@ class CopyrightScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 8.0),
                   Text('내 루틴 아이콘', style: TextStyle(fontSize: 18.0)),
+                ],
+              ),
+            ),
+            Container(
+              height: 50.0,
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      launchBrowser(fontUrl);
+                    },
+                    child: Icon(Icons.link),
+                  ),
+                  SizedBox(width: 8.0),
+                  Text('글씨체', style: TextStyle(fontSize: 18.0)),
                 ],
               ),
             ),
