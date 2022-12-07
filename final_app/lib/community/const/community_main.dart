@@ -36,7 +36,11 @@ class _CommunityMainState extends State<CommunityMain>
       body: Column(
         children: [
           Container(
-            decoration: BoxDecoration(border: Border.all()),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: PRIMARY_COLOR[widget.grade].withOpacity(0.7),
+              ),
+            ),
             child: TabBar(
               tabs: [
                 Container(
