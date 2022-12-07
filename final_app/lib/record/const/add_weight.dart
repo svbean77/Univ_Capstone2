@@ -22,6 +22,7 @@ class AddWeight extends StatelessWidget {
 
     return Container(
       height: 180.0,
+      width: MediaQuery.of(context).size.width / 2,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -31,6 +32,7 @@ class AddWeight extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '날짜입력: YYYYMMDD',
+                hintStyle: TextStyle(fontSize: 18.0),
                 border: InputBorder.none,
               ),
               keyboardType: TextInputType.number,
@@ -39,6 +41,7 @@ class AddWeight extends StatelessWidget {
               border: Border.all(
                 color: PRIMARY_COLOR[grade],
               ),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
           SizedBox(height: 16.0),
@@ -49,6 +52,7 @@ class AddWeight extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '체중입력',
                 border: InputBorder.none,
+                hintStyle: TextStyle(fontSize: 18.0),
               ),
               keyboardType: TextInputType.number,
             ),
@@ -56,6 +60,7 @@ class AddWeight extends StatelessWidget {
               border: Border.all(
                 color: PRIMARY_COLOR[grade],
               ),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
           SizedBox(height: 16.0),

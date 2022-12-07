@@ -35,6 +35,7 @@ class _AddRoutineState extends State<AddRoutine> {
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 hintText: '루틴 이름을 입력해주세요',
+                hintStyle: TextStyle(fontSize: 18.0),
                 border: InputBorder.none,
               ),
             ),
@@ -42,6 +43,7 @@ class _AddRoutineState extends State<AddRoutine> {
               border: Border.all(
                 color: PRIMARY_COLOR[widget.grade],
               ),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
           SizedBox(height: 8.0),

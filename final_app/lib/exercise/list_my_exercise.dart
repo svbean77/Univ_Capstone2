@@ -155,7 +155,11 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                       builder: (BuildContext context) {
                                         return AlertDialog(
                                           content: Container(
-                                            height: 120.0,
+                                            height: 110.0,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                2,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment

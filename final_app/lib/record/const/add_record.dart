@@ -28,6 +28,7 @@ class AddRecord extends StatelessWidget {
 
     return Container(
       height: 120,
+      width: MediaQuery.of(context).size.width / 2,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -38,12 +39,14 @@ class AddRecord extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
                 border: InputBorder.none,
                 hintText: '$year.$month.$day 기록 추가',
+                hintStyle: TextStyle(fontSize: 18.0),
               ),
             ),
             decoration: BoxDecoration(
               border: Border.all(
                 color: PRIMARY_COLOR[grade],
               ),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
           SizedBox(height: 8.0),
@@ -85,15 +88,15 @@ class AddRecord extends StatelessWidget {
 
                     if (jsondata.toString() == "Success")
                       Navigator.of(context).pop();
-                    else{
+                    else {
                       MyToast(
                           '작은 따옴표는 \\\'으로 작성해주세요.',
                           PRIMARY_COLOR[grade],
                           (grade == 0 ||
-                              grade == 1 ||
-                              grade == 2 ||
-                              grade == 4 ||
-                              grade == 8)
+                                  grade == 1 ||
+                                  grade == 2 ||
+                                  grade == 4 ||
+                                  grade == 8)
                               ? Colors.black
                               : Colors.white);
                     }

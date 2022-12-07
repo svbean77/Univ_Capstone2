@@ -69,38 +69,42 @@ class UserInfo extends StatelessWidget {
                                     barrierDismissible: true,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        content: Column(
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(8.0),
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                  color: PRIMARY_COLOR[grade],
+                                        content: Container(
+                                          width: MediaQuery.of(context).size.width / 2,
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.all(8.0),
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                    color: PRIMARY_COLOR[grade],
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(10),
+                                                ),
+                                                child: IntrinsicHeight(
+                                                  child: Text(
+                                                      recorddata[i].comment,
+                                                      style: TextStyle(
+                                                          fontSize: 18.0)),
                                                 ),
                                               ),
-                                              child: IntrinsicHeight(
-                                                child: Text(
-                                                    recorddata[i].comment,
-                                                    style: TextStyle(
-                                                        fontSize: 18.0)),
+                                              SizedBox(height: 16.0),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  primary: PRIMARY_COLOR[grade],
+                                                  elevation: 0,
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: MyText(
+                                                    text: "확인", grade: grade),
                                               ),
-                                            ),
-                                            SizedBox(height: 16.0),
-                                            ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                primary: PRIMARY_COLOR[grade],
-                                                elevation: 0,
-                                              ),
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: MyText(
-                                                  text: "확인", grade: grade),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                         scrollable: true,
                                       );
