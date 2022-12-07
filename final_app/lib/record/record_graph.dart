@@ -176,7 +176,7 @@ class _RecordGraphState extends State<RecordGraph> {
                         },
                       );
                     },
-                    child: Text('체중입력',
+                    child: Text('체중 입력',
                         style: TextStyle(color: Colors.black, fontSize: 18.8)),
                   ),
                 )

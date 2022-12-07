@@ -64,16 +64,18 @@ class _ContentsState extends State<Contents> {
             SizedBox(height: 8.0),
             Row(
               children: [
-                Text('작성자', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
+                Text('작성자',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
                 SizedBox(width: 8.0),
-                Text(widget.data.writer,style: TextStyle(fontSize: 18.0)),
+                Text(widget.data.writer, style: TextStyle(fontSize: 18.0)),
               ],
             ),
             SizedBox(height: 16.0),
             Text('내용',
                 style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 8.0),
-            Text(widget.data.content,style: TextStyle(fontSize: 18.0)),
+            Text(widget.data.content, style: TextStyle(fontSize: 18.0)),
             SizedBox(height: 8.0),
             widget.data.filename == null
                 ? Container()
@@ -126,11 +128,13 @@ class _ContentsState extends State<Contents> {
                               return AlertDialog(
                                 content: Container(
                                   height: 100.0,
+                                  width: MediaQuery.of(context).size.width / 2,
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text('삭제하시겠습니까?'),
+                                      Text('삭제하시겠습니까?',
+                                          style: TextStyle(fontSize: 18.0)),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,

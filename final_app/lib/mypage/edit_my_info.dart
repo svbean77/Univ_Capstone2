@@ -99,6 +99,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                                 ? Colors.grey.withOpacity(0.2)
                                 : PRIMARY_COLOR[widget.grade],
                           ),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         child: Form(
                           key: pwFormKey,
@@ -152,6 +153,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                                 ? Colors.grey.withOpacity(0.2)
                                 : PRIMARY_COLOR[widget.grade],
                           ),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         child: Form(
                           key: nicknameFormKey,
@@ -192,6 +194,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                                 ? Colors.grey.withOpacity(0.2)
                                 : PRIMARY_COLOR[widget.grade],
                           ),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         child: Form(
                           key: userageFormKey,
@@ -313,6 +316,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                       border: Border.all(
                         color: PRIMARY_COLOR[widget.grade],
                       ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
                       child: Text(

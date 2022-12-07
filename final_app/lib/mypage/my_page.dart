@@ -171,14 +171,18 @@ class _MyPageState extends State<MyPage> {
                               ),
                             );
                           },
-                          child: MyContainer(
+                          child: Container(
                             height: 50.0,
                             width: double.infinity,
-                            grade: widget.grade,
-                            child: Center(
-                              child: Text('내 정보 수정',
-                                  style: TextStyle(fontSize: 23.0)),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: PRIMARY_COLOR[widget.grade],
+                              ),
                             ),
+                            child: Text('내 정보 수정',
+                                style: TextStyle(fontSize: 23.0)),
                           ),
                         ),
                         SizedBox(height: 8.0),
@@ -191,11 +195,13 @@ class _MyPageState extends State<MyPage> {
                                 return AlertDialog(
                                   content: Container(
                                     height: 100.0,
+                                    width:
+                                        MediaQuery.of(context).size.width / 2,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('로그아웃 하시겠습니까?',
+                                        Text('로그아웃하시겠습니까?',
                                             style: TextStyle(fontSize: 18.0)),
                                         SizedBox(height: 8.0),
                                         Row(
@@ -261,11 +267,13 @@ class _MyPageState extends State<MyPage> {
                                 return AlertDialog(
                                   content: Container(
                                     height: 100.0,
+                                    width:
+                                        MediaQuery.of(context).size.width / 2,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('탈퇴 하시겠습니까?',
+                                        Text('탈퇴하시겠습니까?',
                                             style: TextStyle(fontSize: 18.0)),
                                         SizedBox(height: 8.0),
                                         Row(
@@ -348,7 +356,7 @@ class _MyPageState extends State<MyPage> {
                             );
                           },
                           child: Text(
-                            '회원탈퇴',
+                            '회원 탈퇴',
                             style:
                                 TextStyle(color: Colors.black, fontSize: 18.0),
                           ),

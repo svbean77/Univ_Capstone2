@@ -34,7 +34,7 @@ class UserInfo extends StatelessWidget {
           SizedBox(height: 8.0),
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            child: Text('운동기록',
+            child: Text('운동 기록',
                 style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
           ),
           Expanded(

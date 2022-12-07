@@ -68,7 +68,7 @@ class _AddExerciseState extends State<AddExercise> {
               decoration: InputDecoration(),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
-                  hint: Text('근육을 선택해주세요', style: TextStyle(fontSize: 18.0)),
+                  hint: Text('근육을 선택해 주세요', style: TextStyle(fontSize: 18.0)),
                   value: selectedMuscle,
                   onChanged: (String? newValue) {
                     setState(() {
@@ -102,7 +102,7 @@ class _AddExerciseState extends State<AddExercise> {
               decoration: InputDecoration(),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
-                  hint: Text('운동을 선택해주세요', style: TextStyle(fontSize: 18.0)),
+                  hint: Text('운동을 선택해 주세요', style: TextStyle(fontSize: 18.0)),
                   value: selectedExercise,
                   onChanged: (String? newValue) {
                     setState(() {

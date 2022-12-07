@@ -1,13 +1,3 @@
-/*
-*
-*
-*
- 나중에 게시글 수정할 때 다시 보기! 일단은 패스~
-*
-*
-*
- */
-
 import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
@@ -60,7 +50,6 @@ class _EditPostState extends State<EditPost> {
   @override
   Widget build(BuildContext context) {
     if (widget.filename != null) {
-      //files에 사진을 추가 (사진으로 전달받음) File(사진)
       files.add(widget.image);
     }
     return Scaffold(
@@ -86,6 +75,7 @@ class _EditPostState extends State<EditPost> {
                               ? Colors.grey.withOpacity(0.2)
                               : PRIMARY_COLOR[widget.grade],
                         ),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Form(
                         key: titleFormKey,
@@ -119,6 +109,7 @@ class _EditPostState extends State<EditPost> {
                         ? Colors.grey.withOpacity(0.2)
                         : PRIMARY_COLOR[widget.grade],
                   ),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Form(
                   key: contentFormKey,
@@ -232,15 +223,14 @@ class _EditPostState extends State<EditPost> {
               onPressed: () async {
                 if (widget.title.toString() != "" &&
                     widget.content.toString() != "") {
-
                   MyToast(
                       '업로드!',
                       PRIMARY_COLOR[widget.grade],
                       (widget.grade == 0 ||
-                          widget.grade == 1 ||
-                          widget.grade == 2 ||
-                          widget.grade == 4 ||
-                          widget.grade == 8)
+                              widget.grade == 1 ||
+                              widget.grade == 2 ||
+                              widget.grade == 4 ||
+                              widget.grade == 8)
                           ? Colors.black
                           : Colors.white);
 

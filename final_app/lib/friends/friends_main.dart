@@ -174,7 +174,7 @@ class _FriendsMainState extends State<FriendsMain> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: snapshot.hasData
                           ? [
-                              Text('친구목록',
+                              Text('친구 목록',
                                   style: TextStyle(
                                       fontSize: 28.0,
                                       fontWeight: FontWeight.bold)),
@@ -217,7 +217,7 @@ class _FriendsMainState extends State<FriendsMain> {
                                         ),
                                 ),
                               ),
-                              Text('친구요청',
+                              Text('친구 요청',
                                   style: TextStyle(
                                       fontSize: 28.0,
                                       fontWeight: FontWeight.bold)),

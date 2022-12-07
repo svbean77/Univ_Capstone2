@@ -34,7 +34,7 @@ class _AddRoutineState extends State<AddRoutine> {
               controller: _controller,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
-                hintText: '루틴 이름을 입력해주세요',
+                hintText: '루틴 이름을 입력해 주세요',
                 hintStyle: TextStyle(fontSize: 18.0),
                 border: InputBorder.none,
               ),

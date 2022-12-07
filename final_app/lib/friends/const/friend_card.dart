@@ -113,11 +113,12 @@ class FriendCard extends StatelessWidget {
                           return AlertDialog(
                             content: Container(
                               height: 100.0,
+                              width: MediaQuery.of(context).size.width / 2,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text('친구삭제 하시겠습니까?',
+                                  Text('친구 삭제하시겠습니까?',
                                       style: TextStyle(fontSize: 18.0)),
                                   Row(
                                     mainAxisAlignment:

@@ -31,7 +31,7 @@ class AddWeight extends StatelessWidget {
               controller: dateController,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
-                hintText: '날짜입력: YYYYMMDD',
+                hintText: '날짜 입력: YYYYMMDD',
                 hintStyle: TextStyle(fontSize: 18.0),
                 border: InputBorder.none,
               ),
@@ -50,7 +50,7 @@ class AddWeight extends StatelessWidget {
               controller: weightController,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
-                hintText: '체중입력',
+                hintText: '체중 입력',
                 border: InputBorder.none,
                 hintStyle: TextStyle(fontSize: 18.0),
               ),

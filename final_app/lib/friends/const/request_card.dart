@@ -108,11 +108,12 @@ class RequestCard extends StatelessWidget {
                           return AlertDialog(
                             content: Container(
                               height: 100.0,
+                              width: MediaQuery.of(context).size.width / 2,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('친구추가 하시겠습니까?',
+                                  Text('친구 추가하시겠습니까?',
                                       style: TextStyle(fontSize: 18.0)),
                                   Row(
                                     mainAxisAlignment:
@@ -208,11 +209,12 @@ class RequestCard extends StatelessWidget {
                           return AlertDialog(
                             content: Container(
                               height: 100.0,
+                              width: MediaQuery.of(context).size.width / 2,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('요청삭제 하시겠습니까?',
+                                  Text('요청 삭제하시겠습니까?',
                                       style: TextStyle(fontSize: 18.0)),
                                   Row(
                                     mainAxisAlignment:
