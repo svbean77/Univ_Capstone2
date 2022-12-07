@@ -66,10 +66,17 @@ class RankingCard extends StatelessWidget {
           ),
         );
       },
-      child: MyContainer(
+      child: Container(
         height: 70.0,
         width: double.infinity,
-        grade: grade,
+        padding: EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: PRIMARY_COLOR[grade].withOpacity(0.5),
+          ),
+          color: Colors.white,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

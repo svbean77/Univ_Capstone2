@@ -29,10 +29,17 @@ class FriendCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
-      child: MyContainer(
+      child: Container(
         height: 70.0,
         width: double.infinity,
-        grade: grade,
+        padding: EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: PRIMARY_COLOR[grade].withOpacity(0.5),
+          ),
+          color: Colors.white,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -40,7 +47,9 @@ class FriendCard extends StatelessWidget {
               children: [
                 Image.asset('asset/images/ranking/$rating.png'),
                 SizedBox(width: 8.0),
-                Text(' $nickname', style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold)),
+                Text(' $nickname',
+                    style:
+                        TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold)),
               ],
             ),
             Container(
@@ -50,7 +59,8 @@ class FriendCard extends StatelessWidget {
                   GestureDetector(
                     child: Icon(Icons.person_search),
                     onTap: () async {
-                      var url = Uri.parse("http://${IP_ADDRESS}/test_select_userdata.php");
+                      var url = Uri.parse(
+                          "http://${IP_ADDRESS}/test_select_userdata.php");
                       /*
                       var url = Uri.http(IP_ADDRESS,
                           '/test_select_userdata.php', {'q': '{http}'});
@@ -65,7 +75,8 @@ class FriendCard extends StatelessWidget {
                           jsonDecode(json.decode(json.encode(response.body)));
                       USERDATA data = USERDATA.fromJson(jsondata);
 
-                      var url2 = Uri.parse("http://${IP_ADDRESS}/test_select_exercise_record.php");
+                      var url2 = Uri.parse(
+                          "http://${IP_ADDRESS}/test_select_exercise_record.php");
                       /*
                       var url2 = Uri.http(IP_ADDRESS,
                           '/test_select_exercise_record.php', {'q': '{http}'});
@@ -106,7 +117,8 @@ class FriendCard extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text('친구삭제 하시겠습니까?',style: TextStyle(fontSize: 18.0)),
+                                  Text('친구삭제 하시겠습니까?',
+                                      style: TextStyle(fontSize: 18.0)),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -127,7 +139,8 @@ class FriendCard extends StatelessWidget {
                                           elevation: 0,
                                         ),
                                         onPressed: () async {
-                                          var url = Uri.parse("http://${IP_ADDRESS}/test_remove_friends.php");
+                                          var url = Uri.parse(
+                                              "http://${IP_ADDRESS}/test_remove_friends.php");
                                           /*
                                           var url = Uri.http(
                                               IP_ADDRESS,
@@ -146,21 +159,21 @@ class FriendCard extends StatelessWidget {
                                           delete: db에 친구 삭제하는 코드
                                            */
                                           print(jsondata.toString());
-                                          if (jsondata.toString() == "Success")
-                                            {
-                                              MyToast(
-                                                  '친구 삭제했습니다.',
-                                                  PRIMARY_COLOR[grade],
-                                                  (grade == 0 ||
-                                                      grade == 1 ||
-                                                      grade == 2 ||
-                                                      grade == 4 ||
-                                                      grade == 8)
-                                                      ? Colors.black
-                                                      : Colors.white);
-                                              Navigator.of(context).pop();
-                                            }
-                                            //Navigator.of(context).pop();
+                                          if (jsondata.toString() ==
+                                              "Success") {
+                                            MyToast(
+                                                '친구 삭제했습니다.',
+                                                PRIMARY_COLOR[grade],
+                                                (grade == 0 ||
+                                                        grade == 1 ||
+                                                        grade == 2 ||
+                                                        grade == 4 ||
+                                                        grade == 8)
+                                                    ? Colors.black
+                                                    : Colors.white);
+                                            Navigator.of(context).pop();
+                                          }
+                                          //Navigator.of(context).pop();
                                         },
                                         child: MyText(text: "확인", grade: grade),
                                       ),
