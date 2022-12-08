@@ -7,6 +7,7 @@ import 'package:final_app/ranking/const/user_info.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/db_class.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -147,16 +148,7 @@ class _FriendsMainState extends State<FriendsMain> {
                         ),
                       );
                     } else {
-                      MyToast(
-                          '존재하지 않는 닉네임입니다.',
-                          PRIMARY_COLOR[widget.grade],
-                          (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white);
+                      MyShortToast(context, '존재하지 않는 닉네임입니다.');
                     }
                   },
                 ),

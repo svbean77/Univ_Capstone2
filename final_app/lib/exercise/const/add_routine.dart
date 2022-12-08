@@ -5,6 +5,7 @@ import 'package:final_app/screen/const/grade_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../screen/const/ip_address.dart';
+import '../../screen/const/my_toast.dart';
 
 class AddRoutine extends StatefulWidget {
   final loginID;
@@ -82,16 +83,7 @@ class _AddRoutineState extends State<AddRoutine> {
                     if (jsondata.toString() == "Success")
                       Navigator.of(context).pop();
                   } else {
-                    MyToast(
-                        '모든 칸을 채워주세요.',
-                        PRIMARY_COLOR[widget.grade],
-                        (widget.grade == 0 ||
-                                widget.grade == 1 ||
-                                widget.grade == 2 ||
-                                widget.grade == 4 ||
-                                widget.grade == 8)
-                            ? Colors.black
-                            : Colors.white);
+                    MyShortToast(context, '모든 칸을 채워주세요.');
                   }
                 },
                 child: MyText(text: "확인", grade: widget.grade),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:final_app/community/const/contents_list.dart';
 import 'package:final_app/community/const/searchPage.dart';
@@ -140,16 +141,7 @@ class _QnABoardState extends State<QnABoard> {
                                       ),
                                     );
                                   } else {
-                                    MyToast(
-                                        '검색어를 입력해주세요.',
-                                        PRIMARY_COLOR[widget.grade],
-                                        (widget.grade == 0 ||
-                                                widget.grade == 1 ||
-                                                widget.grade == 2 ||
-                                                widget.grade == 4 ||
-                                                widget.grade == 8)
-                                            ? Colors.black
-                                            : Colors.white);
+                                    MyShortToast(context, '검색어를 입력해 주세요.');
                                   }
                                 },
                               ),

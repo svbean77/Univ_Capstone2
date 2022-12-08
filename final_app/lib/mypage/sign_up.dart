@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import '../screen/const/ip_address.dart';
+import '../screen/const/my_toast.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({
@@ -280,11 +281,11 @@ class _SignUpState extends State<SignUp> {
       var jsondata = json.decode(json.encode(response.body));
 
       if (jsondata.toString() == "Error1") {
-        MyToast('아이디가 중복됩니다.', Colors.grey, Colors.black);
+        MyShortToast(context, '아이디가 중복됩니다.');
       } else if (jsondata.toString() == "Error2") {
-        MyToast('닉네임이 중복됩니다.', Colors.grey, Colors.black);
+        MyShortToast(context, '닉네임이 중복됩니다.');
       } else {
-        MyToast('회원가입이 완료되었습니다.', Colors.grey, Colors.black);
+        MyShortToast(context, '회원가입이 완료되었습니다.');
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -296,9 +297,10 @@ class _SignUpState extends State<SignUp> {
         _pwController.text.toString() != "" &&
         _nicknameController.text.toString() != "" &&
         _userageController.text.toString() != "") {
-      MyToast('닉네임은 7자 이하만 가능합니다.', Colors.grey, Colors.black);
+      MyShortToast(context, '닉네임은 7자 이하만 가능합니다.');
     } else {
-      MyToast('모든 칸을 채워주세요.', Colors.grey, Colors.black);
+      MyShortToast(context, '모든 칸을 채워주세요.');
+      //MyToast('모든 칸을 채워주세요.', Colors.grey, Colors.black);
     }
   }
 }

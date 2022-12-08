@@ -2,6 +2,7 @@ import 'package:final_app/mypage/sign_up.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -166,7 +167,7 @@ class _SignInState extends State<SignIn> {
     var data = json.decode(json.encode(response.body));
 
     if (data.toString() == "Success") {
-      MyToast('로그인 성공', Colors.white, Colors.black);
+      MyShortToast(context, '로그인에 성공했습니다.');
 
       LOGIN_BOX.write('id', _idController.text.toString());
       Navigator.of(context).pushAndRemoveUntil(
@@ -176,7 +177,7 @@ class _SignInState extends State<SignIn> {
           (route) => false);
     } else {
       print(data.toString());
-      MyToast('아이디 또는 비밀번호가 잘못되었습니다.', Colors.grey, Colors.black);
+      MyShortToast(context, '아이디 또는 비밀번호가 잘못되었습니다.');
     }
   }
 }

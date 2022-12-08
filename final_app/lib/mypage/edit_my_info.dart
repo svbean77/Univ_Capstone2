@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import '../screen/const/grade_colors.dart';
 import '../screen/const/ip_address.dart';
+import '../screen/const/my_toast.dart';
 
 class EditMyInfo extends StatefulWidget {
   String username;
@@ -280,16 +281,7 @@ class _EditMyInfoState extends State<EditMyInfo> {
                       });
                       var jsondata = json.decode(json.encode(response.body));
                       if (jsondata.toString() == "Success") {
-                        MyToast(
-                            '정보를 수정했습니다.',
-                            PRIMARY_COLOR[widget.grade],
-                            (widget.grade == 0 ||
-                                    widget.grade == 1 ||
-                                    widget.grade == 2 ||
-                                    widget.grade == 4 ||
-                                    widget.grade == 8)
-                                ? Colors.black
-                                : Colors.white);
+                        MyShortToast(context, '정보를 수정했습니다.');
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (BuildContext context) => MyPage(
@@ -300,27 +292,9 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     } else if (widget.password.length != 0 &&
                         widget.nickname.length != 0 &&
                         widget.userage != -1) {
-                      MyToast(
-                          '닉네임은 7자 이하만 가능합니다.',
-                          PRIMARY_COLOR[widget.grade],
-                          (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white);
+                      MyShortToast(context, '닉네임은 7자 이하만 가능합니다.');
                     } else {
-                      MyToast(
-                          '모든 칸을 채워주세요.',
-                          PRIMARY_COLOR[widget.grade],
-                          (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white);
+                      MyShortToast(context, '모든 칸을 채워주세요.');
                     }
                   },
                   child: Container(

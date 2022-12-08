@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:final_app/screen/const/grade_colors.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -86,16 +87,7 @@ class AddWeight extends StatelessWidget {
                   if (dateController.text.toString() != "" &&
                       weightController.text.toString() != "") {
                     if (dateController.text.toString().length != 8) {
-                      MyToast(
-                          '날짜 입력 양식을 맞춰주세요: YYYYMMDD',
-                          PRIMARY_COLOR[grade],
-                          (grade == 0 ||
-                                  grade == 1 ||
-                                  grade == 2 ||
-                                  grade == 4 ||
-                                  grade == 8)
-                              ? Colors.black
-                              : Colors.white);
+                      MyShortToast(context, '날짜 입력 양식을 맞춰주세요: YYYYMMDD');
                     } else {
                       String year =
                           (int.parse(dateController.text.toString()) ~/ 10000)
@@ -148,29 +140,11 @@ class AddWeight extends StatelessWidget {
                         if (jsondata.toString() == "Success")
                           Navigator.of(context).pop();
                       } else {
-                        MyToast(
-                            '유효하지 않은 날짜입니다.',
-                            PRIMARY_COLOR[grade],
-                            (grade == 0 ||
-                                    grade == 1 ||
-                                    grade == 2 ||
-                                    grade == 4 ||
-                                    grade == 8)
-                                ? Colors.black
-                                : Colors.white);
+                        MyShortToast(context, '유효하지 않은 날짜입니다.');
                       }
                     }
                   } else {
-                    MyToast(
-                        '모든 칸을 채워주세요.',
-                        PRIMARY_COLOR[grade],
-                        (grade == 0 ||
-                                grade == 1 ||
-                                grade == 2 ||
-                                grade == 4 ||
-                                grade == 8)
-                            ? Colors.black
-                            : Colors.white);
+                    MyShortToast(context, '모든 칸을 채워주세요.');
                   }
                 },
                 child: MyText(text: "확인", grade: grade),

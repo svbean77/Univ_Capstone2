@@ -7,6 +7,7 @@ import 'package:final_app/community/const/contents.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -131,33 +132,13 @@ class _EditPostState extends State<EditPost> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
+                    MyShortToast(context, '사진은 한 장만 가능합니다.');
                     if (files.length == 0) {
-                      MyToast(
-                          '사진은 한 장만 가능합니다.',
-                          PRIMARY_COLOR[widget.grade],
-                          (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white);
                       PickedFile? pickedFile = await ImagePicker()
                           .getImage(source: ImageSource.gallery);
                       setState(() {
                         files.add(File(pickedFile!.path));
                       });
-                    } else {
-                      MyToast(
-                          '사진은 한 장만 가능합니다.',
-                          PRIMARY_COLOR[widget.grade],
-                          (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white);
                     }
                   },
                   child: MyText(text: "갤러리", grade: widget.grade),
@@ -167,33 +148,13 @@ class _EditPostState extends State<EditPost> {
                 SizedBox(width: 8.0),
                 ElevatedButton(
                   onPressed: () async {
+                    MyShortToast(context, '사진은 한 장만 가능합니다.');
                     if (files.length == 0) {
-                      MyToast(
-                          '사진은 한 장만 가능합니다.',
-                          PRIMARY_COLOR[widget.grade],
-                          (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white);
                       PickedFile? pickedFile = await ImagePicker()
                           .getImage(source: ImageSource.camera);
                       setState(() {
                         files.add(File(pickedFile!.path));
                       });
-                    } else {
-                      MyToast(
-                          '사진은 한 장만 가능합니다.',
-                          PRIMARY_COLOR[widget.grade],
-                          (widget.grade == 0 ||
-                                  widget.grade == 1 ||
-                                  widget.grade == 2 ||
-                                  widget.grade == 4 ||
-                                  widget.grade == 8)
-                              ? Colors.black
-                              : Colors.white);
                     }
                   },
                   child: MyText(text: "카메라", grade: widget.grade),
@@ -223,16 +184,7 @@ class _EditPostState extends State<EditPost> {
               onPressed: () async {
                 if (widget.title.toString() != "" &&
                     widget.content.toString() != "") {
-                  MyToast(
-                      '업로드!',
-                      PRIMARY_COLOR[widget.grade],
-                      (widget.grade == 0 ||
-                              widget.grade == 1 ||
-                              widget.grade == 2 ||
-                              widget.grade == 4 ||
-                              widget.grade == 8)
-                          ? Colors.black
-                          : Colors.white);
+                  MyShortToast(context, '업로드!');
 
                   var url;
                   var data;
@@ -280,22 +232,8 @@ class _EditPostState extends State<EditPost> {
                       ),
                     );
                 } else {
-                  MyToast(
-                      '모든 칸을 채워주세요.',
-                      PRIMARY_COLOR[widget.grade],
-                      (widget.grade == 0 ||
-                              widget.grade == 1 ||
-                              widget.grade == 2 ||
-                              widget.grade == 4 ||
-                              widget.grade == 8)
-                          ? Colors.black
-                          : Colors.white);
+                  MyShortToast(context, '모든 칸을 채워주세요.');
                 }
-                /*
-                      board == free: 자유게시판, board == qna: 질의응답게시판
-                      update: 에 글을 수정(update)하는 코드
-                      변경목록: 제목, 내용
-                       */
               },
               child: MyText(text: "수정", grade: widget.grade),
               style: ElevatedButton.styleFrom(

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:final_app/ranking/const/user_info.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -181,16 +182,7 @@ class _MyRankingState extends State<MyRanking> {
                                           "requested":
                                               widget.nickname.toString(),
                                         });
-                                        MyToast(
-                                            '친구 요청을 보냈습니다.',
-                                            PRIMARY_COLOR[widget.grade],
-                                            (widget.grade == 0 ||
-                                                    widget.grade == 1 ||
-                                                    widget.grade == 2 ||
-                                                    widget.grade == 4 ||
-                                                    widget.grade == 8)
-                                                ? Colors.black
-                                                : Colors.white);
+                                        MyShortToast(context, '친구 요청을 보냈습니다.');
                                       },
                                       child: Icon(Icons.person_add, size: 25.0),
                                     )
@@ -214,16 +206,8 @@ class _MyRankingState extends State<MyRanking> {
                                                   "request":
                                                       widget.loginID.toString(),
                                                 });
-                                            MyToast(
-                                                '친구 요청을 취소했습니다.',
-                                                PRIMARY_COLOR[widget.grade],
-                                                (widget.grade == 0 ||
-                                                        widget.grade == 1 ||
-                                                        widget.grade == 2 ||
-                                                        widget.grade == 4 ||
-                                                        widget.grade == 8)
-                                                    ? Colors.black
-                                                    : Colors.white);
+                                            MyShortToast(
+                                                context, '친구 요청을 취소했습니다.');
                                           },
                                           child: Icon(Icons.schedule_send,
                                               size: 25.0),
@@ -267,16 +251,8 @@ class _MyRankingState extends State<MyRanking> {
                                                       "request": widget.nickname
                                                           .toString(),
                                                     });
-                                                MyToast(
-                                                    '친구 요청을 수락했습니다.',
-                                                    PRIMARY_COLOR[widget.grade],
-                                                    (widget.grade == 0 ||
-                                                            widget.grade == 1 ||
-                                                            widget.grade == 2 ||
-                                                            widget.grade == 4 ||
-                                                            widget.grade == 8)
-                                                        ? Colors.black
-                                                        : Colors.white);
+                                                MyShortToast(
+                                                    context, '친구 요청을 수락했습니다.');
                                               },
                                               child: Icon(
                                                   Icons.check_circle_outline,

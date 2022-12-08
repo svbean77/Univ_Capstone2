@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:final_app/screen/const/grade_colors.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -85,32 +86,14 @@ class AddRecord extends StatelessWidget {
                       "comment": controller.text.toString(),
                     });
                     var jsondata = json.decode(json.encode(response.body));
-
+                    print(jsondata.toString());
                     if (jsondata.toString() == "Success")
                       Navigator.of(context).pop();
                     else {
-                      MyToast(
-                          '작은 따옴표는 \\\'으로 작성해주세요.',
-                          PRIMARY_COLOR[grade],
-                          (grade == 0 ||
-                                  grade == 1 ||
-                                  grade == 2 ||
-                                  grade == 4 ||
-                                  grade == 8)
-                              ? Colors.black
-                              : Colors.white);
+                      MyShortToast(context, '작은따옴표는 \\\'으로 작성해 주세요.');
                     }
                   } else {
-                    MyToast(
-                        '모든 칸을 채워주세요.',
-                        PRIMARY_COLOR[grade],
-                        (grade == 0 ||
-                                grade == 1 ||
-                                grade == 2 ||
-                                grade == 4 ||
-                                grade == 8)
-                            ? Colors.black
-                            : Colors.white);
+                    MyShortToast(context, '모든 칸을 채워주세요.');
                   }
                 },
                 child: MyText(text: "확인", grade: grade),

@@ -4,6 +4,7 @@ import 'package:final_app/mypage/edit_my_info.dart';
 import 'package:final_app/ranking/const/my_ranking.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:final_app/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -127,16 +128,7 @@ class _MyPageState extends State<MyPage> {
                                     json.decode(json.encode(response.body));
 
                                 if (jsondata.toString() == "Success") {
-                                  MyToast(
-                                      '테마 색상을 변경했습니다.',
-                                      PRIMARY_COLOR[widget.grade],
-                                      (widget.grade == 0 ||
-                                              widget.grade == 1 ||
-                                              widget.grade == 2 ||
-                                              widget.grade == 4 ||
-                                              widget.grade == 8)
-                                          ? Colors.black
-                                          : Colors.white);
+                                  MyShortToast(context, '테마 색상을 변경했습니다.');
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
@@ -223,8 +215,8 @@ class _MyPageState extends State<MyPage> {
                                             ElevatedButton(
                                               onPressed: () {
                                                 LOGIN_BOX.remove('id');
-                                                MyToast('로그아웃 했습니다.',
-                                                    Colors.grey, Colors.black);
+                                                MyShortToast(
+                                                    context, '로그아웃했습니다.');
                                                 Navigator.of(context)
                                                     .pushAndRemoveUntil(
                                                         MaterialPageRoute(
@@ -314,20 +306,8 @@ class _MyPageState extends State<MyPage> {
                                                 if (jsondata.toString() ==
                                                     "Success") {
                                                   LOGIN_BOX.remove('id');
-                                                  MyToast(
-                                                      '탈퇴 하였습니다.',
-                                                      PRIMARY_COLOR[
-                                                          widget.grade],
-                                                      (widget.grade == 0 ||
-                                                              widget.grade ==
-                                                                  1 ||
-                                                              widget.grade ==
-                                                                  2 ||
-                                                              widget.grade ==
-                                                                  4 ||
-                                                              widget.grade == 8)
-                                                          ? Colors.black
-                                                          : Colors.white);
+                                                  MyShortToast(
+                                                      context, '탈퇴하였습니다.');
                                                   Navigator.of(context)
                                                       .pushAndRemoveUntil(
                                                           MaterialPageRoute(

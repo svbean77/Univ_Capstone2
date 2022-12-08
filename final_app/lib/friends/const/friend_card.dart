@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:final_app/ranking/const/user_info.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../screen/const/db_class.dart';
@@ -162,16 +163,7 @@ class FriendCard extends StatelessWidget {
                                           print(jsondata.toString());
                                           if (jsondata.toString() ==
                                               "Success") {
-                                            MyToast(
-                                                '친구 삭제했습니다.',
-                                                PRIMARY_COLOR[grade],
-                                                (grade == 0 ||
-                                                        grade == 1 ||
-                                                        grade == 2 ||
-                                                        grade == 4 ||
-                                                        grade == 8)
-                                                    ? Colors.black
-                                                    : Colors.white);
+                                           MyShortToast(context, '친구 삭제했습니다');
                                             Navigator.of(context).pop();
                                           }
                                           //Navigator.of(context).pop();

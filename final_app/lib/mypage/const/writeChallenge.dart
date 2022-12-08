@@ -4,6 +4,7 @@ import 'package:final_app/mypage/three_challenge.dart';
 import 'package:final_app/screen/const/app_bar.dart';
 import 'package:final_app/screen/const/drawer.dart';
 import 'package:final_app/screen/const/grade_colors.dart';
+import 'package:final_app/screen/const/my_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -96,33 +97,13 @@ class _WriteChallengeState extends State<WriteChallenge> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () async {
+                MyShortToast(context, '영상은 하나만 가능합니다.');
                 if (files.length == 0) {
-                  MyToast(
-                      '사진은 한 장만 가능합니다.',
-                      PRIMARY_COLOR[widget.grade],
-                      (widget.grade == 0 ||
-                              widget.grade == 1 ||
-                              widget.grade == 2 ||
-                              widget.grade == 4 ||
-                              widget.grade == 8)
-                          ? Colors.black
-                          : Colors.white);
                   var chooseImage = await ImagePicker()
                       .pickVideo(source: ImageSource.gallery);
                   setState(() {
                     files.add(File(chooseImage!.path));
                   });
-                } else {
-                  MyToast(
-                      '동영상은 하나만 가능합니다.',
-                      PRIMARY_COLOR[widget.grade],
-                      (widget.grade == 0 ||
-                              widget.grade == 1 ||
-                              widget.grade == 2 ||
-                              widget.grade == 4 ||
-                              widget.grade == 8)
-                          ? Colors.black
-                          : Colors.white);
                 }
               },
               child: MyText(text: "갤러리", grade: widget.grade),
@@ -142,16 +123,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
                   var data;
                   var url = "http://${IP_ADDRESS}/test_add_threeboard.php";
 
-                  MyToast(
-                      '업로드!',
-                      PRIMARY_COLOR[widget.grade],
-                      (widget.grade == 0 ||
-                              widget.grade == 1 ||
-                              widget.grade == 2 ||
-                              widget.grade == 4 ||
-                              widget.grade == 8)
-                          ? Colors.black
-                          : Colors.white);
+                  MyShortToast(context, '업로드!');
 
                   if (files.length != 0) {
                     String filename = files[0].toString().substring(
@@ -188,16 +160,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
                       ),
                     );
                 } else {
-                  MyToast(
-                      '모든 칸을 채워주세요.',
-                      PRIMARY_COLOR[widget.grade],
-                      (widget.grade == 0 ||
-                              widget.grade == 1 ||
-                              widget.grade == 2 ||
-                              widget.grade == 4 ||
-                              widget.grade == 8)
-                          ? Colors.black
-                          : Colors.white);
+                  MyShortToast(context, '모든 칸을 채워주세요.');
                 }
               },
               child: MyText(text: "저장", grade: widget.grade),
