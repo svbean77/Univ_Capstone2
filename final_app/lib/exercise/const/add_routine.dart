@@ -42,7 +42,9 @@ class _AddRoutineState extends State<AddRoutine> {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: PRIMARY_COLOR[widget.grade],
+                color: widget.grade == 0
+                    ? Colors.grey.withOpacity(0.2)
+                    : PRIMARY_COLOR[widget.grade],
               ),
               borderRadius: BorderRadius.circular(10),
             ),

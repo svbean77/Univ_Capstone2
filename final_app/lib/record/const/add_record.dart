@@ -45,7 +45,9 @@ class AddRecord extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: PRIMARY_COLOR[grade],
+                color: grade == 0
+                    ? Colors.grey.withOpacity(0.2)
+                    : PRIMARY_COLOR[grade],
               ),
               borderRadius: BorderRadius.circular(10),
             ),
