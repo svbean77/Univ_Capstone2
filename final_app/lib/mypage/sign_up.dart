@@ -56,7 +56,7 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Container(
                       alignment: Alignment.center,
-                      width: 70.0,
+                      width: 90.0,
                       child: Text('아이디',
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold)),
@@ -84,7 +84,7 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Container(
                       alignment: Alignment.center,
-                      width: 70.0,
+                      width: 90.0,
                       child: Text('비밀번호',
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold)),
@@ -126,7 +126,7 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Container(
                       alignment: Alignment.center,
-                      width: 70.0,
+                      width: 90.0,
                       child: Text('닉네임',
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold)),

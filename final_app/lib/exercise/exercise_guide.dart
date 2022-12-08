@@ -106,7 +106,7 @@ class _ExerciseGuideState extends State<ExerciseGuide> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${widget.level} ${widget.muscle} 운동 가이드\n> ${widget.equipment}',
+              '${widget.level} ${widget.muscle} 운동\n> ${widget.equipment}',
               style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
             ),
             ElevatedButton(
