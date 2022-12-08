@@ -260,7 +260,8 @@ class _EditMyInfoState extends State<EditMyInfo> {
                     print(origin);
                     if (widget.password.length != 0 &&
                         widget.nickname.length != 0 &&
-                        widget.userage != -1) {
+                        widget.userage != -1 &&
+                        widget.nickname.length < 8) {
                       var url = Uri.parse(
                           "http://${IP_ADDRESS}/test_change_user.php");
                       /*
@@ -296,6 +297,19 @@ class _EditMyInfoState extends State<EditMyInfo> {
                           ),
                         );
                       }
+                    } else if (widget.password.length != 0 &&
+                        widget.nickname.length != 0 &&
+                        widget.userage != -1) {
+                      MyToast(
+                          '닉네임은 7자 이하만 가능합니다.',
+                          PRIMARY_COLOR[widget.grade],
+                          (widget.grade == 0 ||
+                                  widget.grade == 1 ||
+                                  widget.grade == 2 ||
+                                  widget.grade == 4 ||
+                                  widget.grade == 8)
+                              ? Colors.black
+                              : Colors.white);
                     } else {
                       MyToast(
                           '모든 칸을 채워주세요.',

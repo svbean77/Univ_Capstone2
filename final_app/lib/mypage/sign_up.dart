@@ -262,8 +262,9 @@ class _SignUpState extends State<SignUp> {
   Future register() async {
     if (_idController.text.toString() != "" &&
         _pwController.text.toString() != "" &&
+        _nicknameController.text.toString() != "" &&
         _userageController.text.toString() != "" &&
-        _userageController.text.toString() != "") {
+        _nicknameController.text.toString().length < 8) {
       var url = Uri.parse("http://${IP_ADDRESS}/test_register.php");
       /*
       var url = Uri.http(IP_ADDRESS, '/test_register.php', {'q': '{http}'});
@@ -291,6 +292,11 @@ class _SignUpState extends State<SignUp> {
           ),
         );
       }
+    } else if (_idController.text.toString() != "" &&
+        _pwController.text.toString() != "" &&
+        _nicknameController.text.toString() != "" &&
+        _userageController.text.toString() != "") {
+      MyToast('닉네임은 7자 이하만 가능합니다.', Colors.grey, Colors.black);
     } else {
       MyToast('모든 칸을 채워주세요.', Colors.grey, Colors.black);
     }
