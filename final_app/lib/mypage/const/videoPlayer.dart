@@ -5,6 +5,8 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../screen/const/my_indicator.dart';
+
 class myVideo extends StatefulWidget {
   final file;
   const myVideo({
@@ -51,9 +53,10 @@ class _myVideoState extends State<myVideo> {
               return Center(
                   child: Column(
                 children: [
-                  CircularProgressIndicator(),
+                  MyIndicator,
                   SizedBox(height: 8.0),
-                  Text('동영상 로딩중'),
+                  Text('동영상 로딩 중..',
+                      style: TextStyle(fontSize: 18.0)),
                 ],
               ));
             }

@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import '../screen/const/db_class.dart';
 import '../screen/const/grade_colors.dart';
 import '../screen/const/ip_address.dart';
+import '../screen/const/my_indicator.dart';
 import 'const/contents.dart';
 
 class QnABoard extends StatefulWidget {
@@ -193,11 +194,12 @@ class _QnABoardState extends State<QnABoard> {
                         Center(
                           child: Column(
                             children: [
-                              CircularProgressIndicator(),
+                              MyIndicator,
                               SizedBox(height: 8.0),
-                              Text('데이터를 불러오고 있습니다..'),
+                              Text('데이터를 불러오고 있습니다..',
+                                  style: TextStyle(fontSize: 18.0)),
                               SizedBox(height: 8.0),
-                              Text('* 사진을 불러오는 데 많은 시간이 소요됩니다. *'),
+                              Text('* 사진을 불러오는 데 많은 시간이 소요됩니다 *'),
                             ],
                           ),
                         ),

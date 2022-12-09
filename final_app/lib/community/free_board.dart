@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../screen/const/db_class.dart';
 import '../screen/const/ip_address.dart';
+import '../screen/const/my_indicator.dart';
 
 class FreeBoard extends StatefulWidget {
   final loginID;
@@ -142,7 +143,7 @@ class _FreeBoardState extends State<FreeBoard> {
                                       ),
                                     );
                                   } else {
-                                   MyShortToast(context, '검색어를 입력해 주세요.');
+                                    MyShortToast(context, '검색어를 입력해 주세요.');
                                   }
                                 },
                               ),
@@ -193,11 +194,12 @@ class _FreeBoardState extends State<FreeBoard> {
                         Center(
                           child: Column(
                             children: [
-                              CircularProgressIndicator(),
+                              MyIndicator,
                               SizedBox(height: 8.0),
-                              Text('데이터를 불러오고 있습니다..'),
+                              Text('데이터를 불러오고 있습니다..',
+                                  style: TextStyle(fontSize: 18.0)),
                               SizedBox(height: 8.0),
-                              Text('* 사진을 불러오는 데 많은 시간이 소요됩니다. *'),
+                              Text('* 사진을 불러오는 데 많은 시간이 소요됩니다 *'),
                             ],
                           ),
                         ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../screen/const/db_class.dart';
 import '../screen/const/ip_address.dart';
+import '../screen/const/my_indicator.dart';
 
 class AllRanking extends StatefulWidget {
   final loginID;
@@ -62,9 +63,10 @@ class _AllRankingState extends State<AllRanking> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircularProgressIndicator(),
+                        MyIndicator,
                         SizedBox(height: 8.0),
-                        Text('데이터를 불러오고 있습니다..'),
+                        Text('데이터를 불러오고 있습니다..',
+                            style: TextStyle(fontSize: 18.0)),
                       ],
                     ),
             ),

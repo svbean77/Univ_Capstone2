@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import '../../screen/const/db_class.dart';
 import '../../screen/const/grade_colors.dart';
 import '../../screen/const/ip_address.dart';
+import '../../screen/const/my_indicator.dart';
 
 class MyRanking extends StatefulWidget {
   final loginID;
@@ -284,9 +285,10 @@ class _MyRankingState extends State<MyRanking> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      CircularProgressIndicator(),
+                      MyIndicator,
                       SizedBox(height: 8.0),
-                      Text('데이터를 불러오고 있습니다..'),
+                      Text('데이터를 불러오고 있습니다..',
+                          style: TextStyle(fontSize: 18.0)),
                     ],
                   ),
           );

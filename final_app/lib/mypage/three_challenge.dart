@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:final_app/mypage/const/challenge_detail.dart';
+import 'package:final_app/screen/const/my_indicator.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:final_app/mypage/const/writeChallenge.dart';
 import 'package:final_app/ranking/const/my_ranking.dart';
@@ -164,11 +165,12 @@ class _ThreeChallengeState extends State<ThreeChallenge> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircularProgressIndicator(),
+                          MyIndicator,
                           SizedBox(height: 8.0),
-                          Text('데이터를 불러오고 있습니다..'),
+                          Text('데이터를 불러오고 있습니다..',
+                              style: TextStyle(fontSize: 18.0)),
                           SizedBox(height: 8.0),
-                          Text('* 동영상을 불러오는 데 많은 시간이 소요됩니다. *'),
+                          Text('* 동영상을 불러오는 데 많은 시간이 소요됩니다 *'),
                         ],
                       ),
                     ),

@@ -13,6 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import '../screen/const/grade_colors.dart';
 import '../screen/const/ip_address.dart';
+import '../screen/const/my_indicator.dart';
 
 class FriendsMain extends StatefulWidget {
   final loginID;
@@ -239,9 +240,10 @@ class _FriendsMainState extends State<FriendsMain> {
                               Center(
                                   child: Column(
                                 children: [
-                                  CircularProgressIndicator(),
+                                  MyIndicator,
                                   SizedBox(height: 8.0),
-                                  Text('데이터를 불러오고 있습니다..'),
+                                  Text('데이터를 불러오고 있습니다..',
+                                      style: TextStyle(fontSize: 18.0)),
                                 ],
                               )),
                             ],
