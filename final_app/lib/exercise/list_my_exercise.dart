@@ -267,6 +267,8 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                                       .data.result![i].exercise,
                                                   style:
                                                       TextStyle(fontSize: 23.0),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                 ),
                                                 SizedBox(height: 4.0),
                                                 Text(

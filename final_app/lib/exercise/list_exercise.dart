@@ -63,6 +63,7 @@ class _ListExerciseState extends State<ListExercise> {
                             Text(
                               '${i + 1}. ${widget.data[i].exercise}',
                               style: TextStyle(fontSize: 23.0),
+                              overflow: TextOverflow.ellipsis,
                             ),
                             SizedBox(height: 4.0),
                             Text('X${widget.data[i].num}',
