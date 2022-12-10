@@ -316,10 +316,12 @@ class MY_EXERCISE_RECORD {
 }
 
 class classMY_EXERCISE_RECORD {
+  int? id;
   String? comment;
   String? writeDate;
 
   classMY_EXERCISE_RECORD({
+    this.id,
     this.comment,
     this.writeDate,
   });
@@ -327,6 +329,7 @@ class classMY_EXERCISE_RECORD {
   classMY_EXERCISE_RECORD.fromJson(Map<String, dynamic> jsondata) {
     comment = jsondata['comment'];
     writeDate = jsondata['writeDate'];
+    id = jsondata['id'];
   }
 }
 

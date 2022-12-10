@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:http/http.dart' as http;
 import '../screen/const/ip_address.dart';
+import '../screen/const/my_toast.dart';
 
 class RecordCalendar extends StatefulWidget {
   final loginID;
@@ -110,7 +111,8 @@ class _RecordCalendarState extends State<RecordCalendar> {
                     selectedDay.day.toString() == day.toString()) {
                   today_record.add([
                     snapshot.data.result![i].comment,
-                    snapshot.data.result![i].writeDate
+                    snapshot.data.result![i].writeDate,
+                    snapshot.data.result![i].id.toString(),
                   ]);
                 }
               }
@@ -144,8 +146,89 @@ class _RecordCalendarState extends State<RecordCalendar> {
                   for (int i = 0; i < today_record.length; i++)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: RecordCard(
-                          grade: widget.grade, content: today_record[i][0]),
+                      child: GestureDetector(
+                        child: RecordCard(
+                            grade: widget.grade, content: today_record[i][0]),
+                        onTap: () async {
+                          print(today_record[i][2]);
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                content: Container(
+                                  height: 100.0,
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text('기록 삭제하시겠습니까?',
+                                          style: TextStyle(fontSize: 18.0)),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              primary:
+                                                  PRIMARY_COLOR[widget.grade],
+                                              elevation: 0,
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: MyText(
+                                                text: "취소",
+                                                grade: widget.grade),
+                                          ),
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              primary:
+                                                  PRIMARY_COLOR[widget.grade],
+                                              elevation: 0,
+                                            ),
+                                            onPressed: () async {
+                                              /*
+                                             기록 삭제하는 코드
+                                              */
+                                              var url = Uri.parse(
+                                                  "http://${IP_ADDRESS}/test_remove_record.php");
+                                              /*
+                                          var url = Uri.http(
+                                              IP_ADDRESS,
+                                              '/test_remove_friends.php',
+                                              {'q': '{http}'});
+
+                                           */
+                                              var response = await http.post(
+                                                  url,
+                                                  body: <String, String>{
+                                                    "id": today_record[i][2]
+                                                        .toString(),
+                                                  });
+                                              var jsondata = json.decode(
+                                                  json.encode(response.body));
+                                              if (jsondata.toString() ==
+                                                  "Success") {
+                                                MyShortToast(
+                                                    context, '기록 삭제했습니다');
+                                                Navigator.of(context).pop();
+                                              }
+                                            },
+                                            child: MyText(
+                                                text: "확인",
+                                                grade: widget.grade),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                     )
                 else
                   Padding(
