@@ -98,6 +98,7 @@ class _WriteChallengeState extends State<WriteChallenge> {
             ElevatedButton(
               onPressed: () async {
                 MyShortToast(context, '영상은 하나만 가능합니다.');
+                await Future.delayed(Duration(milliseconds: 700));
                 if (files.length == 0) {
                   var chooseImage = await ImagePicker()
                       .pickVideo(source: ImageSource.gallery);

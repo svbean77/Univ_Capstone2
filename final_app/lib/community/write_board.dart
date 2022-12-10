@@ -108,6 +108,7 @@ class _WriteBoardState extends State<WriteBoard> {
                 ElevatedButton(
                   onPressed: () async {
                     MyShortToast(context, '사진은 한 장만 가능합니다.');
+                    await Future.delayed(Duration(milliseconds: 700));
                     if (files.length == 0) {
                       var chooseImage = await ImagePicker()
                           .pickImage(source: ImageSource.gallery);
@@ -124,6 +125,7 @@ class _WriteBoardState extends State<WriteBoard> {
                 ElevatedButton(
                   onPressed: () async {
                     MyShortToast(context, '사진은 한 장만 가능합니다.');
+                    await Future.delayed(Duration(milliseconds: 700));
                     if (files.length == 0) {
                       var chooseImage = await ImagePicker()
                           .pickImage(source: ImageSource.camera);

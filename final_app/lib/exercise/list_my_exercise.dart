@@ -272,9 +272,12 @@ class _ListMyExerciseState extends State<ListMyExercise> {
                                                 ),
                                                 SizedBox(height: 4.0),
                                                 Text(
-                                                    'X ${snapshot.data.result![i].num}',
-                                                    style: TextStyle(
-                                                        fontSize: 18.0)),
+                                                  'X ${snapshot.data.result![i].num}',
+                                                  style:
+                                                      TextStyle(fontSize: 18.0),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
                                               ],
                                             ),
                                           ),

@@ -133,6 +133,7 @@ class _EditPostState extends State<EditPost> {
                 ElevatedButton(
                   onPressed: () async {
                     MyShortToast(context, '사진은 한 장만 가능합니다.');
+                    await Future.delayed(Duration(milliseconds: 700));
                     if (files.length == 0) {
                       PickedFile? pickedFile = await ImagePicker()
                           .getImage(source: ImageSource.gallery);
@@ -149,6 +150,7 @@ class _EditPostState extends State<EditPost> {
                 ElevatedButton(
                   onPressed: () async {
                     MyShortToast(context, '사진은 한 장만 가능합니다.');
+                    await Future.delayed(Duration(milliseconds: 700));
                     if (files.length == 0) {
                       PickedFile? pickedFile = await ImagePicker()
                           .getImage(source: ImageSource.camera);
